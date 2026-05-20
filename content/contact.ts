@@ -82,9 +82,9 @@ export const contactFAQ = {
   socials: "INSTAGRAM   /   PINTEREST",
   // Reuse 4 tiles from /public/figma-assets/work/ for the bottom strip.
   workThumbs: [
-    "/figma-assets/work/crisp.png",
-    "/figma-assets/work/interstellar.png",
-    "/figma-assets/work/kokop.png",
-    "/figma-assets/work/taf.png",
+    "/figma-assets/work/crisp.jpg",
+    "/figma-assets/work/interstellar.jpg",
+    "/figma-assets/work/kokop.jpg",
+    "/figma-assets/work/taf.jpg",
   ],
 } as const;
