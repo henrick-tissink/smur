@@ -187,23 +187,10 @@ export function MobileLavaboCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Brand-book mockup at y=1951 — screenshot fallback per CLAUDE.md
-         vector-composed-groups rule (50+ primitives). */}
-      <Reveal>
-        <div
-          className="absolute"
-          style={{ left: 0, top: 1951.4, width: 392.94, height: 544.91 }}
-        >
-          <Image
-            src="/figma-assets/work/lavabo/mobile/brand-book.png"
-            alt="LAVABO brand book — product-page application mockup"
-            width={393}
-            height={545}
-            unoptimized
-            className="block h-full w-full"
-          />
-        </div>
-      </Reveal>
+      {/* TODO(brand-book): Frame 54 at y=1951 (392.94 × 544.91) is a vector
+         composition of ~60 SVG primitives plus 4 image rectangles. Must be
+         rebuilt inline from get_design_context — no get_screenshot fallback
+         (CLAUDE.md rule #2). Section left blank until rebuilt. */}
     </div>
   );
 }
