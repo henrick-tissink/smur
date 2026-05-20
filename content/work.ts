@@ -60,7 +60,7 @@ export const workFooter = {
 /* Project tiles                                                              */
 /* Slugs that have a built case study route — others stay as anchors.         */
 /* -------------------------------------------------------------------------- */
-export const workCaseStudies: ReadonlySet<string> = new Set(["lavabo", "kokop"]);
+export const workCaseStudies: ReadonlySet<string> = new Set(["lavabo"]);
 
 export function workTileHref(slug: string): string {
   return workCaseStudies.has(slug) ? `/work/${slug}` : `/work#${slug}`;
