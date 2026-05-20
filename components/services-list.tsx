@@ -1,6 +1,6 @@
 import { ctaButton, services, servicesList } from "@/content/home";
-import { FigmaImage } from "./figma-image";
 import { Reveal } from "./reveal";
+import { LavaboBrandBook } from "./work/lavabo-brand-book";
 
 /*
   Third service section: Webdesign, Print & More.
@@ -60,14 +60,9 @@ export function ServicesList() {
         </div>
 
         <Reveal delay={0.1}>
-          <FigmaImage
-            src={service.image.src}
-            alt={service.image.alt}
-            intrinsicWidth={service.image.intrinsicWidth}
-            intrinsicHeight={service.image.intrinsicHeight}
+          <LavaboBrandBook
             width={service.frameWidth}
             height={service.frameHeight}
-            crop={service.crop}
           />
         </Reveal>
       </div>

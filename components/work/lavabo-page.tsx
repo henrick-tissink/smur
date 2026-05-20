@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { lavabo, lavaboFrame } from "@/content/lavabo";
 import { Reveal } from "../reveal";
+import { LavaboBrandBook } from "./lavabo-brand-book";
 
 /*
   Desktop LAVABO case study (Figma 70:6705). 1440 × 5336, cream #fff7f4.
@@ -207,10 +208,16 @@ export function LavaboCaseStudy() {
         </div>
       </Reveal>
 
-      {/* TODO(brand-book): Frame 54 at y=3949 (898.58 × 1246.09) is a vector
-         composition of ~60 SVG primitives plus 4 image rectangles. Must be
-         rebuilt inline from get_design_context — no get_screenshot fallback
-         (CLAUDE.md rule #2). Section left blank until rebuilt. */}
+      {/* Brand book mockup (Frame 54) at y=3949 — structural rebuild via
+         <LavaboBrandBook> with real product photos + HTML/CSS layout. */}
+      <Reveal>
+        <div
+          className="absolute"
+          style={{ left: 271, top: 3949, width: 898.58, height: 1246.09 }}
+        >
+          <LavaboBrandBook width={898.58} height={1246.09} />
+        </div>
+      </Reveal>
     </div>
   );
 }
