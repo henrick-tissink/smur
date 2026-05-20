@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { nav } from "@/content/home";
 import { useNavInfo } from "../use-nav-scheme";
 
 /*
@@ -13,6 +15,8 @@ import { useNavInfo } from "../use-nav-scheme";
   Color adapts to the section behind the nav via useNavScheme:
   - "dark" (default, over hero/services/sage): dark brown #35221a
   - "light" (over the warm-brown about section): cream #fff7f4
+
+  Tapping the hamburger opens the full-screen menu overlay (Figma 282:40808).
 */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -31,59 +35,141 @@ export function MobileNav() {
     logo/menu against the bottom edge of the colored bar.
   */
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-50 h-[80px] transition-[background-color] duration-200"
-      style={{ backgroundColor: bg }}
-    >
-      <div
-        className="relative mx-auto h-full"
-        style={{ maxWidth: "393px" }}
+    <>
+      <header
+        className="fixed inset-x-0 top-0 z-50 h-[80px] transition-[background-color] duration-200"
+        style={{ backgroundColor: bg }}
       >
         <div
-          className="absolute flex items-end justify-between"
-          style={{ left: "26px", right: "27px", top: "32px", height: "19px" }}
+          className="relative mx-auto h-full"
+          style={{ maxWidth: "393px" }}
         >
-          <a
-            href="#home"
-            aria-label="SMUR — home"
-            className="block h-[19px] w-[85.5px]"
+          <div
+            className="absolute flex items-end justify-between"
+            style={{ left: "26px", right: "27px", top: "32px", height: "19px" }}
           >
-            <Image
-              src="/figma-assets/mobile/smur-logo.svg"
-              alt="SMUR."
-              width={86}
-              height={19}
-              priority
-              unoptimized
-              className="block h-full w-full transition-[filter] duration-200"
-              style={{ filter: logoFilter }}
-            />
-          </a>
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="relative h-[19px] w-[29px]"
-          >
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 top-0 h-[2px] transition-colors duration-200"
-              style={{ backgroundColor: iconColor }}
-            />
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 transition-colors duration-200"
-              style={{ backgroundColor: iconColor }}
-            />
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 bottom-0 h-[2px] transition-colors duration-200"
-              style={{ backgroundColor: iconColor }}
-            />
-          </button>
+            <a
+              href="#home"
+              aria-label="SMUR — home"
+              className="block h-[19px] w-[85.5px]"
+            >
+              <Image
+                src="/figma-assets/mobile/smur-logo.svg"
+                alt="SMUR."
+                width={86}
+                height={19}
+                priority
+                unoptimized
+                className="block h-full w-full transition-[filter] duration-200"
+                style={{ filter: logoFilter }}
+              />
+            </a>
+            <button
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={open}
+              onClick={() => setOpen(true)}
+              className="relative h-[19px] w-[29px]"
+            >
+              <span
+                aria-hidden
+                className="absolute left-0 right-0 top-0 h-[2px] transition-colors duration-200"
+                style={{ backgroundColor: iconColor }}
+              />
+              <span
+                aria-hidden
+                className="absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 transition-colors duration-200"
+                style={{ backgroundColor: iconColor }}
+              />
+              <span
+                aria-hidden
+                className="absolute left-0 right-0 bottom-0 h-[2px] transition-colors duration-200"
+                style={{ backgroundColor: iconColor }}
+              />
+            </button>
+          </div>
         </div>
+      </header>
+      {open && <MobileMenu onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+
+/*
+  Full-screen menu overlay — Figma 282:40808 (393 × 852).
+  - Cream #fff7f4 background, dark #35221a text/icons
+  - Close X at right=30, top=47 (24 × 21)
+  - Centered column at top=243: SMUR logo, 4 links, gap=61
+  - INSTAGRAM / PINTEREST near bottom, italic 15px
+*/
+function MobileMenu({ onClose }: { onClose: () => void }) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
+      className="fixed inset-0 z-[60]"
+      style={{ backgroundColor: "#fff7f4" }}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close menu"
+        className="absolute"
+        style={{ right: 30, top: 47, width: 24, height: 21 }}
+      >
+        <Image
+          src="/figma-assets/mobile/close-x.svg"
+          alt=""
+          width={24}
+          height={21}
+          unoptimized
+          className="block h-full w-full"
+        />
+      </button>
+
+      <div
+        className="absolute left-1/2 flex flex-col items-center"
+        style={{ top: 243, gap: 61, transform: "translateX(-50%)" }}
+      >
+        <Image
+          src="/figma-assets/mobile/smur-logo.svg"
+          alt="SMUR."
+          width={86}
+          height={19}
+          unoptimized
+          className="block"
+          style={{ width: 85.5, height: 19 }}
+        />
+        {nav.links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            onClick={onClose}
+            className="block text-center uppercase"
+            style={{
+              color: "#35221a",
+              fontSize: 17,
+              width: l.width,
+            }}
+          >
+            {l.label}
+          </Link>
+        ))}
       </div>
-    </header>
+
+      <p
+        className="absolute left-1/2 italic text-center"
+        style={{
+          bottom: 67,
+          width: 361,
+          transform: "translateX(-50%)",
+          color: "#35221a",
+          fontSize: 15,
+        }}
+      >
+        INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
+      </p>
+    </div>
   );
 }
