@@ -50,16 +50,25 @@ export function KokopCaseStudy() {
           style={{ left: 287, top: 140, width: 894.44, height: 647.35 }}
         />
       </Reveal>
+      {/* Layer_2 (143:1432) has its own bounds inside Frame 143:1426:
+         offset (113.51, 72.13), size 667.41×501.31 — must position at those
+         exact dims, NOT stretch over the full 894×647 quadrant grid (that
+         distorts the logos out of their centered positions). */}
       <Reveal>
         <Image
           src="/figma-assets/work/kokop/hero-logos.svg"
           alt="KOKO.P logotype in four colorways"
-          width={894}
-          height={647}
+          width={667}
+          height={501}
           unoptimized
           priority
           className="absolute"
-          style={{ left: 287, top: 140, width: 894.44, height: 647.35 }}
+          style={{
+            left: 287 + 113.51,
+            top: 140 + 72.13,
+            width: 667.41,
+            height: 501.31,
+          }}
         />
       </Reveal>
 
