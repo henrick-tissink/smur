@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { workFooter, workFrame, workHero, workProjects } from "@/content/work";
+import {
+  workFooter,
+  workFrame,
+  workHero,
+  workProjects,
+  workTileHref,
+} from "@/content/work";
 import { Reveal } from "../reveal";
 
 /*
@@ -66,7 +72,7 @@ export function MobileWorkPage() {
       {workProjects.map((p, i) => (
         <Reveal key={p.slug} delay={0.05 + (i % 4) * 0.04}>
           <Link
-            href={`/work#${p.slug}`}
+            href={workTileHref(p.slug)}
             aria-label={p.name}
             className="absolute block overflow-hidden transition-transform duration-500 active:scale-[0.99]"
             style={{
