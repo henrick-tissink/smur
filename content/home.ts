@@ -55,7 +55,7 @@ export const nav = {
     { label: "Services", href: "/#brand-identity", width: 84 },
     { label: "WORK", href: "/work", width: 55 },
     { label: "ABOUT", href: "/#about", width: 62 },
-    { label: "LET’s WORK TOGETHER", href: "/#contact", width: 204 },
+    { label: "LET’s WORK TOGETHER", href: "/contact", width: 204 },
   ],
   // Figma spec: gap-[61px] between links, text-[17px], color #fff7f4
   linkGap: 61,
