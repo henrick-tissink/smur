@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens lifted from Figma file UGvU1B8yP5Pa7vQmneV0Cz, frame HOME (1:2).
+  Type styles (via get_variable_defs):
+    - H3:        DM Sans Italic 20 / 100% line-height
+    - Subtitels: Myanmar MN Regular 58 / 1.21 line-height  → web: DM Serif Display
+    - body:      DM Sans Regular 17 / 1.33 line-height
+*/
+
+@theme {
+  /* Colors extracted from Figma text node fills via get_design_context */
+  --color-page: #f5f1ec;
+  --color-hero: #c9a48a;           /* hero beige bg */
+  --color-band: #bbc2b5;           /* testimonial sage band (Frame 31 bg) */
+  --color-about: #906553;          /* about section warm brown bg (6:1051) */
+  --color-ink: #35221a;            /* primary text — warm dark brown */
+  --color-ink-muted: #6a6660;
+  --color-cream: #fff7f4;          /* text on dark backgrounds (hero, about) */
+  --color-line: #d9d2c8;
+  --color-accent: #a98a8a;         /* eyebrow / italic accent — dusty pink */
+
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-heading: var(--font-dm-serif-display), "Myanmar MN", "Cormorant Garamond", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.33;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-page);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--color-accent);
+  font-weight: 400;
+}
+
+@utility text-cream {
+  color: var(--color-cream);
+}
+
+@utility bg-about {
+  background-color: var(--color-about);
 }

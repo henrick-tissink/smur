@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright MCP cache (snapshots, console logs from in-session debugging)
+.playwright-mcp/
+
+# Ad-hoc debug screenshots dropped at the repo root during dev (e.g.
+# Playwright captures used to verify layout changes). Keep Figma reference
+# images committed via the .figma-ref/ directory; everything else stays local.
+/*.png
