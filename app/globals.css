@@ -11,7 +11,7 @@
 @theme {
   /* Colors extracted from Figma text node fills via get_design_context */
   --color-page: #f5f1ec;
-  --color-hero: #c9a48a;           /* hero beige bg */
+  --color-hero: #cbb3a6;           /* hero beige bg (Figma HERO 165:28117) */
   --color-band: #bbc2b5;           /* testimonial sage band (Frame 31 bg) */
   --color-about: #906553;          /* about section warm brown bg (6:1051) */
   --color-ink: #35221a;            /* primary text — warm dark brown */

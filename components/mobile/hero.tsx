@@ -1,15 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "../reveal";
 
 /*
-  Mobile hero (Component 3 268:30787): 393 × 852, bg #cbb3a6 (lighter than desktop).
-  Inner content (Group 63 268:34835):
-    - Headline (268:34838) at left=14 right=27 top=181, 352 × 358, Myanmar MN 48px uppercase center, text-[#fff7f4]
-    - Body (268:34839) at left=40 top=449, 310 × 221, 17px DM Sans center, text-[#fff7f4]
-      with "who you are" underlined
-  Plus a small "INTERSTELLAR" feature image at bottom-right (rendered via the
-  static hero.png screenshot since rebuilding the mask+vector composition isn't
-  worth it for this small accent).
+  Mobile hero (Component 3 268:30787): 393 × 852, bg #cbb3a6.
+  Headline (268:34838) at left=14 right=27 top=181, Myanmar MN 48px uppercase.
+  Body (268:34839) at left=40 top=449, 17px DM Sans, "who you are" underlined.
+  INTERSTELLAR feature image button at bottom-right (297:56928):
+    - photo (imgRectangle1) at left=173 top=560 w=220 h=293
+    - vector overlay (imgVector mix-blend-color) at left=173 top=652 w=220 h=200
+    - INTERSTELLAR mark (imgGroup5) at left=204 top=727 w=158 h=39
 */
 export function MobileHero() {
   return (
@@ -27,15 +27,47 @@ export function MobileHero() {
         className="relative mx-auto h-full overflow-hidden"
         style={{ maxWidth: "393px", height: "852px" }}
       >
-        <Image
-          src="/figma-assets/mobile/hero.png"
-          alt="INTERSTELLAR feature project preview"
-          fill
-          priority
-          unoptimized
-          sizes="393px"
-          className="object-cover"
-        />
+        {/* INTERSTELLAR feature button (297:56928) — photo + blend overlay + mark */}
+        <Link
+          href="/work#interstellar"
+          aria-label="INTERSTELLAR feature"
+          className="absolute block"
+          style={{ left: 173, top: 560, width: 220, height: 293 }}
+        >
+          <Image
+            src="/figma-assets/mobile/hero-interstellar.jpg"
+            alt="INTERSTELLAR feature project preview"
+            width={1728}
+            height={2304}
+            priority
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+          <Image
+            src="/figma-assets/mobile/hero-overlay.svg"
+            alt=""
+            width={220}
+            height={200}
+            unoptimized
+            className="pointer-events-none absolute"
+            style={{
+              left: 0,
+              top: 92,
+              width: 220,
+              height: 200,
+              mixBlendMode: "color",
+            }}
+          />
+          <Image
+            src="/figma-assets/mobile/hero-mark.svg"
+            alt="INTERSTELLAR"
+            width={158}
+            height={39}
+            unoptimized
+            className="absolute"
+            style={{ left: 31, top: 167, width: 158, height: 39 }}
+          />
+        </Link>
 
         <div
           className="absolute"

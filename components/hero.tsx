@@ -7,6 +7,12 @@ import { Reveal } from "./reveal";
   Hero text frame (Frame 44): x=221 y=246 width=433 height=276
   Headline (165:24497): x=0 y=0 width=583 height=277
   Body (165:24498): x=0 y=326 width=430 height=201
+
+  Figma HERO bg: #cbb3a6 (applied via --color-hero).
+  Figma also contains a vector-composed "Status" real-estate website mockup
+  in the right portion (~50 SVG primitives + photo fills). We don't inline
+  that yet — see TODO. The building photo (165:24662 Rectangle) is the
+  largest hero visual at inset[34.77%_3.44%_29.3%_82.09%].
 */
 
 export function Hero() {
@@ -19,16 +25,21 @@ export function Hero() {
       style={{ minHeight: "869px" }}
     >
       <div className="relative mx-auto h-[869px] max-w-[1440px]">
-        {/* Background: Status website preview, rendered at the right side */}
-        <div className="absolute inset-0">
+        {/* Hero building photo (165:24662) — single image fill from the
+           Status mockup. Other mockup chrome (nav, cards, vector type) is
+           a vector composition pending structural rebuild — see TODO. */}
+        <div
+          className="absolute"
+          style={{ left: 1182, top: 302, width: 209, height: 312 }}
+        >
           <Image
-            src={hero.image.src}
-            alt={hero.image.alt}
-            fill
+            src="/figma-assets/hero-building.jpg"
+            alt="Featured project — Status (real estate brand)"
+            width={1788}
+            height={2679}
             priority
             unoptimized
-            sizes="1440px"
-            className="object-cover object-center"
+            className="block h-full w-full object-cover"
           />
         </div>
 

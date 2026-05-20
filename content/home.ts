@@ -67,11 +67,15 @@ export const hero = {
   headline: "NAMING, Branding & design BUILD GOOD stories",
   body:
     "Branding is not just aesthetics, it's a reflection of who you are, what you value, and how you want to be experienced. Drawn to genuine human connection and the subtle ways people express themselves, I approach naming, branding, and design as a way of creating identities that feel honest, grounded, and deeply aligned with the humans behind them.",
-  image: {
-    src: "/figma-assets/hero.png",
+  // Status real-estate building photo from the hero mockup (Figma 165:24662)
+  // — full-resolution Figma asset (1788×2679 JPEG), positioned per the
+  // Status mockup's hero crop. The surrounding website chrome (nav, cards,
+  // type) is a vector composition pending structural rebuild.
+  building: {
+    src: "/figma-assets/hero-building.jpg",
     alt: "Featured project — Status (real estate brand)",
-    intrinsicWidth: 1440,
-    intrinsicHeight: 869,
+    intrinsicWidth: 1788,
+    intrinsicHeight: 2679,
   },
 } as const;
 
