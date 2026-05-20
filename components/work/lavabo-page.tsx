@@ -15,12 +15,11 @@ import { Reveal } from "../reveal";
     y=2182 letterforms-grid.svg (type-spec block, 897×507)
     y=2715 sink-hero.png with white logotype overlay (894×895)
     y=3635 mark.svg (icon row, 897×288)
-    y=3949 brand-book.png (vector-composed mockup screenshot, 898×1246)
+    y=3949 [TODO] Frame 54 brand-book (vector composition pending inline rebuild)
 
   Per CLAUDE.md rule #2, image fills come from get_design_context asset URLs
-  (NOT screenshots). Frame 54's brand-book mockup is vector-composed of 50+
-  primitives; per the vector-composed-groups rule, we use a higher-res
-  get_screenshot of that one node as the practical fallback.
+  (NOT screenshots). Frame 54 is vector-composed of ~60 SVG primitives plus
+  4 image rectangles — must be rebuilt inline. No screenshot fallback exists.
 */
 export function LavaboCaseStudy() {
   const { width, height } = lavaboFrame.desktop;
