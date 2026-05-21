@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "../reveal";
+import { KabinettRow3RightContent } from "./kabinett-extras/row3-right";
 
 /*
   Desktop kabinett (Kabinett Wine & Spirits) case study.
@@ -178,15 +179,12 @@ export function KabinettCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Row 3 RIGHT (Group 116) — DEFERRED
-          Frame (729.52, 2985.37), 434.62×585.49. Vector-dense.
-          TODO: inline.
+          Section 6 — Row 3 RIGHT (Group 116, Layer_2 73:39506)
+          Frame (729.52, 2985.37), 434.62×585.49. Inlined 20+ vectors
+          + masked photo + mix-blend overlay via
+          ./kabinett-extras/row3-right.
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 729.52, top: 2985.37, width: 434.62, height: 585.49 }}
-        aria-hidden
-      />
+      <KabinettRow3RightContent />
 
       {/* ============================================================
           Section 7 — Row 4 (Clip path group 73:39825)
