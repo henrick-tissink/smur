@@ -89,20 +89,19 @@ Each rule has a dedicated memory file under
 
 ## Known open TODOs in code
 
-Three full inline passes have closed the bulk of the deferred work.
-All visible voids are filled; CRISP Group 62 brand stamp and kabinett
-Row 2 are fully composed. What's left is incremental typography polish.
+Four inline passes have closed the bulk of the deferred work. All
+ARCHITRAVE sections, kabinett Row 2, CRISP Group 62 brand stamp,
+KOKOP sections 6 & 8, and the home hero Status mockup are now fully
+inlined with typography. Remaining items are narrow incremental polish.
 
-- `components/work/architrave-page.tsx` — Photos render in all 4
-  previously-deferred sections (Group 80, Row 2 LEFT, Row 2 RIGHT,
-  Big middle). Typography/wordmark vectors (40-70 per section) still
-  need inlining. Per-section pull required.
-- `components/work/taf-page.tsx` — Middle section's 2 photos render;
-  the brand-book typography vectors between/around them (Layer_2
-  primitives that don't consolidate) still TODO.
+- `components/work/taf-page.tsx` — Middle section's 2 photos render.
+  Layer_2 typography vectors (1000+ loose primitives) — MCP returns
+  metadata-only response (too dense for JSX). Per-vector drill would
+  be required.
 - `components/work/interstellar-page.tsx` — Row 4 narrow filler clip
   paths (3 vertical strips, 10-14px wide) and Row 5 inner Layer_1
-  composition still TODO. Low visual impact.
+  composition (47 masked vectors at offset chain) still TODO. Low
+  visual impact.
 - `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) still
   deferred — no consolidated SVG, would require per-clip-path drilling.
 - `scripts/inline-section.sh` — bash helper used heavily during the
