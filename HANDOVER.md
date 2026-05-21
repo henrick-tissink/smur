@@ -16,22 +16,24 @@ hardened against future violations.
 | `/contact` | WORK WE ME 193:1383 | ✅ | ✅ (frame 282:39442) |
 | `/work/lavabo` | LAVABO 70:6705 | ✅ | ✅ (frame 282:38869) |
 | `/work/kokop` | KOKOP 136:234 | ✅ | scaled desktop (no mobile design) |
+| `/work/crisp` | CRISP 71:3160 | ✅ | scaled desktop (no mobile design) |
+| `/work/iwl` | IWL 71:4377 | ✅ | scaled desktop (no mobile design) |
+| `/work/interstellar` | INTERSTELLAR 73:19115 | ✅ | scaled desktop (no mobile design) |
+| `/work/taf` | TAF 73:29056 | ✅ | scaled desktop (no mobile design) |
+| `/work/kabinett` | kabinett 73:36625 | ✅ | scaled desktop (no mobile design) |
+| `/work/sws` | SWS 73:40179 | ✅ | scaled desktop (no mobile design) |
+| `/work/mnf` | MNF 71:343 | ✅ | scaled desktop (no mobile design) |
+| `/work/architrave` | ARCHITRAVE 71:982 | ✅ | scaled desktop (no mobile design) |
 
 Mobile menu overlay (Figma 282:40808) wired to the hamburger button.
 
 ## Case studies left to build
 
-Nine desktop-only frames remain. None have a dedicated mobile design in
-Figma — mobile users get the desktop layout via the existing zoom wrapper.
-
-- `71:3160` Crisp
-- `71:4377` IWL
-- `73:19115` INTERSTELLAR
-- `73:29056` TAF
-- `73:36625` kabinett
-- `73:40179` SWS
-- `71:343` MNF
-- `71:982` ARCHITRAVE
+**All 9 case studies are now shipped at the route level.** Multiple
+sub-sections within them remain TODO (see "Known open TODOs in code"
+below) — these are vector-dense compositions that exceed the MCP
+consolidation threshold and need to be inlined manually or via a
+batched download script in a follow-up session.
 
 Wiring pattern: add the slug to `workCaseStudies` in `content/work.ts`;
 the WORK tile auto-routes via `workTileHref()`.
@@ -95,6 +97,55 @@ Each rule has a dedicated memory file under
   8 (Group 120 final showcase) have small text-label vector overlays
   (~19 and ~60+ respectively) not yet inlined. Base photos render
   correctly. Both flagged with `TODO` comments inline.
+- `components/work/architrave-page.tsx` — 4 deferred sections (most TODO
+  surface area of any case study). Hero quadrants 2-4 backgrounds are
+  missing (only the top-left quadrant has a bg vector, but all 4 badges
+  render). Group 80 first content section (895×647), Row 2 (894×529),
+  and Big middle (898×1111) all deferred — vector-dense compositions
+  with no consolidated SVG exports.
+- `components/work/mnf-page.tsx` — big middle (Clip path group, 899×1239)
+  deferred. Grid of nested clip-path groups (photo cards). No consolidated
+  SVG export. Renders as cream gap between Row 1 and Bottom sections.
+- `components/work/kabinett-page.tsx` — 3 deferred areas:
+    - Row 2 (894×1100) entirely deferred (70+ inline vectors with
+      multi-layer masked photos + mix-blend overlays).
+    - Row 3 RIGHT (435×585) deferred (20+ vectors + masked photo).
+    - Bottom section's 2 rows of small wordmark letter vectors deferred.
+      Bg photo + main cabinet vector + business-card address text +
+      small masked inset photo render.
+- `components/work/taf-page.tsx` — middle section (1676 tall) Layer_2 deferred.
+  Layer_1 is a 277-byte `#D5CDC2` tan fill rect; actual editorial content
+  in Layer_2 is too vector-dense to inline. Same pattern as INTERSTELLAR
+  Row 4 and IWL bottom — significant visual void. Highest-impact follow-up
+  alongside INTERSTELLAR.
+- `components/work/interstellar-page.tsx` — two vector-dense sub-sections
+  deferred. Most visible deferred area in the project: Row 4 is 887×1456
+  rendered as flat `#212121` dark gray because Layer_1 SVG is just the
+  bg fill (295 bytes); the actual editorial content lives in Layer_2
+  (`73:27397`) which is too dense to inline. Most-impactful follow-up
+  candidate. Row 5 Layer_1 inner masked composition (~37 vectors) also
+  deferred; outer photo + bg + overlays + Layer_2 thumbnail render.
+- `components/work/iwl-page.tsx` — three vector-dense sub-sections
+  deferred per CLAUDE.md rule #2:
+    - Row 2 Layer_2 inline overlay (`73:28508`) — ~114 vectors. Section
+      currently renders as plain burgundy band (Layer_1 bg only). The
+      missing white type/decoration would add the editorial context.
+    - Row 4 LEFT (Group 91, `297:57122`) — vector-dense composition with
+      no consolidated SVG export. Renders as 434×522 empty panel.
+    - Bottom (`297:57128`) — ~897×1080 vector-dense, no consolidated
+      export. Largest deferred area in the project. Renders as empty
+      cream space below the floating Möbius vector.
+- `components/work/crisp-page.tsx` — three vector-dense sub-sections
+  deferred per CLAUDE.md rule #2 (same precedent as KOKOP):
+    - Section 5: big "CRISP" typography clip-path (`71:3418`) — **384
+      vectors**, giant botanical-fill letterforms in the middle of the
+      page. Renders as a 615px empty gap currently.
+    - Section 6: Row 2 left brand-label mockup (`297:57115`) — ~42 vectors
+      + 3 photos forming a vertical label/tag composition. Renders as a
+      439×529 empty gap.
+    - Section 11 inner stamp: ~45 masked decorative vectors inside Group
+      62 forming a brand seal. Bottom photo + main "CRISP" wordmark +
+      brand mark + contact text render; only the seal is missing.
 - `content/work.ts` — slugs `mnf` and `architrave` appear swapped vs.
   their Figma layer names (the tile labeled "ARCHITRAVE WORK" in Figma
   lives at our `mnf`-slug position; "NnfWork" at our `architrave`).
