@@ -141,10 +141,10 @@ export function TafCaseStudy() {
       {/* ============================================================
           Section 5 — Big middle (Group 112, 297:57918)
           Frame (273, 2501.03), 900×1676.
-          Layer_1 (73:33181) = single 900×1676 #D5CDC2 tan fill rect
-          (277-byte SVG). Layer_2 (~600 vectors) DEFERRED — too dense.
-          Section renders as flat tan band.
-          TODO: inline Layer_2 vectors.
+          Layer_1 (73:33181) is a #D5CDC2 tan fill rect bg.
+          Layer_2's 2 substantive Clip path groups inlined: top wide
+          photo + bottom narrow photo. Remaining typography vectors are
+          still TODO (huge upper/middle/lower bands of empty tan space).
           ============================================================ */}
       <Reveal>
         <img
@@ -153,6 +153,40 @@ export function TafCaseStudy() {
           className="absolute"
           style={{ left: 273, top: 2501.03, width: 900, height: 1676 }}
         />
+      </Reveal>
+      {/* Top photo (608×327 at frame y=2601.71) */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 418.93, top: 2601.71, width: 608.13, height: 327.05 }}
+        >
+          <Image
+            src="/figma-assets/work/taf/middle/top.png"
+            alt="TAF brand photograph"
+            width={3120}
+            height={2080}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: -2.77, top: -20.79, width: 624.99, height: 416.66 }}
+          />
+        </div>
+      </Reveal>
+      {/* Bottom photo (304×250 at frame y=3305.77) */}
+      <Reveal delay={0.08}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 419.93, top: 3305.77, width: 304.07, height: 249.76 }}
+        >
+          <Image
+            src="/figma-assets/work/taf/middle/bottom.jpg"
+            alt="TAF brand photograph"
+            width={3072}
+            height={2051}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: 0, top: -72.24, width: 553.83, height: 369.68 }}
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
