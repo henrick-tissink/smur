@@ -89,21 +89,24 @@ Each rule has a dedicated memory file under
 
 ## Known open TODOs in code
 
-Four inline passes have closed the bulk of the deferred work. All
-ARCHITRAVE sections, kabinett Row 2, CRISP Group 62 brand stamp,
-KOKOP sections 6 & 8, and the home hero Status mockup are now fully
-inlined with typography. Remaining items are narrow incremental polish.
+Five inline passes have closed nearly all the deferred work. All
+ARCHITRAVE sections, kabinett Row 2, CRISP Group 62, KOKOP sections
+6 & 8, home hero Status mockup, and INTERSTELLAR Row 5 full
+composition are now inlined. Only 2 items remain — both blocked on
+MCP returning metadata-only responses (compositions too dense for
+JSX generation):
 
 - `components/work/taf-page.tsx` — Middle section's 2 photos render.
-  Layer_2 typography vectors (1000+ loose primitives) — MCP returns
-  metadata-only response (too dense for JSX). Per-vector drill would
-  be required.
-- `components/work/interstellar-page.tsx` — Row 4 narrow filler clip
-  paths (3 vertical strips, 10-14px wide) and Row 5 inner Layer_1
-  composition (47 masked vectors at offset chain) still TODO. Low
-  visual impact.
-- `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) still
-  deferred — no consolidated SVG, would require per-clip-path drilling.
+  Layer_2 typography vectors (1000+ loose primitives) cannot be
+  inlined via MCP (metadata-only response). Would require per-vector
+  drilling.
+- `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) is 10+
+  levels of nested clip path groups; MCP returns metadata-only at
+  every parent. Single clip paths can be rendered but stitching them
+  into the full panel requires solving 10-level offset chains by hand.
+- `components/work/interstellar-page.tsx` — Row 4 has 3 narrow filler
+  clips (10-14px wide vertical strips). Extremely low visual impact.
+
 - `scripts/inline-section.sh` — bash helper used heavily during the
   inline passes. Reusable for further inline work.
 - `components/work/crisp-page.tsx` — legacy notes (most resolved):
