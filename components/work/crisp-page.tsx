@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { crisp, crispFrame } from "@/content/crisp";
 import { Reveal } from "../reveal";
+import { CrispBigTypographyClip } from "./crisp-extras/big-typography";
 
 /*
   Desktop CRISP case study (Figma 71:3160). 1440 × 5340, cream #fff7f4.
@@ -187,22 +188,13 @@ export function CrispCaseStudy() {
 
       {/* ============================================================
           Section 5 — Big "CRISP" typography clip-path (71:3418)
-          Frame (293, 1968.46), 900×615. 384 vectors — DEFERRED.
-          TODO: inline the typography composition (botanical-filled
-          giant CRISP letters). Defer per CLAUDE.md rule #2.
+          Frame (293, 1968.46), 900×615. 384 inlined vectors via
+          ./crisp-extras/big-typography. The MCP-generated JSX uses
+          pixel coordinates anchored to the Figma top frame's origin,
+          so we mount the inline composition with no positioning
+          wrapper — children land at their frame-absolute pixel coords.
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{
-          left: 293,
-          top: 1968.46,
-          width: 900,
-          height: 615,
-          /* placeholder bg so the empty section is visible during dev */
-          backgroundColor: "transparent",
-        }}
-        aria-hidden
-      />
+      <CrispBigTypographyClip />
 
       {/* ============================================================
           Section 6 — Row 2 left (Group 87, brand-label mockup)
