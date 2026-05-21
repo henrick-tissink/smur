@@ -89,47 +89,32 @@ Each rule has a dedicated memory file under
 
 ## Known open TODOs in code
 
-The big-void deferrals were largely closed in a follow-up pass — every
-case study now has photo content rendered in previously-empty sections.
-Remaining TODOs are typography/vector overlays that ride on top of the
-already-rendered photos.
+Two follow-up inline passes have closed the bulk of the deferred work:
+all visible voids are now filled and most typography overlays are
+inlined. Remaining items are narrow.
 
-- `components/hero.tsx` — Home hero's full "Status" real-estate website
-  mockup (nav, property cards, vector type) is a vector composition still
-  pending structural rebuild per CLAUDE.md option (c). Only the building
-  photo + SMUR text overlay render now. Bg color is correct. Significant
-  standalone design task — defer to a focused session.
-- `components/work/kokop-page.tsx` — Sections 6 (Group 122 brand book) and
-  8 (Group 120 final showcase) have small text-label vector overlays
-  (~19 and ~60+) not yet inlined. Base photos render. Both flagged
-  inline with `TODO`.
 - `components/work/architrave-page.tsx` — Photos render in all 4
   previously-deferred sections (Group 80, Row 2 LEFT, Row 2 RIGHT, Big
   middle). Typography/wordmark vectors (40-70 per section) are still
-  TODO; sections look photo-only without their typography overlays.
-- `components/work/mnf-page.tsx` — Big middle 4 of 5 photo cards render
-  (1 left-bleeding card skipped). Cards land at their Figma positions
-  with cream gaps between (matches design intent).
+  TODO; the sections look photo-only without the typography stamps that
+  ride on top in Figma.
+- `components/work/interstellar-page.tsx` — Row 4 has the property card
+  grid; tiny 10-14px filler clip paths and Row 5 inner masked composition
+  still TODO. TAF middle similarly has its 2 main photos but typography
+  vectors between them are still TODO.
 - `components/work/kabinett-page.tsx` — Row 2 bg photo + inner masked
-  photo render; 70+ typography vectors and the -rotate-90 + mix-blend
-  treatments still TODO. Row 3 RIGHT and bottom wordmark letter rows
-  also TODO.
-- `components/work/taf-page.tsx` — Middle section's 2 photo clip paths
-  render (top wide cleaning photo + bottom product photo). Brand-book
-  typography vectors in between still TODO — substantial tan space
-  remains.
-- `components/work/interstellar-page.tsx` — Row 4 inlined as 2x3
-  property photo grid + top hero photo + narrow band. Tiny 10-14px
-  filler clip paths and Row 5 inner masked composition still TODO.
-- `components/work/iwl-page.tsx` — Row 2 Layer_2 (114 vectors) fully
-  inlined. Bottom section's 4 photo cards render. Row 4 LEFT (Group 91)
-  still deferred — no consolidated SVG, requires per-clip-path drilling.
-- `scripts/inline-section.sh` — bash helper used during the inline pass:
-  reads a saved `get_design_context` tool-result file, downloads every
-  asset URL in parallel, detects file types, rewrites the JSX with
-  local paths. Useful for future inline work.
-- `components/work/crisp-page.tsx` — three vector-dense sub-sections
-  deferred per CLAUDE.md rule #2 (same precedent as KOKOP):
+  photo render; the -rotate-90 treatment and 70+ typography vectors on
+  top are still TODO. Row 3 RIGHT and bottom letter rows are fully done.
+- `components/work/crisp-page.tsx` — Group 62 inner brand stamp (~45
+  masked decorative vectors) still TODO. The hand-built bottom rendering
+  (photo + wordmark + brand mark + contact text) is complete.
+- `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) still deferred —
+  no consolidated SVG, requires per-clip-path drilling.
+- `scripts/inline-section.sh` — bash helper used heavily during the inline
+  passes: reads a saved `get_design_context` tool-result file (or plain
+  JSX file), downloads every asset URL in parallel, detects file types,
+  rewrites the JSX with local paths. Reusable for further inline work.
+- `components/work/crisp-page.tsx` — legacy notes (most resolved):
     - Section 5: big "CRISP" typography clip-path (`71:3418`) — **384
       vectors**, giant botanical-fill letterforms in the middle of the
       page. Renders as a 615px empty gap currently.
