@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display, Open_Sans } from "next/font/google";
+import { DM_Sans, DM_Serif_Display, Open_Sans, Quicksand } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -11,6 +11,13 @@ const dmSans = DM_Sans({
 /* Used by the CRISP hero curve text (Figma 71:4364 specifies Open Sans). */
 const openSans = Open_Sans({
   variable: "--font-open-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+/* Used by the kabinett bottom card address text (Figma 73:40155 specifies Quicksand). */
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
   display: "swap",
 });
@@ -42,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${dmSerifDisplay.variable} ${openSans.variable} antialiased`}
+      className={`${dmSans.variable} ${dmSerifDisplay.variable} ${openSans.variable} ${quicksand.variable} antialiased`}
     >
       <body>{children}</body>
     </html>

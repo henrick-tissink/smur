@@ -286,7 +286,7 @@ export function KabinettCaseStudy() {
             style={{
               left: 470.67,
               top: 246.98,
-              fontFamily: "Quicksand, sans-serif",
+              fontFamily: "var(--font-quicksand), Quicksand, sans-serif",
               fontSize: 11.76,
               color: "#5d5d5d",
               lineHeight: "normal",
@@ -299,7 +299,7 @@ export function KabinettCaseStudy() {
             style={{
               left: 485.45,
               top: 261.05,
-              fontFamily: "Quicksand, sans-serif",
+              fontFamily: "var(--font-quicksand), Quicksand, sans-serif",
               fontSize: 11.76,
               color: "#5d5d5d",
               lineHeight: "normal",
