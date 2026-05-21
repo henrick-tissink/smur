@@ -89,52 +89,45 @@ Each rule has a dedicated memory file under
 
 ## Known open TODOs in code
 
+The big-void deferrals were largely closed in a follow-up pass — every
+case study now has photo content rendered in previously-empty sections.
+Remaining TODOs are typography/vector overlays that ride on top of the
+already-rendered photos.
+
 - `components/hero.tsx` — Home hero's full "Status" real-estate website
   mockup (nav, property cards, vector type) is a vector composition still
-  pending structural rebuild. Only the building photo + SMUR text overlay
-  render now. Bg color (`--color-hero: #cbb3a6`) is correct.
+  pending structural rebuild per CLAUDE.md option (c). Only the building
+  photo + SMUR text overlay render now. Bg color is correct. Significant
+  standalone design task — defer to a focused session.
 - `components/work/kokop-page.tsx` — Sections 6 (Group 122 brand book) and
   8 (Group 120 final showcase) have small text-label vector overlays
-  (~19 and ~60+ respectively) not yet inlined. Base photos render
-  correctly. Both flagged with `TODO` comments inline.
-- `components/work/architrave-page.tsx` — 4 deferred sections (most TODO
-  surface area of any case study). Hero quadrants 2-4 backgrounds are
-  missing (only the top-left quadrant has a bg vector, but all 4 badges
-  render). Group 80 first content section (895×647), Row 2 (894×529),
-  and Big middle (898×1111) all deferred — vector-dense compositions
-  with no consolidated SVG exports.
-- `components/work/mnf-page.tsx` — big middle (Clip path group, 899×1239)
-  deferred. Grid of nested clip-path groups (photo cards). No consolidated
-  SVG export. Renders as cream gap between Row 1 and Bottom sections.
-- `components/work/kabinett-page.tsx` — 3 deferred areas:
-    - Row 2 (894×1100) entirely deferred (70+ inline vectors with
-      multi-layer masked photos + mix-blend overlays).
-    - Row 3 RIGHT (435×585) deferred (20+ vectors + masked photo).
-    - Bottom section's 2 rows of small wordmark letter vectors deferred.
-      Bg photo + main cabinet vector + business-card address text +
-      small masked inset photo render.
-- `components/work/taf-page.tsx` — middle section (1676 tall) Layer_2 deferred.
-  Layer_1 is a 277-byte `#D5CDC2` tan fill rect; actual editorial content
-  in Layer_2 is too vector-dense to inline. Same pattern as INTERSTELLAR
-  Row 4 and IWL bottom — significant visual void. Highest-impact follow-up
-  alongside INTERSTELLAR.
-- `components/work/interstellar-page.tsx` — two vector-dense sub-sections
-  deferred. Most visible deferred area in the project: Row 4 is 887×1456
-  rendered as flat `#212121` dark gray because Layer_1 SVG is just the
-  bg fill (295 bytes); the actual editorial content lives in Layer_2
-  (`73:27397`) which is too dense to inline. Most-impactful follow-up
-  candidate. Row 5 Layer_1 inner masked composition (~37 vectors) also
-  deferred; outer photo + bg + overlays + Layer_2 thumbnail render.
-- `components/work/iwl-page.tsx` — three vector-dense sub-sections
-  deferred per CLAUDE.md rule #2:
-    - Row 2 Layer_2 inline overlay (`73:28508`) — ~114 vectors. Section
-      currently renders as plain burgundy band (Layer_1 bg only). The
-      missing white type/decoration would add the editorial context.
-    - Row 4 LEFT (Group 91, `297:57122`) — vector-dense composition with
-      no consolidated SVG export. Renders as 434×522 empty panel.
-    - Bottom (`297:57128`) — ~897×1080 vector-dense, no consolidated
-      export. Largest deferred area in the project. Renders as empty
-      cream space below the floating Möbius vector.
+  (~19 and ~60+) not yet inlined. Base photos render. Both flagged
+  inline with `TODO`.
+- `components/work/architrave-page.tsx` — Photos render in all 4
+  previously-deferred sections (Group 80, Row 2 LEFT, Row 2 RIGHT, Big
+  middle). Typography/wordmark vectors (40-70 per section) are still
+  TODO; sections look photo-only without their typography overlays.
+- `components/work/mnf-page.tsx` — Big middle 4 of 5 photo cards render
+  (1 left-bleeding card skipped). Cards land at their Figma positions
+  with cream gaps between (matches design intent).
+- `components/work/kabinett-page.tsx` — Row 2 bg photo + inner masked
+  photo render; 70+ typography vectors and the -rotate-90 + mix-blend
+  treatments still TODO. Row 3 RIGHT and bottom wordmark letter rows
+  also TODO.
+- `components/work/taf-page.tsx` — Middle section's 2 photo clip paths
+  render (top wide cleaning photo + bottom product photo). Brand-book
+  typography vectors in between still TODO — substantial tan space
+  remains.
+- `components/work/interstellar-page.tsx` — Row 4 inlined as 2x3
+  property photo grid + top hero photo + narrow band. Tiny 10-14px
+  filler clip paths and Row 5 inner masked composition still TODO.
+- `components/work/iwl-page.tsx` — Row 2 Layer_2 (114 vectors) fully
+  inlined. Bottom section's 4 photo cards render. Row 4 LEFT (Group 91)
+  still deferred — no consolidated SVG, requires per-clip-path drilling.
+- `scripts/inline-section.sh` — bash helper used during the inline pass:
+  reads a saved `get_design_context` tool-result file, downloads every
+  asset URL in parallel, detects file types, rewrites the JSX with
+  local paths. Useful for future inline work.
 - `components/work/crisp-page.tsx` — three vector-dense sub-sections
   deferred per CLAUDE.md rule #2 (same precedent as KOKOP):
     - Section 5: big "CRISP" typography clip-path (`71:3418`) — **384
