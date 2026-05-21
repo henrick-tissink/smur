@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { kokop, kokopFrame } from "@/content/kokop";
 import { Reveal } from "../reveal";
+import { KokopSection6Content } from "./kokop-extras/section6";
+import { KokopSection8Content } from "./kokop-extras/section8";
 
 /*
   Desktop KOKOP case study (Figma 136:234). 1440 × 4891, cream #fff7f4.
@@ -196,24 +198,12 @@ export function KokopCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Brand book layout (Group 122, y=2909, 896×504)
-          TODO: 19 small KOKO.P text-label vectors not yet inlined.
-          Base brand-book background renders here.
+          Section 6 — Brand book layout (Group 122, 297:57937)
+          y=2909, 896×504. Inlined: bg photo + 20 KOKO.P text-label
+          vectors via ./kokop-extras/section6.
           ============================================================ */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 272, top: 2909.08, width: 896.31, height: 504.44 }}
-        >
-          <Image
-            src="/figma-assets/work/kokop/brand-book-bg.png"
-            alt="KOKO.P brand book layout"
-            width={1672}
-            height={941}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
+        <KokopSection6Content />
       </Reveal>
 
       {/* ============================================================
@@ -252,45 +242,12 @@ export function KokopCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 8 — Group 120 (y=3991, 897×724)
-          Final showcase photo + KOKO.P typography overlay
-          (mix-blend-multiply per Figma)
-
-          TODO: 60+ small typography vectors inside Layer_1 not yet
-          inlined. Main rotated bg photo + the consolidated
-          mix-blend-multiply typography overlay render here.
+          Section 8 — Group 120 (297:57935), y=3991, 897×724
+          Final showcase photo + 192-vector typography composition
+          (mix-blend-multiply) via ./kokop-extras/section8.
           ============================================================ */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 278, top: 3991.52, width: 897.18, height: 723.94 }}
-        >
-          <Image
-            src="/figma-assets/work/kokop/final-photo.png"
-            alt="KOKO.P final brand showcase"
-            width={1254}
-            height={1254}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <Image
-          src="/figma-assets/work/kokop/final-typography.svg"
-          alt="KOKO.P typography composition"
-          width={162}
-          height={271}
-          unoptimized
-          className="absolute"
-          style={{
-            left: 635,
-            top: 4294,
-            width: 162.235,
-            height: 271.167,
-            mixBlendMode: "multiply",
-          }}
-        />
+        <KokopSection8Content />
       </Reveal>
     </div>
   );
