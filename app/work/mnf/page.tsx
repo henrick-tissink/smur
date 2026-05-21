@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { MnfCaseStudy } from "@/components/work/mnf-page";
+
+export const metadata: Metadata = {
+  title: "Manufaktura Studio Architecture — SMUR",
+  description: "Brand identity for an architecture studio — restrained typography and the studio's portfolio of spatial concepts.",
+};
 
 /*
   /work/mnf — MNF / Manufaktura Studio Architecture case study.

@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { MobileWorkPage } from "@/components/mobile/work-page";
 import { Nav } from "@/components/nav";
 import { DesktopWorkPage } from "@/components/work/page";
+
+export const metadata: Metadata = {
+  title: "Selected Work — SMUR",
+  description:
+    "Selected branding and design projects by SMUR — case studies in naming, identity, packaging, and editorial systems.",
+};
 
 /*
   /work — Selected Work page. Same nav + viewport-zoom + dual-layout pattern

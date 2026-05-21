@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { InterstellarCaseStudy } from "@/components/work/interstellar-page";
+
+export const metadata: Metadata = {
+  title: "Interstellar — SMUR",
+  description: "Brand identity for a real-estate practice — celestial wordmark, considered photography, and editorial layouts.",
+};
 
 /*
   /work/interstellar — Interstellar Real Estate case study.

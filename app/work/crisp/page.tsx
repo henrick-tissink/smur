@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { CrispCaseStudy } from "@/components/work/crisp-page";
+
+export const metadata: Metadata = {
+  title: "CRISP — SMUR",
+  description: "Brand identity for an artisanal patisserie — refined simplicity, contemporary craft, and an international sensibility.",
+};
 
 /*
   /work/crisp — CRISP artisanal pastry brand identity. Desktop only in

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { TafCaseStudy } from "@/components/work/taf-page";
+
+export const metadata: Metadata = {
+  title: "TAF — SMUR",
+  description: "Brand identity for a UAE cleaning brand — fresh palette, friendly wordmark, and product packaging.",
+};
 
 /*
   /work/taf — TAF UAE cleaning brand case study.

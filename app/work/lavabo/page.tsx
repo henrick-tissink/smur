@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { MobileLavaboCaseStudy } from "@/components/mobile/lavabo-page";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { LavaboCaseStudy } from "@/components/work/lavabo-page";
+
+export const metadata: Metadata = {
+  title: "LAVABO — SMUR",
+  description: "Brand identity for a concrete washbasin maker — a quiet logotype, natural materials, and editorial photography.",
+};
 
 /*
   /work/lavabo — LAVABO concrete-washbasin case study. Same dual-layout +

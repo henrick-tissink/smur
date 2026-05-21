@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { KokopCaseStudy } from "@/components/work/kokop-page";
+
+export const metadata: Metadata = {
+  title: "KOKO.P — SMUR",
+  description: "Brand identity for a coffee brand — the kokopelli mark, warm earth tones, and menu typography.",
+};
 
 /*
   /work/kokop — KOKO.P coffee/snacks case study. Desktop only in Figma

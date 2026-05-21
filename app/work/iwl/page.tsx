@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { IwlCaseStudy } from "@/components/work/iwl-page";
+
+export const metadata: Metadata = {
+  title: "IWL — Harvard Institute For World Literature — SMUR",
+  description: "Brand identity for the Harvard Institute For World Literature — a Möbius mark and editorial system anchored in literary heritage.",
+};
 
 /*
   /work/iwl — Harvard Institute for World Literature case study.

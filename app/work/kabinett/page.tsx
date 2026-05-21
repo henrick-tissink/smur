@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { KabinettCaseStudy } from "@/components/work/kabinett-page";
+
+export const metadata: Metadata = {
+  title: "Kabinett — Wine & Spirits — SMUR",
+  description: "Brand identity for a wine & spirits cabinet — geometric monogram, burgundy ground, and event-poster typography.",
+};
 
 /*
   /work/kabinett — Kabinett Wine & Spirits case study.

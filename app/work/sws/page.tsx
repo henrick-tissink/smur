@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { SwsCaseStudy } from "@/components/work/sws-page";
+
+export const metadata: Metadata = {
+  title: "Sassy Woman Society — SMUR",
+  description: "Brand identity for the Sassy Woman Society — bold typography and an editorial system for membership and events.",
+};
 
 /*
   /work/sws — Sassy Woman Society case study.

@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { DesktopContactPage } from "@/components/contact/page";
 import { MobileContactPage } from "@/components/mobile/contact-page";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
+
+export const metadata: Metadata = {
+  title: "Let's Work Together — SMUR",
+  description:
+    "Tell me about your project — naming, branding, packaging, or editorial design. SMUR collaborates with founders and small teams shaping new ventures.",
+};
 
 /*
   /contact — "Work With Me" inquiry page. Same dual-layout + viewport-zoom
