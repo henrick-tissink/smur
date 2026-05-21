@@ -47,3 +47,7 @@ next-env.d.ts
 # Playwright captures used to verify layout changes). Keep Figma reference
 # images committed via the .figma-ref/ directory; everything else stays local.
 /*.png
+
+# playwright test artifacts
+/.playwright-mcp/
+/test-results/
