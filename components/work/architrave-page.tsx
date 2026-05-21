@@ -4,6 +4,7 @@ import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
 import { ArchitraveGroup80Content } from "./architrave-extras/group80";
+import { ArchitraveRow2RightContent } from "./architrave-extras/row2-right";
 
 /*
   Desktop ARCHITRAVE (Architrave Studio) case study.
@@ -151,22 +152,12 @@ export function ArchitraveCaseStudy() {
           }}
         />
       </Reveal>
-      {/* Row 2 RIGHT — photo masked into the section. Photo is at frame
-          inset; here we render it as a full-section bg with overflow:hidden. */}
+      {/* Row 2 RIGHT (Group 82, 297:57107) — full inlined composition
+          via ./architrave-extras/row2-right: masked photo bg + 66
+          typography/wordmark vectors + "35 SQM" and "WE LOVE" text
+          labels + inset image (175×175 square). */}
       <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 724.52, top: 2196.70, width: 435, height: 522 }}
-        >
-          <Image
-            src="/figma-assets/work/architrave/extras/row2-right-bg.jpg"
-            alt="Architrave interior photograph"
-            width={1385}
-            height={2077}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
+        <ArchitraveRow2RightContent />
       </Reveal>
 
       {/* ============================================================
