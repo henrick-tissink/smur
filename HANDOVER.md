@@ -89,31 +89,24 @@ Each rule has a dedicated memory file under
 
 ## Known open TODOs in code
 
-Two follow-up inline passes have closed the bulk of the deferred work:
-all visible voids are now filled and most typography overlays are
-inlined. Remaining items are narrow.
+Three full inline passes have closed the bulk of the deferred work.
+All visible voids are filled; CRISP Group 62 brand stamp and kabinett
+Row 2 are fully composed. What's left is incremental typography polish.
 
 - `components/work/architrave-page.tsx` — Photos render in all 4
-  previously-deferred sections (Group 80, Row 2 LEFT, Row 2 RIGHT, Big
-  middle). Typography/wordmark vectors (40-70 per section) are still
-  TODO; the sections look photo-only without the typography stamps that
-  ride on top in Figma.
-- `components/work/interstellar-page.tsx` — Row 4 has the property card
-  grid; tiny 10-14px filler clip paths and Row 5 inner masked composition
-  still TODO. TAF middle similarly has its 2 main photos but typography
-  vectors between them are still TODO.
-- `components/work/kabinett-page.tsx` — Row 2 bg photo + inner masked
-  photo render; the -rotate-90 treatment and 70+ typography vectors on
-  top are still TODO. Row 3 RIGHT and bottom letter rows are fully done.
-- `components/work/crisp-page.tsx` — Group 62 inner brand stamp (~45
-  masked decorative vectors) still TODO. The hand-built bottom rendering
-  (photo + wordmark + brand mark + contact text) is complete.
-- `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) still deferred —
-  no consolidated SVG, requires per-clip-path drilling.
-- `scripts/inline-section.sh` — bash helper used heavily during the inline
-  passes: reads a saved `get_design_context` tool-result file (or plain
-  JSX file), downloads every asset URL in parallel, detects file types,
-  rewrites the JSX with local paths. Reusable for further inline work.
+  previously-deferred sections (Group 80, Row 2 LEFT, Row 2 RIGHT,
+  Big middle). Typography/wordmark vectors (40-70 per section) still
+  need inlining. Per-section pull required.
+- `components/work/taf-page.tsx` — Middle section's 2 photos render;
+  the brand-book typography vectors between/around them (Layer_2
+  primitives that don't consolidate) still TODO.
+- `components/work/interstellar-page.tsx` — Row 4 narrow filler clip
+  paths (3 vertical strips, 10-14px wide) and Row 5 inner Layer_1
+  composition still TODO. Low visual impact.
+- `components/work/iwl-page.tsx` — Row 4 LEFT (Group 91) still
+  deferred — no consolidated SVG, would require per-clip-path drilling.
+- `scripts/inline-section.sh` — bash helper used heavily during the
+  inline passes. Reusable for further inline work.
 - `components/work/crisp-page.tsx` — legacy notes (most resolved):
     - Section 5: big "CRISP" typography clip-path (`71:3418`) — **384
       vectors**, giant botanical-fill letterforms in the middle of the
