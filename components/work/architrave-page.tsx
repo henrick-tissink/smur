@@ -4,6 +4,7 @@ import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
 import { ArchitraveGroup80Content } from "./architrave-extras/group80";
+import { ArchitraveRow2LeftContent } from "./architrave-extras/row2-left";
 import { ArchitraveRow2RightContent } from "./architrave-extras/row2-right";
 
 /*
@@ -140,17 +141,7 @@ export function ArchitraveCaseStudy() {
             vectors still TODO).
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/architrave/extras/row2-left-bg.svg"
-          alt="Architrave brand composition"
-          className="absolute"
-          style={{
-            left: 273.64,
-            top: 2190.70,
-            width: 423.15,
-            height: 521.96,
-          }}
-        />
+        <ArchitraveRow2LeftContent />
       </Reveal>
       {/* Row 2 RIGHT (Group 82, 297:57107) — full inlined composition
           via ./architrave-extras/row2-right: masked photo bg + 66
