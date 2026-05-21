@@ -220,21 +220,70 @@ export function IwlCaseStudy() {
 
       {/* ============================================================
           Section 7 — Bottom (Group 297:57128)
-          Frame (270, 3836.76), 897×1080. Vector-dense composition with
-          NO consolidated SVG export — DEFERRED entirely per CLAUDE.md
-          rule #2. Same pattern as CRISP Big Typography clip.
-          TODO: inline.
+          Frame (270, 3836.76), 897×1080. Inlined 4 photo cards:
+          large bottom photo + 3 small cards in a row at top.
+          Remaining typography vectors still TODO.
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{
-          left: 270,
-          top: 3836.76,
-          width: 897.56,
-          height: 1080.91,
-        }}
-        aria-hidden
-      />
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 435.89, top: 4374.71, width: 562.11, height: 401.18 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/bottom/large.png"
+            alt="IWL editorial photograph"
+            width={1960}
+            height={1399}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 435.89, top: 3983.44, width: 140.65, height: 138.12 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/bottom/sm1.png"
+            alt="IWL editorial photograph"
+            width={877}
+            height={865}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      <Reveal delay={0.07}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 576.21, top: 3983.44, width: 140.86, height: 138.12 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/bottom/sm2.png"
+            alt="IWL editorial photograph"
+            width={874}
+            height={865}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      <Reveal delay={0.09}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 716.75, top: 3983.44, width: 141.02, height: 138.12 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/bottom/sm3.png"
+            alt="IWL editorial photograph"
+            width={878}
+            height={865}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
 
       {/* Floating Möbius brand vector (71:4382) at frame (717, 4242), 275×87 */}
       <Reveal>
