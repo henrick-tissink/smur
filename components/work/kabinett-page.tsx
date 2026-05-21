@@ -114,16 +114,55 @@ export function KabinettCaseStudy() {
       ))}
 
       {/* ============================================================
-          Section 4 — Row 2 (Group 117) — DEFERRED
-          Frame (271, 1859.68), 894×1100. Vector-dense composition,
-          70+ inline vectors. Renders as cream gap.
-          TODO: inline.
+          Section 4 — Row 2 (Group 117)
+          Frame (271, 1859.68), 894×1100. Bg photo + inner masked photo
+          (the cabinet door "wine cellar" inset). Original section is
+          composed of: a -rotate-90'd big bg photo + mix-blend overlays +
+          70+ typography vectors forming the brand wordmark. We render
+          the 2 main photos here; typography is still TODO.
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 271, top: 1859.68, width: 894, height: 1100 }}
-        aria-hidden
-      />
+      {/* Background photo (1254×1254 square, sized into the section
+          bounds with object-cover — original is rotated -90 in Figma but
+          a flat object-cover crop here reads visually similar for a
+          textured bg). */}
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 271, top: 1859.68, width: 894, height: 1100 }}
+        >
+          <Image
+            src="/figma-assets/work/kabinett/row2/bg.png"
+            alt="Kabinett brand photograph"
+            width={1254}
+            height={1254}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      {/* Inner inset photo — the cabinet door composition. Inset
+          [45.84% 43.95% 43.14% 30.55%] relative to the root frame
+          (1440 × 4985) → frame (439.92, 2285.13) size 367×549. */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            left: 439.92,
+            top: 2285.13,
+            width: 367.20,
+            height: 549.34,
+          }}
+        >
+          <Image
+            src="/figma-assets/work/kabinett/row2/inner.jpg"
+            alt="Kabinett interior detail"
+            width={1424}
+            height={2136}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
 
       {/* ============================================================
           Section 5 — Row 3 LEFT (Group 115, Layer_2 73:39436)
