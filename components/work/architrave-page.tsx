@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
+import { ArchitraveGroup80Content } from "./architrave-extras/group80";
 
 /*
   Desktop ARCHITRAVE (Architrave Studio) case study.
@@ -106,51 +107,14 @@ export function ArchitraveCaseStudy() {
       </div>
 
       {/* ============================================================
-          Section 3 — Group 80 (first content section)
-          Frame (265, 1184), 895×647. Bg photo + inner inset photo
-          (typography vectors still TODO).
-          Bg photo inset is [23.76% 15.46% 58.19% 14.07%] relative to
-          root frame (1440×4593) → (202.61, 1091.30) size 1014×829.
-          Wrapper-relative photo offset = (-62.39, -92.70).
+          Section 3 — Group 80 (first content section, 297:57104)
+          Frame (265, 1184), 895×647. Fully inlined via
+          ./architrave-extras/group80: bg photo + inner inset photo +
+          57 typography/wordmark vectors + mix-blend overlays. Insets
+          are root-frame-relative percent so children mount cleanly.
           ============================================================ */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 265, top: 1184, width: 895, height: 647 }}
-        >
-          <Image
-            src="/figma-assets/work/architrave/extras/group80-bg.png"
-            alt="Architrave Studio interior"
-            width={1254}
-            height={1254}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -62.39, top: -92.70, width: 1014.77, height: 829.01 }}
-          />
-        </div>
-      </Reveal>
-      {/* Inner inset photo at frame (664.99, 1066.95) size 377×564,
-          masked to 368×326 visible region with mask offset (0, 224). */}
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 664.99,
-            top: 1291.28, // photo top (1066.95) + mask y-offset (224.33)
-            width: 368.27,
-            height: 326.60,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/architrave/extras/group80-inner.jpg"
-            alt="Architrave Studio interior detail"
-            width={2696}
-            height={4039}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: 0, top: -224.33, width: 377.71, height: 564.44 }}
-          />
-        </div>
+        <ArchitraveGroup80Content />
       </Reveal>
 
       {/* ============================================================
