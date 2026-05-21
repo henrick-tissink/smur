@@ -4,6 +4,7 @@ import Image from "next/image";
 import { crisp, crispFrame } from "@/content/crisp";
 import { Reveal } from "../reveal";
 import { CrispBigTypographyClip } from "./crisp-extras/big-typography";
+import { CrispRow2LeftContent } from "./crisp-extras/row2-left";
 
 /*
   Desktop CRISP case study (Figma 71:3160). 1440 × 5340, cream #fff7f4.
@@ -198,14 +199,10 @@ export function CrispCaseStudy() {
 
       {/* ============================================================
           Section 6 — Row 2 left (Group 87, brand-label mockup)
-          Frame (293, 2613), 439×529. ~42 vectors + 3 photos — DEFERRED.
-          TODO: inline the brand-label mockup composition.
+          Frame (293, 2613), 439×529. Inlined ~42 vectors + 3 photos
+          via ./crisp-extras/row2-left (Figma 297:57115).
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 293, top: 2613, width: 439, height: 529 }}
-        aria-hidden
-      />
+      <CrispRow2LeftContent />
 
       {/* ============================================================
           Section 7 — Row 2 right (Group 86, consolidated SVG)

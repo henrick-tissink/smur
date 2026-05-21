@@ -30,7 +30,8 @@ OUTPUT_FILE=$4
 
 mkdir -p "$ASSET_DIR"
 
-JSX=$(jq -r '.[0].text' "$TOOL_RESULT")
+# Accept either a saved tool-result JSON ([{type,text}]) or a plain JSX file.
+JSX=$(jq -r '.[0].text' "$TOOL_RESULT" 2>/dev/null || cat "$TOOL_RESULT")
 
 # Extract every `const imgFoo = "URL"` declaration (POSIX-friendly).
 NAMES=()
