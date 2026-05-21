@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
+import { ArchitraveBigMiddleContent } from "./architrave-extras/big-middle";
 import { ArchitraveGroup80Content } from "./architrave-extras/group80";
 import { ArchitraveRow2LeftContent } from "./architrave-extras/row2-left";
 import { ArchitraveRow2RightContent } from "./architrave-extras/row2-right";
@@ -152,51 +153,14 @@ export function ArchitraveCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Big middle (71:2405)
-          Frame (265, 2747.06), 898×1111. 2 masked photos render here.
-          Typography/wordmark vectors still TODO.
+          Section 6 — Big middle (Layer_1 71:2406, 466 assets)
+          Frame (265, 2747.06), 898×1111. Full composition inlined via
+          ./architrave-extras/big-middle: 2 masked interior photos +
+          ~460 typography vectors forming the brand-book layout.
+          Root-frame-relative insets so mounts as direct child.
           ============================================================ */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 376.00,
-            top: 2781.32,
-            width: 607.17,
-            height: 375.65,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/architrave/extras/middle1.jpg"
-            alt="Architrave interior detail"
-            width={3000}
-            height={2000}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -33.27, top: -39.57, width: 660.08, height: 441.48 }}
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 398.45,
-            top: 3478.27,
-            width: 274.23,
-            height: 171.81,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/architrave/extras/middle2.jpg"
-            alt="Architrave interior detail"
-            width={3308}
-            height={1838}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -16.64, top: -5.63, width: 330.77, height: 184.18 }}
-          />
-        </div>
+        <ArchitraveBigMiddleContent />
       </Reveal>
 
       {/* ============================================================
