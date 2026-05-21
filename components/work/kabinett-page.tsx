@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "../reveal";
+import { KabinettBottomContent } from "./kabinett-extras/bottom";
 import { KabinettRow3RightContent } from "./kabinett-extras/row3-right";
 
 /*
@@ -213,98 +214,19 @@ export function KabinettCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 8 — Bottom (Group 114, 297:57923)
-          Frame (272, 4242.76), 896×604. Bg photo + main cabinet vector +
-          address text + small masked inset photo.
-          Real text rendered as <p> with Quicksand font.
-          DEFERRED: 2 rows of small letter vectors (~20). Main brand
-          elements + text render.
+          Section 8 — Bottom (Group 114, Layer_2 73:40115)
+          Frame (272, 4242.76), 896×604. Fully inlined via
+          ./kabinett-extras/bottom: bg photo + main cabinet vector +
+          inset photo + address text (real HTML, Quicksand) + 20 letter
+          rows below. Mounted inside a wrapper at the section bounds so
+          the JSX's section-local % insets resolve correctly.
           ============================================================ */}
       <Reveal>
         <div
           className="absolute"
           style={{ left: 272, top: 4242.76, width: 896, height: 604 }}
         >
-          {/* Background photo */}
-          <img
-            src="/figma-assets/work/kabinett/bottom/photo.png"
-            alt="Kabinett card backdrop"
-            className="absolute inset-0 block h-full w-full"
-            style={{ objectFit: "cover", maxWidth: "none" }}
-          />
-          {/* Main "cabinet" vector wordmark. Inset within bottom section
-             from Figma `[38.7% 37.97% 17.14% 16.07%]` (relative to root):
-              top: 0.387×4985 = 1929.20 → bottom-section relative = 1929-4242.76 = -2313 ??
-             Hmm — the root-frame insets give absolute frame coords. The
-             vector is at frame top=1929 — that's UP in Row 2 region.
-             Wait — this is Group 114's INNER structure where insets are
-             relative to the section's own bounds (896×604), not root.
-             Section-local: top 0.387×604 = 233.75, left 0.1607×896 = 144.
-             Right 0.3797×896 = 340.21, right edge = 555.79, width = 411.79.
-             Bottom 0.1714×604 = 103.53, bottom edge = 500.47, height = 266.72. */}
-          <img
-            src="/figma-assets/work/kabinett/bottom/main-vector.svg"
-            alt="Kabinett wordmark"
-            className="absolute max-w-none"
-            style={{
-              left: 144,
-              top: 233.75,
-              width: 411.79,
-              height: 266.72,
-            }}
-          />
-          {/* Small masked inset photo (cabinet doors photo).
-             Inset `[48.18% 53.33% 26.78% 30.67%]` relative to 896×604:
-              top: 0.4818×604 = 291.01, left: 0.3067×896 = 274.80
-              right: 0.5333×896 = 477.84, right edge = 418.16, width = 143.36
-              bottom: 0.2678×604 = 161.75, bottom edge = 442.25, height = 151.24 */}
-          <div
-            className="absolute overflow-hidden"
-            style={{
-              left: 274.80,
-              top: 291.01,
-              width: 143.36,
-              height: 151.24,
-            }}
-          >
-            <img
-              src="/figma-assets/work/kabinett/bottom/inset-photo.svg"
-              alt=""
-              className="absolute inset-0 block h-full w-full"
-              style={{ maxWidth: "none" }}
-            />
-          </div>
-          {/* Address text (real HTML, Quicksand 11.76px #5d5d5d).
-             Inset `[40.89% 29.39% 56.8% 52.53%]` relative to 896×604:
-              top: 0.4089×604 = 246.98, left: 0.5253×896 = 470.67
-             Second line `[43.22% 31.43% 54.46% 54.18%]`:
-              top: 0.4322×604 = 261.05, left: 0.5418×896 = 485.45 */}
-          <p
-            className="absolute m-0 whitespace-nowrap"
-            style={{
-              left: 470.67,
-              top: 246.98,
-              fontFamily: "var(--font-quicksand), Quicksand, sans-serif",
-              fontSize: 11.76,
-              color: "#5d5d5d",
-              lineHeight: "normal",
-            }}
-          >
-            {kabinett.address[0]}
-          </p>
-          <p
-            className="absolute m-0 whitespace-nowrap"
-            style={{
-              left: 485.45,
-              top: 261.05,
-              fontFamily: "var(--font-quicksand), Quicksand, sans-serif",
-              fontSize: 11.76,
-              color: "#5d5d5d",
-              lineHeight: "normal",
-            }}
-          >
-            {kabinett.address[1]}
-          </p>
+          <KabinettBottomContent />
         </div>
       </Reveal>
 
