@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { iwl, iwlFrame } from "@/content/iwl";
 import { Reveal } from "../reveal";
+import { IwlRow2Content } from "./iwl-extras/row2-content";
 
 /*
   Desktop IWL (Harvard Institute for World Literature) case study.
@@ -157,22 +158,14 @@ export function IwlCaseStudy() {
 
       {/* ============================================================
           Section 4 — Row 2 (Group 93, 297:57124)
-          Frame (274.64, 2134.75), 895×491. Layer_1 consolidated bg.
-          TODO: Layer_2 inline overlay (~114 vectors) deferred per
-          CLAUDE.md rule #2. Bg alone reads acceptably.
+          Frame (274.64, 2134.75), 895×491. Layer_1 consolidated bg +
+          Layer_2 inlined 114 vectors via ./iwl-extras/row2-content.
+          The MCP JSX uses root-frame-relative percent insets so the
+          children mount cleanly inside the case study root with no
+          positioning wrapper needed.
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/iwl/row2-layer1.svg"
-          alt="IWL brand book composition"
-          className="absolute"
-          style={{
-            left: 274.64,
-            top: 2134.75,
-            width: 895,
-            height: 491.03,
-          }}
-        />
+        <IwlRow2Content />
       </Reveal>
 
       {/* ============================================================
