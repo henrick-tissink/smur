@@ -216,18 +216,95 @@ export function InterstellarCaseStudy() {
 
       {/* ============================================================
           Section 6 — Row 4 (Group 104, 297:57902)
-          Frame (283, 2618.59), 887×1456. Layer_1 (73:27395) consolidated
-          SVG covers the entire section — biggest single-element render
-          in the project. Layer_2 inner overlay TODO defer.
+          Frame (283, 2618.59), 887×1456. Layer_1 (73:27395) is a
+          287-byte dark-gray fill rect. Layer_2 (73:27397) contains the
+          actual property-card grid composition — too vector-dense to
+          consolidate as a whole, but each inner Clip path group does
+          consolidate as a single masked photo. We render Layer_1 as bg
+          + 8 substantive Clip path groups (top hero + narrow band +
+          6 property cards in a 2x3 grid).
           ============================================================ */}
       <Reveal>
         <img
           src="/figma-assets/work/interstellar/row4-layer1.svg"
-          alt="Interstellar brand book composition"
+          alt=""
           className="absolute"
           style={{ left: 283, top: 2618.59, width: 887.53, height: 1456.24 }}
         />
       </Reveal>
+      {/* Top hero photo (601×371 at frame y=2730.41). Original photo is
+         1788×2679 (tall), masked to the wide bounds via overflow:hidden.
+         Mask-position offset (0, 290) → photo's top crop is at y=-290. */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 427.70, top: 2730.41, width: 601.55, height: 371.20 }}
+        >
+          <Image
+            src="/figma-assets/work/interstellar/row4/hero.jpg"
+            alt="Interwar architecture photograph"
+            width={1788}
+            height={2679}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: 0, top: -290, width: 601.27, height: 901.14 }}
+          />
+        </div>
+      </Reveal>
+      {/* Narrow band (600×73 at y=2879.09) — likely small navigation/label */}
+      <Reveal delay={0.06}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 427.20, top: 2879.09, width: 600.24, height: 72.71 }}
+        >
+          <img
+            src="/figma-assets/work/interstellar/row4/band.svg"
+            alt=""
+            className="absolute max-w-none"
+            style={{ left: -96.09, top: 15.86, width: 811.46, height: 40.99 }}
+          />
+        </div>
+      </Reveal>
+      {/* Row 1 of property cards (3 × 173, at y=3175.96) */}
+      {[
+        { src: "r1c1.png", left: 451.83, photoLeft: -39.56, photoTop: -1.78, photoW: 268.66, photoH: 179.16 },
+        { src: "r1c2.png", left: 641.96, photoLeft: -55.92, photoTop: -16.95, photoW: 311.13, photoH: 207.00 },
+        { src: "r1c3.png", left: 830.96, photoLeft: -30.80, photoTop: 0, photoW: 266.68, photoH: 177.94 },
+      ].map((c) => (
+        <Reveal key={c.src} delay={0.08}>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: c.left, top: 3175.96, width: 173, height: 173 }}
+          >
+            <img
+              src={`/figma-assets/work/interstellar/row4/${c.src}`}
+              alt="Interstellar property card"
+              className="absolute max-w-none"
+              style={{ left: c.photoLeft, top: c.photoTop, width: c.photoW, height: c.photoH }}
+            />
+          </div>
+        </Reveal>
+      ))}
+      {/* Row 2 of property cards (3 × 173, at y=3601.80) */}
+      {[
+        { src: "r2c1.png", left: 451.83, photoLeft: -70.67, photoTop: -6.36, photoW: 276.56, photoH: 184.26 },
+        { src: "r2c2.jpg", left: 641.05, photoLeft: -0.48, photoTop: -28.36, photoW: 190.87, photoH: 286.29 },
+        { src: "r2c3.jpg", left: 830.96, photoLeft: -108.25, photoTop: -6.43, photoW: 266.68, photoH: 177.88 },
+      ].map((c) => (
+        <Reveal key={c.src} delay={0.08}>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: c.left, top: 3601.80, width: 173, height: 173 }}
+          >
+            <img
+              src={`/figma-assets/work/interstellar/row4/${c.src}`}
+              alt="Interstellar property card"
+              className="absolute max-w-none"
+              style={{ left: c.photoLeft, top: c.photoTop, width: c.photoW, height: c.photoH }}
+            />
+          </div>
+        </Reveal>
+      ))}
 
       {/* ============================================================
           Section 7 — Row 5 (Group 105, 297:57903)
