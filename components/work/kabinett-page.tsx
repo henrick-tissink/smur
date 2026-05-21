@@ -4,6 +4,7 @@ import Image from "next/image";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "../reveal";
 import { KabinettBottomContent } from "./kabinett-extras/bottom";
+import { KabinettRow2FullContent } from "./kabinett-extras/row2-full";
 import { KabinettRow3RightContent } from "./kabinett-extras/row3-right";
 
 /*
@@ -116,54 +117,16 @@ export function KabinettCaseStudy() {
       ))}
 
       {/* ============================================================
-          Section 4 — Row 2 (Group 117)
-          Frame (271, 1859.68), 894×1100. Bg photo + inner masked photo
-          (the cabinet door "wine cellar" inset). Original section is
-          composed of: a -rotate-90'd big bg photo + mix-blend overlays +
-          70+ typography vectors forming the brand wordmark. We render
-          the 2 main photos here; typography is still TODO.
+          Section 4 — Row 2 (Group 117, Layer_1 73:39343)
+          Frame (271, 1859.68), 894×1100. Full inlined composition via
+          ./kabinett-extras/row2-full: -rotate-90'd bg photo +
+          mix-blend-color overlay + 70 wordmark vectors + inner cabinet
+          masked photo + mix-blend-multiply overlay.
+          The MCP JSX uses root-frame-relative percent insets so the
+          children mount cleanly inside the case study root.
           ============================================================ */}
-      {/* Background photo (1254×1254 square, sized into the section
-          bounds with object-cover — original is rotated -90 in Figma but
-          a flat object-cover crop here reads visually similar for a
-          textured bg). */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 271, top: 1859.68, width: 894, height: 1100 }}
-        >
-          <Image
-            src="/figma-assets/work/kabinett/row2/bg.png"
-            alt="Kabinett brand photograph"
-            width={1254}
-            height={1254}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-      {/* Inner inset photo — the cabinet door composition. Inset
-          [45.84% 43.95% 43.14% 30.55%] relative to the root frame
-          (1440 × 4985) → frame (439.92, 2285.13) size 367×549. */}
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 439.92,
-            top: 2285.13,
-            width: 367.20,
-            height: 549.34,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/kabinett/row2/inner.jpg"
-            alt="Kabinett interior detail"
-            width={1424}
-            height={2136}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
+        <KabinettRow2FullContent />
       </Reveal>
 
       {/* ============================================================
