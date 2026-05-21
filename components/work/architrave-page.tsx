@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
 
@@ -105,15 +106,52 @@ export function ArchitraveCaseStudy() {
       </div>
 
       {/* ============================================================
-          Section 3 — Group 80 (first content section) — DEFERRED
-          Frame (265, 1184), 895×647. Masked photo + 60+ vectors.
-          TODO: inline.
+          Section 3 — Group 80 (first content section)
+          Frame (265, 1184), 895×647. Bg photo + inner inset photo
+          (typography vectors still TODO).
+          Bg photo inset is [23.76% 15.46% 58.19% 14.07%] relative to
+          root frame (1440×4593) → (202.61, 1091.30) size 1014×829.
+          Wrapper-relative photo offset = (-62.39, -92.70).
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 265, top: 1184, width: 895, height: 647 }}
-        aria-hidden
-      />
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 265, top: 1184, width: 895, height: 647 }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/extras/group80-bg.png"
+            alt="Architrave Studio interior"
+            width={1254}
+            height={1254}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: -62.39, top: -92.70, width: 1014.77, height: 829.01 }}
+          />
+        </div>
+      </Reveal>
+      {/* Inner inset photo at frame (664.99, 1066.95) size 377×564,
+          masked to 368×326 visible region with mask offset (0, 224). */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            left: 664.99,
+            top: 1291.28, // photo top (1066.95) + mask y-offset (224.33)
+            width: 368.27,
+            height: 326.60,
+          }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/extras/group80-inner.jpg"
+            alt="Architrave Studio interior detail"
+            width={2696}
+            height={4039}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: 0, top: -224.33, width: 377.71, height: 564.44 }}
+          />
+        </div>
+      </Reveal>
 
       {/* ============================================================
           Section 4 — Row 1 (Layer_1 73:1699)
@@ -129,27 +167,91 @@ export function ArchitraveCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 5 — Row 2 (Group 84) — DEFERRED
-          Frame (265, 2190.70), 894×529. Both LEFT (Layer_1, 60+ vectors)
-          and RIGHT (Group 82, 67+ vectors + 2 masked photos) too dense.
-          TODO: inline.
+          Section 5 — Row 2 (Group 84)
+          Frame (265, 2190.70), 894×529.
+          LEFT (Layer_1 71:1707) — consolidated SVG (the masked bg
+            composition that's the foundation of the typography overlay).
+          RIGHT (Group 82) — masked photo + inset photo (typography
+            vectors still TODO).
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 265, top: 2190.70, width: 894, height: 529 }}
-        aria-hidden
-      />
+      <Reveal>
+        <img
+          src="/figma-assets/work/architrave/extras/row2-left-bg.svg"
+          alt="Architrave brand composition"
+          className="absolute"
+          style={{
+            left: 273.64,
+            top: 2190.70,
+            width: 423.15,
+            height: 521.96,
+          }}
+        />
+      </Reveal>
+      {/* Row 2 RIGHT — photo masked into the section. Photo is at frame
+          inset; here we render it as a full-section bg with overflow:hidden. */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 724.52, top: 2196.70, width: 435, height: 522 }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/extras/row2-right-bg.jpg"
+            alt="Architrave interior photograph"
+            width={1385}
+            height={2077}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
 
       {/* ============================================================
-          Section 6 — Big middle (71:2405) — DEFERRED
-          Frame (265, 2747.06), 898×1111. Layer_1 too dense.
-          TODO: inline.
+          Section 6 — Big middle (71:2405)
+          Frame (265, 2747.06), 898×1111. 2 masked photos render here.
+          Typography/wordmark vectors still TODO.
           ============================================================ */}
-      <div
-        className="absolute"
-        style={{ left: 265, top: 2747.06, width: 898, height: 1111 }}
-        aria-hidden
-      />
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            left: 376.00,
+            top: 2781.32,
+            width: 607.17,
+            height: 375.65,
+          }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/extras/middle1.jpg"
+            alt="Architrave interior detail"
+            width={3000}
+            height={2000}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: -33.27, top: -39.57, width: 660.08, height: 441.48 }}
+          />
+        </div>
+      </Reveal>
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            left: 398.45,
+            top: 3478.27,
+            width: 274.23,
+            height: 171.81,
+          }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/extras/middle2.jpg"
+            alt="Architrave interior detail"
+            width={3308}
+            height={1838}
+            unoptimized
+            className="absolute max-w-none"
+            style={{ left: -16.64, top: -5.63, width: 330.77, height: 184.18 }}
+          />
+        </div>
+      </Reveal>
 
       {/* ============================================================
           Section 7 — Bottom (Clip path group, 71:2971)
