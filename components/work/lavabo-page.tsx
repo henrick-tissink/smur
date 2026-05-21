@@ -16,11 +16,13 @@ import { LavaboBrandBook } from "./lavabo-brand-book";
     y=2182 letterforms-grid.svg (type-spec block, 897×507)
     y=2715 sink-hero.png with white logotype overlay (894×895)
     y=3635 mark.svg (icon row, 897×288)
-    y=3949 [TODO] Frame 54 brand-book (vector composition pending inline rebuild)
+    y=3949 Frame 54 brand-book — structurally rebuilt as real HTML in
+      <LavaboBrandBook> per CLAUDE.md rule #2 option (c). Used 4 real
+      product photos + ~150 lines of structured JSX. Shipped 2026-05-21
+      in commit 4eae517.
 
   Per CLAUDE.md rule #2, image fills come from get_design_context asset URLs
-  (NOT screenshots). Frame 54 is vector-composed of ~60 SVG primitives plus
-  4 image rectangles — must be rebuilt inline. No screenshot fallback exists.
+  (NOT screenshots).
 */
 export function LavaboCaseStudy() {
   const { width, height } = lavaboFrame.desktop;

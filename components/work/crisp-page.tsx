@@ -4,6 +4,7 @@ import Image from "next/image";
 import { crisp, crispFrame } from "@/content/crisp";
 import { Reveal } from "../reveal";
 import { CrispBigTypographyClip } from "./crisp-extras/big-typography";
+import { CrispGroup62Content } from "./crisp-extras/group62";
 import { CrispRow2LeftContent } from "./crisp-extras/row2-left";
 
 /*
@@ -314,206 +315,26 @@ export function CrispCaseStudy() {
 
       {/* ============================================================
           Section 11 — Bottom CRISP CAFÉ showcase (Group 62, 82:40956)
-          Frame (293, 4365.08), 899×1114.18.
-
-          Background photo + mix-blend-multiply overlay + brand mark +
-          big CRISP wordmark + curved text + contact text.
-
-          DEFERRED: the inner ~45 masked decorative vectors (a brand
-          stamp/seal). Base photo + wordmark + brand mark + contact text
-          render here.
+          Frame (293, 4365.08), 899×1114.18. Fully inlined via
+          ./crisp-extras/group62: bg photo + mix-blend overlay + 45
+          masked decorative stamp vectors + CRISP wordmark + brand mark
+          + curved text + contact text. The JSX uses pixel coords
+          anchored to the case study root (no wrapper offset needed
+          since the inner Group has its own positioning chain).
           ============================================================ */}
-      {/* Background photo (masked to a simple rectangle = overflow-hidden) */}
+      <CrispGroup62Content />
+      {/* Hand-built legacy bottom removed (replaced by inlined Group62
+          above). Kept frozen below for reference if positioning diverges. */}
+      {/*
       <Reveal>
         <div
           className="absolute overflow-hidden"
           style={{ left: 293, top: 4365.08, width: 899, height: 1114.18 }}
         >
-          <Image
-            src="/figma-assets/work/crisp/bottom/photo.png"
-            alt="CRISP café photograph"
-            width={1254}
-            height={1254}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
+          <Image src="LEGACY" alt="" width={1} height={1} />
         </div>
       </Reveal>
-
-      {/* mix-blend-multiply overlay (offset 455.4, 418.25 inside Group 62) */}
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 748.4, // 293 + 455.4
-            top: 4783.33, // 4365.08 + 418.25
-            width: 299.7,
-            height: 389.088,
-            mixBlendMode: "multiply",
-          }}
-        >
-          <Image
-            src="/figma-assets/work/crisp/bottom/overlay-multiply.jpg"
-            alt=""
-            width={2000}
-            height={3000}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-
-      {/* Brand leaf mark (above the wordmark) */}
-      <Reveal delay={0.1}>
-        <img
-          src="/figma-assets/work/crisp/bottom/brand-leaf.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 714.15, // 293 + 421.15
-            top: 4605.22, // 4365.08 + 240.14
-            width: 80.936,
-            height: 77.976,
-          }}
-        />
-      </Reveal>
-      {/* Small brand-mark detail vectors (51, 52, 53) */}
-      <Reveal delay={0.12}>
-        <img
-          src="/figma-assets/work/crisp/bottom/brand-1.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 748.27, // 293 + 455.27
-            top: 4650.40, // 4365.08 + 285.32
-            width: 7.726,
-            height: 20.904,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.12}>
-        <img
-          src="/figma-assets/work/crisp/bottom/brand-2.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 747.64, // 293 + 454.64
-            top: 4648.39, // 4365.08 + 283.31
-            width: 46.935,
-            height: 34.234,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.12}>
-        <img
-          src="/figma-assets/work/crisp/bottom/brand-3.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 717.51, // 293 + 424.51
-            top: 4611.30, // 4365.08 + 246.22
-            width: 34.121,
-            height: 32.999,
-          }}
-        />
-      </Reveal>
-
-      {/* "CRISP" wordmark — 5 letterform SVGs */}
-      <Reveal delay={0.15}>
-        <img
-          src="/figma-assets/work/crisp/bottom/wordmark-c.svg"
-          alt="CRISP"
-          className="absolute"
-          style={{
-            left: 596.77, // 293 + 303.77
-            top: 4691.27, // 4365.08 + 326.19
-            width: 67.149,
-            height: 70.02,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.16}>
-        <img
-          src="/figma-assets/work/crisp/bottom/wordmark-r.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 679.56, // 293 + 386.56
-            top: 4692.79, // 4365.08 + 327.71
-            width: 55.493,
-            height: 66.948,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.17}>
-        <img
-          src="/figma-assets/work/crisp/bottom/wordmark-i.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 744.18, // 293 + 451.18
-            top: 4692.79, // 4365.08 + 327.71
-            width: 11.258,
-            height: 66.937,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.18}>
-        <img
-          src="/figma-assets/work/crisp/bottom/wordmark-s.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 771.10, // 293 + 478.10
-            top: 4691.27, // 4365.08 + 326.19
-            width: 47.695,
-            height: 70.03,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.19}>
-        <img
-          src="/figma-assets/work/crisp/bottom/wordmark-p.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 834.42, // 293 + 541.42
-            top: 4692.79, // 4365.08 + 327.71
-            width: 46.338,
-            height: 66.958,
-          }}
-        />
-      </Reveal>
-
-      {/* Curved text near the bottom (214×64 at frame y=5169) */}
-      <Reveal delay={0.2}>
-        <img
-          src="/figma-assets/work/crisp/bottom/curved-text.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 635, // 293 + 342
-            top: 5169.08, // 4365.08 + 804
-            width: 214.602,
-            height: 64.763,
-          }}
-        />
-      </Reveal>
-
-      {/* Contact info: 805.323.6531 I @CRISP.CAFE (rendered as SVG) */}
-      <Reveal delay={0.22}>
-        <img
-          src="/figma-assets/work/crisp/bottom/contact-text.svg"
-          alt="805.323.6531 I @CRISP.CAFE"
-          className="absolute"
-          style={{
-            left: 657.54, // 293 + 364.54
-            top: 5283.05, // 4365.08 + 917.97
-            width: 165.582,
-            height: 10.069,
-          }}
-        />
-      </Reveal>
+      */}
     </div>
   );
 }
