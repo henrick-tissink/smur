@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { interstellar, interstellarFrame } from "@/content/interstellar";
 import { Reveal } from "../reveal";
+import { InterstellarRow5Content } from "./interstellar-extras/row5-full";
 
 /*
   Desktop INTERSTELLAR (Interstellar Real Estate) case study.
@@ -308,94 +309,13 @@ export function InterstellarCaseStudy() {
 
       {/* ============================================================
           Section 7 — Row 5 (Group 105, 297:57903)
-          Frame (282, 4099.84), 889×564. LEFT photo + RIGHT bg vector +
-          3 overlay graphics + Layer_2 preview thumbnail.
-          TODO: defer Layer_1 inner masked composition (~37 vectors).
+          Frame (282, 4099.84), 889×564. Full composition inlined via
+          ./interstellar-extras/row5-full: LEFT photo + RIGHT bg vector +
+          3 overlay graphics + Layer_2 thumbnail + inner Layer_1
+          masked composition (47 vectors at offset chain).
           ============================================================ */}
-      {/* LEFT photo (with Figma crop: w=256.29% h=295.79% left=-77.94% top=-132.95%) */}
       <Reveal>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 282, top: 4099.84, width: 435, height: 564 }}
-        >
-          <Image
-            src="/figma-assets/work/interstellar/row5-photo.jpg"
-            alt="Interstellar interior photograph"
-            width={1385}
-            height={2077}
-            unoptimized
-            className="absolute max-w-none"
-            style={{
-              width: "256.29%",
-              height: "295.79%",
-              left: "-77.94%",
-              top: "-132.95%",
-            }}
-          />
-        </div>
-      </Reveal>
-      {/* RIGHT bg vector */}
-      <Reveal delay={0.05}>
-        <img
-          src="/figma-assets/work/interstellar/row5-right-bg.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 739, top: 4099.84, width: 432, height: 564 }}
-        />
-      </Reveal>
-      {/* 3 overlay graphics */}
-      <Reveal delay={0.08}>
-        <img
-          src="/figma-assets/work/interstellar/row5-overlay1.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 858.13, // 282 + 576.13
-            top: 4325.93, // 4099.84 + 226.09
-            width: 195.51,
-            height: 99.91,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.08}>
-        <img
-          src="/figma-assets/work/interstellar/row5-overlay2.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 910.88, // 282 + 628.88
-            top: 4481.37, // 4099.84 + 381.53
-            width: 90.00,
-            height: 113.60,
-          }}
-        />
-      </Reveal>
-      <Reveal delay={0.08}>
-        <img
-          src="/figma-assets/work/interstellar/row5-overlay3.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 929.20, // 282 + 647.20
-            top: 4195.35, // 4099.84 + 95.51
-            width: 53.35,
-            height: 68.41,
-          }}
-        />
-      </Reveal>
-      {/* Layer_2 final preview thumbnail */}
-      <Reveal delay={0.12}>
-        <img
-          src="/figma-assets/work/interstellar/row5-thumbnail.svg"
-          alt="Interstellar property thumbnail"
-          className="absolute"
-          style={{
-            left: 421.61, // 282 + 139.61
-            top: 4241.55, // 4099.84 + 141.71
-            width: 152.93,
-            height: 260.79,
-          }}
-        />
+        <InterstellarRow5Content />
       </Reveal>
 
       {/* ============================================================
