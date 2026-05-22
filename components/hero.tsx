@@ -1,5 +1,6 @@
 import { hero } from "@/content/home";
 import { Reveal } from "./reveal";
+import { TitleMask } from "./title-mask";
 import { HomeHeroStatus } from "./hero-extras/status-mockup";
 
 /*
@@ -32,9 +33,15 @@ export function Hero() {
           style={{ left: "221px", top: "246px", width: "583px" }}
         >
           <Reveal>
-            <h1 className="font-heading text-[75px] uppercase leading-[0.97] tracking-[-0.005em] text-cream">
-              {hero.headline}
-            </h1>
+            <div className="text-cream">
+              <TitleMask
+                src="/figma-assets/titles/header.svg"
+                width={586.82}
+                height={288.99}
+                alt={hero.headline}
+                as={1}
+              />
+            </div>
           </Reveal>
           <Reveal delay={0.1}>
             <p

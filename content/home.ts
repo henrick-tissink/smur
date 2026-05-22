@@ -28,10 +28,17 @@ export type Overlay = {
   height: number;
 };
 
+export type TitleSvg = {
+  src: string;
+  width: number;
+  height: number;
+};
+
 export type Service = {
   id: string;
   eyebrow: string;
   title: string;
+  titleSvg?: TitleSvg;
   body: string;
   image: FigmaAsset;
   crop: FigmaCrop;
@@ -84,6 +91,11 @@ export const services: Service[] = [
     id: "brand-identity",
     eyebrow: "full service",
     title: "Brand identity",
+    titleSvg: {
+      src: "/figma-assets/titles/brand-identity.svg",
+      width: 410.82,
+      height: 69.43,
+    },
     body:
       "This process is designed to uncover the heart of your brand through thoughtful conversation, intuition, and personal exploration, resulting in a visual identity that feels aligned, distinctive, and built to evolve with you over time.",
     image: {
@@ -102,6 +114,11 @@ export const services: Service[] = [
     id: "naming-positioning",
     eyebrow: "strategy focused",
     title: "Naming & Positioning",
+    titleSvg: {
+      src: "/figma-assets/titles/naming-positioning.svg",
+      width: 310.1,
+      height: 131.36,
+    },
     body:
       "Together, we'll shape a name and brand direction that feels intentional, memorable, and deeply connected to the essence of your business and the people it's meant to reach.",
     image: {
@@ -130,17 +147,21 @@ export const services: Service[] = [
     id: "webdesign-print",
     eyebrow: "more.more.more.",
     title: "Webdesign, Print & More",
+    titleSvg: {
+      src: "/figma-assets/titles/webdesign-print.svg",
+      width: 362.1,
+      height: 134.29,
+    },
     body:
       "Beyond brand identity design, I offer a range of additional creative services, either as part of a larger project or as standalone collaborations:",
     image: {
-      src: "/figma-assets/lavabo.png",
+      // Replaces the heavy vector-composed LAVABO brand-book mockup with the
+      // client's exported photograph (May 2026 feedback round).
+      src: "/figma-assets/services/lavabo-web-print.png",
       alt: "LAVABO — Webdesign and print case study",
-      intrinsicWidth: 428,
-      intrinsicHeight: 557,
+      intrinsicWidth: 856,
+      intrinsicHeight: 1114,
     },
-    // Figma Group 73 (163:429) — 428×557 portrait composition of 60+ vectors.
-    // Cannot re-export at >1x because Figma's render caps at the node's natural
-    // size. Image fills the frame exactly.
     crop: { w: 100, h: 100, left: 0, top: 0 },
     frameWidth: 428,
     frameHeight: 557,

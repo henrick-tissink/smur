@@ -7,7 +7,9 @@ import {
   workProjects,
   workTileHref,
 } from "@/content/work";
+import { Arrow } from "../arrow";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
 
 /*
   Desktop WORK page (Figma 1:243): 1440 × 5187, bg #fff7f4.
@@ -19,7 +21,7 @@ import { Reveal } from "../reveal";
 */
 export function DesktopWorkPage() {
   const { width, height, bg } = workFrame.desktop;
-  const { container, titleSize, eyebrowSize } = workHero.desktop;
+  const { container, eyebrowSize } = workHero.desktop;
 
   return (
     <section
@@ -45,28 +47,27 @@ export function DesktopWorkPage() {
           </p>
         </Reveal>
         <Reveal delay={0.05}>
-          <h1
-            className="mt-[12px] font-heading text-ink"
-            style={{ fontSize: `${titleSize}px`, lineHeight: 1.21 }}
-          >
-            {workHero.title[0]}
-            <br />
-            {workHero.title[1]}
-          </h1>
+          <div className="mt-[12px] flex justify-center text-ink">
+            <TitleMask
+              src="/figma-assets/titles/this-is-my-work.svg"
+              width={254.66}
+              height={145.21}
+              alt={`${workHero.title[0]} ${workHero.title[1]}`}
+              as={1}
+            />
+          </div>
         </Reveal>
-        {/* Arrow indicator pointing down (Figma "Component 2" at x=684 y=345 — 72x94) */}
+        {/* Scroll-down arrow indicator (Figma "Component 2" at x=684 y=345 — 72x94) */}
         <Reveal delay={0.12}>
           <div
-            className="absolute font-sans italic text-accent"
+            className="absolute text-ink"
             style={{
-              left: `${(684 - container.x)}px`,
-              top: `${(345 - container.y)}px`,
-              fontSize: "32px",
-              lineHeight: 1,
+              left: `${684 - container.x}px`,
+              top: `${345 - container.y}px`,
             }}
             aria-hidden
           >
-            ↓
+            <Arrow direction="down" size={72} />
           </div>
         </Reveal>
       </div>

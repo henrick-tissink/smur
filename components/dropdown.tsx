@@ -1,11 +1,13 @@
 "use client";
 
 import { useId, useState } from "react";
+import { Arrow } from "./arrow";
 
 /*
-  Figma DROP DOWN component: 426/431 wide × ~98 tall.
-  Renders as a row with label on the left and chevron on the right,
-  border-bottom underline; expands on click.
+  DROP DOWN component (Figma 426/431 wide).
+  Label: DM Sans Italic 20px uppercase (matches FAQ + eyebrow style).
+  Arrow: exported SMUR arrow asset, points down when collapsed, rotates to
+  up on expand.
 */
 export function Dropdown({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
@@ -18,19 +20,12 @@ export function Dropdown({ label }: { label: string }) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-4 text-left"
+        className="flex w-full items-center justify-between py-4 text-left text-ink"
       >
-        <span className="font-sans text-[15px] uppercase tracking-[0.08em] text-ink">
+        <span className="font-sans text-[20px] italic uppercase leading-none">
           {label}
         </span>
-        <span
-          aria-hidden
-          className={`text-base transition-transform duration-300 ${
-            open ? "rotate-45" : "rotate-0"
-          }`}
-        >
-          +
-        </span>
+        <Arrow direction={open ? "up" : "down"} size={22} />
       </button>
     </div>
   );

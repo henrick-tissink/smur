@@ -2,6 +2,7 @@ import type { Service } from "@/content/home";
 import { Dropdown } from "./dropdown";
 import { FigmaImage } from "./figma-image";
 import { Reveal } from "./reveal";
+import { TitleMask } from "./title-mask";
 
 /*
   Service card layout matches Figma SERVICES sub-sections.
@@ -16,9 +17,21 @@ export function ServiceCard({ service }: { service: Service }) {
         <span className="eyebrow">{service.eyebrow}</span>
       </Reveal>
       <Reveal delay={0.05}>
-        <h2 className="mt-[16px] font-heading text-[58px] leading-[1.21] text-ink">
-          {service.title}
-        </h2>
+        {service.titleSvg ? (
+          <div className="mt-[16px] text-ink">
+            <TitleMask
+              src={service.titleSvg.src}
+              width={service.titleSvg.width}
+              height={service.titleSvg.height}
+              alt={service.title}
+              as={2}
+            />
+          </div>
+        ) : (
+          <h2 className="mt-[16px] font-heading text-[58px] leading-[1.21] text-ink">
+            {service.title}
+          </h2>
+        )}
       </Reveal>
       <Reveal delay={0.1}>
         <p className="mt-[36px] max-w-[430px] text-[17px] leading-[1.33] text-ink">

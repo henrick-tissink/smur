@@ -1,4 +1,5 @@
 import { testimonial } from "@/content/home";
+import { Arrow } from "./arrow";
 import { Reveal } from "./reveal";
 
 /*
@@ -20,17 +21,17 @@ export function Testimonial() {
           type="button"
           aria-label="Previous testimonial"
           className="absolute text-ink/70 transition-colors hover:text-ink"
-          style={{ left: "218px", top: "200px" }}
+          style={{ left: "218px", top: "186px" }}
         >
-          ←
+          <Arrow direction="left" size={42} />
         </button>
         <button
           type="button"
           aria-label="Next testimonial"
           className="absolute text-ink/70 transition-colors hover:text-ink"
-          style={{ right: "218px", top: "200px" }}
+          style={{ right: "218px", top: "186px" }}
         >
-          →
+          <Arrow direction="right" size={42} />
         </button>
 
         <div

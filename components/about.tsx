@@ -1,6 +1,7 @@
 import { about } from "@/content/home";
 import { FigmaImage } from "./figma-image";
 import { Reveal } from "./reveal";
+import { TitleMask } from "./title-mask";
 
 /*
   about smuriiii (6:1051): bg-[#906553] warm brown, 1440 × 971
@@ -33,17 +34,18 @@ export function About() {
           }}
         >
           <Reveal>
-            <h2
+            <div
               id="about-title"
-              className="absolute left-0 top-0 font-heading text-[75.407px] uppercase leading-[0.97] tracking-[-0.005em] text-cream"
-              style={{ whiteSpace: "nowrap" }}
+              className="absolute left-0 top-0 text-cream"
             >
-              ABOUT
-              <br />
-              SMA &amp;
-              <br />
-              SMUR.
-            </h2>
+              <TitleMask
+                src="/figma-assets/titles/about.svg"
+                width={273.84}
+                height={220.43}
+                alt="ABOUT SMA & SMUR."
+                as={2}
+              />
+            </div>
           </Reveal>
 
           <Reveal delay={0.08}>

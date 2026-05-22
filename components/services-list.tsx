@@ -1,13 +1,16 @@
+import Image from "next/image";
 import { ctaButton, services, servicesList } from "@/content/home";
+import { Arrow } from "./arrow";
 import { Reveal } from "./reveal";
-import { LavaboBrandBook } from "./work/lavabo-brand-book";
+import { TitleMask } from "./title-mask";
 
 /*
   Third service section: Webdesign, Print & More.
   Frame 79 (text): x=218 y=1881 width=425 height=258
   Frame 78 (list): x=218 y=2183 width=194 height=142
   BUTTON: x=218 y=2368 width=318
-  Image (LAVABO) on right
+  Right column: LAVABO photo (replaces the vector brand-book mockup per the
+  May 2026 client feedback round).
 */
 export function ServicesList() {
   const service = services[2];
@@ -24,12 +27,24 @@ export function ServicesList() {
             <span className="eyebrow">{service.eyebrow}</span>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2
-              id="webdesign-title"
-              className="mt-[16px] font-heading text-[58px] leading-[1.21] text-ink"
-            >
-              {service.title}
-            </h2>
+            {service.titleSvg ? (
+              <div className="mt-[16px] text-ink">
+                <TitleMask
+                  src={service.titleSvg.src}
+                  width={service.titleSvg.width}
+                  height={service.titleSvg.height}
+                  alt={service.title}
+                  as={2}
+                />
+              </div>
+            ) : (
+              <h2
+                id="webdesign-title"
+                className="mt-[16px] font-heading text-[58px] leading-[1.21] text-ink"
+              >
+                {service.title}
+              </h2>
+            )}
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-[36px] max-w-[425px] text-[17px] leading-[1.33] text-ink">
@@ -44,28 +59,62 @@ export function ServicesList() {
             </ul>
           </Reveal>
           <Reveal delay={0.2}>
-            <a
-              href="#contact"
-              className="group mt-[60px] inline-flex items-center gap-3 rounded-full border border-ink/50 px-7 py-3 text-[13px] uppercase tracking-[0.15em] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-page"
-            >
-              {ctaButton}
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </a>
+            <CtaButton href="/contact">{ctaButton}</CtaButton>
           </Reveal>
         </div>
 
         <Reveal delay={0.1}>
-          <LavaboBrandBook
-            width={service.frameWidth}
-            height={service.frameHeight}
-          />
+          <div
+            className="relative overflow-hidden"
+            style={{ width: service.frameWidth, height: service.frameHeight }}
+          >
+            <Image
+              src={service.image.src}
+              alt={service.image.alt}
+              width={service.image.intrinsicWidth}
+              height={service.image.intrinsicHeight}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
         </Reveal>
       </div>
     </section>
+  );
+}
+
+/*
+  Shared CTA button — "LET'S WORK TOGETHER" pill on light backgrounds.
+  Uses the exported SMUR arrow asset (rotated right) instead of a unicode →.
+  Style refresh per the May 2026 client feedback: lighter weight type, tighter
+  letter-spacing, more breathing room between label and arrow.
+*/
+export function CtaButton({
+  href,
+  children,
+  variant = "ink",
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "ink" | "cream";
+}) {
+  const isInk = variant === "ink";
+  return (
+    <a
+      href={href}
+      className={`group inline-flex items-center gap-[18px] rounded-full border px-[32px] py-[12px] text-[15px] uppercase tracking-[0.18em] transition-colors ${
+        isInk
+          ? "border-ink/60 text-ink hover:bg-ink hover:text-cream"
+          : "border-cream/70 text-cream hover:bg-cream hover:text-ink"
+      }`}
+    >
+      <span>{children}</span>
+      <span
+        aria-hidden
+        className="transition-transform duration-300 group-hover:translate-x-1"
+      >
+        <Arrow direction="right" size={22} />
+      </span>
+    </a>
   );
 }
