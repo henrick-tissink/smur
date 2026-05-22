@@ -3,9 +3,141 @@
 ## Status
 
 Faithful reproduction of the SMUR designer-portfolio Figma file
-(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Eight commits this session,
-two new case studies, full audit of past screenshot violations, and rules
-hardened against future violations.
+(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through May 22 client
+feedback rounds 1 + 2 — real content from the PDF, hero carousel,
+testimonial + FAQ carousels, SVG brand-font titles site-wide, two case
+studies photo-swapped (KOKOP + LAVABO).
+
+## ★ Latest session — 2026-05-22 client feedback (rounds 1 + 2)
+
+### What landed (3 commits on `main`)
+
+1. **`019cae4` — Round 1 (cosmetic):**
+   - All section titles now render from exported brand-font SVGs via
+     `components/title-mask.tsx` (CSS `mask-image` + currentColor →
+     one cream-fill asset works on light AND dark sections).
+   - Unicode arrows replaced site-wide with the SMUR down-arrow asset,
+     rotated for direction via `components/arrow.tsx` (dropdowns,
+     testimonial nav, work/contact scroll cues, FAQ accordion, CTAs).
+   - Contact form now dusty-pink across labels/inputs/borders/checkboxes.
+   - New CTA pill style with SMUR arrow.
+   - MNF + Architrave tiles swapped to aspect-matching photos.
+
+2. **`beb4097` — Round 2 (content):**
+   - Testimonial section: non-functional prev/next → real carousel.
+     Three quotes from `EXPORTS/Written content.pdf` (Gradient Zero,
+     Manufaktura, Iulia Branca). David Damrosch (Harvard IWL) noted as
+     pending in the PDF — to be added when it arrives.
+   - FAQ: placeholder questions → verbatim PDF Q&A. Accordion now
+     expands to show the answer (slide-down with opacity+max-height).
+   - **HomeHeroStatus replaced with `HeroCarousel`** — auto-cycles the
+     5 `animation header/` artboards (CRISP / INTERSTELLAR / KOKOP /
+     TAF / interst). 4s interval, 600ms crossfade, pauses on hover,
+     dot indicators. The 745-vector Status mockup file is still on
+     disk but unused.
+   - FAQ thumbnail strip uses dedicated `EXPORTS/Let_s work/` photos.
+   - All 91 `EXPORTS/PROJECTS/` artboards archived under
+     `public/figma-assets/projects-archive/<project>/` with sanitised
+     names (lowercased, no `@2x`, no spaces) for later case-study
+     mapping.
+
+3. **`1e24a46` — Case-study photo swaps (visually inferred):**
+   - Read-inspected each existing slot photo against candidate new
+     artboards. Two projects had clean 1:1 matches:
+     - **KOKOP**: `sec1-photo.jpg` ← Artboard 152 (barista),
+       `cafe-mockup.jpg` ← 158 (storefront sign),
+       `sec3-photo.jpg` ← 157 (latte pour with KOKO.P logotype overlay).
+     - **LAVABO**: `sink-hero.png` + `brand-book/sinks-hero.png` ← 61
+       (colored sinks + LAV/ABO letterforms), `sink-photo.png` ← 64
+       (brand-book mockup with pink concrete sink).
+   - CRISP / Interstellar / IWL / Kabinett / MNF / TAF / Architrave
+     artboards depict different deliverable types (website mockups,
+     posters, single panels of multi-panel collages) than what the
+     existing photo slots expect — would need layout changes, not
+     file swaps. **Smaranda has the WhatsApp draft asking for the
+     per-slot mapping** (see "Open with Smaranda" below).
+
+### New components / patterns introduced
+
+- `components/title-mask.tsx` — wraps an exported SVG as a CSS
+  mask-image with `background-color: currentColor`. Includes
+  visually-hidden alt text so `<h1>`/`<h2>` semantics + SEO survive.
+  Pattern: `<TitleMask src="/figma-assets/titles/x.svg" width={X}
+  height={Y} alt="..." as={2} />` — width/height come from the SVG's
+  native viewBox (lift with `grep viewBox file.svg`).
+- `components/arrow.tsx` — single arrow asset with `direction=up|down|left|right`
+  prop (rotates the container) and `color` (defaults to currentColor).
+  Uses arrow-white.svg as the mask source; arrow-brown.svg is unused
+  but kept on disk.
+- `components/hero-extras/hero-carousel.tsx` — generic 5-slide cycler
+  using `useEffect` + `setInterval`, `useState` for paused state.
+  Reusable pattern for any "cycling photo panel".
+
+### Open with Smaranda (blocking next steps)
+
+Two WhatsApp drafts are in `docs/` (gitignored, won't ship):
+
+1. **`docs/whatsapp-to-smaranda.md`** — Round 1 follow-ups: Architrave/
+   MNF tile orientation choice, scope of SVG-title use, font sizes,
+   down-arrow visual width. (Sent — awaiting reply.)
+2. **`docs/whatsapp-to-smaranda-2.md`** — Case-study photo mapping:
+   for each of CRISP, Interstellar, IWL, Kabinett, MNF, TAF, Architrave,
+   list of existing photo slots + available artboard numbers, fill-in-
+   the-blank format. (Drafted, ready to send.)
+
+When her answers come back, apply the swaps by:
+```
+cp public/figma-assets/projects-archive/<project>/<ArtboardN>.png \
+   public/figma-assets/work/<project>/<existing-slot>.<ext>
+```
+The case-study pages reference the existing paths; the file extension
+in the path doesn't have to match the new file's real format (.png
+served at .jpg URL works fine; next/image is `unoptimized`).
+
+For any artboard she wants featured as a *website mockup* (e.g.
+Architrave 87, Interstellar 122 are full website designs), she'll
+need to ask for a section rebuild — not a swap.
+
+### Known issues / TODOs from this round
+
+- **Mobile is now inconsistent with desktop.** Smaranda's feedback
+  was desktop-scoped; mobile still has unicode arrows, smaller
+  dropdown font, no SVG titles, no pink form. When she sends mobile
+  feedback, all the round 1/2 work needs to be repeated for mobile
+  components (`components/mobile/*`).
+- **Pink form text contrast.** `#a98a8a` on `#f5f1ec` ≈ 2.3:1, below
+  WCAG AA's 4.5:1. Her design choice; flagged in WhatsApp draft 1.
+- **Dead code:** `components/hero-extras/status-mockup.tsx`
+  (HomeHeroStatus, 745-vector composition — no longer imported);
+  `components/work/lavabo-brand-book.tsx` (replaced by photo on home);
+  `public/figma-assets/work/*.jpg` (legacy WORK tiles before .png
+  rename); `public/figma-assets/arrows/arrow-brown.svg` (never used,
+  Arrow component uses arrow-white.svg + tint).
+- **Header.svg overflows hero text frame by 4px** (586.82 in 583px
+  container). No visible clip, but if `overflow-hidden` is ever added
+  to that wrapper it'll bite.
+- **Down-arrow visual width** is ~25px in slots that used to reserve
+  72px (work/contact scroll cues). Reads correctly as an arrow but
+  feels narrow.
+- **Testimonial body** scrolls past the section's 426px height when
+  the longer quotes are active — quote text is 8-10 lines for Jona
+  + Iulia testimonials. Section height may need to grow to ~520 or
+  the type to shrink.
+
+### Files to know for next session
+
+- `EXPORTS SMUR WEBSITE/` — Smaranda's raw asset drop. Gitignored.
+  91 project artboards, 5 hero-carousel artboards, 8 SVG titles, 2
+  arrows, 4 photo-strip pics, 1 LAVABO web/print photo, the
+  Written content.pdf (read once already — content is in
+  `content/home.ts` testimonials and `content/contact.ts` FAQ).
+- `public/figma-assets/projects-archive/` — all 91 project artboards,
+  cleanly named, ready to drop into case-study slots when mapping
+  is confirmed.
+
+---
+
+## Status (legacy — earlier handover)
 
 ## Routes shipped
 
