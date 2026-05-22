@@ -179,11 +179,35 @@ export const servicesList = [
 
 export const ctaButton = "LET'S WORK TOGETHER";
 
-export const testimonial = {
-  quote:
-    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consbcjdbjsnnxsjknknknzknzknknxk klalkxlax",
-  attribution: "Name Name Insitute from where the person is",
-} as const;
+export type Testimonial = {
+  quote: string;
+  attribution: string;
+};
+
+// Testimonials lifted verbatim from "Written content.pdf" (May 2026).
+// The third one is still pending — Smaranda said it'll arrive later —
+// so we keep three real testimonials in the rotation for now.
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "We've loved working with Smaranda across multiple projects, from branding and websites to software product design. She consistently delivers thoughtful, high-quality work, often under tight timelines, and always approaches challenges with creativity and flexibility.\n\nWhat sets her apart is her ability to explore different directions rather than offering just one solution, making collaboration feel both strategic and intuitive. On top of that, she's fast, reliable, and genuinely wonderful to work with.",
+    attribution: "Jona Boeddinghaus, Gradient Zero Germany",
+  },
+  {
+    quote:
+      "It's been almost 10 years since I started working with Smaranda, and we're still collaborating today. From the beginning, I knew this would be more than just a simple collaboration.\n\nSmaranda approaches every project with creativity, dedication, and genuine care. She consistently delivers more than expected, works closely with you throughout the process, and truly understands the vision behind each project.",
+    attribution: "Alina Voloceai, Manufaktura Studio",
+  },
+  {
+    quote:
+      "Working with Smaranda was a super smooth and fun experience. Her strong expertise comes from being in the design game for many years. She could easily understand client needs and explore multiple styling directions until landing on the one that fits the vision best.\n\nCommunication was clear and professional, she could offer reliable time estimates and respect deadlines.\n\nI wholeheartedly recommend her as a full-stack visual and graphic designer.",
+    attribution: "Iulia Branca, Product designer",
+  },
+];
+
+// Back-compat: first testimonial exported as `testimonial` so any older
+// reference still resolves.
+export const testimonial = testimonials[0];
 
 // Photo strip — Figma's generated code rotates several frames 90°,
 // crops the source image, then displays the rotated portion.

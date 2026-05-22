@@ -1,7 +1,7 @@
 import { hero } from "@/content/home";
 import { Reveal } from "./reveal";
 import { TitleMask } from "./title-mask";
-import { HomeHeroStatus } from "./hero-extras/status-mockup";
+import { HeroCarousel } from "./hero-extras/hero-carousel";
 
 /*
   HERO frame: 1440 × 869 (Figma node 165:28117 instance + Frame 44 165:24495)
@@ -24,8 +24,10 @@ export function Hero() {
       style={{ minHeight: "869px" }}
     >
       <div className="relative mx-auto h-[869px] w-[1440px] max-w-[1440px]">
-        {/* Inlined Status real-estate mockup (745 vectors + photo) */}
-        <HomeHeroStatus />
+        {/* Right-side brand carousel — cycles through Smaranda's hero
+            artboards (CRISP / INTERSTELLAR / KOKOP / TAF). Replaces the
+            placeholder "Status" real-estate mockup. */}
+        <HeroCarousel />
 
         {/* Text overlay positioned per Figma Frame 44 */}
         <div

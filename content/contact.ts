@@ -69,22 +69,47 @@ export const contactForm: {
   buttonLabel: "SAVE & SEND",
 };
 
+export type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+// Questions + answers lifted verbatim from "Written content.pdf" (May 2026).
+export const contactFAQItems: FAQItem[] = [
+  {
+    question: "Do you offer logo-only projects?",
+    answer:
+      "I used to think I only worked in complete identity systems, where everything is built together from the ground up.\n\nThese days, I've realized I can also zoom in and focus on smaller pieces when the project calls for it.\n\nIf you like my work but only need a fragment, feel free to get in touch and we'll figure out what fits.",
+  },
+  {
+    question: "Are payment plans available?",
+    answer:
+      "Yes. I usually structure payments in 1–4 installments depending on the complexity of the project.\n\nBranding and design work is an investment, and I try to keep the process flexible and accessible. In most cases, payments are split across the project timeline, with longer arrangements available if needed.\n\nYou also don't need to do everything at once. Many of my clients come back for additional work over time.",
+  },
+  {
+    question: "What can I expect to invest?",
+    answer:
+      "Because every project is different and can be shaped around your specific needs, there isn't a fixed price list that applies to everything.\n\nOnce I understand what you're looking for, I will put together a tailored proposal based on complexity, priorities, volume and level of detail involved.",
+  },
+  {
+    question: "What happens if I need extra time for feedback?",
+    answer:
+      "I usually work with a feedback window of up to 5 working days per round. This keeps the process flowing smoothly and helps us stay aligned with the overall timeline.\n\nIf you need a bit more time, that's absolutely fine, just let me know in advance and we'll adjust things where possible. I always aim to find a rhythm that works for both sides and keeps the project moving without pressure.",
+  },
+];
+
 export const contactFAQ = {
   eyebrow: "I answered your",
   heading: "Questions",
-  items: [
-    "WOULD YOU DESIGN JUST A LOGO?",
-    "DO YOU OFFER PAYMENT PLANS?",
-    "HOW MUCH DOES DESIGN COST?",
-    "What if I need more time for feedback?",
-  ],
+  // Keep `items` for back-compat; new code should read `contactFAQItems`.
+  items: contactFAQItems.map((i) => i.question),
   myWorkLink: "my work :)",
   socials: "INSTAGRAM   /   PINTEREST",
-  // Reuse 4 tiles from /public/figma-assets/work/ for the bottom strip.
+  // FAQ strip — dedicated photos from EXPORTS/Let_s work (May 2026).
   workThumbs: [
-    "/figma-assets/work/crisp.png",
-    "/figma-assets/work/interstellar.png",
-    "/figma-assets/work/kokop.png",
-    "/figma-assets/work/taf.png",
+    "/figma-assets/contact/faq-strip/crisp.png",
+    "/figma-assets/contact/faq-strip/interstellar.png",
+    "/figma-assets/contact/faq-strip/kokop.png",
+    "/figma-assets/contact/faq-strip/lavabo-1.png",
   ],
 } as const;

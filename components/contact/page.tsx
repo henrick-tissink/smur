@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import {
   contactFAQ,
+  contactFAQItems,
   contactForm,
   contactFrame,
   contactHero,
@@ -318,8 +319,8 @@ function ContactFAQ() {
         className="absolute"
         style={{ left: 394, top: 310, width: 652 }}
       >
-        {contactFAQ.items.map((q) => (
-          <FAQRow key={q} question={q} />
+        {contactFAQItems.map((item) => (
+          <FAQRow key={item.question} question={item.question} answer={item.answer} />
         ))}
       </div>
 
@@ -371,7 +372,7 @@ function ContactFAQ() {
   );
 }
 
-function FAQRow({ question }: { question: string }) {
+function FAQRow({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-cream/40">
@@ -382,15 +383,27 @@ function FAQRow({ question }: { question: string }) {
         className="flex w-full items-center justify-between py-[18px] text-left text-cream"
       >
         <span
-          className="font-sans italic uppercase"
-          style={{ fontSize: 24, lineHeight: 1.1 }}
+          className="font-sans italic"
+          style={{ fontSize: 22, lineHeight: 1.15 }}
         >
           {question}
         </span>
-        <span aria-hidden className="text-cream">
+        <span aria-hidden className="text-cream shrink-0 pl-4">
           <Arrow direction={open ? "up" : "down"} size={26} />
         </span>
       </button>
+      <div
+        className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-out ${
+          open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p
+          className="whitespace-pre-line pb-[24px] pr-[40px] text-cream/90"
+          style={{ fontSize: 15, lineHeight: 1.55 }}
+        >
+          {answer}
+        </p>
+      </div>
     </div>
   );
 }
