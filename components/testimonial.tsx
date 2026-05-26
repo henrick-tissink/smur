@@ -28,13 +28,13 @@ export function Testimonial() {
       className="bg-band text-ink"
       style={{ height: "426px" }}
     >
-      <div className="relative mx-auto h-full max-w-[1440px]">
+      <div className="relative mx-auto flex h-full max-w-[1440px] items-center justify-center">
         <button
           type="button"
           aria-label="Previous testimonial"
           onClick={() => go(-1)}
-          className="absolute text-ink/70 transition-colors hover:text-ink"
-          style={{ left: "218px", top: "186px" }}
+          className="absolute -translate-y-1/2 text-ink/70 transition-colors hover:text-ink"
+          style={{ left: "218px", top: "50%" }}
         >
           <Arrow direction="left" size={42} />
         </button>
@@ -42,15 +42,14 @@ export function Testimonial() {
           type="button"
           aria-label="Next testimonial"
           onClick={() => go(1)}
-          className="absolute text-ink/70 transition-colors hover:text-ink"
-          style={{ right: "218px", top: "186px" }}
+          className="absolute -translate-y-1/2 text-ink/70 transition-colors hover:text-ink"
+          style={{ right: "218px", top: "50%" }}
         >
           <Arrow direction="right" size={42} />
         </button>
 
         <div
-          className="absolute flex flex-col items-center gap-[30px] text-center"
-          style={{ left: "361px", top: "60px", width: "702px" }}
+          className="flex w-[702px] flex-col items-center gap-[30px] text-center"
         >
           <Reveal key={`q-${index}`}>
             <p className="text-[17px] leading-[1.45] text-ink whitespace-pre-line">
