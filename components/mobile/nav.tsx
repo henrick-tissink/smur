@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { nav } from "@/content/home";
-import { useNavInfo } from "../use-nav-scheme";
 
 /*
   Mobile nav (Figma 268:31918 "navi mobile") at x=26 y=47 within 393-wide hero.
@@ -12,17 +11,17 @@ import { useNavInfo } from "../use-nav-scheme";
     - SMUR logo SVG (85.5 × 19) on the left  (dark by default per Figma)
     - Hamburger: 3 stacked horizontal lines, 29 × 19 (also dark)
 
-  Color adapts to the section behind the nav via useNavScheme:
+  The nav sits at the top of the page (not sticky) and scrolls away,
+  overlapping only the first section. Color is fixed per page via `scheme`:
   - "dark" (default, over hero/services/sage): dark brown #35221a
-  - "light" (over the warm-brown about section): cream #fff7f4
+  - "light" (over a warm-brown / cream-text section): cream #fff7f4
 
   Tapping the hamburger opens the full-screen menu overlay (Figma 282:40808).
 */
-export function MobileNav() {
+export function MobileNav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
-  const { scheme, bg } = useNavInfo();
-  // Mobile SVG is natively #35221a dark brown. On light scheme (over the
-  // warm-brown about section) we invert to white via brightness(0) invert(1).
+  // Mobile SVG is natively #35221a dark brown. On light scheme we invert to
+  // white via brightness(0) invert(1).
   const iconColor = scheme === "light" ? "#fff7f4" : "#35221a";
   const logoFilter =
     scheme === "light" ? "brightness(0) invert(1)" : "none";
@@ -36,10 +35,7 @@ export function MobileNav() {
   */
   return (
     <>
-      <header
-        className="fixed inset-x-0 top-0 z-50 h-[80px] transition-[background-color] duration-200"
-        style={{ backgroundColor: bg }}
-      >
+      <header className="absolute inset-x-0 top-0 z-50 h-[80px]">
         <div
           className="relative mx-auto h-full"
           style={{ maxWidth: "393px" }}
@@ -48,8 +44,8 @@ export function MobileNav() {
             className="absolute flex items-end justify-between"
             style={{ left: "26px", right: "27px", top: "32px", height: "19px" }}
           >
-            <a
-              href="#home"
+            <Link
+              href="/#home"
               aria-label="SMUR — home"
               className="block h-[19px] w-[85.5px]"
             >
@@ -63,7 +59,7 @@ export function MobileNav() {
                 className="block h-full w-full transition-[filter] duration-200"
                 style={{ filter: logoFilter }}
               />
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="Open menu"

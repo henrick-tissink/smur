@@ -30,16 +30,16 @@ export default function Home() {
   return (
     <>
       <div
-        className="md:hidden"
+        className="relative md:hidden"
         style={{ zoom: "calc(100vw / 393px)" }}
       >
         <MobileLayout />
       </div>
       <div
-        className="hidden md:block"
+        className="relative hidden md:block"
         style={{ zoom: "min(1, calc(100vw / 1440px))" }}
       >
-        <Nav />
+        <Nav scheme="light" />
         <main>
           <Hero />
           <ServiceCard service={services[0]} />

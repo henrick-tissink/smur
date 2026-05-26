@@ -1,10 +1,6 @@
-"use client";
-
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
 import { nav } from "@/content/home";
-import { useNavInfo } from "./use-nav-scheme";
 
 /*
   Nav Component (Figma 6:1282) — 1440 × 64, positioned at y=30 in HOME.
@@ -13,24 +9,20 @@ import { useNavInfo } from "./use-nav-scheme";
     - Logo (Layer_1): SVG 108×24
     - Links group: flex gap=61px, DM Sans 17px uppercase, color #fff7f4
 
-  Text color adapts to the section behind the nav (see use-nav-scheme): cream
-  over hero beige and about warm-brown, dark brown over the cream/sage
-  sections. Earlier we used a scroll-triggered beige strip; that clashed with
-  every non-hero section. Adaptive color matches Figma's per-section palette
-  without painting a strip.
+  The nav sits at the top of the page (not sticky) and scrolls away with the
+  content, overlapping only the first section. Its color is therefore fixed
+  per page via the `scheme` prop, matching that first section's palette:
+    - "light" → cream content (over the hero beige / contact)
+    - "dark"  → dark-brown content (over the cream/sage work + case studies)
 */
-export function Nav() {
-  const { scheme, bg } = useNavInfo();
+export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
   const textClass = scheme === "light" ? "text-cream" : "text-ink";
-  const logoInvert =
-    scheme === "dark"
-      ? "brightness-0" // SVG is light by default; make it dark on light sections
-      : "";
+  // SVG logo is light by default; make it dark on light-background sections.
+  const logoInvert = scheme === "dark" ? "brightness-0" : "";
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 h-[94px] transition-[background-color] duration-200"
-      style={{ backgroundColor: bg }}
+      className="absolute inset-x-0 top-0 z-50 h-[94px]"
       aria-label="Primary"
     >
       <div className="relative mx-auto h-full max-w-[1440px]">
@@ -38,8 +30,8 @@ export function Nav() {
           className="absolute flex h-[24px] items-center justify-between"
           style={{ left: "86px", right: "85px", top: "50px" }}
         >
-          <a
-            href="#home"
+          <Link
+            href="/#home"
             aria-label="SMUR — home"
             className="block h-[24px] w-[108px]"
           >
@@ -50,12 +42,12 @@ export function Nav() {
               height={nav.logo.height}
               priority
               unoptimized
-              className={`block h-full w-full transition-[filter] duration-200 ${logoInvert}`}
+              className={`block h-full w-full ${logoInvert}`}
             />
-          </a>
+          </Link>
           <nav aria-label="Sections">
             <ul
-              className={`flex items-center text-[17px] uppercase transition-colors duration-200 ${textClass}`}
+              className={`flex items-center text-[17px] uppercase ${textClass}`}
               style={{ gap: `${nav.linkGap}px` }}
             >
               {nav.links.map((link) => (

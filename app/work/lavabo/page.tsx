@@ -19,7 +19,7 @@ export default function LavaboRoute() {
   return (
     <>
       <div
-        className="md:hidden"
+        className="relative md:hidden"
         style={{ zoom: "calc(100vw / 393px)" }}
       >
         <MobileNav />
@@ -28,7 +28,7 @@ export default function LavaboRoute() {
         </main>
       </div>
       <div
-        className="hidden md:block"
+        className="relative hidden md:block"
         style={{ zoom: "min(1, calc(100vw / 1440px))" }}
       >
         <Nav />
