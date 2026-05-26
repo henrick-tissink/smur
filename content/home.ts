@@ -32,6 +32,8 @@ export type TitleSvg = {
   src: string;
   width: number;
   height: number;
+  /** Transparent left padding (px) in the exported SVG — see TitleMask. */
+  leftBearing: number;
 };
 
 export type Service = {
@@ -95,6 +97,7 @@ export const services: Service[] = [
       src: "/figma-assets/titles/brand-identity.svg",
       width: 410.82,
       height: 69.43,
+      leftBearing: 14,
     },
     body:
       "This process is designed to uncover the heart of your brand through thoughtful conversation, intuition, and personal exploration, resulting in a visual identity that feels aligned, distinctive, and built to evolve with you over time.",
@@ -118,6 +121,7 @@ export const services: Service[] = [
       src: "/figma-assets/titles/naming-positioning.svg",
       width: 310.1,
       height: 131.36,
+      leftBearing: 2,
     },
     body:
       "Together, we'll shape a name and brand direction that feels intentional, memorable, and deeply connected to the essence of your business and the people it's meant to reach.",
@@ -151,6 +155,7 @@ export const services: Service[] = [
       src: "/figma-assets/titles/webdesign-print.svg",
       width: 362.1,
       height: 134.29,
+      leftBearing: 9,
     },
     body:
       "Beyond brand identity design, I offer a range of additional creative services, either as part of a larger project or as standalone collaborations:",

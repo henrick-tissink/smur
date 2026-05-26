@@ -42,6 +42,7 @@ export function About() {
                 src="/figma-assets/titles/about.svg"
                 width={273.84}
                 height={220.43}
+                leftBearing={6}
                 alt="ABOUT SMA & SMUR."
                 as={2}
               />

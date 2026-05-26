@@ -23,6 +23,7 @@ export function ServiceCard({ service }: { service: Service }) {
               src={service.titleSvg.src}
               width={service.titleSvg.width}
               height={service.titleSvg.height}
+              leftBearing={service.titleSvg.leftBearing}
               alt={service.title}
               as={2}
             />

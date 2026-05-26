@@ -40,6 +40,7 @@ export function Hero() {
                 src="/figma-assets/titles/header.svg"
                 width={586.82}
                 height={288.99}
+                leftBearing={21}
                 alt={hero.headline}
                 as={1}
               />

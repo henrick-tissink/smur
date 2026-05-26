@@ -25,6 +25,13 @@ type Props = {
   as?: 1 | 2 | 3 | null;
   /** Override the mask color. Default = currentColor. */
   color?: string;
+  /**
+   * Transparent left padding (px) baked into the SVG's left edge — measured by
+   * pixel-scanning the exported asset. When set, the title is shifted left by
+   * this amount so its first visible glyph sits flush with adjacent
+   * left-aligned content (e.g. the body paragraph). Desktop-only; omit for
+   * centered titles. */
+  leftBearing?: number;
   className?: string;
 };
 
@@ -35,6 +42,7 @@ export function TitleMask({
   alt,
   as = 2,
   color,
+  leftBearing,
   className = "",
 }: Props) {
   const style: React.CSSProperties = {
@@ -71,8 +79,15 @@ export function TitleMask({
     </>
   );
 
-  if (as === null) return <span className="relative inline-block">{Mask}</span>;
-  if (as === 1) return <h1 className="relative inline-block">{Mask}</h1>;
-  if (as === 3) return <h3 className="relative inline-block">{Mask}</h3>;
-  return <h2 className="relative inline-block">{Mask}</h2>;
+  const shift: React.CSSProperties | undefined = leftBearing
+    ? { marginLeft: `${-leftBearing}px` }
+    : undefined;
+
+  if (as === null)
+    return <span className="relative inline-block" style={shift}>{Mask}</span>;
+  if (as === 1)
+    return <h1 className="relative inline-block" style={shift}>{Mask}</h1>;
+  if (as === 3)
+    return <h3 className="relative inline-block" style={shift}>{Mask}</h3>;
+  return <h2 className="relative inline-block" style={shift}>{Mask}</h2>;
 }
