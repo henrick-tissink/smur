@@ -103,7 +103,7 @@ export function CtaButton({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-[18px] rounded-full border px-[32px] py-[12px] text-[20.22px] uppercase leading-[1.21] transition-colors ${
+      className={`group inline-flex items-center gap-[18px] rounded-full border-[1.444px] px-[32px] py-[12px] text-[20.22px] uppercase leading-[1.21] transition-colors ${
         isInk
           ? "border-[#a98a8a] text-[#a18080] hover:bg-ink hover:text-cream"
           : "border-cream/70 text-cream hover:bg-cream hover:text-ink"

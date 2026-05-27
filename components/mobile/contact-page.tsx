@@ -132,7 +132,7 @@ function Form() {
             <div className="mt-[10px] flex justify-center">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[10px] rounded-full border border-accent px-[24px] py-[8px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[10px] rounded-full border-[1.444px] border-accent px-[24px] py-[8px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
               >
                 {contactForm.buttonLabel}
                 <span
@@ -189,7 +189,7 @@ function MobileTextarea({
       id={inputId}
       name={id}
       placeholder={placeholder}
-      className="block h-[110px] w-full resize-none rounded-[4px] border border-ink/15 bg-white/40 p-[14px] text-[15px] text-ink placeholder:text-center placeholder:italic placeholder:text-ink/60 outline-none focus:border-ink/40"
+      className="block h-[110px] w-full resize-none rounded-[4px] border-[1.444px] border-ink/15 bg-white/40 p-[14px] text-[15px] text-ink placeholder:text-center placeholder:italic placeholder:text-ink/60 outline-none focus:border-ink/40"
     />
   );
 }
@@ -222,7 +222,7 @@ function MobileCheckboxGroup({
                       return next;
                     })
                   }
-                  className="h-[14px] w-[14px] cursor-pointer appearance-none border border-accent transition-colors checked:bg-accent"
+                  className="h-[14px] w-[14px] cursor-pointer appearance-none border-[1.444px] border-accent transition-colors checked:bg-accent"
                 />
                 {opt}
               </label>

@@ -178,7 +178,7 @@ function ContactForm() {
             <div className="mt-[20px] flex justify-center">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[14px] rounded-full border border-accent/70 px-[30px] py-[9px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[14px] rounded-full border-[1.444px] border-accent/70 px-[30px] py-[9px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
               >
                 <span>{contactForm.buttonLabel}</span>
                 <span
@@ -236,7 +236,7 @@ function FieldTextarea({
         id={inputId}
         name={id}
         placeholder={placeholder}
-        className="block h-[135px] w-full resize-none rounded-[4px] border border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent placeholder:text-center placeholder:italic placeholder:text-accent/70 outline-none transition-colors focus:border-accent"
+        className="block h-[135px] w-full resize-none rounded-[4px] border-[1.444px] border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent placeholder:text-center placeholder:italic placeholder:text-accent/70 outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -272,7 +272,7 @@ function CheckboxGroup({
                       return next;
                     })
                   }
-                  className="h-[15px] w-[15px] cursor-pointer appearance-none border border-accent transition-colors checked:bg-accent"
+                  className="h-[15px] w-[15px] cursor-pointer appearance-none border-[1.444px] border-accent transition-colors checked:bg-accent"
                 />
                 {opt}
               </label>
