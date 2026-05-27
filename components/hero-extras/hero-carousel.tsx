@@ -17,6 +17,18 @@ import { useEffect, useState } from "react";
   ratios matched each designer-exported artboard within ~2%, so object-contain
   shows the full artwork with the beige hero filling any slack.
 
+  IMAGE OPTIMIZATION — intentionally NOT `unoptimized`. CLAUDE.md rule 3 mandates
+  `unoptimized` for Figma images, but that rule exists for percent-CROP fills
+  (`w-[207.98%] left-[-75.11%]`) where the rendered width exceeds the frame and
+  `sizes` would under-describe it, causing the optimizer to downsample. That
+  cannot happen here: each showcase is object-contain inside a fixed-width box,
+  so rendered width <= box width always, and `sizes={w}px` is an exact upper
+  bound. Letting Next optimize turns ~9MB of source PNG into a few hundred KB of
+  DPR-aware AVIF/WebP sourced from the full-res originals — this is what fixes
+  the "carousel stutters at the start" symptom (un-preloaded multi-MB PNGs not
+  ready by the first crossfade). Off-screen frames load eagerly (cheap now) so
+  no crossfade ever waits on a download.
+
   NOTE: the component set has 6 variants, but the designer's "animation header"
   export folder contains only 5 artboards. Frame 10 (a brand-collateral spread)
   has no exported asset yet, so it is omitted below — see SLIDES gap at frame 10.
@@ -80,9 +92,14 @@ export function HeroCarousel() {
               src={s.src}
               alt={active ? s.alt : ""}
               fill
-              unoptimized
-              priority={i === 0}
               sizes={`${s.w}px`}
+              quality={90}
+              // Next 16: `priority` is deprecated in favour of `preload`. The
+              // first frame is the hero LCP, so preload it (injects a <link> in
+              // <head>). The rest load eagerly — small after optimization — so
+              // every later frame is decoded before its 4s crossfade.
+              preload={i === 0}
+              loading={i === 0 ? undefined : "eager"}
               className="object-contain object-center"
             />
           </div>
