@@ -5,7 +5,8 @@ import { Arrow } from "./arrow";
 
 /*
   DROP DOWN component (Figma 426/431 wide).
-  Label: DM Sans Italic 20px uppercase (matches FAQ + eyebrow style).
+  Label: DM Sans Italic 28.454px uppercase #a98a8a (Figma DROP DOWN instance
+  183:1367 — the placed instance is scaled up from the 20px H3 base).
   Arrow: exported SMUR arrow asset, points down when collapsed, rotates to
   up on expand.
 */
@@ -22,7 +23,7 @@ export function Dropdown({ label }: { label: string }) {
         onClick={() => setOpen((v) => !v)}
         className="flex w-full items-center justify-between py-4 text-left text-ink"
       >
-        <span className="font-sans text-[20px] italic uppercase leading-none">
+        <span className="font-sans text-[28.454px] italic uppercase leading-none text-accent">
           {label}
         </span>
         <Arrow direction={open ? "up" : "down"} size={22} />

@@ -44,7 +44,7 @@ function Hero() {
         <Reveal>
           <h1
             className="font-heading"
-            style={{ fontSize: 38, lineHeight: 1.21 }}
+            style={{ fontSize: 45, lineHeight: 1.21 }}
           >
             {contactHero.title}
           </h1>
@@ -132,7 +132,7 @@ function Form() {
             <div className="mt-[10px] flex justify-center">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[10px] rounded-full border border-accent px-[24px] py-[8px] text-[12px] uppercase tracking-[0.15em] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[10px] rounded-full border border-accent px-[24px] py-[8px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
               >
                 {contactForm.buttonLabel}
                 <span
@@ -162,7 +162,7 @@ function MobileText({
   const inputId = useId();
   return (
     <div className="flex flex-1 flex-col">
-      <label htmlFor={inputId} className="text-[12px] text-ink/80">
+      <label htmlFor={inputId} className="text-[15px] text-ink/80">
         {label}{" "}
         {helper && <span className="italic text-accent">{helper}</span>}
       </label>
@@ -189,7 +189,7 @@ function MobileTextarea({
       id={inputId}
       name={id}
       placeholder={placeholder}
-      className="block h-[110px] w-full resize-none rounded-[4px] border border-ink/15 bg-white/40 p-[14px] text-[13px] text-ink placeholder:text-center placeholder:italic placeholder:text-ink/60 outline-none focus:border-ink/40"
+      className="block h-[110px] w-full resize-none rounded-[4px] border border-ink/15 bg-white/40 p-[14px] text-[15px] text-ink placeholder:text-center placeholder:italic placeholder:text-ink/60 outline-none focus:border-ink/40"
     />
   );
 }
@@ -210,7 +210,7 @@ function MobileCheckboxGroup({
           const isOn = checked.has(opt);
           return (
             <li key={opt}>
-              <label className="flex cursor-pointer items-center gap-[12px] text-[14px] italic text-accent">
+              <label className="flex cursor-pointer items-center gap-[12px] text-[16px] italic text-accent">
                 <input
                   type="checkbox"
                   checked={isOn}
@@ -278,7 +278,7 @@ function FAQ() {
         style={{ left: 43, top: 660 }}
       >
         <span aria-hidden style={{ fontSize: 20 }}>←</span>
-        <span className="italic" style={{ fontSize: 11 }}>
+        <span className="italic" style={{ fontSize: 15.105 }}>
           {contactFAQ.myWorkLink}
         </span>
       </Link>
@@ -286,7 +286,7 @@ function FAQ() {
       {/* INSTAGRAM / PINTEREST */}
       <p
         className="absolute w-full text-center italic text-cream"
-        style={{ top: 810, fontSize: 14 }}
+        style={{ top: 810, fontSize: 15 }}
       >
         {contactFAQ.socials}
       </p>
@@ -306,7 +306,7 @@ function MobileFAQRow({ question }: { question: string }) {
       >
         <span
           className="font-sans italic uppercase"
-          style={{ fontSize: 15, lineHeight: 1.21 }}
+          style={{ fontSize: 25, lineHeight: 1.21 }}
         >
           {question}
         </span>

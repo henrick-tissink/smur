@@ -53,7 +53,7 @@ export const workHero = {
 export const workFooter = {
   text: "Thanks :)",
   desktop: { x: 476, y: 5056, w: 488, fontSize: 27 },
-  mobile: { x: 94, y: 2263, w: 205, fontSize: 11 },
+  mobile: { x: 94, y: 2263, w: 205, fontSize: 15 },
 } as const;
 
 /* -------------------------------------------------------------------------- */

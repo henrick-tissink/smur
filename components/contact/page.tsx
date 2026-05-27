@@ -178,7 +178,7 @@ function ContactForm() {
             <div className="mt-[20px] flex justify-center">
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[14px] rounded-full border border-accent/70 px-[30px] py-[9px] text-[14px] uppercase tracking-[0.18em] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[14px] rounded-full border border-accent/70 px-[30px] py-[9px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
               >
                 <span>{contactForm.buttonLabel}</span>
                 <span
@@ -208,9 +208,9 @@ function FieldText({
   const inputId = useId();
   return (
     <div className="flex flex-1 flex-col">
-      <label htmlFor={inputId} className="text-[14px] italic text-accent">
+      <label htmlFor={inputId} className="text-[17px] text-accent">
         {label}{" "}
-        {helper && <span className="text-accent/80">{helper}</span>}
+        {helper && <span className="text-[16px] text-accent/80">{helper}</span>}
       </label>
       <input
         id={inputId}
@@ -236,7 +236,7 @@ function FieldTextarea({
         id={inputId}
         name={id}
         placeholder={placeholder}
-        className="block h-[135px] w-full resize-none rounded-[4px] border border-accent/30 bg-white/40 p-[18px] text-[15px] text-accent caret-accent placeholder:text-center placeholder:italic placeholder:text-accent/70 outline-none transition-colors focus:border-accent"
+        className="block h-[135px] w-full resize-none rounded-[4px] border border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent placeholder:text-center placeholder:italic placeholder:text-accent/70 outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -252,7 +252,7 @@ function CheckboxGroup({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   return (
     <fieldset>
-      <legend className="mb-[16px] text-[14px] italic text-accent">
+      <legend className="mb-[16px] text-[17px] italic text-accent">
         {label}
       </legend>
       <ul className="flex flex-col gap-[6px]">
@@ -356,7 +356,7 @@ function ContactFAQ() {
         <span aria-hidden className="transition-transform group-hover:-translate-x-1">
           <Arrow direction="left" size={32} />
         </span>
-        <span className="mt-[8px] text-[14px] italic">
+        <span className="mt-[8px] text-[20px] italic">
           {contactFAQ.myWorkLink}
         </span>
       </Link>
@@ -364,7 +364,7 @@ function ContactFAQ() {
       {/* INSTAGRAM / PINTEREST at relative y=932 */}
       <p
         className="absolute text-center text-cream"
-        style={{ left: 842, top: 932, width: 360, fontSize: 14 }}
+        style={{ left: 842, top: 932, width: 360, fontSize: 20 }}
       >
         {contactFAQ.socials}
       </p>
@@ -384,7 +384,7 @@ function FAQRow({ question, answer }: { question: string; answer: string }) {
       >
         <span
           className="font-sans italic"
-          style={{ fontSize: 22, lineHeight: 1.15 }}
+          style={{ fontSize: 28.454, lineHeight: 1.15 }}
         >
           {question}
         </span>

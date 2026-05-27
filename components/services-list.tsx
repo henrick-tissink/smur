@@ -53,7 +53,7 @@ export function ServicesList() {
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <ul className="mt-[44px] space-y-[27px] text-[14px] text-ink">
+            <ul className="mt-[44px] space-y-[27px] text-[17px] italic text-accent">
               {servicesList.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -86,9 +86,9 @@ export function ServicesList() {
 
 /*
   Shared CTA button — "LET'S WORK TOGETHER" pill on light backgrounds.
-  Uses the exported SMUR arrow asset (rotated right) instead of a unicode →.
-  Style refresh per the May 2026 client feedback: lighter weight type, tighter
-  letter-spacing, more breathing room between label and arrow.
+  Type matches Figma BUTTON 208:12249: DM Sans Regular 20.22px, no letter-
+  spacing, label #a18080 on a #a98a8a border. Uses the exported SMUR arrow
+  asset (rotated right) instead of a unicode →.
 */
 export function CtaButton({
   href,
@@ -103,9 +103,9 @@ export function CtaButton({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-[18px] rounded-full border px-[32px] py-[12px] text-[15px] uppercase tracking-[0.18em] transition-colors ${
+      className={`group inline-flex items-center gap-[18px] rounded-full border px-[32px] py-[12px] text-[20.22px] uppercase leading-[1.21] transition-colors ${
         isInk
-          ? "border-ink/60 text-ink hover:bg-ink hover:text-cream"
+          ? "border-[#a98a8a] text-[#a18080] hover:bg-ink hover:text-cream"
           : "border-cream/70 text-cream hover:bg-cream hover:text-ink"
       }`}
     >

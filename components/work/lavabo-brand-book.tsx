@@ -135,7 +135,7 @@ export function LavaboBrandBook({
               padding: "10px 22px",
               backgroundColor: "#231f20",
               color: "#fff",
-              fontSize: 11,
+              fontSize: 10,
               letterSpacing: "0.05em",
               borderRadius: 0,
             }}
