@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { Chevron } from "../chevron";
 
 /*
   Mobile dropdown (Component 4 268:34474): 307 × 79.
@@ -24,14 +25,7 @@ export function MobileDropdown({ label }: { label: string }) {
         <span className="font-sans text-[25px] italic uppercase text-accent">
           {label}
         </span>
-        <span
-          aria-hidden
-          className={`text-base text-accent transition-transform duration-300 ${
-            open ? "rotate-45" : ""
-          }`}
-        >
-          +
-        </span>
+        <Chevron open={open} color="var(--color-accent)" />
       </button>
     </div>
   );

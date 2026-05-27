@@ -11,6 +11,7 @@ import {
   contactHero,
 } from "@/content/contact";
 import { Arrow } from "../arrow";
+import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
 
@@ -389,7 +390,7 @@ function FAQRow({ question, answer }: { question: string; answer: string }) {
           {question}
         </span>
         <span aria-hidden className="text-cream shrink-0 pl-4">
-          <Arrow direction={open ? "up" : "down"} size={26} />
+          <Chevron open={open} width={22} />
         </span>
       </button>
       <div

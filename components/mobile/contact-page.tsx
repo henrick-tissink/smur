@@ -9,6 +9,7 @@ import {
   contactFrame,
   contactHero,
 } from "@/content/contact";
+import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
 
 /*
@@ -310,14 +311,7 @@ function MobileFAQRow({ question }: { question: string }) {
         >
           {question}
         </span>
-        <span
-          aria-hidden
-          className={`shrink-0 text-cream transition-transform duration-300 ${
-            open ? "rotate-45" : ""
-          }`}
-        >
-          +
-        </span>
+        <Chevron open={open} width={16} className="text-cream" />
       </button>
     </div>
   );
