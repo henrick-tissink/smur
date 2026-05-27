@@ -7,13 +7,13 @@ import { useId, useState } from "react";
   Two rows (DETAILS, TIMELINE), each:
     - 25px DM Sans Italic uppercase, color #a98a8a
     - Right: chevron SVG (18 × 9)
-    - Border-bottom: 1px solid #a98a8a
+    - Border-bottom: 2.113px solid #a98a8a
 */
 export function MobileDropdown({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   return (
-    <div className="border-b border-accent">
+    <div className="border-b-[2.113px] border-accent">
       <button
         type="button"
         aria-expanded={open}

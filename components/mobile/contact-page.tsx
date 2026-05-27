@@ -170,7 +170,7 @@ function MobileText({
         id={inputId}
         name={id}
         type="text"
-        className="border-b border-ink/40 bg-transparent py-[5px] text-[15px] text-ink outline-none focus:border-ink"
+        className="border-b-[2.113px] border-ink/40 bg-transparent py-[5px] text-[15px] text-ink outline-none focus:border-ink"
       />
     </div>
   );
@@ -297,7 +297,7 @@ function FAQ() {
 function MobileFAQRow({ question }: { question: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-cream/40">
+    <div className="border-b-[2.113px] border-cream/40">
       <button
         type="button"
         aria-expanded={open}

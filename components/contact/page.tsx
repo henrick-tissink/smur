@@ -216,7 +216,7 @@ function FieldText({
         id={inputId}
         name={id}
         type="text"
-        className="border-b border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
+        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -375,7 +375,7 @@ function ContactFAQ() {
 function FAQRow({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-cream/40">
+    <div className="border-b-[2.113px] border-cream/40">
       <button
         type="button"
         aria-expanded={open}

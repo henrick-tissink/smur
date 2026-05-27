@@ -15,7 +15,7 @@ export function Dropdown({ label }: { label: string }) {
   const id = useId();
 
   return (
-    <div className="border-b border-ink/30">
+    <div className="border-b-[2.113px] border-ink/30">
       <button
         type="button"
         aria-expanded={open}
