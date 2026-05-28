@@ -126,7 +126,7 @@ need to ask for a section rebuild — not a swap.
 
 ### Files to know for next session
 
-- `EXPORTS SMUR WEBSITE/` — Smaranda's raw asset drop. Gitignored.
+- `EXPORTS SMUR WEBSITE 2/` — Smaranda's raw asset drop (current). Gitignored.
   91 project artboards, 5 hero-carousel artboards, 8 SVG titles, 2
   arrows, 4 photo-strip pics, 1 LAVABO web/print photo, the
   Written content.pdf (read once already — content is in

@@ -54,7 +54,7 @@ next-env.d.ts
 
 # Raw asset drops from the client (PNGs/SVGs uploaded into the repo root).
 # What we use gets copied into public/figma-assets; the originals stay local.
-/EXPORTS SMUR WEBSITE/
+/EXPORTS SMUR WEBSITE*/
 
 # Local-only drafts (WhatsApp messages, etc.)
 /docs/whatsapp-to-smaranda*.md

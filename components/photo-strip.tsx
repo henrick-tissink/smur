@@ -3,9 +3,10 @@ import { photos } from "@/content/home";
 
 /*
   photos smur frame: 1440 × 357. Four sub-frames at varying widths.
-  The May 2026 exports (pic1–pic4@2x.png) are pre-cropped 723×723 squares —
-  the user has already framed each photo as they want it to read in its
-  tile, so we just object-cover into the four frame widths.
+  Sourced from EXPORTS SMUR WEBSITE 2/HOME/pictures homepic{1-4}@2x.png
+  (pre-cropped 723×723 squares — the user has already framed each photo as
+  they want it to read in its tile), copied to public/figma-assets/photo-{1-4}.png.
+  We just object-cover into the four frame widths.
 */
 export function PhotoStrip() {
   const widths = [361, 360, 359, 360];
