@@ -1,13 +1,13 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import {
   contactFAQ,
   contactFAQItems,
   contactForm,
-  contactFrame,
   contactHero,
 } from "@/content/contact";
 import { Arrow } from "../arrow";
@@ -31,26 +31,32 @@ import { TitleMask } from "../title-mask";
     - CTA button uses the new pill style with the SMUR arrow
 */
 export function DesktopContactPage() {
-  const { width, height } = contactFrame.desktop;
+  // Sections render full-viewport-width with their own bg, and each wraps its
+  // absolute-positioned content in an inner mx-auto 1440 container — same
+  // pattern as the home Hero. At viewports > 1440 the sage / cream / brown
+  // bands extend edge-to-edge (no cream stripes outside the 1440 design),
+  // matching Figma's intent.
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width, height, backgroundColor: "#f5f1ec" }}
-    >
+    <>
       <ContactHero />
       <ContactForm />
       <ContactFAQ />
-    </div>
+    </>
   );
 }
 
 function ContactHero() {
   return (
+    // z-10 puts this section's stacking context above the form below — the
+    // LAVABO carousel on the right is positioned at top:642 h:249 (bottom 891),
+    // 79px past the 812 sage area, per Figma 218:12494. Without z-10 the form
+    // section's cream bg paints over that overflow.
     <section
       data-nav-scheme="light"
-      className="relative w-full"
+      className="relative z-10 w-full"
       style={{ height: 812, backgroundColor: "#bbc2b5" }}
     >
+      <div className="relative mx-auto" style={{ width: 1440, height: 812 }}>
       {/* Title centered at y=237, w=430 (Figma 207:1420) — rendered from
           the exported "Tell Me About" SVG so we keep the brand typeface. */}
       <div
@@ -78,7 +84,11 @@ function ContactHero() {
         </Reveal>
       </div>
 
-      {/* LEFT — MANUFAKTURA editorial (Clip path group 218:17739): x=0 y=244 w=258 h=356 */}
+      {/* LEFT — MANUFAKTURA editorial (Clip path group 218:17739): x=0 y=244
+          w=258 h=356. Sourced from EXPORTS SMUR WEBSITE 2/Let_s work/
+          _MNFArtboard 76@2x.png (1799×2480, same 0.726 portrait aspect as the
+          tile, so object-cover shows the full artboard scaled). Optimized via
+          next/image — not a percent-crop, so unoptimized isn't needed. */}
       <Reveal delay={0.12}>
         <div
           className="absolute"
@@ -86,39 +96,39 @@ function ContactHero() {
         >
           <Image
             src="/figma-assets/contact/hero-left.png"
-            alt=""
-            width={258}
-            height={356}
-            unoptimized
-            className="block h-full w-full object-cover"
+            alt="MANUFAKTURA Studio brand collateral"
+            fill
+            sizes="258px"
+            quality={90}
+            preload
+            className="object-cover"
           />
         </div>
       </Reveal>
 
-      {/* RIGHT — LAVABO editorial (Component 6 218:12494): x=1066 y=642 w=374 h=249 */}
+      {/* RIGHT — LAVABO editorial carousel (Component 6 218:12494): x=1066
+          y=642 w=374 h=249. Frame bottom (891) is 79px past the sage area —
+          straddles hero/form per Figma. Cycles through three lavabo artboards
+          (sink editorial, logotype construction, stacked basins). */}
       <Reveal delay={0.16}>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 1066, top: 642, width: 374, height: 249 }}
         >
-          <Image
-            src="/figma-assets/contact/hero-right.png"
-            alt=""
-            width={374}
-            height={249}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
+          <LavaboCarousel />
         </div>
       </Reveal>
 
-      {/* Down arrow scroll cue at x=684 y=642 (72×94 in Figma) */}
+      {/* Down arrow scroll cue at x=684 y=642 (72×94 in Figma). Bounces
+          gently up and down to invite scrolling — reduced-motion users get
+          the static arrow. */}
       <div
         className="absolute text-cream"
         style={{ left: 684, top: 642 }}
         aria-hidden
       >
-        <Arrow direction="down" size={72} />
+        <BouncingArrow direction="down" size={72} />
+      </div>
       </div>
     </section>
   );
@@ -129,8 +139,9 @@ function ContactForm() {
     <section
       data-nav-scheme="dark"
       className="relative w-full text-accent"
-      style={{ height: 1227 }}
+      style={{ height: 1227, backgroundColor: "#f5f1ec" }}
     >
+      <div className="relative mx-auto" style={{ width: 1440, height: 1227 }}>
       <div className="absolute" style={{ left: 420, top: 140, width: 596 }}>
         <Reveal>
           <form className="flex flex-col gap-[44px]">
@@ -177,21 +188,33 @@ function ContactForm() {
               ),
             )}
             <div className="mt-[20px] flex justify-center">
+              {/* SAVE & SEND — Figma BUTTON 310:58094, same spec as the home
+                  CtaButton (geometry, color, Union arrow). */}
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[14px] rounded-full border-[1.444px] border-accent/70 px-[30px] py-[9px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[6.498px] rounded-[18.05px] border-[1.444px] border-[#a98a8a] px-[24.548px] py-[5.776px] text-[20.22px] uppercase leading-[1.21] text-[#a18080] transition-colors hover:bg-ink hover:text-cream"
               >
                 <span>{contactForm.buttonLabel}</span>
                 <span
                   aria-hidden
-                  className="transition-transform group-hover:translate-x-1"
-                >
-                  <Arrow direction="right" size={20} />
-                </span>
+                  className="block shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  style={{
+                    width: "41.503px",
+                    height: "14.11px",
+                    WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                    maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskSize: "100% 100%",
+                    maskSize: "100% 100%",
+                    backgroundColor: "currentColor",
+                  }}
+                />
               </button>
             </div>
           </form>
         </Reveal>
+      </div>
       </div>
     </section>
   );
@@ -207,17 +230,21 @@ function FieldText({
   helper?: string;
 }) {
   const inputId = useId();
+  // Figma uses the field name as a placeholder inside the input (no label
+  // line above) — helper merges into the same placeholder string. Visually
+  // hidden label kept for screen readers.
+  const placeholder = helper ? `${label} ${helper}` : label;
   return (
     <div className="flex flex-1 flex-col">
-      <label htmlFor={inputId} className="text-[17px] text-accent">
-        {label}{" "}
-        {helper && <span className="text-[16px] text-accent/80">{helper}</span>}
+      <label htmlFor={inputId} className="sr-only">
+        {placeholder}
       </label>
       <input
         id={inputId}
         name={id}
         type="text"
-        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
+        placeholder={placeholder}
+        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:text-accent outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -231,14 +258,30 @@ function FieldTextarea({
   placeholder: string;
 }) {
   const inputId = useId();
+  // Centered placeholder via an absolutely-positioned overlay that hides as
+  // soon as the user types. Cleaner than fighting browser-native placeholder
+  // alignment (which is locked to top-left in <textarea>).
+  const [value, setValue] = useState("");
   return (
-    <div>
+    <div className="relative">
+      <label htmlFor={inputId} className="sr-only">
+        {placeholder}
+      </label>
       <textarea
         id={inputId}
         name={id}
-        placeholder={placeholder}
-        className="block h-[135px] w-full resize-none rounded-[4px] border-[1.444px] border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent placeholder:text-center placeholder:italic placeholder:text-accent/70 outline-none transition-colors focus:border-accent"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="block h-[135px] w-full resize-none rounded-[4px] border-[1.444px] border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
       />
+      {!value && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[18px] text-center italic text-[17px] text-accent/70"
+        >
+          {placeholder}
+        </div>
+      )}
     </div>
   );
 }
@@ -292,6 +335,7 @@ function ContactFAQ() {
       className="relative w-full"
       style={{ height: 1054, backgroundColor: "#906553" }}
     >
+      <div className="relative mx-auto" style={{ width: 1440, height: 1054 }}>
       {/* Eyebrow + "Questions" SVG title */}
       <div
         className="absolute flex flex-col items-center text-center text-cream"
@@ -354,8 +398,8 @@ function ContactFAQ() {
         className="group absolute flex flex-col items-center text-cream"
         style={{ left: 186, top: 740, width: 141 }}
       >
-        <span aria-hidden className="transition-transform group-hover:-translate-x-1">
-          <Arrow direction="left" size={32} />
+        <span aria-hidden>
+          <BouncingArrow direction="left" size={32} distance={8} />
         </span>
         <span className="mt-[8px] text-[20px] italic">
           {contactFAQ.myWorkLink}
@@ -369,6 +413,7 @@ function ContactFAQ() {
       >
         {contactFAQ.socials}
       </p>
+      </div>
     </section>
   );
 }
@@ -406,5 +451,88 @@ function FAQRow({ question, answer }: { question: string; answer: string }) {
         </p>
       </div>
     </div>
+  );
+}
+
+/*
+  Arrow that bounces in its pointing direction over a 1.4s ease-in-out cycle.
+  Used for the hero scroll cue (direction="down") and the FAQ "my work" link
+  (direction="left"). Honors `prefers-reduced-motion`.
+*/
+function BouncingArrow({
+  direction,
+  size,
+  distance = 18,
+}: {
+  direction: "up" | "down" | "left" | "right";
+  size?: number;
+  distance?: number;
+}) {
+  const reduced = useReducedMotion();
+  const isHorizontal = direction === "left" || direction === "right";
+  const sign = direction === "down" || direction === "right" ? 1 : -1;
+  const target = sign * distance;
+  return (
+    <motion.div
+      animate={
+        reduced
+          ? { x: 0, y: 0 }
+          : isHorizontal
+            ? { x: [0, target, 0] }
+            : { y: [0, target, 0] }
+      }
+      transition={
+        reduced
+          ? { duration: 0 }
+          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+      }
+    >
+      <Arrow direction={direction} size={size} />
+    </motion.div>
+  );
+}
+
+/*
+  Crossfading 3-frame carousel for the LAVABO editorial tile in the hero.
+  All three source artboards are 1527×1018 (aspect 1.5), matching the
+  374×249 container, so object-cover renders without cropping. Sourced from
+  EXPORTS SMUR WEBSITE 2/Let_s work/lavabo {1,2,3}@2x.png. Cadence and
+  rendering pattern mirror the home hero carousel.
+*/
+const LAVABO_SLIDES = [
+  { src: "/figma-assets/contact/hero-right-1.png", alt: "LAVABO concrete basin editorial" },
+  { src: "/figma-assets/contact/hero-right-2.png", alt: "LAVABO logotype construction" },
+  { src: "/figma-assets/contact/hero-right-3.png", alt: "LAVABO stacked colored basins" },
+];
+const LAVABO_INTERVAL_MS = 2000;
+
+function LavaboCarousel() {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setIndex((i) => (i + 1) % LAVABO_SLIDES.length),
+      LAVABO_INTERVAL_MS,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+  return (
+    <>
+      {LAVABO_SLIDES.map((s, i) => (
+        <Image
+          key={s.src}
+          src={s.src}
+          alt={i === index ? s.alt : ""}
+          fill
+          sizes="374px"
+          quality={90}
+          preload={i === 0}
+          loading={i === 0 ? undefined : "eager"}
+          className={`absolute inset-0 object-cover transition-opacity duration-[300ms] ease-out ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
+          aria-hidden={i !== index}
+        />
+      ))}
+    </>
   );
 }

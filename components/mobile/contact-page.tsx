@@ -132,17 +132,27 @@ function Form() {
               ),
             )}
             <div className="mt-[10px] flex justify-center">
+              {/* SAVE & SEND — Figma BUTTON 310:58071, same spec as home CTA. */}
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[10px] rounded-full border-[1.444px] border-accent px-[24px] py-[8px] text-[20.22px] uppercase leading-[1.21] text-accent transition-colors hover:bg-accent hover:text-cream"
+                className="group inline-flex items-center gap-[6.498px] rounded-[18.05px] border-[1.444px] border-[#a98a8a] px-[24.548px] py-[5.776px] text-[20.22px] uppercase leading-[1.21] text-[#a18080] transition-colors hover:bg-ink hover:text-cream"
               >
-                {contactForm.buttonLabel}
+                <span>{contactForm.buttonLabel}</span>
                 <span
                   aria-hidden
-                  className="transition-transform group-hover:translate-x-1"
-                >
-                  →
-                </span>
+                  className="block shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                  style={{
+                    width: "41.503px",
+                    height: "14.11px",
+                    WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                    maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskSize: "100% 100%",
+                    maskSize: "100% 100%",
+                    backgroundColor: "currentColor",
+                  }}
+                />
               </button>
             </div>
           </form>
@@ -162,17 +172,19 @@ function MobileText({
   helper?: string;
 }) {
   const inputId = useId();
+  // Field name as a native placeholder inside the input — no label line above.
+  const placeholder = helper ? `${label} ${helper}` : label;
   return (
     <div className="flex flex-1 flex-col">
-      <label htmlFor={inputId} className="text-[15px] text-ink/80">
-        {label}{" "}
-        {helper && <span className="italic text-accent">{helper}</span>}
+      <label htmlFor={inputId} className="sr-only">
+        {placeholder}
       </label>
       <input
         id={inputId}
         name={id}
         type="text"
-        className="border-b-[2.113px] border-ink/40 bg-transparent py-[5px] text-[15px] text-ink outline-none focus:border-ink"
+        placeholder={placeholder}
+        className="border-b-[2.113px] border-ink/40 bg-transparent py-[5px] text-[15px] text-ink placeholder:text-ink/80 outline-none focus:border-ink"
       />
     </div>
   );
@@ -186,13 +198,31 @@ function MobileTextarea({
   placeholder: string;
 }) {
   const inputId = useId();
+  // Overlay-based centered placeholder — vertically + horizontally centered,
+  // hides as soon as the user types (native <textarea> placeholders sit
+  // top-left and can't be vertically centered reliably).
+  const [value, setValue] = useState("");
   return (
-    <textarea
-      id={inputId}
-      name={id}
-      placeholder={placeholder}
-      className="block h-[110px] w-full resize-none rounded-[4px] border-[1.444px] border-ink/15 bg-white/40 p-[14px] text-[15px] text-ink placeholder:text-center placeholder:italic placeholder:text-ink/60 outline-none focus:border-ink/40"
-    />
+    <div className="relative">
+      <label htmlFor={inputId} className="sr-only">
+        {placeholder}
+      </label>
+      <textarea
+        id={inputId}
+        name={id}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="block h-[110px] w-full resize-none rounded-[4px] border-[1.444px] border-ink/15 bg-white/40 p-[14px] text-[15px] text-ink outline-none focus:border-ink/40"
+      />
+      {!value && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[14px] text-center italic text-[15px] text-ink/60"
+        >
+          {placeholder}
+        </div>
+      )}
+    </div>
   );
 }
 
