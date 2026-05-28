@@ -112,7 +112,7 @@ export function MobileServiceCard({ service }: { service: Service }) {
         >
           <Reveal delay={0.15}>
             {service.dropdowns.map((d) => (
-              <MobileDropdown key={d.label} label={d.label} />
+              <MobileDropdown key={d.label} label={d.label} body={d.body} />
             ))}
           </Reveal>
         </div>

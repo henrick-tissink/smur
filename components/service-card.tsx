@@ -16,9 +16,17 @@ export function ServiceCard({ service }: { service: Service }) {
       <Reveal>
         <span className="eyebrow">{service.eyebrow}</span>
       </Reveal>
+      {/*
+        Figma Frame 27 (1:710) gap-35 between header and body, gap-25 inside
+        the header. Figma uses text-box-trim / fixed h-[51px] on the title,
+        but the exported TitleMask SVG is 69.43px tall (font ascender +
+        descender baked in, ~12px each side). The mt-* values below are the
+        Figma gaps minus that vertical padding so the rendered visual gaps
+        match Figma — otherwise the section reads with ~18px of extra space.
+      */}
       <Reveal delay={0.05}>
         {service.titleSvg ? (
-          <div className="mt-[16px] text-ink">
+          <div className="mt-[12px] text-ink">
             <TitleMask
               src={service.titleSvg.src}
               width={service.titleSvg.width}
@@ -29,21 +37,21 @@ export function ServiceCard({ service }: { service: Service }) {
             />
           </div>
         ) : (
-          <h2 className="mt-[16px] font-heading text-[58px] leading-[1.21] text-ink">
+          <h2 className="mt-[12px] font-heading text-[58px] leading-[1.21] text-ink">
             {service.title}
           </h2>
         )}
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-[36px] max-w-[430px] text-[17px] leading-[1.33] text-ink">
+        <p className="mt-[24px] max-w-[430px] text-[17px] leading-[1.33] text-ink">
           {service.body}
         </p>
       </Reveal>
       {service.dropdowns.length > 0 && (
-        <Reveal delay={0.15} className="mt-[44px]">
+        <Reveal delay={0.15} className="mt-[32px]">
           <div>
             {service.dropdowns.map((d) => (
-              <Dropdown key={d.label} label={d.label} />
+              <Dropdown key={d.label} label={d.label} body={d.body} />
             ))}
           </div>
         </Reveal>

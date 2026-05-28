@@ -55,7 +55,7 @@ const SLIDES: Slide[] = [
   { frame: 12, src: "/figma-assets/hero-carousel/01-crisp.png", alt: "CRISP — bakery brand identity", x: 895, y: 226, w: 328, h: 388 },
 ];
 
-const INTERVAL_MS = 4000;
+const INTERVAL_MS = 2000;
 
 export function HeroCarousel() {
   const [index, setIndex] = useState(0);
@@ -82,7 +82,7 @@ export function HeroCarousel() {
         return (
           <div
             key={s.frame}
-            className={`absolute transition-opacity duration-[600ms] ease-out ${
+            className={`absolute transition-opacity duration-[300ms] ease-out ${
               active ? "opacity-100" : "opacity-0"
             }`}
             style={{ left: s.x, top: s.y, width: s.w, height: s.h }}

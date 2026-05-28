@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import {
   contactFAQ,
+  contactFAQItems,
   contactForm,
   contactFrame,
   contactHero,
@@ -267,8 +268,8 @@ function FAQ() {
         className="absolute"
         style={{ left: 44, top: 174, width: 307 }}
       >
-        {contactFAQ.items.map((q) => (
-          <MobileFAQRow key={q} question={q} />
+        {contactFAQItems.map((item) => (
+          <MobileFAQRow key={item.question} question={item.question} answer={item.answer} />
         ))}
       </div>
 
@@ -295,7 +296,13 @@ function FAQ() {
   );
 }
 
-function MobileFAQRow({ question }: { question: string }) {
+function MobileFAQRow({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b-[2.113px] border-cream/40">
@@ -313,6 +320,18 @@ function MobileFAQRow({ question }: { question: string }) {
         </span>
         <Chevron open={open} width={16} className="text-cream" />
       </button>
+      <div
+        className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-out ${
+          open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <p
+          className="whitespace-pre-line pb-[16px] pr-[20px] text-cream/90"
+          style={{ fontSize: 14, lineHeight: 1.55 }}
+        >
+          {answer}
+        </p>
+      </div>
     </div>
   );
 }

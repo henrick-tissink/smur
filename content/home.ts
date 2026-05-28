@@ -18,7 +18,12 @@ export type FigmaAsset = {
   intrinsicHeight: number;
 };
 
-export type DropdownItem = { label: string };
+export type DropdownItem = {
+  label: string;
+  /** Optional content shown when the dropdown is expanded. Supports
+   *  newlines via \n (rendered with whitespace-pre-line). */
+  body?: string;
+};
 
 export type Overlay = {
   src: string;
@@ -111,7 +116,21 @@ export const services: Service[] = [
     crop: { w: 207.98, h: 106.17, left: -75.11, top: -0.01 },
     frameWidth: 429,
     frameHeight: 561,
-    dropdowns: [{ label: "Details" }, { label: "Timeline" }],
+    // DETAILS + TIMELINE body text pulled verbatim from Figma DROP DOWN
+    // BRANDING expanded variants (183:1391 Component 7 = DETAILS, 183:1445
+    // Variant3 = TIMELINE). En-dashes preserved.
+    dropdowns: [
+      {
+        label: "Details",
+        body:
+          "Every brand is different, so the following deliverables can be added to, refined, or adjusted based on your unique needs\n\nBrand consultation (1–2 hrs)\nCreative brief\nPrimary logo\nSecondary logo(s)\nMark(s)\nBrand pattern\nColor palette\nFont pairings\nOne collateral item\nBrand guidelines",
+      },
+      {
+        label: "Timeline",
+        body:
+          "Over 4–6 weeks we will:\n\nStep 1 —  Discovery consultation & Creative Brief\nQuestionnaire, consultation, and creative direction.\n\nStep 2 — Design & Refine\nDeveloping two brand directions and shaping the final identity through two rounds of refinement.\n\nStep 3 — Expand\nOne complimentary collateral item included, additional services available if needed.\n\nStep 4 — Finalize\nDelivery of all final files and assets.",
+      },
+    ],
   },
   {
     id: "naming-positioning",
@@ -145,7 +164,21 @@ export const services: Service[] = [
       width: 309,
       height: 85,
     },
-    dropdowns: [{ label: "Details" }, { label: "Timeline" }],
+    // DETAILS + TIMELINE body text pulled verbatim from Figma DROP DOWN
+    // NAMING expanded variants (297:56985 Component 7 = DETAILS, 297:56999
+    // Variant3 = TIMELINE).
+    dropdowns: [
+      {
+        label: "Details",
+        body:
+          "Each story begins differently, so the following deliverables can be explored, refined, or adjusted based on your unique vision and direction.\n\nDiscovery session (1–2 hrs)\nBrand positioning\nNaming exploration\nNaming shortlist\nBrand story & tone of voice\nTagline exploration\nCreative direction & references",
+      },
+      {
+        label: "Timeline",
+        body:
+          "Over 2–3 weeks we will:\n\nStep 1 — Discovery Questionnaire, discovery session, and exploring the heart of your brand.\n\nStep 2 — Position & Name\nDefining your brand direction, positioning, tone of voice, and curated naming exploration.\n\nStep 3 — Refine\nRefining and narrowing down the strongest direction together.\n\nStep 4 — Finalize\nDelivery of the finalized name, positioning, and supporting brand language.",
+      },
+    ],
   },
   {
     id: "webdesign-print",

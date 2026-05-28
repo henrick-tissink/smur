@@ -10,7 +10,13 @@ import { Chevron } from "../chevron";
     - Right: chevron SVG (18 × 9)
     - Border-bottom: 2.113px solid #a98a8a
 */
-export function MobileDropdown({ label }: { label: string }) {
+export function MobileDropdown({
+  label,
+  body,
+}: {
+  label: string;
+  body?: string;
+}) {
   const [open, setOpen] = useState(false);
   const id = useId();
   return (
@@ -27,6 +33,26 @@ export function MobileDropdown({ label }: { label: string }) {
         </span>
         <Chevron open={open} color="var(--color-accent)" />
       </button>
+      {body && (() => {
+        // Figma styling: intro paragraph DM Sans Regular, then italic list.
+        const [intro, ...rest] = body.split("\n\n");
+        const list = rest.join("\n\n");
+        return (
+          <div
+            id={id}
+            className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-out ${
+              open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="pb-[16px] text-[15px] leading-[1.33] text-accent">
+              <p>{intro}</p>
+              {list && (
+                <p className="mt-[1em] whitespace-pre-line italic">{list}</p>
+              )}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
