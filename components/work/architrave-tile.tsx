@@ -1,50 +1,30 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { TileCarousel } from "./tile-carousel";
 
 /*
   ArchitraveTile — reproduces the "ARCHITRAVE WORK" component (Figma file
-  UGvU1B8yP5Pa7vQmneV0Cz, component set 27:4791 on the `components` page).
-  The component has three variants the prototype auto-advances through:
+  UGvU1B8yP5Pa7vQmneV0Cz, component set 27:4791 on the `components` page),
+  whose prototype auto-advances three variants:
 
     1. "Group 8"  — iPhone showing an Instagram interior-design profile
     2. "Layer_1"  — two white business cards on grey (brand mark + logo)
     3. "Frame 8"  — "DESIGNING THE REFLECTION OF YOU" brand presentation
 
   Variants 1 & 3 are rendered Architrave artboards (archiArtboard 86 / 87 from
-  the EXPORTS drop), shown object-cover (their aspect ≈ the tile's 0.879, so
-  the crop is negligible). Variant 2 has no flat export — it's a Figma
-  composition — so it is rebuilt structurally (like the LAVABO brand book):
-  dark-grey field (#515151, measured) + two white cards carrying the Architrave
-  logo lockup, the moulding mark, a big "A", and contact lines. Card geometry
-  is measured from the variant as percentages of the frame so it scales to the
-  desktop (569×647) and mobile (206×234) tiles alike.
-
-  Auto-cycles on a 2s interval with a 300ms crossfade — same tempo as the home
-  HeroCarousel (which reproduces the analogous HERO component animation).
+  the EXPORTS drop), object-cover (their aspect ≈ the tile's 0.879). Variant 2
+  has no flat export — it's a Figma composition — so it is rebuilt structurally
+  (like the LAVABO brand book): dark-grey field (#515151, measured) + two white
+  cards carrying the Architrave logo lockup, the moulding mark, a big "A", and
+  contact lines. Marks are cropped from archiArtboard 82; card geometry is
+  measured from the variant as percentages so it scales to the desktop
+  (569×647) and mobile (206×234) tiles alike.
 */
 
-const INTERVAL_MS = 2000;
 const GREY = "#515151";
 
-type Props = {
-  /** Tile width in px — used to scale the rebuilt card's type. */
-  width: number;
-};
-
-export function ArchitraveTile({ width }: Props) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % 3);
-    }, INTERVAL_MS);
-    return () => window.clearInterval(id);
-  }, [paused]);
-
+export function ArchitraveTile({ width }: { width: number }) {
   // Card type scales with the tile. Card ≈ 33.2% of tile width.
   const cardW = width * 0.332;
   const aSize = cardW * 0.52;
@@ -118,25 +98,5 @@ export function ArchitraveTile({ width }: Props) {
     />,
   ];
 
-  return (
-    <div
-      className="absolute inset-0"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      aria-roledescription="carousel"
-      aria-label="ARCHITRAVE project showcase"
-    >
-      {frames.map((frame, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-[300ms] ease-out ${
-            i === index ? "opacity-100" : "opacity-0"
-          }`}
-          aria-hidden={i !== index}
-        >
-          {frame}
-        </div>
-      ))}
-    </div>
-  );
+  return <TileCarousel frames={frames} label="ARCHITRAVE project showcase" />;
 }
