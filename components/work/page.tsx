@@ -9,6 +9,7 @@ import {
 } from "@/content/work";
 import { ArchitraveTile } from "./architrave-tile";
 import { LavaboTile } from "./lavabo-tile";
+import { NnfTile } from "./nnf-tile";
 import { BouncingArrow } from "../bouncing-arrow";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
@@ -96,6 +97,8 @@ export function DesktopWorkPage() {
               <ArchitraveTile width={p.desktop.w} />
             ) : p.slug === "lavabo" ? (
               <LavaboTile width={p.desktop.w} />
+            ) : p.slug === "architrave" ? (
+              <NnfTile width={p.desktop.w} />
             ) : (
               <Image
                 src={p.image}

@@ -12,6 +12,7 @@ import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
 import { ArchitraveTile } from "../work/architrave-tile";
 import { LavaboTile } from "../work/lavabo-tile";
+import { NnfTile } from "../work/nnf-tile";
 
 /*
   Mobile WORK page (Figma 268:37131): 393 × 2309, bg #fff7f4.
@@ -94,6 +95,8 @@ export function MobileWorkPage() {
               <ArchitraveTile width={p.mobile.w} />
             ) : p.slug === "lavabo" ? (
               <LavaboTile width={p.mobile.w} />
+            ) : p.slug === "architrave" ? (
+              <NnfTile width={p.mobile.w} />
             ) : (
               <Image
                 src={p.image}
