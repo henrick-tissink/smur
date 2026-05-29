@@ -1,6 +1,7 @@
 import { about } from "@/content/home";
 import { FigmaImage } from "../figma-image";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
 
 /*
   Mobile About (Frame 91 268:34817): bg #906553 warm brown, 393 × 1021.
@@ -24,24 +25,22 @@ export function MobileAbout() {
         style={{ maxWidth: "393px" }}
       >
         <Reveal>
-          <h2
+          {/* Heading (268:34829) — brand-font SVG (about.svg), 3-line break
+              matches the mobile design. about.svg scaled 48/75.4 from its
+              desktop native size. */}
+          <div
             id="m-about-title"
-            className="absolute font-heading text-center uppercase text-cream"
-            style={{
-              left: "45px",
-              right: "41px",
-              top: "95px",
-              fontSize: "48px",
-              lineHeight: "0.97",
-              width: "307px",
-            }}
+            className="absolute flex justify-center text-cream"
+            style={{ left: "45px", right: "41px", top: "95px" }}
           >
-            ABOUT
-            <br />
-            SMA &amp;
-            <br />
-            SMUR.
-          </h2>
+            <TitleMask
+              src="/figma-assets/titles/about.svg"
+              width={174.3}
+              height={140.3}
+              alt="About Sma & Smur."
+              as={2}
+            />
+          </div>
         </Reveal>
 
         <Reveal delay={0.08}>

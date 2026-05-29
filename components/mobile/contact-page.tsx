@@ -14,6 +14,7 @@ import {
 import { Arrow } from "../arrow";
 import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
 
 /*
   Mobile "Work With Me" page (Figma 282:39442). 393 × 2683.
@@ -40,18 +41,20 @@ function Hero() {
       className="relative w-full"
       style={{ height: 866, backgroundColor: "#bbc2b5" }}
     >
-      {/* Title at y=100, w=310, center */}
+      {/* Title (282:55197) at y=100, w=310 — brand-font SVG (tell-me-about),
+          2-line break matches the mobile design, scaled 45/58. */}
       <div
-        className="absolute text-center text-cream"
+        className="absolute flex justify-center text-cream"
         style={{ left: 42, top: 100, width: 310 }}
       >
         <Reveal>
-          <h1
-            className="font-heading"
-            style={{ fontSize: 45, lineHeight: 1.21 }}
-          >
-            {contactHero.title}
-          </h1>
+          <TitleMask
+            src="/figma-assets/titles/tell-me-about.svg"
+            width={302}
+            height={107.1}
+            alt={contactHero.title}
+            as={1}
+          />
         </Reveal>
       </div>
 
@@ -287,12 +290,17 @@ function FAQ() {
           </p>
         </Reveal>
         <Reveal delay={0.06}>
-          <p
-            className="mt-[16px] font-heading"
-            style={{ fontSize: 45, lineHeight: 1.21 }}
-          >
-            {contactFAQ.heading}
-          </p>
+          {/* "Questions" (293:55322) — brand-font SVG (questions.svg),
+              single line, scaled 45/58. */}
+          <div className="mt-[16px] flex justify-center">
+            <TitleMask
+              src="/figma-assets/titles/questions.svg"
+              width={223.6}
+              height={56}
+              alt={contactFAQ.heading}
+              as={2}
+            />
+          </div>
         </Reveal>
       </div>
 

@@ -1,5 +1,9 @@
 import { ctaButton, services, servicesList } from "@/content/home";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
+
+// Mobile service title is 45px vs the desktop SVG export's 58px.
+const MOBILE_TITLE_SCALE = 45 / 58;
 
 /*
   Mobile Webdesign — Group 77 (text) + Frame 78 (list) + BUTTON 2 (CTA).
@@ -41,13 +45,30 @@ export function MobileServicesList() {
           </span>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2
-            id="m-webdesign-title"
-            className="mt-[25px] font-heading text-ink"
-            style={{ fontSize: "45px", lineHeight: 1.21 }}
-          >
-            {service.title}
-          </h2>
+          {service.titleSvg ? (
+            <div id="m-webdesign-title" className="mt-[25px] text-ink">
+              <TitleMask
+                src={service.titleSvg.src}
+                width={service.titleSvg.width * MOBILE_TITLE_SCALE}
+                height={service.titleSvg.height * MOBILE_TITLE_SCALE}
+                leftBearing={
+                  service.titleSvg.leftBearing
+                    ? service.titleSvg.leftBearing * MOBILE_TITLE_SCALE
+                    : undefined
+                }
+                alt={service.title}
+                as={2}
+              />
+            </div>
+          ) : (
+            <h2
+              id="m-webdesign-title"
+              className="mt-[25px] font-heading text-ink"
+              style={{ fontSize: "45px", lineHeight: 1.21 }}
+            >
+              {service.title}
+            </h2>
+          )}
         </Reveal>
       </div>
 

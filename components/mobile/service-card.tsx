@@ -1,7 +1,12 @@
 import type { Service } from "@/content/home";
 import { FigmaImage } from "../figma-image";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
 import { MobileDropdown } from "./dropdown";
+
+// Mobile service titles are 45px vs the desktop SVG export's 58px, so each
+// brand-font title SVG is scaled by this ratio (preserving its line-breaks).
+const MOBILE_TITLE_SCALE = 45 / 58;
 
 /*
   Mobile service card — fixed-height container with absolutely positioned children
@@ -82,13 +87,30 @@ export function MobileServiceCard({ service }: { service: Service }) {
           </span>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2
-            id={`m-${service.id}-title`}
-            className="mt-[25px] font-heading text-ink"
-            style={{ fontSize: "45px", lineHeight: 1.21, whiteSpace: "pre-line" }}
-          >
-            {service.title}
-          </h2>
+          {service.titleSvg ? (
+            <div id={`m-${service.id}-title`} className="mt-[25px] text-ink">
+              <TitleMask
+                src={service.titleSvg.src}
+                width={service.titleSvg.width * MOBILE_TITLE_SCALE}
+                height={service.titleSvg.height * MOBILE_TITLE_SCALE}
+                leftBearing={
+                  service.titleSvg.leftBearing
+                    ? service.titleSvg.leftBearing * MOBILE_TITLE_SCALE
+                    : undefined
+                }
+                alt={service.title}
+                as={2}
+              />
+            </div>
+          ) : (
+            <h2
+              id={`m-${service.id}-title`}
+              className="mt-[25px] font-heading text-ink"
+              style={{ fontSize: "45px", lineHeight: 1.21, whiteSpace: "pre-line" }}
+            >
+              {service.title}
+            </h2>
+          )}
         </Reveal>
       </div>
 

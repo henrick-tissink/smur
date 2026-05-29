@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "../reveal";
+import { TitleMask } from "../title-mask";
 
 /*
   Mobile hero (Component 3 268:30787): 393 × 852, bg #cbb3a6.
@@ -69,27 +70,23 @@ export function MobileHero() {
           />
         </Link>
 
+        {/* Headline (268:34838) — brand-font SVG (header.svg) rendered via
+            CSS mask. The desktop export's 4-line break matches the mobile
+            design ("NAMING, / BRANDING & / DESIGN BUILD / GOOD STORIES").
+            Box-anchored to the 351px title width so it fills without
+            overflowing (header.svg aspect 586.82/288.99). */}
         <div
-          className="absolute"
+          className="absolute flex justify-center text-cream"
           style={{ left: "14px", right: "27px", top: "181px" }}
         >
           <Reveal>
-            <h1
-              className="font-heading text-center uppercase text-cream"
-              style={{
-                fontSize: "48px",
-                lineHeight: "0.97",
-                width: "352px",
-              }}
-            >
-              NAMING,
-              <br />
-              Branding &amp;
-              <br />
-              design BUILD
-              <br />
-              GOOD stories
-            </h1>
+            <TitleMask
+              src="/figma-assets/titles/header.svg"
+              width={351}
+              height={172.9}
+              alt="Naming, branding & design build good stories"
+              as={1}
+            />
           </Reveal>
         </div>
 
