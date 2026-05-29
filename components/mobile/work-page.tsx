@@ -83,7 +83,7 @@ export function MobileWorkPage() {
           <Link
             href={workTileHref(p.slug)}
             aria-label={p.name}
-            className="absolute block overflow-hidden transition-transform duration-500 active:scale-[0.99]"
+            className="absolute block cursor-pointer overflow-hidden"
             style={{
               left: p.mobile.x,
               top: p.mobile.y,

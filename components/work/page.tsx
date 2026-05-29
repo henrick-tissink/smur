@@ -85,7 +85,7 @@ export function DesktopWorkPage() {
           <Link
             href={workTileHref(p.slug)}
             aria-label={p.name}
-            className="absolute block overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
+            className="absolute block cursor-pointer overflow-hidden"
             style={{
               left: p.desktop.x,
               top: p.desktop.y,
