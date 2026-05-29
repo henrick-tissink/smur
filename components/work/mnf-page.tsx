@@ -67,6 +67,36 @@ export function MnfCaseStudy() {
       </div>
 
       {/* ============================================================
+          Section 2b — Cascading website screens (MNFArtboard 70).
+          This section (Figma content band ~917–1441) was missing from
+          the build, leaving a void under the intro. Rendered object-
+          contain on the cream field, centered. Sits at its true Figma
+          position (outside the offset wrapper below).
+          ============================================================ */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute"
+          style={{ left: 270, top: 900, width: 900, height: 545 }}
+        >
+          <Image
+            src="/figma-assets/work/mnf/screens.jpg"
+            alt="Manufaktura website screens"
+            width={1793}
+            height={1180}
+            unoptimized
+            className="block h-full w-full object-contain"
+          />
+        </div>
+      </Reveal>
+
+      {/* Sections 3–6 were transcribed ~286px too low vs Figma (Row1
+          1753.63→1467, mid 2672.88→2387, bottom 3937.30→3650), opening a
+          gap under the intro and overflowing the frame. Shift the group
+          up; the positioned+transformed wrapper is the containing block
+          for all absolute children. */}
+      <div className="absolute inset-0" style={{ transform: "translateY(-286px)" }}>
+
+      {/* ============================================================
           Section 3 — Row 1 LEFT (Group 25, 71:977)
           Frame (270, 1753.63), 437.65×299.26. Consolidated SVG.
           ============================================================ */}
@@ -247,6 +277,7 @@ export function MnfCaseStudy() {
           }}
         />
       </Reveal>
+      </div>
     </div>
   );
 }
