@@ -7,6 +7,7 @@ import {
   workProjects,
   workTileHref,
 } from "@/content/work";
+import { ArchitraveTile } from "./architrave-tile";
 import { BouncingArrow } from "../bouncing-arrow";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
@@ -90,14 +91,18 @@ export function DesktopWorkPage() {
               height: p.desktop.h,
             }}
           >
-            <Image
-              src={p.image}
-              alt={p.name}
-              width={p.desktop.w}
-              height={p.desktop.h}
-              unoptimized
-              className="block h-full w-full object-cover"
-            />
+            {p.slug === "mnf" ? (
+              <ArchitraveTile width={p.desktop.w} />
+            ) : (
+              <Image
+                src={p.image}
+                alt={p.name}
+                width={p.desktop.w}
+                height={p.desktop.h}
+                unoptimized
+                className="block h-full w-full object-cover"
+              />
+            )}
           </Link>
         </Reveal>
       ))}

@@ -10,6 +10,7 @@ import {
 import { BouncingArrow } from "../bouncing-arrow";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
+import { ArchitraveTile } from "../work/architrave-tile";
 
 /*
   Mobile WORK page (Figma 268:37131): 393 × 2309, bg #fff7f4.
@@ -88,14 +89,18 @@ export function MobileWorkPage() {
               height: p.mobile.h,
             }}
           >
-            <Image
-              src={p.image}
-              alt={p.name}
-              width={p.mobile.w}
-              height={p.mobile.h}
-              unoptimized
-              className="block h-full w-full object-cover"
-            />
+            {p.slug === "mnf" ? (
+              <ArchitraveTile width={p.mobile.w} />
+            ) : (
+              <Image
+                src={p.image}
+                alt={p.name}
+                width={p.mobile.w}
+                height={p.mobile.h}
+                unoptimized
+                className="block h-full w-full object-cover"
+              />
+            )}
           </Link>
         </Reveal>
       ))}
