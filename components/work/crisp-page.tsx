@@ -158,7 +158,7 @@ export function CrispCaseStudy() {
           (including the inline-coordinate components big-typography /
           row2-left / group62), so the −282px applies uniformly.
           ------------------------------------------------------------ */}
-      <div className="absolute inset-0" style={{ transform: "translateY(-282px)" }}>
+      <div className="absolute inset-0" style={{ transform: "translateY(-330px)" }}>
 
       {/* ============================================================
           Section 3 — Row 1 left (Group 71:4365, photo)
