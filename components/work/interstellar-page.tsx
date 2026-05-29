@@ -109,6 +109,13 @@ export function InterstellarCaseStudy() {
         </Reveal>
       </div>
 
+      {/* Sub-intro content was transcribed ~330px too low vs Figma
+          (mapped each section's top to the Figma content bands), opening
+          a large gap under the intro and overflowing the frame. Shift the
+          group up; the positioned+transformed wrapper is the containing
+          block for all absolute children (incl. the inline Row5 component). */}
+      <div className="absolute inset-0" style={{ transform: "translateY(-330px)" }}>
+
       {/* ============================================================
           Section 3 — Row 1 (Group 101, 297:57899)
           Frame (283, 1367.62), 887×310. Two side-by-side consolidated
@@ -345,6 +352,7 @@ export function InterstellarCaseStudy() {
           }}
         />
       </Reveal>
+      </div>
     </div>
   );
 }
