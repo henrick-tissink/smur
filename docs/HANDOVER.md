@@ -3,12 +3,227 @@
 ## Status
 
 Faithful reproduction of the SMUR designer-portfolio Figma file
-(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through May 22 client
-feedback rounds 1 + 2 — real content from the PDF, hero carousel,
-testimonial + FAQ carousels, SVG brand-font titles site-wide, two case
-studies photo-swapped (KOKOP + LAVABO).
+(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through 2026-05-29 — a
+fidelity-polish + /contact-refactor pass on top of the May 22 client-
+feedback rounds. Home + /contact now pixel-aligned to Figma across font
+sizes, line/border weights, collapsible toggles (chevrons), dropdown
+content panels, CTA pills, hero animation tempo, and section bg
+behavior. /contact specifically had a full structural refactor (full-
+bleed sections, flow-layout FAQ, MNF + LAVABO carousel, bouncing arrows,
+in-input placeholders, Figma-matched SAVE & SEND).
 
-## ★ Latest session — 2026-05-22 client feedback (rounds 1 + 2)
+## ★ Latest session — 2026-05-27 → 29 — fidelity polish + /contact refactor
+
+### What landed (10 commits on `main`, `e05ad61` → `22758fd`)
+
+1. **`e05ad61` — Hero carousel image optimization.** Dropped
+   `unoptimized` on the hero-carousel `<Image>`s (rule applies to
+   percent-crops, not object-cover boxes) and added Next 16 `formats:
+   ['image/avif', 'image/webp']` + `qualities: [75, 90]` in
+   `next.config.ts`. ~9 MB of raw PNGs become ~24–44 KB AVIF per slide.
+   All five frames preload via `preload` / `loading="eager"` so the
+   first crossfade no longer stutters.
+
+2. **`2eae8bb` — Font-size audit.** Verified every CSS font size in
+   the app against its Figma text node. ~21 mismatches corrected —
+   services-list items 14→17 italic accent, dropdown labels 20→28.454,
+   home CTA 15→20.22, contact form labels 14→17, helpers 14→16, FAQ
+   questions 22→28.454, mobile contact (8 values), mobile work footer
+   11→15, lavabo brand-book button 11→10.
+
+3. **`3d7a28b` — Divider/underline weights.** Bumped from browser-
+   default 1px → **2.113px** (Figma confirmed on the dropdown component
+   `183:1390`; same on mobile via inset-math). Applied to home dropdown
+   dividers (desktop + mobile), contact form field underlines, and
+   contact FAQ row dividers.
+
+4. **`eb3728a` — Control borders.** Box outlines bumped to **1.444px**
+   (Figma BUTTON `208:12249` / `310:58071`). Applied to all four CTA
+   pills + contact textarea + contact checkbox.
+
+5. **`24d7358` — Chevrons on collapsibles.** All four collapsible
+   toggles were rendering the wrong glyph — desktop used the full SMUR
+   arrow, mobile used `+`. Replaced with a new
+   `components/chevron.tsx` mask span (uses
+   `mobile/dropdown-chevron.svg`), rotates 180° on `open`, recolors
+   via `backgroundColor: currentColor`. Genuine arrows (scroll cue,
+   CTAs) untouched.
+
+6. **`a43ac81` — Asset drop sync.** `EXPORTS SMUR WEBSITE 2/HOME/
+   pictures homepic{1-4}@2x.png` copied over `public/figma-assets/
+   photo-{1-4}.png` (md5-verified). `.gitignore` glob `/EXPORTS SMUR
+   WEBSITE*/` covers both drops. Old `EXPORTS SMUR WEBSITE/` removed
+   from disk per user.
+
+7. **`db26938` — Hero speed-up + dropdown content + Brand-identity
+   spacing + CTA fidelity.** Big multi-part commit:
+   - Hero carousel: interval `4000ms → 2000ms`, crossfade
+     `600ms → 300ms`.
+   - **Spacing recipe** for service sections: `mt-[12px]` eyebrow→
+     title, `mt-[24px]` title→body, `mt-[32px]` body→dropdowns/list.
+     Trims ~12 px from Figma's `gap-25` / `gap-35` to compensate for
+     the SVG title's ascender/descender padding (TitleMask renders
+     69.43 px tall vs Figma's 51 px text-box-trimmed height).
+   - Webdesign list items get `[text-box-edge:cap_alphabetic]
+     [text-box-trim:trim-both]` so `space-y-[15px]` matches Figma's
+     trimmed-box gap (was visually ~22 px due to line-box overhang).
+     Explicit `mt-[32px]` between list and CTA (was missing).
+   - **Dropdown content panels**: `DropdownItem.body?` added.
+     `Dropdown` / `MobileDropdown` render an animated content panel
+     (max-h/opacity transition) when `body` is set. Body is split on
+     the first blank line — intro paragraph is DM Sans Regular, the
+     list/steps below are DM Sans Italic, both in accent `#a98a8a`.
+     Matches Figma DROP DOWN BRANDING / NAMING expanded variants
+     (`183:1391`, `183:1445`, `297:56985`, `297:56999`).
+   - DETAILS + TIMELINE bodies for Brand identity + Naming populated
+     verbatim from Figma. Wire-up is generic — any future service
+     dropdown just needs a `body` string in `content/home.ts`.
+   - `MobileFAQRow` on contact now renders the answer panel and maps
+     over `contactFAQItems` (had been mapping over the questions-only
+     `contactFAQ.items`).
+   - LET'S WORK TOGETHER CTA: Figma BUTTON `208:12249` spec —
+     `px-[24.548px] py-[5.776px] gap-[6.498px] rounded-[18.05px]`,
+     `#a18080` label on `#a98a8a` border, and the long horizontal
+     `Union` SVG arrow (saved to `public/figma-assets/arrows/
+     cta-union.svg`, recolored via CSS mask to follow `currentColor`).
+
+8. **`77e78d9` — /contact full refactor.**
+   - **Sections are now full-viewport-width with their own bg**
+     (matches the home Hero pattern). Previously the whole page was
+     wrapped in a fixed 1440 `mx-auto` so wider viewports got cream
+     stripes flanking the sage hero / brown FAQ.
+   - **Hero editorial tiles**: LEFT swapped to the MNF artboard
+     (1799×2480, same 0.726 portrait aspect as the 258×356 tile);
+     RIGHT replaced with a 3-frame LAVABO crossfade carousel using
+     `lavabo {1,2,3}@2x.png` from EXPORTS. The hero section gets
+     `z-10` so the right tile (positioned per Figma `218:12494` at
+     `top:642 h:249`, bottom 891 — 79 px past the 812 sage area)
+     paints above the cream form instead of being clipped.
+   - Images now optimized via `next/image` (object-cover in fixed
+     box = no percent-crop, so the `unoptimized` rule doesn't apply).
+     Replaces 9.9 MB single PNG with ~3×400 KB AVIF.
+   - Hero scroll-cue arrow + my-work arrow now **bounce** via a
+     motion-based `BouncingArrow` helper. Honors
+     `prefers-reduced-motion` via `useReducedMotion()`.
+   - **FieldText / MobileText**: field names sit inside the inputs
+     as `placeholder`s (no labels above the line). `sr-only` labels
+     kept for screen readers.
+   - **FieldTextarea / MobileTextarea**: centered placeholder via an
+     absolutely-positioned overlay (`flex items-center
+     justify-center`) that hides on first keystroke. Native
+     `<textarea>` placeholders can't be vertically centered reliably
+     cross-browser.
+   - SAVE & SEND CTA (desktop + mobile): same Figma BUTTON spec as
+     home CTA (`310:58094` / `310:58071`).
+
+9. **`22758fd` — FAQ flow refactor + edge-to-edge image strip +
+   my-work Union arrow.**
+   - `ContactFAQ` + mobile FAQ refactored from absolute-positioned
+     children to **flow layout** (margin-top instead of fixed `top`).
+     When an FAQ row expands, the image strip, my-work link, and
+     socials slide down with the answer instead of being bled under;
+     section bg grows naturally. Figma x-coords preserved via
+     `marginLeft` on each block (image strip at 392, socials at 842).
+   - Image strip thumbnails sit edge-to-edge — `gap-[10px]` removed.
+   - "my work :)" arrow now uses the **same `cta-union.svg`** as
+     the CTA buttons (long horizontal right-pointing, recolored to
+     cream via CSS mask). Desktop bounces rightward (new
+     `BouncingUnionArrow` helper, 1.4 s ease-in-out, 8 px travel);
+     mobile is static. Replaces the prior tall SMUR arrow / unicode
+     `→` glyph.
+
+### New components / patterns introduced
+
+- **`components/chevron.tsx`** — recolorable chevron mask span,
+  rotates 180° on `open`. Used by all four collapsible toggles
+  (home dropdowns + contact FAQ desktop/mobile). Width-driven sizing
+  with auto-derived height from the 9.117/18.135 Figma aspect.
+- **`BouncingArrow` + `BouncingUnionArrow`** (in
+  `components/contact/page.tsx`) — motion-based scroll cue
+  affordances. `BouncingArrow` is generic (takes `direction` +
+  `size` + `distance`) and used for the hero scroll cue.
+  `BouncingUnionArrow` pairs the `cta-union.svg` mask with a
+  rightward bounce for the my-work link. Both respect
+  `prefers-reduced-motion` via `useReducedMotion()`. **Pattern is
+  reusable** — copy either into another component if more
+  bouncing-cue arrows are needed; they're not yet shared because the
+  call sites are file-local.
+- **`text-box-trim` arbitrary** — Tailwind v4 supports
+  `[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]` for
+  matching Figma's trimmed text boxes. Used on the Webdesign list
+  items so the `gap-[15px]` matches Figma's trimmed visual instead
+  of the line-box-padded ~22 px. Browser support is good (Chrome 133+,
+  Safari 18.4+); Firefox stable gets the un-trimmed fallback (line-
+  box padding, harmless).
+- **CTA pill spec** — `px-[24.548px] py-[5.776px] gap-[6.498px]
+  rounded-[18.05px] border-[1.444px] border-[#a98a8a] text-[20.22px]
+  uppercase leading-[1.21] text-[#a18080]` + `cta-union.svg` mask
+  arrow at `width: 41.503 height: 14.11`. Currently duplicated in
+  three places (home CtaButton, contact desktop SAVE & SEND, contact
+  mobile SAVE & SEND). Could be extracted to a shared
+  `<CtaPill as="a"|"button">` component in a future refactor pass.
+- **Full-bleed sections + inner 1440 container** — Each section is
+  `w-full` with its own bg color; absolute-positioned content is
+  wrapped in `<div className="relative mx-auto" style={{ width: 1440
+  }}>` so it stays centered while the bg extends to the viewport
+  edges. Pattern matches the home Hero and is now used across all
+  /contact sections.
+- **`z-10` for overflowing tiles** — When an absolutely-positioned
+  child intentionally straddles two stacked sections (like the
+  LAVABO right tile straddling the contact hero/form boundary), give
+  the upper section `z-10` so its overflowing child paints above the
+  next section's bg instead of being clipped by it.
+
+### Known issues / TODOs
+
+- **Mobile bouncing arrow asymmetry** — Desktop my-work arrow bounces;
+  mobile is static. If you want symmetry, add `motion` + `useReducedMotion`
+  imports to `components/mobile/contact-page.tsx` and wrap the mobile
+  Union span in a `motion.span` like the desktop one.
+- **CTA pill duplication** — Three near-identical pill implementations
+  (home, contact desktop, contact mobile). Extract to
+  `components/cta-pill.tsx` (`as="a"|"button"`, `variant="ink"|"cream"`)
+  when next touching CTAs.
+- **Hero animation tempo** — Currently 2000 ms / 300 ms. User
+  approved as "a bit faster" than the previous 2500 / 400. If it
+  ever reads twitchy, dial back to 2500 / 400.
+- **Spacing recipe** — `mt-[12 / 24 / 32]` series is the Figma-match
+  pattern for service sections (eyebrow → title / title → body / body
+  → list-or-dropdowns). Reuse if any new service section is added.
+- **Other arrows still tall-SMUR** — The contact-page changes only
+  swapped my-work to the Union arrow. The hero scroll cue and the
+  CTA buttons all use their own correct arrows. If any *other* link
+  ever needs a horizontal CTA-style arrow, use `cta-union.svg` via
+  CSS mask (see `BouncingUnionArrow` for the recipe).
+- **Mobile contact form** — Has its own variant of every form field;
+  mobile FieldTextarea uses the same overlay-centered placeholder
+  pattern as desktop. If form fields change, update both files.
+
+### Files to know for next session
+
+- `components/contact/page.tsx` — full-bleed sections with inner
+  `mx-auto w-[1440px]` containers, flow-layout FAQ, `BouncingArrow`
+  + `BouncingUnionArrow` helpers, LAVABO carousel, placeholder
+  fields, Figma-matched SAVE & SEND CTA.
+- `components/mobile/contact-page.tsx` — mirrors the desktop changes
+  (placeholders + centered textarea + flow-layout FAQ + Union arrow
+  on my-work, static).
+- `components/chevron.tsx` — recolorable collapsible-toggle chevron.
+- `public/figma-assets/arrows/cta-union.svg` — the project's
+  standard right-pointing arrow (filled chevron tip on a horizontal
+  shaft, 41.503 × 14.11). Use it via CSS mask + `backgroundColor:
+  currentColor` for any horizontal CTA arrow.
+- `next.config.ts` — has `formats: ['image/avif', 'image/webp']` +
+  `qualities: [75, 90]`. Next 16 requires every `quality` value
+  used on `<Image>` to be allow-listed in `qualities` (default is
+  `[75]`, silently snaps to nearest otherwise).
+- `content/home.ts` — `DropdownItem.body?: string` is the schema for
+  expandable dropdowns; intro paragraph + `\n\n` + italic list/steps
+  is the convention (matches the Figma split).
+
+---
+
+## Previous session — 2026-05-22 client feedback (rounds 1 + 2)
 
 ### What landed (3 commits on `main`)
 
