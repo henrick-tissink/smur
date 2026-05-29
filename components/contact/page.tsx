@@ -380,14 +380,14 @@ function ContactFAQ() {
             className="flex"
             style={{ marginLeft: 392, width: 1046, height: 252 }}
           >
-            {contactFAQ.workThumbs.map((src) => (
+            {contactFAQ.workThumbs.map((thumb) => (
               <Link
-                key={src}
-                href="/work"
+                key={thumb.src}
+                href={thumb.href}
                 className="relative flex-1 overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
               >
                 <Image
-                  src={src}
+                  src={thumb.src}
                   alt=""
                   fill
                   unoptimized

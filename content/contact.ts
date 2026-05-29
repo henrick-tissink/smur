@@ -106,10 +106,11 @@ export const contactFAQ = {
   myWorkLink: "my work :)",
   socials: "INSTAGRAM   /   PINTEREST",
   // FAQ strip — dedicated photos from EXPORTS/Let_s work (May 2026).
+  // Each thumb links to its case study.
   workThumbs: [
-    "/figma-assets/contact/faq-strip/crisp.png",
-    "/figma-assets/contact/faq-strip/interstellar.png",
-    "/figma-assets/contact/faq-strip/kokop.png",
-    "/figma-assets/contact/faq-strip/lavabo-1.png",
+    { src: "/figma-assets/contact/faq-strip/crisp.png", href: "/work/crisp" },
+    { src: "/figma-assets/contact/faq-strip/interstellar.png", href: "/work/interstellar" },
+    { src: "/figma-assets/contact/faq-strip/kokop.png", href: "/work/kokop" },
+    { src: "/figma-assets/contact/faq-strip/lavabo-1.png", href: "/work/lavabo" },
   ],
 } as const;
