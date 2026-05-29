@@ -10,7 +10,7 @@ import {
   contactForm,
   contactHero,
 } from "@/content/contact";
-import { Arrow } from "../arrow";
+import { BouncingArrow } from "../bouncing-arrow";
 import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
@@ -491,44 +491,6 @@ function BouncingUnionArrow() {
         backgroundColor: "currentColor",
       }}
     />
-  );
-}
-
-/*
-  Arrow that bounces in its pointing direction over a 1.4s ease-in-out cycle.
-  Used for the hero scroll cue (direction="down"). Honors
-  `prefers-reduced-motion`.
-*/
-function BouncingArrow({
-  direction,
-  size,
-  distance = 18,
-}: {
-  direction: "up" | "down" | "left" | "right";
-  size?: number;
-  distance?: number;
-}) {
-  const reduced = useReducedMotion();
-  const isHorizontal = direction === "left" || direction === "right";
-  const sign = direction === "down" || direction === "right" ? 1 : -1;
-  const target = sign * distance;
-  return (
-    <motion.div
-      animate={
-        reduced
-          ? { x: 0, y: 0 }
-          : isHorizontal
-            ? { x: [0, target, 0] }
-            : { y: [0, target, 0] }
-      }
-      transition={
-        reduced
-          ? { duration: 0 }
-          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
-      }
-    >
-      <Arrow direction={direction} size={size} />
-    </motion.div>
   );
 }
 

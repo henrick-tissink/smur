@@ -7,7 +7,7 @@ import {
   workProjects,
   workTileHref,
 } from "@/content/work";
-import { Arrow } from "../arrow";
+import { BouncingArrow } from "../bouncing-arrow";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
 
@@ -57,17 +57,21 @@ export function DesktopWorkPage() {
             />
           </div>
         </Reveal>
-        {/* Scroll-down arrow indicator (Figma "Component 2" at x=684 y=345 — 72x94) */}
+        {/* Scroll-down arrow indicator (Figma "Component 2" at x=684 y=345 —
+            72×94). Centered in its frame box so it sits under the title, and
+            bounces like the contact hero cue. */}
         <Reveal delay={0.12}>
           <div
-            className="absolute text-ink"
+            className="absolute flex items-center justify-center text-ink"
             style={{
               left: `${684 - container.x}px`,
               top: `${345 - container.y}px`,
+              width: "72px",
+              height: "94px",
             }}
             aria-hidden
           >
-            <Arrow direction="down" size={72} />
+            <BouncingArrow direction="down" size={72} />
           </div>
         </Reveal>
       </div>
