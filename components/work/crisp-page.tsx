@@ -148,6 +148,18 @@ export function CrispCaseStudy() {
         </Reveal>
       </div>
 
+      {/* ------------------------------------------------------------
+          Everything below the intro was transcribed ~282px too low vs
+          Figma (verified by mapping each section's `top` to the Figma
+          content bands), which opened a large empty gap under the intro
+          and pushed the bottom section past the frame. The sub-intro
+          content is shifted up as a group here. A positioned+transformed
+          wrapper becomes the containing block for all absolute children
+          (including the inline-coordinate components big-typography /
+          row2-left / group62), so the −282px applies uniformly.
+          ------------------------------------------------------------ */}
+      <div className="absolute inset-0" style={{ transform: "translateY(-282px)" }}>
+
       {/* ============================================================
           Section 3 — Row 1 left (Group 71:4365, photo)
           Frame (293, 1404.46), 435×535. Figma crop:
@@ -335,6 +347,7 @@ export function CrispCaseStudy() {
         </div>
       </Reveal>
       */}
+      </div>
     </div>
   );
 }
