@@ -4,15 +4,73 @@
 
 Faithful reproduction of the SMUR designer-portfolio Figma file
 (`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through 2026-05-29 — a
-fidelity-polish + /contact-refactor pass on top of the May 22 client-
-feedback rounds. Home + /contact now pixel-aligned to Figma across font
-sizes, line/border weights, collapsible toggles (chevrons), dropdown
-content panels, CTA pills, hero animation tempo, and section bg
-behavior. /contact specifically had a full structural refactor (full-
-bleed sections, flow-layout FAQ, MNF + LAVABO carousel, bouncing arrows,
-in-input placeholders, Figma-matched SAVE & SEND).
+**mobile catch-up** pass on top of the fidelity-polish + /contact-refactor
+work and the May 22 client-feedback rounds. Mobile is now at parity with
+the desktop round-1/2/3 fidelity work: brand-font SVG titles, SMUR arrow
+assets (no unicode glyphs), real testimonial carousel, bouncing scroll
+cues. Home + /contact remain pixel-aligned to Figma across font sizes,
+line/border weights, collapsible toggles (chevrons), dropdown content
+panels, CTA pills, hero animation tempo, and section bg behavior.
 
-## ★ Latest session — 2026-05-27 → 29 — fidelity polish + /contact refactor
+## ★ Latest session — 2026-05-29 — mobile catch-up (arrows, carousel, titles)
+
+Closed the long-standing "mobile lags desktop" gap from the round-1/2/3
+feedback. Two commits on `main`:
+
+1. **`dbc5c66` — testimonial carousel + SMUR arrows over unicode glyphs.**
+   - `components/mobile/testimonial.tsx`: was a single static quote with
+     unicode `←→`; now a real 3-quote carousel (mirrors desktop) using
+     the horizontal SMUR `Arrow` (Figma `Isolation_Mode` 40.3×14.08 thin-
+     line+chevron — same family the `Arrow` component rotates, so no new
+     asset). Flow layout + `min-height:522` so the longer quotes push the
+     attribution/arrows down instead of overlapping (same flow fix as the
+     FAQ refactor).
+   - `components/mobile/work-page.tsx`: 24px pink `↓` glyph → centered
+     SMUR `Arrow size={72}` (Figma `Component 2`, 55×71.8), `text-ink`.
+   - `components/mobile/contact-page.tsx`: hero `↓` glyph → bouncing SMUR
+     `Arrow` at the Figma `y=660` position (was eyeballed at 590); the
+     `my work :)` cta-union arrow wrapped in a bounce (`BouncingUnionArrow`)
+     — resolves the handover's desktop/mobile bouncing-arrow asymmetry.
+     Both honor `prefers-reduced-motion`. New local `BouncingArrow` +
+     `BouncingUnionArrow` helpers mirror the desktop ones.
+
+2. **`2b0f789` — section titles render brand-font SVGs (TitleMask).** All
+   8 mobile headings rendered in `font-heading` (DM Serif Display, an
+   *approximation*) instead of the exported brand-font SVGs the desktop
+   switched to in round 1. Now all use `TitleMask`:
+   hero (`header.svg`), about (`about.svg`), service `Brand identity` /
+   `Naming & Positioning` (via `service.titleSvg`), `Webdesign, Print &
+   More` (`webdesign-print.svg`), work `This is / My Work`
+   (`this-is-my-work.svg`), contact `Tell Me About / Your Project`
+   (`tell-me-about.svg`), FAQ `Questions` (`questions.svg`).
+
+   **Key finding:** the desktop SVG exports' line-breaks were verified
+   (rendered each on a dark bg, compared) to match the mobile design
+   *exactly* — including the 4-line hero and 3-line about — so the same
+   vector assets are reused, just scaled. Scale = `mobileFont/desktopFont`
+   (48/75.4 for hero+about, 45/58 for the rest, derived from about.svg's
+   220.43px ÷ 3 lines ≈ 0.974×fontSize). Hero is **box-anchored** to its
+   351px title width (header.svg aspect) to fill without overflowing —
+   font-ratio scaling alone overflows it. Per-service titles fall back to
+   `font-heading` text when no `titleSvg` is defined.
+
+   Note: the brand font's Figma text-box heights do **not** map linearly
+   to the trimmed-SVG artwork (caps vs descenders vary per line), so size
+   titles by the font-ratio + verify visually — don't trust the node
+   height. All 8 were screenshot-verified at 393px width.
+
+### Mobile gaps still open (lower priority)
+
+- **Pink form parity** — verify the mobile /contact form fields match the
+  desktop dusty-pink treatment (labels/inputs/borders). Not audited this
+  session.
+- **Dead code / titles** — `font-heading` remains only as the per-service
+  title fallback (intentional) and on eyebrows/body (correct — those are
+  DM Sans/Serif in Figma, not brand-font titles).
+
+---
+
+## fidelity-polish + /contact refactor — 2026-05-27 → 29
 
 ### What landed (10 commits on `main`, `e05ad61` → `22758fd`)
 
