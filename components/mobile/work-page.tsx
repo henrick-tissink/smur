@@ -7,6 +7,7 @@ import {
   workProjects,
   workTileHref,
 } from "@/content/work";
+import { Arrow } from "../arrow";
 import { Reveal } from "../reveal";
 
 /*
@@ -51,19 +52,20 @@ export function MobileWorkPage() {
             {workHero.title[1]}
           </h1>
         </Reveal>
-        {/* Arrow (Component 2 at x=169 y=245 — 55x72 on mobile) */}
+        {/* Scroll-down arrow (Figma "Component 2" at x=169 y=245 — 55×71.8).
+            Same SMUR arrow asset as desktop; centered in its frame box. */}
         <Reveal delay={0.12}>
           <div
-            className="absolute font-sans italic text-accent"
+            className="absolute flex items-center justify-center text-ink"
             style={{
-              left: `${(169 - container.x)}px`,
-              top: `${(245 - container.y)}px`,
-              fontSize: "24px",
-              lineHeight: 1,
+              left: `${169 - container.x}px`,
+              top: `${245 - container.y}px`,
+              width: "55px",
+              height: "71.806px",
             }}
             aria-hidden
           >
-            ↓
+            <Arrow direction="down" size={72} />
           </div>
         </Reveal>
       </div>

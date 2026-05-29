@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useState } from "react";
@@ -10,6 +11,7 @@ import {
   contactFrame,
   contactHero,
 } from "@/content/contact";
+import { Arrow } from "../arrow";
 import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
 
@@ -63,13 +65,14 @@ function Hero() {
         </Reveal>
       </div>
 
-      {/* Down arrow */}
+      {/* Scroll-down arrow (Figma "Component 2" at x=171 y=660 — 55×71.8,
+          frame-centered). Bounces like the desktop contact hero cue. */}
       <div
-        className="absolute text-center text-cream"
-        style={{ left: 0, right: 0, top: 590 }}
+        className="absolute flex justify-center text-cream"
+        style={{ left: 0, right: 0, top: 660 }}
         aria-hidden
       >
-        <span style={{ fontSize: 20 }}>↓</span>
+        <BouncingArrow direction="down" size={72} />
       </div>
 
       {/* MANUFAKTURA editorial decorative thumbnail bottom-left */}
@@ -306,21 +309,7 @@ function FAQ() {
         className="mt-[246px] flex items-center gap-[8px] text-cream"
         style={{ marginLeft: 43 }}
       >
-        <span
-          aria-hidden
-          className="block shrink-0"
-          style={{
-            width: "32px",
-            height: "10.88px",
-            WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
-            maskImage: "url(/figma-assets/arrows/cta-union.svg)",
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
-            WebkitMaskSize: "100% 100%",
-            maskSize: "100% 100%",
-            backgroundColor: "currentColor",
-          }}
-        />
+        <BouncingUnionArrow />
         <span className="italic" style={{ fontSize: 15.105 }}>
           {contactFAQ.myWorkLink}
         </span>
@@ -374,5 +363,75 @@ function MobileFAQRow({
         </p>
       </div>
     </div>
+  );
+}
+
+/*
+  Bouncing right-pointing variant of the CTA Union arrow — used on the FAQ
+  "my work :)" link so it mirrors the desktop bouncing arrow. Mobile size is
+  32 × 10.88 (Figma). Honors `prefers-reduced-motion`.
+*/
+function BouncingUnionArrow() {
+  const reduced = useReducedMotion();
+  return (
+    <motion.span
+      aria-hidden
+      animate={reduced ? { x: 0 } : { x: [0, 8, 0] }}
+      transition={
+        reduced
+          ? { duration: 0 }
+          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+      }
+      className="block shrink-0"
+      style={{
+        width: "32px",
+        height: "10.88px",
+        WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+        maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskSize: "100% 100%",
+        maskSize: "100% 100%",
+        backgroundColor: "currentColor",
+      }}
+    />
+  );
+}
+
+/*
+  SMUR arrow that bounces in its pointing direction over a 1.4s cycle.
+  Used for the hero scroll cue (direction="down"), mirroring the desktop
+  contact hero. Honors `prefers-reduced-motion`.
+*/
+function BouncingArrow({
+  direction,
+  size,
+  distance = 18,
+}: {
+  direction: "up" | "down" | "left" | "right";
+  size?: number;
+  distance?: number;
+}) {
+  const reduced = useReducedMotion();
+  const isHorizontal = direction === "left" || direction === "right";
+  const sign = direction === "down" || direction === "right" ? 1 : -1;
+  const target = sign * distance;
+  return (
+    <motion.div
+      animate={
+        reduced
+          ? { x: 0, y: 0 }
+          : isHorizontal
+            ? { x: [0, target, 0] }
+            : { y: [0, target, 0] }
+      }
+      transition={
+        reduced
+          ? { duration: 0 }
+          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+      }
+    >
+      <Arrow direction={direction} size={size} />
+    </motion.div>
   );
 }
