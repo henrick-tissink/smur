@@ -267,17 +267,17 @@ function MobileCheckboxGroup({
 }
 
 function FAQ() {
+  // Flow layout (margins, not absolute tops) so my work + socials shift down
+  // when an FAQ row expands — same fix as desktop. Margins derived from Figma
+  // y-coords with collapsed FAQ.
   return (
     <section
       data-nav-scheme="light"
-      className="relative w-full"
-      style={{ height: 871, backgroundColor: "#906553" }}
+      className="relative w-full pt-[72px] pb-[43px]"
+      style={{ minHeight: 871, backgroundColor: "#906553" }}
     >
-      {/* "I answered" / "Questions" centered at relative y=72 (abs y=1884) */}
-      <div
-        className="absolute w-full text-center text-cream"
-        style={{ top: 72 }}
-      >
+      {/* "I answered" / "Questions" centered */}
+      <div className="w-full text-center text-cream">
         <Reveal>
           <p className="font-sans italic" style={{ fontSize: 15 }}>
             {contactFAQ.eyebrow}
@@ -293,11 +293,8 @@ function FAQ() {
         </Reveal>
       </div>
 
-      {/* FAQ accordion at y=174 (abs y=1986), w=307 */}
-      <div
-        className="absolute"
-        style={{ left: 44, top: 174, width: 307 }}
-      >
+      {/* FAQ accordion at Figma left:44 width:307 */}
+      <div className="mt-[17px]" style={{ marginLeft: 44, width: 307 }}>
         {contactFAQItems.map((item) => (
           <MobileFAQRow key={item.question} question={item.question} answer={item.answer} />
         ))}
@@ -306,10 +303,24 @@ function FAQ() {
       {/* my work :) link */}
       <Link
         href="/work"
-        className="absolute flex items-center gap-[8px] text-cream"
-        style={{ left: 43, top: 660 }}
+        className="mt-[246px] flex items-center gap-[8px] text-cream"
+        style={{ marginLeft: 43 }}
       >
-        <span aria-hidden style={{ fontSize: 20 }}>←</span>
+        <span
+          aria-hidden
+          className="block shrink-0"
+          style={{
+            width: "32px",
+            height: "10.88px",
+            WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+            maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+            WebkitMaskSize: "100% 100%",
+            maskSize: "100% 100%",
+            backgroundColor: "currentColor",
+          }}
+        />
         <span className="italic" style={{ fontSize: 15.105 }}>
           {contactFAQ.myWorkLink}
         </span>
@@ -317,8 +328,8 @@ function FAQ() {
 
       {/* INSTAGRAM / PINTEREST */}
       <p
-        className="absolute w-full text-center italic text-cream"
-        style={{ top: 810, fontSize: 15 }}
+        className="mt-[115px] w-full text-center italic text-cream"
+        style={{ fontSize: 15 }}
       >
         {contactFAQ.socials}
       </p>

@@ -329,90 +329,97 @@ function CheckboxGroup({
 }
 
 function ContactFAQ() {
+  // Flow layout (margins, not absolute tops) so the image strip, "my work"
+  // link, and socials slide down when an FAQ row expands instead of staying
+  // glued under the answer. Figma x-coords are preserved via marginLeft on
+  // each block. Gaps derived from Figma y-coords with the collapsed FAQ:
+  //   pt=158 (eyebrow), mt-30 (title), mt-30 (FAQ), mt-117 (image strip),
+  //   mt-53 (socials), pb-122 (sums to 1054 collapsed).
   return (
     <section
       data-nav-scheme="light"
       className="relative w-full"
-      style={{ height: 1054, backgroundColor: "#906553" }}
+      style={{ minHeight: 1054, backgroundColor: "#906553" }}
     >
-      <div className="relative mx-auto" style={{ width: 1440, height: 1054 }}>
-      {/* Eyebrow + "Questions" SVG title */}
-      <div
-        className="absolute flex flex-col items-center text-center text-cream"
-        style={{ left: 578, top: 158, width: 284 }}
-      >
-        <Reveal>
-          <p className="font-sans italic" style={{ fontSize: 20 }}>
-            {contactFAQ.eyebrow}
-          </p>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <div className="mt-[30px] text-cream">
-            <TitleMask
-              src="/figma-assets/titles/questions.svg"
-              width={288.19}
-              height={72.21}
-              alt={contactFAQ.heading}
-              as={2}
-            />
-          </div>
-        </Reveal>
-      </div>
+      <div className="relative mx-auto pt-[158px] pb-[122px]" style={{ width: 1440 }}>
+        {/* Eyebrow + "Questions" SVG title — centered at left:578 width:284 */}
+        <div
+          className="flex flex-col items-center text-center text-cream"
+          style={{ marginLeft: 578, width: 284 }}
+        >
+          <Reveal>
+            <p className="font-sans italic" style={{ fontSize: 20 }}>
+              {contactFAQ.eyebrow}
+            </p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <div className="mt-[30px] text-cream">
+              <TitleMask
+                src="/figma-assets/titles/questions.svg"
+                width={288.19}
+                height={72.21}
+                alt={contactFAQ.heading}
+                as={2}
+              />
+            </div>
+          </Reveal>
+        </div>
 
-      {/* FAQ accordion at y=2349-2533 (relative y=310-494) */}
-      <div
-        className="absolute"
-        style={{ left: 394, top: 310, width: 652 }}
-      >
-        {contactFAQItems.map((item) => (
-          <FAQRow key={item.question} question={item.question} answer={item.answer} />
-        ))}
-      </div>
+        {/* FAQ accordion — Figma left:394 width:652 */}
+        <div className="mt-[30px]" style={{ marginLeft: 394, width: 652 }}>
+          {contactFAQItems.map((item) => (
+            <FAQRow key={item.question} question={item.question} answer={item.answer} />
+          ))}
+        </div>
 
-      {/* Group 78 image strip at relative y=627 (abs y=2666), w=1046 */}
-      <div
-        className="absolute flex gap-[10px]"
-        style={{ left: 392, top: 627, width: 1046, height: 252 }}
-      >
-        {contactFAQ.workThumbs.map((src) => (
-          <Link
-            key={src}
-            href="/work"
-            className="relative flex-1 overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
+        {/* Image strip + "my work" link share a relative wrapper so that the
+            link stays positioned at the strip's left, regardless of how tall
+            the FAQ block has grown above. */}
+        <div className="relative mt-[117px]">
+          <div
+            className="flex"
+            style={{ marginLeft: 392, width: 1046, height: 252 }}
           >
-            <Image
-              src={src}
-              alt=""
-              fill
-              unoptimized
-              sizes="252px"
-              className="object-cover"
-            />
+            {contactFAQ.workThumbs.map((src) => (
+              <Link
+                key={src}
+                href="/work"
+                className="relative flex-1 overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  unoptimized
+                  sizes="252px"
+                  className="object-cover"
+                />
+              </Link>
+            ))}
+          </div>
+
+          {/* "my work :)" link to the LEFT of the image strip. Figma y=740 in
+              the original section ≡ top:113 inside this strip wrapper (which
+              starts at the strip's y=627). */}
+          <Link
+            href="/work"
+            className="group absolute flex flex-col items-center text-cream"
+            style={{ left: 186, top: 113, width: 141 }}
+          >
+            <BouncingUnionArrow />
+            <span className="mt-[8px] text-[20px] italic">
+              {contactFAQ.myWorkLink}
+            </span>
           </Link>
-        ))}
-      </div>
+        </div>
 
-      {/* "my work :)" link + arrow at relative y=740, w=141 */}
-      <Link
-        href="/work"
-        className="group absolute flex flex-col items-center text-cream"
-        style={{ left: 186, top: 740, width: 141 }}
-      >
-        <span aria-hidden>
-          <BouncingArrow direction="left" size={32} distance={8} />
-        </span>
-        <span className="mt-[8px] text-[20px] italic">
-          {contactFAQ.myWorkLink}
-        </span>
-      </Link>
-
-      {/* INSTAGRAM / PINTEREST at relative y=932 */}
-      <p
-        className="absolute text-center text-cream"
-        style={{ left: 842, top: 932, width: 360, fontSize: 20 }}
-      >
-        {contactFAQ.socials}
-      </p>
+        {/* INSTAGRAM / PINTEREST — Figma left:842 width:360 */}
+        <p
+          className="mt-[53px] text-center italic text-cream"
+          style={{ marginLeft: 842, width: 360, fontSize: 20 }}
+        >
+          {contactFAQ.socials}
+        </p>
       </div>
     </section>
   );
@@ -455,9 +462,42 @@ function FAQRow({ question, answer }: { question: string; answer: string }) {
 }
 
 /*
+  Bouncing right-pointing variant of the CTA Union arrow — used on the FAQ
+  "my work :)" link so the arrow matches the CTA buttons (same long horizontal
+  Union SVG, recolored via CSS mask to follow currentColor). Bounces rightward
+  in a calm 1.4s cycle. Honors `prefers-reduced-motion`.
+*/
+function BouncingUnionArrow() {
+  const reduced = useReducedMotion();
+  return (
+    <motion.span
+      aria-hidden
+      animate={reduced ? { x: 0 } : { x: [0, 8, 0] }}
+      transition={
+        reduced
+          ? { duration: 0 }
+          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+      }
+      className="block shrink-0"
+      style={{
+        width: "41.503px",
+        height: "14.11px",
+        WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+        maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskSize: "100% 100%",
+        maskSize: "100% 100%",
+        backgroundColor: "currentColor",
+      }}
+    />
+  );
+}
+
+/*
   Arrow that bounces in its pointing direction over a 1.4s ease-in-out cycle.
-  Used for the hero scroll cue (direction="down") and the FAQ "my work" link
-  (direction="left"). Honors `prefers-reduced-motion`.
+  Used for the hero scroll cue (direction="down"). Honors
+  `prefers-reduced-motion`.
 */
 function BouncingArrow({
   direction,
