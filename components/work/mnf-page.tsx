@@ -123,93 +123,43 @@ export function MnfCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 5 — Big middle (Clip path group 218:16465)
-          Frame (270, 2672.88), 899×1239.42. 4 masked photo cards
-          inlined: large center card, large right card, small top-right,
-          small bottom-right. (A 5th left-bleeding card is skipped as
-          it sits outside section bounds.)
+          Section 4b — Gold fluted card band (Figma band ~1790–2361),
+          missing from the original build. MNFArtboard 74_1, object-cover.
+          ============================================================ */}
+      <Reveal delay={0.05}>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 270, top: 2076, width: 899, height: 571 }}
+        >
+          <Image
+            src="/figma-assets/work/mnf/gold-band.jpg"
+            alt="Manufaktura business cards on fluted brass"
+            width={1793}
+            height={1195}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+
+      {/* ============================================================
+          Section 5 — Brand / interior grid (Clip path group 218:16465)
+          Frame (270, 2672.88), 899×1239.42. The dense grid was only
+          partially inlined (4 cards); now the full brand-grid artboard
+          (MNFArtboard 76, matching 0.725 aspect), object-cover.
           ============================================================ */}
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{
-            left: 375.01,
-            top: 2784.78,
-            width: 312.30,
-            height: 387.23,
-          }}
+          style={{ left: 270, top: 2672.88, width: 899, height: 1239.42 }}
         >
           <Image
-            src="/figma-assets/work/mnf/middle/center.png"
-            alt="Manufaktura interior detail"
-            width={944}
-            height={668}
+            src="/figma-assets/work/mnf/grid.jpg"
+            alt="Manufaktura brand and interior grid"
+            width={1799}
+            height={2480}
             unoptimized
-            className="absolute max-w-none"
-            style={{ left: -131.23, top: 1.52, width: 547.78, height: 387.45 }}
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 731.54,
-            top: 3418.73,
-            width: 312.30,
-            height: 387.23,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/mnf/middle/right-lg.png"
-            alt="Manufaktura interior detail"
-            width={774}
-            height={1034}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -0.51, top: -30.08, width: 309.75, height: 413.61 }}
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 731.54,
-            top: 2566.70,
-            width: 114.37,
-            height: 154.02,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/mnf/middle/top-sm.png"
-            alt="Manufaktura interior detail"
-            width={546}
-            height={734}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -2.19, top: 0.40, width: 120.18, height: 161.49 }}
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.10}>
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            left: 734.26,
-            top: 3844.37,
-            width: 114.37,
-            height: 154.02,
-          }}
-        >
-          <Image
-            src="/figma-assets/work/mnf/middle/bot-sm.png"
-            alt="Manufaktura interior detail"
-            width={546}
-            height={734}
-            unoptimized
-            className="absolute max-w-none"
-            style={{ left: -2.19, top: 0.40, width: 120.18, height: 161.49 }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
