@@ -171,18 +171,12 @@ export function CrispCaseStudy() {
           style={{ left: 293, top: 1404.46, width: 435, height: 535 }}
         >
           <Image
-            src="/figma-assets/work/crisp/row1-left.png"
-            alt="CRISP brand application"
-            width={1366}
-            height={768}
+            src="/figma-assets/work/crisp/row1-cafe.jpg"
+            alt="CRISP café interior"
+            width={851}
+            height={1044}
             unoptimized
-            className="absolute max-w-none"
-            style={{
-              width: "238.85%",
-              height: "109.16%",
-              left: 0,
-              top: "-9.16%",
-            }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -192,12 +186,19 @@ export function CrispCaseStudy() {
           Frame (753, 1405.46), 431×534.
           ============================================================ */}
       <Reveal delay={0.05}>
-        <img
-          src="/figma-assets/work/crisp/row1-right.svg"
-          alt="CRISP brand composition"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 753, top: 1405.46, width: 431, height: 534 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/crisp/row1-badges.png"
+            alt="CRISP — artisanal patisserie marks"
+            width={848}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
