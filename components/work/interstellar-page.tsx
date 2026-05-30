@@ -121,7 +121,7 @@ export function InterstellarCaseStudy() {
           Frame (283, 1367.62), 887×310. Two side-by-side consolidated
           SVGs.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/row1-left.svg"
           alt="Interstellar brand composition"
@@ -129,7 +129,7 @@ export function InterstellarCaseStudy() {
           style={{ left: 283, top: 1369.05, width: 429.46, height: 308.87 }}
         />
       </Reveal>
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/interstellar/row1-right.svg"
           alt="Interstellar brand composition"
@@ -143,7 +143,7 @@ export function InterstellarCaseStudy() {
           Frame (283, 1702.92), 887×309. Full-width bg + 2 centered
           overlay graphics.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/row2-bg.svg"
           alt="Interstellar brand application"
@@ -151,7 +151,7 @@ export function InterstellarCaseStudy() {
           style={{ left: 283, top: 1702.92, width: 887.16, height: 308.87 }}
         />
       </Reveal>
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/interstellar/row2-overlay1.svg"
           alt=""
@@ -164,7 +164,7 @@ export function InterstellarCaseStudy() {
           }}
         />
       </Reveal>
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/interstellar/row2-overlay2.svg"
           alt=""
@@ -185,7 +185,7 @@ export function InterstellarCaseStudy() {
           TODO: defer Layer_2 inner letter overlays (~36 vectors).
           ============================================================ */}
       {/* LEFT bg vector */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/row3-left-bg.svg"
           alt=""
@@ -194,7 +194,7 @@ export function InterstellarCaseStudy() {
         />
       </Reveal>
       {/* RIGHT bg vector */}
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/interstellar/row3-right-bg.svg"
           alt=""
@@ -203,7 +203,7 @@ export function InterstellarCaseStudy() {
         />
       </Reveal>
       {/* Masked photo (mask is a rectangle = overflow:hidden at section) */}
-      <Reveal delay={0.1}>
+      <Reveal eager delay={0.1}>
         <div
           className="absolute overflow-hidden"
           style={{ left: 285, top: 2037.59, width: 429, height: 556 }}
@@ -232,7 +232,7 @@ export function InterstellarCaseStudy() {
           + 8 substantive Clip path groups (top hero + narrow band +
           6 property cards in a 2x3 grid).
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/row4-layer1.svg"
           alt=""
@@ -243,7 +243,7 @@ export function InterstellarCaseStudy() {
       {/* Top hero photo (601×371 at frame y=2730.41). Original photo is
          1788×2679 (tall), masked to the wide bounds via overflow:hidden.
          Mask-position offset (0, 290) → photo's top crop is at y=-290. */}
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
           style={{ left: 427.70, top: 2730.41, width: 601.55, height: 371.20 }}
@@ -260,7 +260,7 @@ export function InterstellarCaseStudy() {
         </div>
       </Reveal>
       {/* Narrow band (600×73 at y=2879.09) — likely small navigation/label */}
-      <Reveal delay={0.06}>
+      <Reveal eager delay={0.06}>
         <div
           className="absolute overflow-hidden"
           style={{ left: 427.20, top: 2879.09, width: 600.24, height: 72.71 }}
@@ -279,7 +279,7 @@ export function InterstellarCaseStudy() {
         { src: "r1c2.png", left: 641.96, photoLeft: -55.92, photoTop: -16.95, photoW: 311.13, photoH: 207.00 },
         { src: "r1c3.png", left: 830.96, photoLeft: -30.80, photoTop: 0, photoW: 266.68, photoH: 177.94 },
       ].map((c) => (
-        <Reveal key={c.src} delay={0.08}>
+        <Reveal key={c.src} eager delay={0.08}>
           <div
             className="absolute overflow-hidden"
             style={{ left: c.left, top: 3175.96, width: 173, height: 173 }}
@@ -299,7 +299,7 @@ export function InterstellarCaseStudy() {
         { src: "r2c2.jpg", left: 641.05, photoLeft: -0.48, photoTop: -28.36, photoW: 190.87, photoH: 286.29 },
         { src: "r2c3.jpg", left: 830.96, photoLeft: -108.25, photoTop: -6.43, photoW: 266.68, photoH: 177.88 },
       ].map((c) => (
-        <Reveal key={c.src} delay={0.08}>
+        <Reveal key={c.src} eager delay={0.08}>
           <div
             className="absolute overflow-hidden"
             style={{ left: c.left, top: 3601.80, width: 173, height: 173 }}
@@ -321,7 +321,7 @@ export function InterstellarCaseStudy() {
           3 overlay graphics + Layer_2 thumbnail + inner Layer_1
           masked composition (47 vectors at offset chain).
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <InterstellarRow5Content />
       </Reveal>
 
@@ -329,7 +329,7 @@ export function InterstellarCaseStudy() {
           Section 8 — Row 6 (Group 109, 297:57911)
           Frame (278, 4688.84), 898×520. Single consolidated SVG.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/row6.svg"
           alt="Interstellar bottom composition"
@@ -339,7 +339,7 @@ export function InterstellarCaseStudy() {
       </Reveal>
 
       {/* Floating brand vector (73:19120) at frame (717.26, 4250.49), 275×87 */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/interstellar/floating.svg"
           alt=""

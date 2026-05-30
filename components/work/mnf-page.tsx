@@ -100,7 +100,7 @@ export function MnfCaseStudy() {
           Section 3 — Row 1 LEFT (Group 25, 71:977)
           Frame (270, 1753.63), 437.65×299.26. Consolidated SVG.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/mnf/row1-left.svg"
           alt="Manufaktura site layout"
@@ -113,7 +113,7 @@ export function MnfCaseStudy() {
           Section 4 — Row 1 RIGHT (Group 26, 71:978)
           Frame (731.65, 1753.63), 437.65×299.26. Consolidated SVG.
           ============================================================ */}
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/mnf/row1-right.svg"
           alt="Manufaktura site layout"
@@ -126,7 +126,7 @@ export function MnfCaseStudy() {
           Section 4b — Gold fluted card band (Figma band ~1790–2361),
           missing from the original build. MNFArtboard 74_1, object-cover.
           ============================================================ */}
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
           style={{ left: 270, top: 2076, width: 899, height: 571 }}
@@ -148,7 +148,7 @@ export function MnfCaseStudy() {
           partially inlined (4 cards); now the full brand-grid artboard
           (MNFArtboard 76, matching 0.725 aspect), object-cover.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute overflow-hidden"
           style={{ left: 270, top: 2672.88, width: 899, height: 1239.42 }}
@@ -169,7 +169,7 @@ export function MnfCaseStudy() {
           Frame (270, 3937.30), 899×575. Bg photo + mix-blend-multiply
           overlay + 18 letter vectors spelling the Manufaktura wordmark.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute"
           style={{ left: 270, top: 3937.30, width: 899, height: 575 }}
@@ -214,7 +214,7 @@ export function MnfCaseStudy() {
       </Reveal>
 
       {/* Floating brand vector (71:410) at frame (717.26, 4250.49), 275×88 */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/mnf/floating.svg"
           alt=""

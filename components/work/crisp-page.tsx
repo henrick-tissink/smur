@@ -165,7 +165,7 @@ export function CrispCaseStudy() {
           Frame (293, 1404.46), 435×535. Figma crop:
           w=238.85% h=109.16% left=0 top=-9.16%.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute overflow-hidden"
           style={{ left: 293, top: 1404.46, width: 435, height: 535 }}
@@ -185,7 +185,7 @@ export function CrispCaseStudy() {
           Section 4 — Row 1 right (Group 85, consolidated SVG)
           Frame (753, 1405.46), 431×534.
           ============================================================ */}
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
           style={{ left: 753, top: 1405.46, width: 431, height: 534 }}
@@ -222,7 +222,7 @@ export function CrispCaseStudy() {
           Section 7 — Row 2 right (Group 86, consolidated SVG)
           Frame (757, 2613), 429×530.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/crisp/row2-right.svg"
           alt="CRISP brand composition"
@@ -235,7 +235,7 @@ export function CrispCaseStudy() {
           Section 8 — Middle full-width band (Group 45, 71:4371)
           Frame (293, 3171.71), 899×610.88. Bg photo + centered overlay.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute overflow-hidden"
           style={{ left: 293, top: 3171.71, width: 899, height: 610.88 }}
@@ -250,7 +250,7 @@ export function CrispCaseStudy() {
           />
         </div>
       </Reveal>
-      <Reveal delay={0.1}>
+      <Reveal eager delay={0.1}>
         <img
           src="/figma-assets/work/crisp/band-overlay.svg"
           alt=""
@@ -268,7 +268,7 @@ export function CrispCaseStudy() {
           Section 9 — Row 3 left (Group 88, consolidated SVG)
           Frame (293, 3811.59), 436×524.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <img
           src="/figma-assets/work/crisp/row3-left.svg"
           alt="CRISP brand composition"
@@ -283,7 +283,7 @@ export function CrispCaseStudy() {
           mask (so a simple overflow-hidden wrapper at section bounds
           replicates the visible region); plus a centered overlay graphic.
           ============================================================ */}
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute overflow-hidden"
           style={{
@@ -312,7 +312,7 @@ export function CrispCaseStudy() {
           />
         </div>
       </Reveal>
-      <Reveal delay={0.05}>
+      <Reveal eager delay={0.05}>
         <img
           src="/figma-assets/work/crisp/row3-right-overlay.svg"
           alt=""
@@ -339,7 +339,7 @@ export function CrispCaseStudy() {
       {/* Hand-built legacy bottom removed (replaced by inlined Group62
           above). Kept frozen below for reference if positioning diverges. */}
       {/*
-      <Reveal>
+      <Reveal eager>
         <div
           className="absolute overflow-hidden"
           style={{ left: 293, top: 4365.08, width: 899, height: 1114.18 }}
