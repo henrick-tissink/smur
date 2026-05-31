@@ -3,16 +3,151 @@
 ## Status
 
 Faithful reproduction of the SMUR designer-portfolio Figma file
-(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through 2026-05-29 — a
-**mobile catch-up** pass on top of the fidelity-polish + /contact-refactor
-work and the May 22 client-feedback rounds. Mobile is now at parity with
-the desktop round-1/2/3 fidelity work: brand-font SVG titles, SMUR arrow
-assets (no unicode glyphs), real testimonial carousel, bouncing scroll
-cues. Home + /contact remain pixel-aligned to Figma across font sizes,
-line/border weights, collapsible toggles (chevrons), dropdown content
-panels, CTA pills, hero animation tempo, and section bg behavior.
+(`UGvU1B8yP5Pa7vQmneV0Cz`) as a Next.js 16 site. Through 2026-05-30 — a
+**/work animated tiles + case-study spacing/rendering** pass on top of
+the mobile catch-up and earlier fidelity work. The /work landing now has
+three auto-cycling project tiles; four case studies had their sub-intro
+spacing re-aligned to Figma and missing/sparse sections built out; and a
+significant reveal-animation regression (introduced by the new offset
+wrappers) was found and fixed. Home + /contact + mobile remain aligned to
+the prior fidelity passes.
 
-## ★ Latest session — 2026-05-29 — mobile catch-up (arrows, carousel, titles)
+## ★ Latest session — 2026-05-30 → 31 — /work animated tiles + case-study spacing & rendering
+
+13 commits on `main` (`df750d0` → `124493f`). Verified throughout in the
+browser (Playwright) at desktop 1440 and mobile 393.
+
+### What landed
+
+1. **`df750d0` — /work scroll arrow bounces + centered; shared
+   `BouncingArrow`.** The /work hero scroll cue was static and the desktop
+   one sat ~23px off-center inside its 72px Figma frame slot. Now uses a
+   gentle bounce (honors `prefers-reduced-motion`) and is centered.
+   Extracted `components/bouncing-arrow.tsx` (was duplicated inline in the
+   contact pages); desktop+mobile work + contact all import it.
+
+2. **`20549a8` / `279bad1` / `d396198` — three animated WORK tiles.** The
+   4th (ARCHITRAVE), 8th (LAVABO) and bottom (NNF) /work tiles are Figma
+   "…WORK" components (`27:4791`, `27:1566`, `27:3435` on the `components`
+   page) with 3 prototype variants each. Reproduced as auto-cycling
+   crossfade tiles via a new shared `components/work/tile-carousel.tsx`
+   (2s interval, 300ms fade, pause-on-hover — same pattern as the home
+   HeroCarousel). Frames source the rendered project artboards from the
+   EXPORTS drop; variants with no flat export were **structurally rebuilt**
+   (ARCHITRAVE's two-card frame; NNF's moodboard grid — cropped cells from
+   `MNFArtboard 76`). Wired into both `components/work/page.tsx` and
+   `components/mobile/work-page.tsx`, gated on `slug === "mnf" | "lavabo" |
+   "architrave"` (note the mnf/architrave slug↔Figma-name swap, preserved).
+   New tiles: `architrave-tile.tsx`, `lavabo-tile.tsx`, `nnf-tile.tsx`.
+
+3. **`3f55f92` — /work tiles: pointer cursor, no scale animation.**
+   Removed `hover:scale-[1.02]` (desktop) and `active:scale-[0.99]`
+   (mobile) per request; kept `cursor-pointer`.
+
+4. **`d9f6e39` — /contact FAQ strip → case studies.** The 4 bottom-of-
+   contact thumbnails now link crisp→/work/crisp, interstellar→…, kokop→…,
+   lavabo→… (`workThumbs` is now `{src, href}[]`). Desktop-only (mobile
+   /contact has no strip).
+
+5. **`fc6f488` / `89f9229` / `b6b1e74` — case-study sub-intro spacing
+   offset.** CRISP, Interstellar and mnf had ALL content below the intro
+   transcribed ~280–330px too low vs Figma (big gap under the intro +
+   bottom section overflowing the frame). Detected by measuring content-
+   bottom vs frame-height (clean pages end ~45–140px short; these
+   overflowed +130–145). Fixed by wrapping sub-intro sections in a
+   `<div className="absolute inset-0" style={{transform:translateY(-Npx)}}>`
+   (−282 crisp, −330 interstellar, −286 mnf). kokop/lavabo/kabinett/sws/
+   taf/architrave audited clean. **iwl is −305 under-filled — a separate
+   deferred-content issue, left as-is.** See
+   [[feedback_casestudy_subintro_offset]].
+
+6. **`b6b1e74` / `3b55cf2` — mnf missing middle built out.** mnf was also
+   missing the cascading-screens section (added `MNFArtboard 70`) and its
+   middle was 4 sparse cards → replaced with the full gold-fluted band
+   (`MNFArtboard 74_1`) + brand grid (`MNFArtboard 76`), object-cover. mnf
+   now reads hero → intro → screens → M-tiles → gold band → grid → hotel.
+
+7. **`de8ecbe` — CRISP intro→content gap tightened to ~36px.** The −282
+   fix matched Figma's ~95px gap, but per request it's now tighter
+   (wrapper bumped to −330). **This is intentionally tighter than Figma.**
+
+8. **`19a11d4` — CRISP under-text row = clean artboards.** That row used a
+   cropped collage cell + an SVG; now renders `CrispArtboard 91` (café) +
+   `91_1` (badges) cleanly (their 0.815 aspect matches the 435×535 slots).
+
+9. **`124493f` — CRITICAL: eager reveals fix.** The new `translateY`
+   offset wrappers (items 5–8) push the `Reveal` motion wrappers off the
+   top of the page; those wrappers are zero-height (they wrap absolutely-
+   positioned children) so `whileInView`'s IntersectionObserver never
+   fires → **all sub-intro photo content on crisp/interstellar/mnf was
+   invisible to real users** (the café/badges row + every photo row).
+   Added an opt-in `eager` prop to `components/reveal.tsx` (animates on
+   mount instead of on scroll) and applied it to every `Reveal` inside the
+   offset wrappers. Scroll-reveal unchanged everywhere else. Verified all
+   three case studies render with 0 hidden images, desktop + mobile.
+
+### New patterns / components introduced
+
+- **`components/work/tile-carousel.tsx`** — generic auto-cycling crossfade
+  (`frames: ReactNode[]`, `label`). Used by the 3 animated WORK tiles;
+  reuse for CRISP WORK (`27:3578`, 2 variants) if that tile is animated next.
+- **Animated WORK tile pattern** — reproduce a "…WORK" Figma component's
+  variants by sourcing rendered EXPORTS artboards (one `<Image object-cover>`
+  per frame); structurally rebuild any variant with no flat export. Each
+  tile takes a `width` prop so rebuilt-frame type scales desktop↔mobile.
+- **Offset wrapper + eager Reveal** (the big gotcha) — a `translateY`
+  wrapper is the cheapest way to shift a block of absolutely-positioned
+  sections (incl. inline-coordinate components you can't edit), BUT it
+  breaks any `Reveal` inside it (zero-height motion wrapper pushed off-
+  screen → `whileInView` never fires). ALWAYS pass `eager` to Reveals
+  inside such a wrapper. See [[feedback_casestudy_subintro_offset]].
+- **`Reveal` `eager` prop** — `eager` ⇒ `animate="show"` on mount; default
+  ⇒ `whileInView` scroll-reveal (unchanged).
+- **Shared `BouncingArrow`** (`components/bouncing-arrow.tsx`) — the SMUR
+  arrow with a 1.4s directional bounce; honors reduced-motion.
+
+### Known issues / TODOs
+
+- **CRISP intro→content gap is intentionally tighter than Figma (~36px vs
+  ~95px)** — user preference. If it ever needs to match Figma, set the
+  crisp wrapper transform back toward −282.
+- **iwl case study under-renders** (−305 short) — Row 4 (Group 91) is a
+  deeply-nested clip-path composition deferred in the original build. Not
+  the spacing offset; a separate "missing content" task.
+- **CRISP WORK tile** (`27:3578`, 2 variants) is the only remaining
+  animatable /work "…WORK" component not yet done — quick add via
+  `TileCarousel` if wanted.
+- **mnf middle uses rendered artboards** (74_1 / 76), not a pixel-exact
+  vector recreation of `218:16465` — faithful in look, not vector-exact.
+- **Stale-cache hydration mismatch recurs** after rapid client-component
+  edits (Turbopack). Symptom: a hydration error diffing a style/attr
+  (server old value vs client new). It's NOT a code bug — fix is
+  `rm -rf .next && pnpm dev`. Hit it 3× this session.
+
+### Dev server state
+
+Restarted fresh at end of session: `rm -rf .next && pnpm dev`, running in
+the background on **:3000** (logs at `/tmp/smur-dev.log`). If a port
+conflict appears, an old process may still hold 3000 — `lsof -ti:3000 |
+xargs kill -9` then restart.
+
+### Files to know
+
+- `components/work/tile-carousel.tsx` + `{architrave,lavabo,nnf}-tile.tsx`
+  — animated /work tiles. Assets under
+  `public/figma-assets/work/{architrave,lavabo,nnf}-anim/`.
+- `components/reveal.tsx` — now has `eager`. Use it for any Reveal inside a
+  transform wrapper.
+- `components/bouncing-arrow.tsx` — shared bounce arrow.
+- `components/work/crisp-page.tsx` — the −330 offset wrapper (with `eager`
+  reveals), the 91/91_1 under-text row, the tightened intro gap.
+- `components/work/{interstellar,mnf}-page.tsx` — offset wrappers + eager
+  reveals; mnf has the rebuilt screens/gold-band/grid sections.
+- `content/contact.ts` — `workThumbs` is `{src, href}[]`.
+
+---
+
+## mobile catch-up — 2026-05-29 (arrows, carousel, titles)
 
 Closed the long-standing "mobile lags desktop" gap from the round-1/2/3
 feedback. Two commits on `main`:
