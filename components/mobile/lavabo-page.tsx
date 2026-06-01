@@ -123,7 +123,7 @@ export function MobileLavaboCaseStudy() {
             width={393}
             height={155}
             unoptimized
-            className="block h-full w-full"
+            className="block h-auto w-full"
           />
         </div>
       </Reveal>

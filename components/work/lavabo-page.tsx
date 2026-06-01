@@ -149,7 +149,7 @@ export function LavaboCaseStudy() {
             width={898}
             height={355}
             unoptimized
-            className="block h-full w-full"
+            className="block h-auto w-full"
           />
         </div>
       </Reveal>
