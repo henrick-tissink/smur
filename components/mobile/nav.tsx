@@ -56,7 +56,7 @@ export function MobileNav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
                 height={19}
                 priority
                 unoptimized
-                className="block h-full w-full transition-[filter] duration-200"
+                className="block h-auto w-full transition-[filter] duration-200"
                 style={{ filter: logoFilter }}
               />
             </Link>
@@ -135,7 +135,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           height={19}
           unoptimized
           className="block"
-          style={{ width: 85.5, height: 19 }}
+          style={{ width: 85.5, height: "auto" }}
         />
         {nav.links.map((l) => (
           <Link
