@@ -5,7 +5,6 @@ import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
 import { ArchitraveBigMiddleContent } from "./architrave-extras/big-middle";
 import { ArchitraveGroup80Content } from "./architrave-extras/group80";
-import { ArchitraveRow2RightContent } from "./architrave-extras/row2-right";
 
 /*
   Desktop ARCHITRAVE (Architrave Studio) case study.
@@ -151,12 +150,25 @@ export function ArchitraveCaseStudy() {
           />
         </div>
       </Reveal>
-      {/* Row 2 RIGHT (Group 82, 297:57107) — full inlined composition
-          via ./architrave-extras/row2-right: masked photo bg + 66
-          typography/wordmark vectors + "35 SQM" and "WE LOVE" text
-          labels + inset image (175×175 square). */}
+      {/* Row 2 RIGHT (artboard 86) — flat export of the phone Instagram
+          mockup (profile, story circles incl. "WE LOVE"/"35 SQM", and the
+          interior photo grid); replaces the ~66-vector composition. Group 82
+          frame (724.52, 2196.70), 435×522 (artboard 912×1040; phone is
+          centred so object-cover's ~11px side crop only trims sage margin). */}
       <Reveal delay={0.05}>
-        <ArchitraveRow2RightContent />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 724.52, top: 2196.7, width: 435, height: 522 }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/row2-right.png"
+            alt="Architrave Studio Instagram profile shown on a phone"
+            width={912}
+            height={1040}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
