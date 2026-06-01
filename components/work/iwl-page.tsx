@@ -71,8 +71,14 @@ export function IwlCaseStudy() {
       >
         <Reveal>
           <p
-            className="font-heading italic"
-            style={{ fontSize: 20, lineHeight: 1, margin: 0 }}
+            className="italic"
+            style={{
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontWeight: 400,
+              fontSize: 20,
+              lineHeight: 1, // Figma H3: DM Sans Italic 20 / lh normal
+              margin: 0,
+            }}
           >
             {iwl.eyebrow}
           </p>

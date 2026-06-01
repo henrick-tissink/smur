@@ -83,8 +83,13 @@ export function KokopCaseStudy() {
       >
         <Reveal>
           <p
-            className="font-heading italic"
-            style={{ fontSize: 20, lineHeight: 1 }}
+            className="italic"
+            style={{
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontWeight: 400,
+              fontSize: 20,
+              lineHeight: 1, // Figma H3: DM Sans Italic 20 / lh normal
+            }}
           >
             {kokop.eyebrow}
           </p>
