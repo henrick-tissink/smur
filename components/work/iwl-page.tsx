@@ -163,6 +163,28 @@ export function IwlCaseStudy() {
       </Reveal>
 
       {/* ============================================================
+          Section 3b — Welcome banner (artboard 105, node 71:5756
+          "NEW_BANNER"). Flat export of the red "Welcome to the Institute"
+          banner; sits directly below Row 1. Frame (270.64, 1514), 899×595.8
+          (artboard 1798×1195, ratio 1.505 — exact).
+          ============================================================ */}
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 270.64, top: 1514, width: 899, height: 595.8 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/banner.png"
+            alt="Welcome to the Institute for World Literature banner"
+            width={1798}
+            height={1195}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+
+      {/* ============================================================
           Section 4 — Row 2 (Group 93, 297:57124)
           Frame (274.64, 2134.75), 895×491. Layer_1 consolidated bg +
           Layer_2 inlined 114 vectors via ./iwl-extras/row2-content.
@@ -175,116 +197,85 @@ export function IwlCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 5 — Row 3 (Group 92, 297:57123)
-          Frame (276.64, 2656), 893×608. Single masked composition.
-          The "photo" is actually an SVG with viewBox 1046×697 that
-          extends past the section bounds by inset[-2.93% -5.81% -11.73% -11.36%].
-          Section overflow-hidden replicates the rectangular mask.
+          Section 5 — Row 3 IWL pattern (artboard 107_1, Group 92).
+          Flat export of the tan repeating Möbius / "Institute for World
+          Literature" pattern; replaces the masked SVG. Frame (276.64, 2656),
+          893×608.34 (artboard 1789×1216, ratio 1.471 — exact).
           ============================================================ */}
       <Reveal>
         <div
           className="absolute overflow-hidden"
           style={{ left: 276.64, top: 2656, width: 893, height: 608.34 }}
         >
-          <img
-            src="/figma-assets/work/iwl/row3-photo.svg"
-            alt="IWL editorial layout"
-            className="absolute max-w-none"
-            style={{
-              /* Position the 1046×697 image so its inset-negative offsets
-                 from Figma map to absolute pixels in the 893×608 frame. */
-              left: -101.4, // -11.36% × 893
-              top: -17.82, // -2.93% × 608.34
-              width: 1046.26,
-              height: 697.51,
-            }}
+          <Image
+            src="/figma-assets/work/iwl/pattern.png"
+            alt="IWL repeating logotype pattern"
+            width={1789}
+            height={1216}
+            unoptimized
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Row 4 (Group 96, 297:57127)
-          Frame (273.64, 3289.34), 896×522. LEFT (Group 91, deferred)
-          + RIGHT (Group 90, consolidated SVG).
+          Section 6 — Row 4 (Group 96, 297:57127) as flat artboards.
+          LEFT  = artboard 110 (Group 91) — multi-panel program spread;
+                  fills the formerly-deferred left placeholder.
+          RIGHT = artboard 109 (Group 90) — reading photo with Möbius
+                  logo; replaces the consolidated SVG.
           ============================================================ */}
-      {/* LEFT — Group 91 deferred (vector-dense composition).
-         TODO: inline. Placeholder gap renders cream. */}
-      <div
-        className="absolute"
-        style={{ left: 273.64, top: 3289.34, width: 434.57, height: 522.42 }}
-        aria-hidden
-      />
-      {/* RIGHT — Group 90 consolidated SVG */}
+      {/* LEFT — Group 91 (273.64, 3289.34), 434.57×522.42
+         (artboard 871×1046, ratio 0.833 — exact). */}
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 273.64, top: 3289.34, width: 434.57, height: 522.42 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/row4-left.png"
+            alt="IWL programme brochure spread"
+            width={871}
+            height={1046}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      {/* RIGHT — Group 90 (742.64, 3289.34), 427×522
+         (artboard 871×1042, ratio 0.836). */}
       <Reveal delay={0.05}>
-        <img
-          src="/figma-assets/work/iwl/row4-right.svg"
-          alt="IWL brand application"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 742.64, top: 3289.34, width: 427, height: 522 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/iwl/row4-right.png"
+            alt="IWL — a participant reading, with the Möbius logo overlay"
+            width={871}
+            height={1042}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
-          Section 7 — Bottom (Group 297:57128)
-          Frame (270, 3836.76), 897×1080. Inlined 4 photo cards:
-          large bottom photo + 3 small cards in a row at top.
-          Remaining typography vectors still TODO.
+          Section 7 — Bottom poster (artboard 112, Group 297:57128).
+          Flat export of the Harvard 2023 session poster; replaces the
+          4 inlined photo cards. Frame (270, 3836.76), 897.6×1080.9
+          (artboard 1790×2159, ratio 0.829 — exact).
           ============================================================ */}
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 435.89, top: 4374.71, width: 562.11, height: 401.18 }}
+          style={{ left: 270, top: 3836.76, width: 897.6, height: 1080.9 }}
         >
           <Image
-            src="/figma-assets/work/iwl/bottom/large.png"
-            alt="IWL editorial photograph"
-            width={1960}
-            height={1399}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 435.89, top: 3983.44, width: 140.65, height: 138.12 }}
-        >
-          <Image
-            src="/figma-assets/work/iwl/bottom/sm1.png"
-            alt="IWL editorial photograph"
-            width={877}
-            height={865}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.07}>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 576.21, top: 3983.44, width: 140.86, height: 138.12 }}
-        >
-          <Image
-            src="/figma-assets/work/iwl/bottom/sm2.png"
-            alt="IWL editorial photograph"
-            width={874}
-            height={865}
-            unoptimized
-            className="block h-full w-full object-cover"
-          />
-        </div>
-      </Reveal>
-      <Reveal delay={0.09}>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 716.75, top: 3983.44, width: 141.02, height: 138.12 }}
-        >
-          <Image
-            src="/figma-assets/work/iwl/bottom/sm3.png"
-            alt="IWL editorial photograph"
-            width={878}
-            height={865}
+            src="/figma-assets/work/iwl/poster.png"
+            alt="IWL Harvard University 2023 session poster"
+            width={1790}
+            height={2159}
             unoptimized
             className="block h-full w-full object-cover"
           />
