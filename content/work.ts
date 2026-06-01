@@ -106,8 +106,11 @@ export const workProjects: WorkProject[] = [
     slug: "mnf",
     name: "MNF",
     image: "/figma-assets/work/mnf.png",
-    desktop: { x: 871, y: 1421, w: 569, h: 647 },
-    mobile: { x: 187, y: 809, w: 206, h: 234 },
+    // MNF (Manufaktura) takes the bottom-left landscape cell. Its grid
+    // position is swapped with ARCHITRAVE so each animated tile sits in the
+    // cell whose imagery it shows and links to its own case study.
+    desktop: { x: 0, y: 4402, w: 795, h: 529 },
+    mobile: { x: 106, y: 2022, w: 287, h: 191 },
   },
   {
     slug: "taf",
@@ -148,7 +151,9 @@ export const workProjects: WorkProject[] = [
     slug: "architrave",
     name: "ARCHITRAVE",
     image: "/figma-assets/work/architrave.png",
-    desktop: { x: 0, y: 4402, w: 795, h: 529 },
-    mobile: { x: 106, y: 2022, w: 287, h: 191 },
+    // ARCHITRAVE takes the mid-page portrait cell (swapped with MNF — see
+    // the note on the MNF entry above).
+    desktop: { x: 871, y: 1421, w: 569, h: 647 },
+    mobile: { x: 187, y: 809, w: 206, h: 234 },
   },
 ];

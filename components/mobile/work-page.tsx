@@ -92,11 +92,11 @@ export function MobileWorkPage() {
             }}
           >
             {p.slug === "mnf" ? (
-              <ArchitraveTile width={p.mobile.w} />
+              <NnfTile width={p.mobile.w} />
             ) : p.slug === "lavabo" ? (
               <LavaboTile width={p.mobile.w} />
             ) : p.slug === "architrave" ? (
-              <NnfTile width={p.mobile.w} />
+              <ArchitraveTile width={p.mobile.w} />
             ) : (
               <Image
                 src={p.image}

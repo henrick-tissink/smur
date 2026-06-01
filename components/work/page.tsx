@@ -94,11 +94,11 @@ export function DesktopWorkPage() {
             }}
           >
             {p.slug === "mnf" ? (
-              <ArchitraveTile width={p.desktop.w} />
+              <NnfTile width={p.desktop.w} />
             ) : p.slug === "lavabo" ? (
               <LavaboTile width={p.desktop.w} />
             ) : p.slug === "architrave" ? (
-              <NnfTile width={p.desktop.w} />
+              <ArchitraveTile width={p.desktop.w} />
             ) : (
               <Image
                 src={p.image}
