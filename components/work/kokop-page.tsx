@@ -161,10 +161,10 @@ export function KokopCaseStudy() {
           style={{ left: 274.5, top: 1742.12, width: 891, height: 595 }}
         >
           <Image
-            src="/figma-assets/work/kokop/cafe-mockup.jpg"
+            src="/figma-assets/work/kokop/cafe-storefront.png"
             alt="KOKO.P café branding mockup"
-            width={4096}
-            height={2733}
+            width={1787}
+            height={1193}
             unoptimized
             className="block h-full w-full object-cover"
           />
@@ -236,8 +236,8 @@ export function KokopCaseStudy() {
           style={{ left: 731, top: 3438, width: 442, height: 528 }}
         >
           <Image
-            src="/figma-assets/work/kokop/insta-card.svg"
-            alt="KOKO.P brand book card"
+            src="/figma-assets/work/kokop/insta-card.png"
+            alt="KOKO.P coffee-and-snacks logotype pattern"
             width={442}
             height={528}
             unoptimized
