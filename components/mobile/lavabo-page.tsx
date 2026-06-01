@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { lavaboFrame } from "@/content/lavabo";
 import { Reveal } from "../reveal";
-import { LavaboBrandBook } from "../work/lavabo-brand-book";
 
 /*
   Mobile LAVABO case study (Figma 282:38869). 393 × 2499, cream #fff7f4.
@@ -188,14 +187,21 @@ export function MobileLavaboCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Brand book mockup at y=1951 — structural rebuild via
-         <LavaboBrandBook>, same composition as desktop at smaller scale. */}
+      {/* Brand book mockup at y=1951 — flat "The art of sink" artboard, same
+         as desktop (the mobile frame shares the desktop's 0.721 aspect ratio). */}
       <Reveal>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 0, top: 1951.4, width: 392.94, height: 544.91 }}
         >
-          <LavaboBrandBook width={392.94} height={544.91} />
+          <Image
+            src="/figma-assets/work/lavabo/brand-book.png"
+            alt="LAVABO ‘The art of sink’ website page"
+            width={1798}
+            height={2493}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
         </div>
       </Reveal>
     </div>
