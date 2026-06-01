@@ -199,14 +199,24 @@ export function InterstellarCaseStudy() {
           style={{ left: 285, top: 2037.59, width: 429, height: 556 }}
         />
       </Reveal>
-      {/* RIGHT bg vector */}
+      {/* RIGHT panel (artboard 121) — flat export of the "WE DEAL LEGACY,
+          NOT PROPERTY." sage poster; replaces the former bg vector and
+          completes the deferred Layer_2 lettering. Frame 428×556
+          (artboard 870×1140, Δ0.9%). */}
       <Reveal eager delay={0.05}>
-        <img
-          src="/figma-assets/work/interstellar/row3-right-bg.svg"
-          alt=""
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 741, top: 2037.59, width: 428, height: 556 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/interstellar/row3-right.png"
+            alt="Interstellar poster — ‘We deal legacy, not property.’ over a carved stone facade"
+            width={870}
+            height={1140}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
       {/* Masked photo (mask is a rectangle = overflow:hidden at section) */}
       <Reveal eager delay={0.1}>
@@ -229,96 +239,28 @@ export function InterstellarCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Row 4 (Group 104, 297:57902)
-          Frame (283, 2618.59), 887×1456. Layer_1 (73:27395) is a
-          287-byte dark-gray fill rect. Layer_2 (73:27397) contains the
-          actual property-card grid composition — too vector-dense to
-          consolidate as a whole, but each inner Clip path group does
-          consolidate as a single masked photo. We render Layer_1 as bg
-          + 8 substantive Clip path groups (top hero + narrow band +
-          6 property cards in a 2x3 grid).
+          Section 6 — Row 4 property page (artboard 122). Flat export of
+          the full INTERSTELLAR listing page (nav + hero + property grid +
+          "The Path to Your Residence" + footer); replaces the former
+          Layer_1 dark-gray rect plus the overlaid hero/band/6-card photo
+          composition (which the artboard already bakes in).
+          Frame (283, 2618.59), 887.53×1456.24 (artboard 1798×2950, Δ0.01%).
           ============================================================ */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/interstellar/row4-layer1.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 283, top: 2618.59, width: 887.53, height: 1456.24 }}
-        />
-      </Reveal>
-      {/* Top hero photo (601×371 at frame y=2730.41). Original photo is
-         1788×2679 (tall), masked to the wide bounds via overflow:hidden.
-         Mask-position offset (0, 290) → photo's top crop is at y=-290. */}
-      <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 427.70, top: 2730.41, width: 601.55, height: 371.20 }}
+          style={{ left: 283, top: 2618.59, width: 887.53, height: 1456.24 }}
         >
           <Image
-            src="/figma-assets/work/interstellar/row4/hero.jpg"
-            alt="Interwar architecture photograph"
-            width={1788}
-            height={2679}
+            src="/figma-assets/work/interstellar/row4-full.png"
+            alt="Interstellar property listing page — hero villa, property cards, and ‘The Path to Your Residence’ section"
+            width={1798}
+            height={2950}
             unoptimized
-            className="absolute max-w-none"
-            style={{ left: 0, top: -290, width: 601.27, height: 901.14 }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
-      {/* Narrow band (600×73 at y=2879.09) — likely small navigation/label */}
-      <Reveal eager delay={0.06}>
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 427.20, top: 2879.09, width: 600.24, height: 72.71 }}
-        >
-          <img
-            src="/figma-assets/work/interstellar/row4/band.svg"
-            alt=""
-            className="absolute max-w-none"
-            style={{ left: -96.09, top: 15.86, width: 811.46, height: 40.99 }}
-          />
-        </div>
-      </Reveal>
-      {/* Row 1 of property cards (3 × 173, at y=3175.96) */}
-      {[
-        { src: "r1c1.png", left: 451.83, photoLeft: -39.56, photoTop: -1.78, photoW: 268.66, photoH: 179.16 },
-        { src: "r1c2.png", left: 641.96, photoLeft: -55.92, photoTop: -16.95, photoW: 311.13, photoH: 207.00 },
-        { src: "r1c3.png", left: 830.96, photoLeft: -30.80, photoTop: 0, photoW: 266.68, photoH: 177.94 },
-      ].map((c) => (
-        <Reveal key={c.src} eager delay={0.08}>
-          <div
-            className="absolute overflow-hidden"
-            style={{ left: c.left, top: 3175.96, width: 173, height: 173 }}
-          >
-            <img
-              src={`/figma-assets/work/interstellar/row4/${c.src}`}
-              alt="Interstellar property card"
-              className="absolute max-w-none"
-              style={{ left: c.photoLeft, top: c.photoTop, width: c.photoW, height: c.photoH }}
-            />
-          </div>
-        </Reveal>
-      ))}
-      {/* Row 2 of property cards (3 × 173, at y=3601.80) */}
-      {[
-        { src: "r2c1.png", left: 451.83, photoLeft: -70.67, photoTop: -6.36, photoW: 276.56, photoH: 184.26 },
-        { src: "r2c2.jpg", left: 641.05, photoLeft: -0.48, photoTop: -28.36, photoW: 190.87, photoH: 286.29 },
-        { src: "r2c3.jpg", left: 830.96, photoLeft: -108.25, photoTop: -6.43, photoW: 266.68, photoH: 177.88 },
-      ].map((c) => (
-        <Reveal key={c.src} eager delay={0.08}>
-          <div
-            className="absolute overflow-hidden"
-            style={{ left: c.left, top: 3601.80, width: 173, height: 173 }}
-          >
-            <img
-              src={`/figma-assets/work/interstellar/row4/${c.src}`}
-              alt="Interstellar property card"
-              className="absolute max-w-none"
-              style={{ left: c.photoLeft, top: c.photoTop, width: c.photoW, height: c.photoH }}
-            />
-          </div>
-        </Reveal>
-      ))}
 
       {/* ============================================================
           Section 7 — Row 5 (Group 105, 297:57903)
