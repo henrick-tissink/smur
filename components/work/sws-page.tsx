@@ -86,7 +86,7 @@ export function SwsCaseStudy() {
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <p
+          <div
             style={{
               marginTop: 22, // top 883-841 = 42, minus eyebrow line ~20
               fontSize: 17,
@@ -94,8 +94,12 @@ export function SwsCaseStudy() {
               fontFamily: "var(--font-dm-sans), sans-serif",
             }}
           >
-            {sws.body}
-          </p>
+            {sws.body.map((p, i) => (
+              <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
+                {p}
+              </p>
+            ))}
+          </div>
         </Reveal>
       </div>
 
