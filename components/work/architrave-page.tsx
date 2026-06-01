@@ -32,52 +32,39 @@ export function ArchitraveCaseStudy() {
       style={{ width, height, backgroundColor: "#fff7f4" }}
     >
       {/* ============================================================
-          Section 1 — Hero (Group 33 + 4 badges)
-          Group 33 at frame (268, 140) 434×313 is the top-left quadrant.
-          Group 28/29/30/31 are the 4 small badges placed at the
-          corner of each quadrant region.
+          Section 1 — Hero 2×2 brand-mark grid (Groups 32–35).
+          Four 434.52×313.33 quadrants, each a flat artboard export of
+          the Architrave logo on its background colour. Mapped by the
+          Figma quadrant fill → export (artboards 78/80/80_1/81):
+            TL #515151 dark  → 78   TR #B6B6AC sage  → 80
+            BL #ffffff white → 80_1 BR #C7BBB1 taupe → 81
+          Replaces the prior single hero-tl vector + 4 floating badges
+          (the logo is baked into each artboard). Artboards are 870×626
+          (ratio 1.389 vs frame 1.387, Δ0.1%), so object-cover is exact.
           ============================================================ */}
-      <Reveal>
-        <img
-          src="/figma-assets/work/architrave/hero-tl.svg"
-          alt="Architrave hero quadrant"
-          className="absolute"
-          style={{ left: 268, top: 140.37, width: 434.52, height: 313.33 }}
-        />
-      </Reveal>
-      {/* 4 brand badges, one per quadrant of the 2×2 hero grid */}
-      <Reveal delay={0.04}>
-        <img
-          src="/figma-assets/work/architrave/hero-badge-tl.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 413.72, top: 257.42, width: 151.50, height: 70.26 }}
-        />
-      </Reveal>
-      <Reveal delay={0.06}>
-        <img
-          src="/figma-assets/work/architrave/hero-badge-tr.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 869.65, top: 264.16, width: 151.50, height: 70.26 }}
-        />
-      </Reveal>
-      <Reveal delay={0.08}>
-        <img
-          src="/figma-assets/work/architrave/hero-badge-bl.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 413.87, top: 609.02, width: 151.49, height: 70.25 }}
-        />
-      </Reveal>
-      <Reveal delay={0.10}>
-        <img
-          src="/figma-assets/work/architrave/hero-badge-br.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 864.57, top: 604.92, width: 151.49, height: 70.26 }}
-        />
-      </Reveal>
+      {[
+        { src: "hero-grid-tl.png", left: 268, top: 140.37, alt: "Architrave Studio logo — white on charcoal" },
+        { src: "hero-grid-tr.png", left: 728.52, top: 140.37, alt: "Architrave Studio logo — white on sage" },
+        { src: "hero-grid-bl.png", left: 268, top: 478.76, alt: "Architrave Studio logo — charcoal on white" },
+        { src: "hero-grid-br.png", left: 728.37, top: 478.76, alt: "Architrave Studio logo — white on taupe" },
+      ].map((q, i) => (
+        <Reveal key={q.src} delay={0.04 * i}>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: q.left, top: q.top, width: 434.52, height: 313.33 }}
+          >
+            <Image
+              src={`/figma-assets/work/architrave/${q.src}`}
+              alt={q.alt}
+              width={870}
+              height={626}
+              unoptimized
+              priority
+              className="block h-full w-full object-cover"
+            />
+          </div>
+        </Reveal>
+      ))}
 
       {/* ============================================================
           Section 2 — Title + body (Group 79, 297:57110)
@@ -89,8 +76,14 @@ export function ArchitraveCaseStudy() {
       >
         <Reveal>
           <p
-            className="font-heading italic"
-            style={{ fontSize: 20, lineHeight: 1, margin: 0 }}
+            className="italic"
+            style={{
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontWeight: 400,
+              fontSize: 20,
+              lineHeight: 1, // Figma H3: DM Sans Italic 20 / lh normal
+              margin: 0,
+            }}
           >
             {architrave.eyebrow}
           </p>
