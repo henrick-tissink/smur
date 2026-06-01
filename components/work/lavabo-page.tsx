@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { lavabo, lavaboFrame } from "@/content/lavabo";
 import { Reveal } from "../reveal";
-import { LavaboBrandBook } from "./lavabo-brand-book";
 
 /*
   Desktop LAVABO case study (Figma 70:6705). 1440 × 5336, cream #fff7f4.
@@ -215,14 +214,23 @@ export function LavaboCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Brand book mockup (Frame 54) at y=3949 — structural rebuild via
-         <LavaboBrandBook> with real product photos + HTML/CSS layout. */}
+      {/* Brand book mockup (Frame 54) at y=3949 — flat export of the LAVABO
+         "The art of sink." website page (artboard 59); replaces the
+         hand-built <LavaboBrandBook> HTML rebuild. Frame 898.58×1246.09
+         (artboard 1798×2493, ratio 0.721 — exact). */}
       <Reveal>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 271, top: 3949, width: 898.58, height: 1246.09 }}
         >
-          <LavaboBrandBook width={898.58} height={1246.09} />
+          <Image
+            src="/figma-assets/work/lavabo/brand-book.png"
+            alt="LAVABO ‘The art of sink’ website page"
+            width={1798}
+            height={2493}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
         </div>
       </Reveal>
     </div>
