@@ -145,52 +145,45 @@ export function TafCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 5 — Big middle (Group 112, 297:57918)
-          Frame (273, 2501.03), 900×1676.
-          Layer_1 (73:33181) is a #D5CDC2 tan fill rect bg.
-          Layer_2's 2 substantive Clip path groups inlined: top wide
-          photo + bottom narrow photo. Remaining typography vectors are
-          still TODO (huge upper/middle/lower bands of empty tan space).
+          Section 4b — Fabric band (artboard 134, node 73:33177).
+          Flat export of the orange TAF logo printed on textile; sits
+          directly below Row 1. Frame (273, 1867), 900×609
+          (artboard 1783×1206, ratio 1.478 — exact, no crop).
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/taf/middle-layer1.svg"
-          alt=""
-          className="absolute"
-          style={{ left: 273, top: 2501.03, width: 900, height: 1676 }}
-        />
-      </Reveal>
-      {/* Top photo (608×327 at frame y=2601.71) */}
-      <Reveal delay={0.05}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 418.93, top: 2601.71, width: 608.13, height: 327.05 }}
+          style={{ left: 273, top: 1867, width: 900, height: 609 }}
         >
           <Image
-            src="/figma-assets/work/taf/middle/top.png"
-            alt="TAF brand photograph"
-            width={3120}
-            height={2080}
+            src="/figma-assets/work/taf/band-fabric.png"
+            alt="TAF logo printed on fabric"
+            width={1783}
+            height={1206}
             unoptimized
-            className="absolute max-w-none"
-            style={{ left: -2.77, top: -20.79, width: 624.99, height: 416.66 }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
-      {/* Bottom photo (304×250 at frame y=3305.77) */}
-      <Reveal delay={0.08}>
+
+      {/* ============================================================
+          Section 5 — Website mockup (artboard 134_1, Group 112).
+          Flat export of the full TAF landing page; replaces the former
+          tan placeholder rect + 2 inset photos. Frame (273, 2501.03),
+          900×1676 (artboard 1798×3348, ratio 0.537 — exact, no crop).
+          ============================================================ */}
+      <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 419.93, top: 3305.77, width: 304.07, height: 249.76 }}
+          style={{ left: 273, top: 2501.03, width: 900, height: 1676 }}
         >
           <Image
-            src="/figma-assets/work/taf/middle/bottom.jpg"
-            alt="TAF brand photograph"
-            width={3072}
-            height={2051}
+            src="/figma-assets/work/taf/website.png"
+            alt="TAF cleaning-services website landing page"
+            width={1798}
+            height={3348}
             unoptimized
-            className="absolute max-w-none"
-            style={{ left: 0, top: -72.24, width: 553.83, height: 369.68 }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
