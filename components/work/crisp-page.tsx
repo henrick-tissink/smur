@@ -3,9 +3,6 @@
 import Image from "next/image";
 import { crisp, crispFrame } from "@/content/crisp";
 import { Reveal } from "../reveal";
-import { CrispBigTypographyClip } from "./crisp-extras/big-typography";
-import { CrispGroup62Content } from "./crisp-extras/group62";
-import { CrispRow2LeftContent } from "./crisp-extras/row2-left";
 
 /*
   Desktop CRISP case study (Figma 71:3160). 1440 × 5340, cream #fff7f4.
@@ -15,11 +12,13 @@ import { CrispRow2LeftContent } from "./crisp-extras/row2-left";
   rendered as its own absolute child at frame-absolute pixel coordinates
   (computed from Figma inset percentages × frame dims).
 
-  Three sub-sections are deferred per CLAUDE.md rule #2 (too dense for a
-  single inline pass — same precedent as KOKOP sections 6 & 8):
-    1. Big "CRISP" typography clip-path (71:3418) — 384 vectors
-    2. Row 2 left brand-label mockup (297:57115) — 42 vectors + 3 photos
-    3. Group 62 inner masked decorative stamp (~45 masked vectors)
+  Four originally-vector-composed sections (the pattern band, row-2 left
+  Instagram mockup, row-2 right business cards, and the bottom poster) are
+  rendered as flat full-resolution artboard exports from
+  EXPORTS SMUR WEBSITE 2/PROJECTS/CRISP (artboards 93/95/96/100). Their
+  aspect ratios match the Figma section frames to within ~0.1%, so each
+  fills its frame via object-cover with no distortion — a pixel-perfect
+  swap for the prior 384/42/45-vector reconstructions.
 
   Every Image uses `unoptimized` per CLAUDE.md rule #3 (Figma percent crops).
 */
@@ -128,8 +127,14 @@ export function CrispCaseStudy() {
       >
         <Reveal>
           <p
-            className="font-heading italic"
-            style={{ fontSize: 20, lineHeight: 1, margin: 0 }}
+            className="italic"
+            style={{
+              fontFamily: "var(--font-dm-sans), sans-serif",
+              fontWeight: 400,
+              fontSize: 20,
+              lineHeight: 1, // Figma H3: DM Sans Italic 20 / lh normal
+              margin: 0,
+            }}
           >
             {crisp.eyebrow}
           </p>
@@ -149,16 +154,21 @@ export function CrispCaseStudy() {
       </div>
 
       {/* ------------------------------------------------------------
-          Everything below the intro was transcribed ~282px too low vs
-          Figma (verified by mapping each section's `top` to the Figma
-          content bands), which opened a large empty gap under the intro
-          and pushed the bottom section past the frame. The sub-intro
-          content is shifted up as a group here. A positioned+transformed
-          wrapper becomes the containing block for all absolute children
-          (including the inline-coordinate components big-typography /
-          row2-left / group62), so the −282px applies uniformly.
+          Everything below the intro was transcribed 279.21px too low vs
+          Figma. The real layout (Figma 71:3160) nests all below-intro
+          content inside Frame 88 (frame-absolute y=846.04): the intro
+          Group 79 ends at frame-absolute 1040.25 and Row 1 (Group 85)
+          starts at 1126.25 — an 86px gap. Our transcribed `top` values
+          all sit exactly 279.21px below their Figma frame-absolute y
+          (verified across rows 1–3, the band, and Group 62), so a single
+          translateY(-279.21px) on the wrapper realigns every section and
+          restores the true 86px gap under the intro. (Was -330px, which
+          over-corrected by ~51px and collapsed the gap to ~35px.) The
+          positioned+transformed wrapper is the containing block for all
+          absolute children, including the inline-coordinate components
+          (big-typography / row2-left / group62), so the shift is uniform.
           ------------------------------------------------------------ */}
-      <div className="absolute inset-0" style={{ transform: "translateY(-330px)" }}>
+      <div className="absolute inset-0" style={{ transform: "translateY(-279.21px)" }}>
 
       {/* ============================================================
           Section 3 — Row 1 left (Group 71:4365, photo)
@@ -202,33 +212,69 @@ export function CrispCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 5 — Big "CRISP" typography clip-path (71:3418)
-          Frame (293, 1968.46), 900×615. 384 inlined vectors via
-          ./crisp-extras/big-typography. The MCP-generated JSX uses
-          pixel coordinates anchored to the Figma top frame's origin,
-          so we mount the inline composition with no positioning
-          wrapper — children land at their frame-absolute pixel coords.
-          ============================================================ */}
-      <CrispBigTypographyClip />
-
-      {/* ============================================================
-          Section 6 — Row 2 left (Group 87, brand-label mockup)
-          Frame (293, 2613), 439×529. Inlined ~42 vectors + 3 photos
-          via ./crisp-extras/row2-left (Figma 297:57115).
-          ============================================================ */}
-      <CrispRow2LeftContent />
-
-      {/* ============================================================
-          Section 7 — Row 2 right (Group 86, consolidated SVG)
-          Frame (757, 2613), 429×530.
+          Section 5 — Pattern band (artboard 93). Flat export of the
+          repeated "CRISP" wordmark / croissant / stamp pattern;
+          replaces the former 384-vector big-typography composition.
+          Frame (293, 1968.46), 900×615 (artboard 1771×1208, Δ0.2%).
           ============================================================ */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/crisp/row2-right.svg"
-          alt="CRISP brand composition"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 293, top: 1968.46, width: 900, height: 615 }}
+        >
+          <Image
+            src="/figma-assets/work/crisp/band-pattern.png"
+            alt="CRISP pattern — repeated wordmark, croissant line marks and ‘artisanal patisserie’ stamps"
+            width={1771}
+            height={1208}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+
+      {/* ============================================================
+          Section 6 — Row 2 left (artboard 95). Flat export of the
+          Instagram-feed phone mockup; replaces the former ~42-vector
+          + 3-photo composition. Frame (293, 2613), 439×529
+          (artboard 867×1045, Δ0.0%).
+          ============================================================ */}
+      <Reveal eager>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 293, top: 2613, width: 439, height: 529 }}
+        >
+          <Image
+            src="/figma-assets/work/crisp/instagram-mockup.png"
+            alt="CRISP Instagram feed shown on a phone held in hand"
+            width={867}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+
+      {/* ============================================================
+          Section 7 — Row 2 right (artboard 96). Flat export of the
+          two business cards on the sage backdrop; replaces the former
+          consolidated SVG. Frame (757, 2613), 429×530
+          (artboard 847×1045, Δ0.1%).
+          ============================================================ */}
+      <Reveal eager>
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 757, top: 2613, width: 429, height: 530 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/crisp/business-cards.png"
+            alt="CRISP business cards — contact details and croissant logotype on a sage background"
+            width={847}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -327,15 +373,27 @@ export function CrispCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 11 — Bottom CRISP CAFÉ showcase (Group 62, 82:40956)
-          Frame (293, 4365.08), 899×1114.18. Fully inlined via
-          ./crisp-extras/group62: bg photo + mix-blend overlay + 45
-          masked decorative stamp vectors + CRISP wordmark + brand mark
-          + curved text + contact text. The JSX uses pixel coords
-          anchored to the case study root (no wrapper offset needed
-          since the inner Group has its own positioning chain).
+          Section 11 — Bottom CRISP CAFÉ poster (artboard 100). Flat
+          export of the folded "WE ARE NOW OPEN!" flyer; replaces the
+          former Group 62 composition (bg photo + mix-blend overlay +
+          45 masked vectors + wordmark + curved + contact text).
+          Frame (293, 4365.08), 899×1114.18 (artboard 1796×2228, Δ0.1%).
           ============================================================ */}
-      <CrispGroup62Content />
+      <Reveal eager>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 293, top: 4365.08, width: 899, height: 1114.18 }}
+        >
+          <Image
+            src="/figma-assets/work/crisp/now-open-poster.png"
+            alt="CRISP ‘We are now open!’ folded poster with a tartlet photo and contact details"
+            width={1796}
+            height={2228}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
       {/* Hand-built legacy bottom removed (replaced by inlined Group62
           above). Kept frozen below for reference if positioning diverges. */}
       {/*

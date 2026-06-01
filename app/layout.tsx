@@ -5,6 +5,9 @@ import "./globals.css";
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  // Load the true italic axis too — the CRISP intro eyebrow (Figma H3:
+  // DM Sans Italic 20) needs real italics, not a faux-skewed upright.
+  style: ["normal", "italic"],
   display: "swap",
 });
 
