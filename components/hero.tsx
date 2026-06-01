@@ -8,10 +8,9 @@ import { HeroCarousel } from "./hero-extras/hero-carousel";
   Hero text frame (Frame 44): x=221 y=246 width=433 height=276
 
   Figma HERO bg: #cbb3a6 (applied via --color-hero).
-  The full "Status" real-estate website mockup (745 vector primitives +
-  building photo + brand chrome) is inlined via ./hero-extras/status-mockup
-  and mounted as the absolute backdrop of the hero. Real HTML text (SMUR
-  headline + tagline) is overlaid on top so it stays semantic and indexable.
+  The hero backdrop is an animated project showcase (./hero-extras/hero-carousel)
+  cycling real project thumbnails. Real HTML text (SMUR headline + tagline) is
+  overlaid on top so it stays semantic and indexable.
 */
 
 export function Hero() {
