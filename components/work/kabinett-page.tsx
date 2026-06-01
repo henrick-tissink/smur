@@ -4,7 +4,6 @@ import Image from "next/image";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "../reveal";
 import { KabinettBottomContent } from "./kabinett-extras/bottom";
-import { KabinettRow2FullContent } from "./kabinett-extras/row2-full";
 import { KabinettRow3RightContent } from "./kabinett-extras/row3-right";
 
 /*
@@ -123,16 +122,25 @@ export function KabinettCaseStudy() {
       ))}
 
       {/* ============================================================
-          Section 4 — Row 2 (Group 117, Layer_1 73:39343)
-          Frame (271, 1859.68), 894×1100. Full inlined composition via
-          ./kabinett-extras/row2-full: -rotate-90'd bg photo +
-          mix-blend-color overlay + 70 wordmark vectors + inner cabinet
-          masked photo + mix-blend-multiply overlay.
-          The MCP JSX uses root-frame-relative percent insets so the
-          children mount cleanly inside the case study root.
+          Section 4 — Row 2 (Group 117, artboard 143). Flat export of the
+          "Cheese & Wine Evenings" poster; replaces the inlined masked
+          photo + 70-vector composition. Frame (271, 1859.68), 894×1100
+          (artboard 1801×2227, ratio 0.808 — object-cover).
           ============================================================ */}
       <Reveal>
-        <KabinettRow2FullContent />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 271, top: 1859.68, width: 894, height: 1100 }}
+        >
+          <Image
+            src="/figma-assets/work/kabinett/row2-poster.png"
+            alt="Kabinett ‘Cheese & Wine Evenings’ poster"
+            width={1801}
+            height={2227}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
