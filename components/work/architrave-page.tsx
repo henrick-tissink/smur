@@ -5,7 +5,6 @@ import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
 import { ArchitraveBigMiddleContent } from "./architrave-extras/big-middle";
 import { ArchitraveGroup80Content } from "./architrave-extras/group80";
-import { ArchitraveRow2LeftContent } from "./architrave-extras/row2-left";
 import { ArchitraveRow2RightContent } from "./architrave-extras/row2-right";
 
 /*
@@ -134,8 +133,23 @@ export function ArchitraveCaseStudy() {
           RIGHT (Group 82) — masked photo + inset photo (typography
             vectors still TODO).
           ============================================================ */}
+      {/* Row 2 LEFT (artboard 85_1) — flat export of the two contact /
+          logotype cards on charcoal; replaces the ~60-vector composition.
+          Frame (273.64, 2190.70), 423.15×521.96 (artboard 847×1045, Δ0.02%). */}
       <Reveal>
-        <ArchitraveRow2LeftContent />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 273.64, top: 2190.7, width: 423.15, height: 521.96 }}
+        >
+          <Image
+            src="/figma-assets/work/architrave/row2-left.png"
+            alt="Architrave Studio business cards — contact details and logotype on charcoal"
+            width={847}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
       {/* Row 2 RIGHT (Group 82, 297:57107) — full inlined composition
           via ./architrave-extras/row2-right: masked photo bg + 66
@@ -157,30 +171,32 @@ export function ArchitraveCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 7 — Bottom (Clip path group, 71:2971)
-          Inset within root frame [81.13% 8.45% 0.41% 8.44%] — a masked
-          photo that occupies the bottom 18% of the frame.
-            top = 0.8113 × 4593 = 3725.69
-            left = 0.0844 × 1440 = 121.54
-            right gap = 0.0845 × 1440 = 121.68 → width = 1196.78
-            bottom gap = 0.0041 × 4593 = 18.83 → height = 848.48
-          Section overflow-hidden clips to root frame.
+          Section 7 — Bottom repeating-logo pattern (artboard 88).
+          Flat export of the sage "Architrave studio" tile pattern;
+          replaces the bottom-photo vector. The visible sage band is the
+          masked clip group (71:2971) at (265, 3883.24), 897.62×495.13 —
+          NOT the wider 1196×848 outer group (that includes the faint
+          off-band overflow). Artboard 1796×989 (ratio 1.816) matches the
+          band (1.813) almost exactly, so object-cover renders the pattern
+          at its true density (~3 columns), no zoom.
           ============================================================ */}
       <Reveal>
         <div
           className="absolute overflow-hidden"
           style={{
-            left: 121.54,
-            top: 3725.69,
-            width: 1196.78,
-            height: 848.48,
+            left: 265,
+            top: 3883.24,
+            width: 897.62,
+            height: 495.13,
           }}
         >
-          <img
-            src="/figma-assets/work/architrave/bottom-photo.svg"
-            alt="Architrave Studio interior"
-            className="absolute inset-0 block h-full w-full"
-            style={{ maxWidth: "none" }}
+          <Image
+            src="/figma-assets/work/architrave/bottom-pattern.png"
+            alt="Architrave Studio repeating logotype pattern on sage"
+            width={1796}
+            height={989}
+            unoptimized
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
