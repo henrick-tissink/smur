@@ -76,11 +76,14 @@ export function MobileAbout() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.15}>
-          <div
-            className="absolute"
-            style={{ right: "75px", bottom: "122px" }}
-          >
+        {/* Absolute wrapper is OUTSIDE the Reveal. The Reveal's motion transform
+            would otherwise become the containing block for this bottom-anchored
+            child AND collapse to a zero-height box at the section top — making
+            `bottom` resolve against the top of the section, so the portrait
+            briefly rendered over the photo strip above and "popped down" when
+            the reveal transform cleared. */}
+        <div className="absolute" style={{ right: "75px", bottom: "122px" }}>
+          <Reveal delay={0.15}>
             <FigmaImage
               src={about.portrait.image.src}
               alt={about.portrait.image.alt}
@@ -90,23 +93,22 @@ export function MobileAbout() {
               height={243}
               crop={about.portrait.crop}
             />
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
 
-        <Reveal delay={0.2}>
-          <p
-            className="absolute font-sans text-center italic text-white"
-            style={{
-              left: "16px",
-              right: "16px",
-              bottom: "49px",
-              fontSize: "15px",
-              lineHeight: "normal",
-            }}
-          >
-            INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
-          </p>
-        </Reveal>
+        <div
+          className="absolute"
+          style={{ left: "16px", right: "16px", bottom: "49px" }}
+        >
+          <Reveal delay={0.2}>
+            <p
+              className="font-sans text-center italic text-white"
+              style={{ fontSize: "15px", lineHeight: "normal" }}
+            >
+              INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
