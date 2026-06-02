@@ -244,7 +244,7 @@ function FieldText({
         name={id}
         type="text"
         placeholder={placeholder}
-        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:uppercase placeholder:text-accent outline-none transition-colors focus:border-accent"
+        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:text-accent outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -277,7 +277,7 @@ function FieldTextarea({
       {!value && (
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[18px] text-center uppercase italic text-[17px] text-accent/70"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[18px] text-center italic text-[17px] text-accent/70"
         >
           {placeholder}
         </div>
@@ -296,7 +296,7 @@ function CheckboxGroup({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   return (
     <fieldset>
-      <legend className="mb-[16px] text-[17px] uppercase italic text-accent">
+      <legend className="mb-[16px] text-[17px] italic text-accent">
         {label}
       </legend>
       <ul className="flex flex-col gap-[6px]">
@@ -456,7 +456,7 @@ function FAQRow({ question, answer }: { question: string; answer: string }) {
         className="flex w-full items-center justify-between py-[18px] text-left text-cream"
       >
         <span
-          className="font-sans italic"
+          className="font-sans uppercase italic"
           style={{ fontSize: 28.454, lineHeight: 1.15 }}
         >
           {question}
