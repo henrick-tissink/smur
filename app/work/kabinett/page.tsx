@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
+import { MobileKabinettCaseStudy } from "@/components/mobile/kabinett-page";
 import { KabinettCaseStudy } from "@/components/work/kabinett-page";
 
 export const metadata: Metadata = {
@@ -16,18 +17,11 @@ export const metadata: Metadata = {
 export default function KabinettRoute() {
   return (
     <>
-      <div className="relative md:hidden">
-        {/* nav at the 393 mobile scale (separate from the 1440 content zoom) —
-            otherwise MobileNav's 393-width row centers inside the 1440 frame and
-            the logo/menu render tiny in the middle, not at the screen edges. */}
-        <div className="relative" style={{ zoom: "calc(100vw / 393px)", height: "80px", backgroundColor: "#fff7f4" }}>
-          <MobileNav />
-        </div>
-        <div style={{ zoom: "calc(100vw / 1440px)" }}>
-          <main>
-            <KabinettCaseStudy />
-          </main>
-        </div>
+      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+        <MobileNav />
+        <main>
+          <MobileKabinettCaseStudy />
+        </main>
       </div>
       <div
         className="relative hidden md:block"
