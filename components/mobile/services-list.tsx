@@ -105,7 +105,7 @@ export function MobileServicesList() {
       >
         <Reveal delay={0.2}>
           <a
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center gap-[6px] rounded-full border-[1.444px] border-accent px-[24px] py-[6px] no-underline transition-opacity hover:opacity-80"
             style={{ color: "#a18080" }}
           >
