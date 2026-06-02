@@ -70,12 +70,13 @@ export function MobileHero() {
           />
         </Link>
 
-        {/* Headline (268:34838) — brand-font SVG rendered via CSS mask. Mobile
-            Figma centers each of the 4 lines ("NAMING, / BRANDING & / DESIGN
-            BUILD / GOOD STORIES"), whereas the shared desktop header.svg is
-            left-aligned. header-centered.svg is the same letterforms with each
-            line re-centered within the 586.82 viewBox (per-line translate).
-            Box-anchored to the 351px title width (aspect 586.82/288.99). */}
+        {/* Headline (268:34838) — brand-font SVG rendered via CSS mask.
+            header-centered.svg is the shared desktop letterforms re-laid-out
+            for mobile: each line centered AND "GOOD" / "STORIES" split onto
+            their own lines (5 lines: "NAMING, / BRANDING & / DESIGN BUILD /
+            GOOD / STORIES") per the June 2026 client request. Per-line
+            translate measured via getBBox; viewBox grown to 586.82×360.7.
+            Box-anchored to the 351px title width (aspect 586.82/360.7). */}
         <div
           className="absolute flex justify-center text-cream"
           style={{ left: "14px", right: "27px", top: "181px" }}
@@ -84,7 +85,7 @@ export function MobileHero() {
             <TitleMask
               src="/figma-assets/titles/header-centered.svg"
               width={351}
-              height={172.9}
+              height={215.75}
               alt="Naming, branding & design build good stories"
               as={1}
             />
