@@ -137,21 +137,29 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           className="block"
           style={{ width: 85.5, height: "auto" }}
         />
-        {nav.links.map((l) => (
-          <Link
-            key={l.href}
-            href={l.href}
-            onClick={onClose}
-            className="block text-center uppercase"
-            style={{
-              color: "#35221a",
-              fontSize: 17,
-              width: l.width,
-            }}
-          >
-            {l.label}
-          </Link>
-        ))}
+        {nav.links.map((l) => {
+          // Shared nav.links target the desktop section ids (#brand-identity,
+          // #about), which are display:none on mobile. Point same-page hash
+          // links at the mobile (m-) sections so they scroll to the right place.
+          const href = l.href.startsWith("/#")
+            ? `/#m-${l.href.slice(2)}`
+            : l.href;
+          return (
+            <Link
+              key={l.href}
+              href={href}
+              onClick={onClose}
+              className="block text-center uppercase"
+              style={{
+                color: "#35221a",
+                fontSize: 17,
+                width: l.width,
+              }}
+            >
+              {l.label}
+            </Link>
+          );
+        })}
       </div>
 
       <p
