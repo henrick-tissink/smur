@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { nav } from "@/content/home";
 
@@ -17,8 +16,6 @@ import { nav } from "@/content/home";
 */
 export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
   const textClass = scheme === "light" ? "text-cream" : "text-ink";
-  // SVG logo is light by default; make it dark on light-background sections.
-  const logoInvert = scheme === "dark" ? "brightness-0" : "";
 
   return (
     <header
@@ -30,19 +27,27 @@ export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
           className="absolute flex h-[24px] items-center justify-between"
           style={{ left: "86px", right: "85px", top: "50px" }}
         >
+          {/* Logo tinted via CSS mask so it follows the same ink color as the
+              links (cream on light scheme, #35221a on dark) — the previous
+              brightness-0 filter rendered the cream SVG pure black, not the
+              brand ink. */}
           <Link
             href="/#home"
             aria-label="SMUR — home"
-            className="block h-[24px] w-[108px]"
+            className={`block h-[24px] w-[108px] ${textClass}`}
           >
-            <Image
-              src={nav.logo.src}
-              alt={nav.logo.alt}
-              width={nav.logo.width}
-              height={nav.logo.height}
-              priority
-              unoptimized
-              className={`block h-full w-full ${logoInvert}`}
+            <span
+              aria-hidden
+              className="block h-full w-full"
+              style={{
+                backgroundColor: "currentColor",
+                WebkitMaskImage: `url(${nav.logo.src})`,
+                maskImage: `url(${nav.logo.src})`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "100% 100%",
+                maskSize: "100% 100%",
+              }}
             />
           </Link>
           <nav aria-label="Sections">
