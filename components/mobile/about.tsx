@@ -25,16 +25,18 @@ export function MobileAbout() {
         style={{ maxWidth: "393px" }}
       >
         <Reveal>
-          {/* Heading (268:34829) — brand-font SVG (about.svg), 3-line break
-              matches the mobile design. about.svg scaled 48/75.4 from its
-              desktop native size. */}
+          {/* Heading (268:34829) — brand-font SVG. Mobile Figma centers the 3
+              lines ("ABOUT / SMA & / SMUR."), so we use about-centered.svg (the
+              shared desktop about.svg letterforms with each line re-centered
+              within the viewBox); desktop keeps the left-aligned about.svg.
+              Same viewBox, so the TitleMask dimensions are unchanged. */}
           <div
             id="m-about-title"
             className="absolute flex justify-center text-cream"
             style={{ left: "45px", right: "41px", top: "95px" }}
           >
             <TitleMask
-              src="/figma-assets/titles/about.svg"
+              src="/figma-assets/titles/about-centered.svg"
               width={174.3}
               height={140.3}
               alt="About Sma & Smur."
