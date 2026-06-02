@@ -20,7 +20,7 @@ export default function InterstellarRoute() {
         {/* nav at the 393 mobile scale (separate from the 1440 content zoom) —
             otherwise MobileNav's 393-width row centers inside the 1440 frame and
             the logo/menu render tiny in the middle, not at the screen edges. */}
-        <div className="relative" style={{ zoom: "calc(100vw / 393px)" }}>
+        <div className="relative" style={{ zoom: "calc(100vw / 393px)", height: "80px", backgroundColor: "#fff7f4" }}>
           <MobileNav />
         </div>
         <div style={{ zoom: "calc(100vw / 1440px)" }}>
