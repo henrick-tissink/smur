@@ -77,9 +77,13 @@ export function MobileWorkPage() {
         </Reveal>
       </div>
 
-      {/* Project tiles */}
+      {/* Project tiles. `eager` (reveal-on-mount) is required because each
+          Reveal wraps an absolutely-positioned Link, so its motion wrapper is a
+          zero-height box at the top of the section — scroll-based whileInView
+          would only fire at the very top (and leave tiles hidden after a
+          back-navigation with restored scroll). Mirrors the desktop fix. */}
       {workProjects.map((p, i) => (
-        <Reveal key={p.slug} delay={0.05 + (i % 4) * 0.04}>
+        <Reveal key={p.slug} eager delay={0.05 + (i % 4) * 0.04}>
           <Link
             href={workTileHref(p.slug)}
             aria-label={p.name}
@@ -111,7 +115,10 @@ export function MobileWorkPage() {
         </Reveal>
       ))}
 
-      {/* thanks :) footer */}
+      {/* thanks :) footer. `eager` (reveal-on-mount) is required: the footer
+          sits at the very bottom of the frame, permanently inside the Reveal's
+          bottom -5% viewport-exclusion margin, so scroll-based whileInView
+          never fires and it stayed hidden (opacity 0, translateY 24). */}
       <div
         className="absolute text-center"
         style={{
@@ -120,7 +127,7 @@ export function MobileWorkPage() {
           width: workFooter.mobile.w,
         }}
       >
-        <Reveal>
+        <Reveal eager>
           <p
             className="font-sans italic lowercase text-accent"
             style={{
