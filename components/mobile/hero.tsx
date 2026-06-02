@@ -28,12 +28,16 @@ export function MobileHero() {
         className="relative mx-auto h-full overflow-hidden"
         style={{ maxWidth: "393px", height: "852px" }}
       >
-        {/* INTERSTELLAR feature button (297:56928) — photo + blend overlay + mark */}
+        {/* INTERSTELLAR feature button (297:56928). In Figma the 293-tall photo
+            (Rectangle, y=560) sits inside a 200-tall clip group (Group 10,
+            y=652), so only its bottom 200px is visible. We reproduce that: the
+            Link IS the 220×200 clip window (y=652); the photo keeps its full
+            220×293 size shifted up 92px so the same bottom crop shows. */}
         <Link
           href="/work#interstellar"
           aria-label="INTERSTELLAR feature"
-          className="absolute block"
-          style={{ left: 173, top: 560, width: 220, height: 293 }}
+          className="absolute block overflow-hidden"
+          style={{ left: 173, top: 652, width: 220, height: 200 }}
         >
           <Image
             src="/figma-assets/mobile/hero-interstellar.jpg"
@@ -42,7 +46,8 @@ export function MobileHero() {
             height={2304}
             priority
             unoptimized
-            className="block h-full w-full object-cover"
+            className="absolute object-cover"
+            style={{ left: 0, top: -92, width: 220, height: 293, maxWidth: "none" }}
           />
           <Image
             src="/figma-assets/mobile/hero-overlay.svg"
@@ -53,7 +58,7 @@ export function MobileHero() {
             className="pointer-events-none absolute"
             style={{
               left: 0,
-              top: 92,
+              top: 0,
               width: 220,
               height: 200,
               mixBlendMode: "color",
@@ -66,7 +71,7 @@ export function MobileHero() {
             height={39}
             unoptimized
             className="absolute"
-            style={{ left: 31, top: 167, width: 158, height: 39 }}
+            style={{ left: 31, top: 75, width: 158, height: 39 }}
           />
         </Link>
 
