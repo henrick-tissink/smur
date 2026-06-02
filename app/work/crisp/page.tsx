@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { MobileNav } from "@/components/mobile/nav";
 import { Nav } from "@/components/nav";
 import { CrispCaseStudy } from "@/components/work/crisp-page";
+import { MobileScaledCaseStudy } from "@/components/work/mobile-scaled-case-study";
+import { crisp, crispFrame } from "@/content/crisp";
 
 export const metadata: Metadata = {
   title: "CRISP — SMUR",
@@ -23,9 +25,20 @@ export default function CrispRoute() {
         <div className="relative" style={{ zoom: "calc(100vw / 393px)", height: "80px", backgroundColor: "#fff7f4" }}>
           <MobileNav />
         </div>
-        <div style={{ zoom: "calc(100vw / 1440px)" }}>
+        <div style={{ backgroundColor: "#fff7f4" }}>
           <main>
-            <CrispCaseStudy />
+            {/* PROTOTYPE: readable intro + scaled visual showcase, so the body
+                copy isn't shrunk to ~5px. Intro spans y846–1038, first visual
+                at y1125 (measured). */}
+            <MobileScaledCaseStudy
+              eyebrow={crisp.eyebrow}
+              body={crisp.body}
+              introY={846}
+              visualsY={1125}
+              frameHeight={crispFrame.desktop.height}
+            >
+              <CrispCaseStudy />
+            </MobileScaledCaseStudy>
           </main>
         </div>
       </div>
