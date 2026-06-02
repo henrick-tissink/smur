@@ -89,7 +89,7 @@ export function MobileServicesList() {
       >
         <Reveal delay={0.15}>
           <ul
-            className="text-ink"
+            className="italic text-accent"
             style={{ fontSize: "15px", lineHeight: 1, display: "flex", flexDirection: "column", gap: "15px" }}
           >
             {servicesList.map((item) => (

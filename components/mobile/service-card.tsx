@@ -61,9 +61,23 @@ const layoutByService: Record<string, Layout> = {
   },
 };
 
+// Collapsed height of the two-row mobile dropdown stack (DETAILS + TIMELINE),
+// measured from the rendered component (59px/row). Used to place the image
+// directly under the collapsed dropdowns so the collapsed layout still matches
+// Figma's image y, while the in-flow dropdowns let expansion push it down.
+const DROPDOWN_STACK_H = 119;
+
 export function MobileServiceCard({ service }: { service: Service }) {
   const layout = layoutByService[service.id];
   if (!layout) return null;
+
+  const hasDropdowns = service.dropdowns.length > 0;
+  // Gap from the bottom of the (collapsed) dropdowns to the image so the image
+  // lands at its Figma y. When a dropdown expands, the flow below it shifts.
+  const imageGap =
+    layout.imageTop -
+    layout.dropdownsTop -
+    (hasDropdowns ? DROPDOWN_STACK_H : 0);
 
   return (
     <section
@@ -71,8 +85,14 @@ export function MobileServiceCard({ service }: { service: Service }) {
       aria-labelledby={`m-${service.id}-title`}
       data-nav-scheme="dark"
       className="relative mx-auto"
-      style={{ width: "393px", height: `${layout.sectionHeight}px` }}
+      style={{ width: "393px" }}
     >
+      {/* Eyebrow + title + body stay absolute (they sit above the dropdowns and
+          never need to reflow). The dropdowns + image are in NORMAL FLOW below
+          (paddingTop anchors them at the Figma dropdowns y), so opening a
+          dropdown grows the section and pushes the image — and every section
+          below — down, instead of overlapping. Section height is auto and
+          equals the collapsed Figma height (imageTop + imageHeight). */}
       {/* Text block: eyebrow + title at top */}
       <div
         className="absolute"
@@ -126,56 +146,53 @@ export function MobileServiceCard({ service }: { service: Service }) {
         </Reveal>
       </div>
 
-      {/* Dropdowns */}
-      {service.dropdowns.length > 0 && (
-        <div
-          className="absolute"
-          style={{ left: "45px", top: `${layout.dropdownsTop}px`, width: "307px", height: "79px" }}
-        >
-          <Reveal delay={0.15}>
-            {service.dropdowns.map((d) => (
-              <MobileDropdown key={d.label} label={d.label} body={d.body} />
-            ))}
+      {/* Dropdowns + image — IN FLOW. paddingTop anchors the stack at the Figma
+          dropdowns y; the image follows with `imageGap` so collapsed it lands
+          at the Figma image y. Opening a dropdown grows this block → grows the
+          (auto-height) section → pushes everything below down. */}
+      <div style={{ paddingTop: `${layout.dropdownsTop}px` }}>
+        {hasDropdowns && (
+          <div style={{ marginLeft: "45px", width: "307px" }}>
+            <Reveal delay={0.15}>
+              {service.dropdowns.map((d) => (
+                <MobileDropdown key={d.label} label={d.label} body={d.body} />
+              ))}
+            </Reveal>
+          </div>
+        )}
+        <div style={{ marginLeft: "43px", marginTop: `${imageGap}px` }}>
+          <Reveal delay={0.2}>
+            <div
+              className="relative"
+              style={{ width: layout.imageWidth, height: layout.imageHeight }}
+            >
+              <FigmaImage
+                src={service.image.src}
+                alt={service.image.alt}
+                intrinsicWidth={service.image.intrinsicWidth}
+                intrinsicHeight={service.image.intrinsicHeight}
+                width={layout.imageWidth}
+                height={layout.imageHeight}
+                crop={service.crop}
+              />
+              {service.overlay && (
+                <img
+                  src={service.overlay.src}
+                  alt=""
+                  aria-hidden
+                  className="absolute pointer-events-none"
+                  style={{
+                    /* Scale overlay relative to desktop's 432×560 reference frame */
+                    left: `${(service.overlay.left / 432) * layout.imageWidth}px`,
+                    top: `${(service.overlay.top / 560) * layout.imageHeight}px`,
+                    width: `${(service.overlay.width / 432) * layout.imageWidth}px`,
+                    height: `${(service.overlay.height / 560) * layout.imageHeight}px`,
+                  }}
+                />
+              )}
+            </div>
           </Reveal>
         </div>
-      )}
-
-      {/* Image */}
-      <div
-        className="absolute"
-        style={{ left: "43px", top: `${layout.imageTop}px` }}
-      >
-        <Reveal delay={0.2}>
-          <div
-            className="relative"
-            style={{ width: layout.imageWidth, height: layout.imageHeight }}
-          >
-            <FigmaImage
-              src={service.image.src}
-              alt={service.image.alt}
-              intrinsicWidth={service.image.intrinsicWidth}
-              intrinsicHeight={service.image.intrinsicHeight}
-              width={layout.imageWidth}
-              height={layout.imageHeight}
-              crop={service.crop}
-            />
-            {service.overlay && (
-              <img
-                src={service.overlay.src}
-                alt=""
-                aria-hidden
-                className="absolute pointer-events-none"
-                style={{
-                  /* Scale overlay relative to desktop's 432×560 reference frame */
-                  left: `${(service.overlay.left / 432) * layout.imageWidth}px`,
-                  top: `${(service.overlay.top / 560) * layout.imageHeight}px`,
-                  width: `${(service.overlay.width / 432) * layout.imageWidth}px`,
-                  height: `${(service.overlay.height / 560) * layout.imageHeight}px`,
-                }}
-              />
-            )}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
