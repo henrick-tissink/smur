@@ -38,7 +38,7 @@ export function BouncingArrow({
       transition={
         reduced
           ? { duration: 0 }
-          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+          : { duration: 1.0, repeat: Infinity, ease: "easeInOut" }
       }
     >
       <Arrow direction={direction} size={size} />

@@ -105,6 +105,8 @@ export const contactFAQ = {
   items: contactFAQItems.map((i) => i.question),
   myWorkLink: "my work :)",
   socials: "INSTAGRAM   /   PINTEREST",
+  instagramUrl: "https://www.instagram.com/smurstudio/",
+  pinterestUrl: "https://pinterest.com/smurstudio/_saved/",
   // FAQ strip — dedicated photos from EXPORTS/Let_s work (May 2026).
   // Each thumb links to its case study.
   workThumbs: [

@@ -143,8 +143,8 @@ export function ArchitraveCaseStudy() {
           <Image
             src="/figma-assets/work/architrave/row2-left.png"
             alt="Architrave Studio business cards — contact details and logotype on charcoal"
-            width={847}
-            height={1045}
+            width={1055}
+            height={1199}
             unoptimized
             className="block h-full w-full object-cover"
           />

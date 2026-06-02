@@ -9,26 +9,31 @@ import { photos } from "@/content/home";
   We just object-cover into the four frame widths.
 */
 export function PhotoStrip() {
-  const widths = [361, 360, 359, 360];
   return (
     <section
       aria-label="Studio moments"
       data-nav-scheme="dark"
       className="bg-page"
     >
-      <ul className="mx-auto flex h-[357px] max-w-[1440px]">
-        {photos.map((p, i) => (
+      {/* Full-bleed strip (June 2026 client request): the four tiles stretch
+          edge-to-edge so on zoom-out / wide viewports the photos fill the row
+          instead of leaving cream gutters around a centered 1440 block —
+          matching the contact page's full-width bands. Tiles are near-equal in
+          Figma (361/360/359/360 ≈ a quarter each), so flex-1 keeps them even
+          while object-cover crops each photo to its tile. */}
+      <ul className="flex h-[357px] w-full">
+        {photos.map((p) => (
           <li
             key={p.image.src}
-            className="relative flex-none overflow-hidden"
-            style={{ width: widths[i], height: 357 }}
+            className="relative flex-1 overflow-hidden"
+            style={{ height: 357 }}
           >
             <Image
               src={p.image.src}
               alt={p.image.alt}
               fill
               unoptimized
-              sizes={`${widths[i]}px`}
+              sizes="25vw"
               className="object-cover"
             />
           </li>

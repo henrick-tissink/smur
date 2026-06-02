@@ -222,9 +222,8 @@ export type Testimonial = {
   attribution: string;
 };
 
-// Testimonials lifted verbatim from "Written content.pdf" (May 2026).
-// The third one is still pending — Smaranda said it'll arrive later —
-// so we keep three real testimonials in the rotation for now.
+// Testimonials lifted verbatim from "Written content.pdf" (May 2026) plus the
+// David Damrosch / Harvard testimonial added in the June 2026 client round.
 export const testimonials: Testimonial[] = [
   {
     quote:
@@ -240,6 +239,11 @@ export const testimonials: Testimonial[] = [
     quote:
       "Working with Smaranda was a super smooth and fun experience. Her strong expertise comes from being in the design game for many years. She could easily understand client needs and explore multiple styling directions until landing on the one that fits the vision best.\n\nCommunication was clear and professional, she could offer reliable time estimates and respect deadlines.\n\nI wholeheartedly recommend her as a full-stack visual and graphic designer.",
     attribution: "Iulia Branca, Product designer",
+  },
+  {
+    quote:
+      "For a decade now, Smaranda Murarus has done superb work for Harvard's Institute for World Literature. She created a consistent design identity for us, which she has creatively adapted for multiple purposes, from our website to the flyers advertising our annual sessions, and then everything from the covers of our programs to signage and T-shirts. She's been unfailingly quick in responding to requests, and flexible in modifying designs in response to feedback. We're lucky to have her on our team.",
+    attribution: "David Damrosch, Harvard University",
   },
 ];
 
@@ -299,12 +303,14 @@ export const about = {
   portrait: {
     image: {
       src: "/figma-assets/about-portrait.png",
-      alt: "Portrait of Sma",
-      intrinsicWidth: 796,
-      intrinsicHeight: 783,
+      alt: "Portrait of Smaranda Murarus",
+      intrinsicWidth: 1760,
+      intrinsicHeight: 1760,
     },
-    // Figma 6:1342: w=294 h=294, image w=151.62% h=149.14% left=-25.83% top=-20.66%
-    crop: { w: 151.62, h: 149.14, left: -25.83, top: -20.66 },
+    // June 2026 client swap: new square 1760×1760 portrait. Frame is 294×294
+    // square and the source is already a centered square crop, so it fills the
+    // frame 1:1 (no offset/zoom needed).
+    crop: { w: 100, h: 100, left: 0, top: 0 },
     frameWidth: 294,
     frameHeight: 294,
   },

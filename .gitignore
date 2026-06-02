@@ -58,3 +58,6 @@ next-env.d.ts
 
 # Local-only drafts (WhatsApp messages, etc.)
 /docs/whatsapp-to-smaranda*.md
+
+# local staging for client-supplied source assets (copied into public/)
+drive_assets/

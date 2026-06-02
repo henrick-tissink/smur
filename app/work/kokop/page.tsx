@@ -27,7 +27,7 @@ export default function KokopRoute() {
       </div>
       <div
         className="relative hidden md:block"
-        style={{ zoom: "min(1, calc(100vw / 1440px))" }}
+        style={{ zoom: "calc(100vw / 1440px)" }}
       >
         <Nav />
         <main>

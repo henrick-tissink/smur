@@ -95,7 +95,23 @@ export function About() {
               className="absolute font-sans text-[20px] italic leading-normal text-white"
               style={{ left: "557px", top: "714px", width: "361px" }}
             >
-              INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
+              <a
+                href="https://www.instagram.com/smurstudio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-70"
+              >
+                INSTAGRAM
+              </a>
+              &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+              <a
+                href="https://pinterest.com/smurstudio/_saved/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-70"
+              >
+                PINTEREST
+              </a>
             </p>
           </Reveal>
         </div>

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
   as the home HeroCarousel. Pauses on hover.
 */
 
-const INTERVAL_MS = 2000;
+const INTERVAL_MS = 1400;
 
 export function TileCarousel({
   frames,
@@ -41,7 +41,7 @@ export function TileCarousel({
       {frames.map((frame, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-opacity duration-[300ms] ease-out ${
+          className={`absolute inset-0 transition-opacity duration-[220ms] ease-out ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={i !== index}

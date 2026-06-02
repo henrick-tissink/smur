@@ -79,9 +79,15 @@ export function DesktopWorkPage() {
         </Reveal>
       </div>
 
-      {/* Project tiles */}
+      {/* Project tiles. `eager` (reveal-on-mount) is REQUIRED here: each
+          Reveal wraps an absolutely-positioned Link, so its motion wrapper is
+          a zero-height box pinned to the top of the section. With scroll-based
+          whileInView that box is only "in view" at the very top of the page —
+          so after navigating back to /work with a restored (non-top) scroll
+          position, the tiles stayed hidden until you scrolled all the way up.
+          Reveal-on-mount shows them regardless of scroll position. */}
       {workProjects.map((p, i) => (
-        <Reveal key={p.slug} delay={0.05 + (i % 4) * 0.04}>
+        <Reveal key={p.slug} eager delay={0.05 + (i % 4) * 0.04}>
           <Link
             href={workTileHref(p.slug)}
             aria-label={p.name}

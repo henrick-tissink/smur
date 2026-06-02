@@ -244,7 +244,7 @@ function FieldText({
         name={id}
         type="text"
         placeholder={placeholder}
-        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:text-accent outline-none transition-colors focus:border-accent"
+        className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:uppercase placeholder:text-accent outline-none transition-colors focus:border-accent"
       />
     </div>
   );
@@ -272,12 +272,12 @@ function FieldTextarea({
         name={id}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="block h-[135px] w-full resize-none rounded-[4px] border-[1.444px] border-accent/30 bg-white/40 p-[18px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
+        className="block h-[135px] w-full resize-none rounded-[4px] border-[1.444px] border-accent/30 bg-transparent p-[18px] text-[17px] text-accent caret-accent outline-none transition-colors focus:border-accent"
       />
       {!value && (
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[18px] text-center italic text-[17px] text-accent/70"
+          className="pointer-events-none absolute inset-0 flex items-center justify-center p-[18px] text-center uppercase italic text-[17px] text-accent/70"
         >
           {placeholder}
         </div>
@@ -296,7 +296,7 @@ function CheckboxGroup({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   return (
     <fieldset>
-      <legend className="mb-[16px] text-[17px] italic text-accent">
+      <legend className="mb-[16px] text-[17px] uppercase italic text-accent">
         {label}
       </legend>
       <ul className="flex flex-col gap-[6px]">
@@ -376,15 +376,18 @@ function ContactFAQ() {
             link stays positioned at the strip's left, regardless of how tall
             the FAQ block has grown above. */}
         <div className="relative mt-[117px]">
-          <div
-            className="flex"
+          {/* Whole collage is a single link to the Work index (June 2026
+              client request) — it no longer deep-links to each case study. */}
+          <Link
+            href="/work"
+            aria-label="See all my work"
+            className="group flex transition-transform duration-500 hover:scale-[1.01]"
             style={{ marginLeft: 392, width: 1046, height: 252 }}
           >
             {contactFAQ.workThumbs.map((thumb) => (
-              <Link
+              <div
                 key={thumb.src}
-                href={thumb.href}
-                className="relative flex-1 overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
+                className="relative flex-1 overflow-hidden"
               >
                 <Image
                   src={thumb.src}
@@ -394,9 +397,9 @@ function ContactFAQ() {
                   sizes="252px"
                   className="object-cover"
                 />
-              </Link>
+              </div>
             ))}
-          </div>
+          </Link>
 
           {/* "my work :)" link to the LEFT of the image strip. Figma y=740 in
               the original section ≡ top:113 inside this strip wrapper (which
@@ -413,12 +416,29 @@ function ContactFAQ() {
           </Link>
         </div>
 
-        {/* INSTAGRAM / PINTEREST — Figma left:842 width:360 */}
+        {/* INSTAGRAM / PINTEREST — Figma left:842 width:360. Now live links
+            to the SMUR studio profiles (June 2026 client request). */}
         <p
           className="mt-[53px] text-center italic text-cream"
           style={{ marginLeft: 842, width: 360, fontSize: 20 }}
         >
-          {contactFAQ.socials}
+          <a
+            href={contactFAQ.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-70"
+          >
+            INSTAGRAM
+          </a>
+          {"   /   "}
+          <a
+            href={contactFAQ.pinterestUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity hover:opacity-70"
+          >
+            PINTEREST
+          </a>
         </p>
       </div>
     </section>
@@ -476,7 +496,7 @@ function BouncingUnionArrow() {
       transition={
         reduced
           ? { duration: 0 }
-          : { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+          : { duration: 1.0, repeat: Infinity, ease: "easeInOut" }
       }
       className="block shrink-0"
       style={{
@@ -506,7 +526,7 @@ const LAVABO_SLIDES = [
   { src: "/figma-assets/contact/hero-right-2.png", alt: "LAVABO logotype construction" },
   { src: "/figma-assets/contact/hero-right-3.png", alt: "LAVABO stacked colored basins" },
 ];
-const LAVABO_INTERVAL_MS = 2000;
+const LAVABO_INTERVAL_MS = 1400;
 
 function LavaboCarousel() {
   const [index, setIndex] = useState(0);
@@ -529,7 +549,7 @@ function LavaboCarousel() {
           quality={90}
           preload={i === 0}
           loading={i === 0 ? undefined : "eager"}
-          className={`absolute inset-0 object-cover transition-opacity duration-[300ms] ease-out ${
+          className={`absolute inset-0 object-cover transition-opacity duration-[220ms] ease-out ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
           aria-hidden={i !== index}

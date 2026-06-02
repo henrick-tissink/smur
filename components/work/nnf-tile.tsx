@@ -24,11 +24,7 @@ import { TileCarousel } from "./tile-carousel";
   and mobile (287×191) tiles.
 */
 
-const DARK = "#3a2f26";
-
 export function NnfTile({ width }: { width: number }) {
-  const label = width * 0.02; // wordmark size scales with the tile
-
   const frames = [
     <Image
       key="cards"
@@ -48,56 +44,19 @@ export function NnfTile({ width }: { width: number }) {
       unoptimized
       className="object-cover object-center"
     />,
-    <div key="board" className="absolute inset-0" style={{ backgroundColor: DARK }}>
-      {/* left partial black tile */}
-      <div className="absolute bg-black" style={{ left: "1.5%", top: "6%", width: "11%", height: "40%" }} />
-      {/* "M" beige brand tile */}
-      <div className="absolute overflow-hidden" style={{ left: "14.5%", top: "6%", width: "23%", height: "40%" }}>
-        <Image
-          src="/figma-assets/work/nnf-anim/cell-m.png"
-          alt=""
-          fill
-          sizes={`${Math.round(width * 0.23)}px`}
-          unoptimized
-          className="object-cover object-center"
-        />
-      </div>
-      {/* black tile + MANUFAKTURA wordmark (lower-left) */}
-      <div
-        className="absolute flex items-end bg-black"
-        style={{ left: "14.5%", top: "50%", width: "23%", height: "40%", padding: `${label * 0.7}px` }}
-      >
-        <span className="font-sans uppercase leading-tight text-white" style={{ fontSize: `${label}px`, letterSpacing: "0.04em" }}>
-          Manufaktura
-          <br />
-          studio___
-        </span>
-      </div>
-      {/* staircase interior + MANUFAKTURA STUDIO card (centre) */}
-      <div className="absolute overflow-hidden" style={{ left: "40%", top: "8%", width: "30%", height: "84%" }}>
-        <Image
-          src="/figma-assets/work/nnf-anim/cell-stair.jpg"
-          alt=""
-          fill
-          sizes={`${Math.round(width * 0.3)}px`}
-          unoptimized
-          className="object-cover object-center"
-        />
-      </div>
-      {/* black tile + MANUFAKTURA STUDIO wordmark (upper-right) */}
-      <div
-        className="absolute flex items-start bg-black"
-        style={{ left: "72%", top: "6%", width: "26.5%", height: "40%", padding: `${label * 0.7}px` }}
-      >
-        <span className="font-sans uppercase leading-tight text-white" style={{ fontSize: `${label}px`, letterSpacing: "0.04em" }}>
-          Manufaktura
-          <br />
-          studio___
-        </span>
-      </div>
-      {/* black tile (lower-right) */}
-      <div className="absolute bg-black" style={{ left: "72%", top: "50%", width: "26.5%", height: "40%" }} />
-    </div>,
+    // Variant 3 — the brand moodboard grid. Previously rebuilt structurally
+    // because no flat export existed; the June 2026 client drop supplied the
+    // real export (1588×1060, aspect ≈ the tile's 1.5), so we render it
+    // directly instead of the reconstruction.
+    <Image
+      key="board"
+      src="/figma-assets/work/nnf-anim/board.png"
+      alt="MANUFAKTURA STUDIO — brand moodboard grid"
+      fill
+      sizes={`${Math.round(width)}px`}
+      unoptimized
+      className="object-cover object-center"
+    />,
   ];
 
   return <TileCarousel frames={frames} label="MANUFAKTURA STUDIO project showcase" />;
