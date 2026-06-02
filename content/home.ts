@@ -193,16 +193,18 @@ export const services: Service[] = [
     body:
       "Beyond brand identity design, I offer a range of additional creative services, either as part of a larger project or as standalone collaborations:",
     image: {
-      // Replaces the heavy vector-composed LAVABO brand-book mockup with the
-      // client's exported photograph (May 2026 feedback round).
+      // Client's exported LAVABO landing-page artboard (_lavaboArtboard 59).
+      // Intrinsic dims corrected to the real file (1798×2493) — they were
+      // stale (856×1114). Frame matches the artboard's 0.721 aspect so the
+      // full mockup shows uncropped (June 2026 client request).
       src: "/figma-assets/services/lavabo-web-print.png",
       alt: "LAVABO — Webdesign and print case study",
-      intrinsicWidth: 856,
-      intrinsicHeight: 1114,
+      intrinsicWidth: 1798,
+      intrinsicHeight: 2493,
     },
     crop: { w: 100, h: 100, left: 0, top: 0 },
     frameWidth: 428,
-    frameHeight: 557,
+    frameHeight: 593,
     dropdowns: [],
   },
 ];
