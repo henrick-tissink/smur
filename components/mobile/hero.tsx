@@ -70,18 +70,19 @@ export function MobileHero() {
           />
         </Link>
 
-        {/* Headline (268:34838) — brand-font SVG (header.svg) rendered via
-            CSS mask. The desktop export's 4-line break matches the mobile
-            design ("NAMING, / BRANDING & / DESIGN BUILD / GOOD STORIES").
-            Box-anchored to the 351px title width so it fills without
-            overflowing (header.svg aspect 586.82/288.99). */}
+        {/* Headline (268:34838) — brand-font SVG rendered via CSS mask. Mobile
+            Figma centers each of the 4 lines ("NAMING, / BRANDING & / DESIGN
+            BUILD / GOOD STORIES"), whereas the shared desktop header.svg is
+            left-aligned. header-centered.svg is the same letterforms with each
+            line re-centered within the 586.82 viewBox (per-line translate).
+            Box-anchored to the 351px title width (aspect 586.82/288.99). */}
         <div
           className="absolute flex justify-center text-cream"
           style={{ left: "14px", right: "27px", top: "181px" }}
         >
           <Reveal>
             <TitleMask
-              src="/figma-assets/titles/header.svg"
+              src="/figma-assets/titles/header-centered.svg"
               width={351}
               height={172.9}
               alt="Naming, branding & design build good stories"
