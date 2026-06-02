@@ -229,8 +229,13 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
+      "For a decade now, Smaranda Murarus has done superb work for Harvard's Institute for World Literature. She created a consistent design identity for us, which she has creatively adapted for multiple purposes, from our website to the flyers advertising our annual sessions, and then everything from the covers of our programs to signage and T-shirts. She's been unfailingly quick in responding to requests, and flexible in modifying designs in response to feedback. We're lucky to have her on our team.",
+    attribution: "David Damrosch, Harvard University",
+  },
+  {
+    quote:
       "We've loved working with Smaranda across multiple projects, from branding and websites to software product design. She consistently delivers thoughtful, high-quality work, often under tight timelines, and always approaches challenges with creativity and flexibility.\n\nWhat sets her apart is her ability to explore different directions rather than offering just one solution, making collaboration feel both strategic and intuitive. On top of that, she's fast, reliable, and genuinely wonderful to work with.",
-    attribution: "Jona Boeddinghaus, Gradient Zero Germany",
+    attribution: "Jona Boeddinghaus, Gradient Zero Austria",
   },
   {
     quote:
@@ -239,13 +244,8 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Working with Smaranda was a super smooth and fun experience. Her strong expertise comes from being in the design game for many years. She could easily understand client needs and explore multiple styling directions until landing on the one that fits the vision best.\n\nCommunication was clear and professional, she could offer reliable time estimates and respect deadlines.\n\nI wholeheartedly recommend her as a full-stack visual and graphic designer.",
+      "Working with Smaranda was a super smooth and fun experience. Her strong expertise comes from being in the design game for many years. She could easily understand client needs and explore multiple styling directions until landing on the one that fits the vision best. Communication was clear and professional, she could offer reliable time estimates and respect deadlines.\n\nI wholeheartedly recommend her as a full-stack visual and graphic designer.",
     attribution: "Iulia Branca, Product designer",
-  },
-  {
-    quote:
-      "For a decade now, Smaranda Murarus has done superb work for Harvard's Institute for World Literature. She created a consistent design identity for us, which she has creatively adapted for multiple purposes, from our website to the flyers advertising our annual sessions, and then everything from the covers of our programs to signage and T-shirts. She's been unfailingly quick in responding to requests, and flexible in modifying designs in response to feedback. We're lucky to have her on our team.",
-    attribution: "David Damrosch, Harvard University",
   },
 ];
 

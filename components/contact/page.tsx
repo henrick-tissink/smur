@@ -135,6 +135,9 @@ function ContactHero() {
 }
 
 function ContactForm() {
+  // No backend yet (forms are out of scope) — clicking Save & Send just
+  // confirms the action by flipping the button to "SENT".
+  const [sent, setSent] = useState(false);
   return (
     <section
       data-nav-scheme="dark"
@@ -144,7 +147,13 @@ function ContactForm() {
       <div className="relative mx-auto" style={{ width: 1440, height: 1227 }}>
       <div className="absolute" style={{ left: 420, top: 140, width: 596 }}>
         <Reveal>
-          <form className="flex flex-col gap-[44px]">
+          <form
+            className="flex flex-col gap-[44px]"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSent(true);
+            }}
+          >
             {/* Row 1: First + Last name side by side */}
             <div className="flex gap-[10px]">
               <FieldText
@@ -192,24 +201,31 @@ function ContactForm() {
                   CtaButton (geometry, color, Union arrow). */}
               <button
                 type="submit"
-                className="group inline-flex items-center gap-[6.498px] rounded-[18.05px] border-[1.444px] border-[#a98a8a] px-[24.548px] py-[5.776px] text-[20.22px] uppercase leading-[1.21] text-[#a18080] transition-colors hover:bg-ink hover:text-cream"
+                disabled={sent}
+                className={`group inline-flex items-center gap-[6.498px] rounded-[18.05px] border-[1.444px] border-[#a98a8a] px-[24.548px] py-[5.776px] text-[20.22px] uppercase leading-[1.21] transition-colors ${
+                  sent
+                    ? "cursor-default bg-ink text-cream"
+                    : "text-[#a18080] hover:bg-ink hover:text-cream"
+                }`}
               >
-                <span>{contactForm.buttonLabel}</span>
-                <span
-                  aria-hidden
-                  className="block shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                  style={{
-                    width: "41.503px",
-                    height: "14.11px",
-                    WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
-                    maskImage: "url(/figma-assets/arrows/cta-union.svg)",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskRepeat: "no-repeat",
-                    WebkitMaskSize: "100% 100%",
-                    maskSize: "100% 100%",
-                    backgroundColor: "currentColor",
-                  }}
-                />
+                <span>{sent ? "SENT" : contactForm.buttonLabel}</span>
+                {!sent && (
+                  <span
+                    aria-hidden
+                    className="block shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                    style={{
+                      width: "41.503px",
+                      height: "14.11px",
+                      WebkitMaskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                      maskImage: "url(/figma-assets/arrows/cta-union.svg)",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskSize: "100% 100%",
+                      maskSize: "100% 100%",
+                      backgroundColor: "currentColor",
+                    }}
+                  />
+                )}
               </button>
             </div>
           </form>
