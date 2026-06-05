@@ -119,7 +119,8 @@ const imgVector113 = "/figma-assets/work/iwl/row2/imgVector113.svg";
 export function IwlRow2Content() {
   return (
     <div className="contents relative size-full" data-node-id="297:57124">
-      <div className="absolute inset-[42.01%_18.78%_48.32%_19.07%]" data-node-id="73:28506" data-name="Layer_1">
+      {/* Left inset snapped to the page grid (L=271 → 18.819%) */}
+      <div className="absolute inset-[42.01%_18.78%_48.32%_18.819%]" data-node-id="73:28506" data-name="Layer_1">
         <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer1} />
       </div>
       <div className="absolute contents inset-[42.01%_25.66%_51.06%_19.07%]" data-node-id="73:28508" data-name="Layer_2">

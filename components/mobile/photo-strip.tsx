@@ -14,9 +14,13 @@ export function MobilePhotoStrip() {
   // Map: desktop index → mobile grid position
   // Mobile order per Figma metadata: imgRectangle=photo3, imgRectangle1=photo4,
   //                                  imgRectangle2=photo1, imgRectangle3=photo2
+  // Top-row frames are 1px taller than their 196px grid row so they overlap
+  // the bottom row — kills the subpixel seam (cream bg hairline) that shows
+  // when the section lands on a fractional device-pixel boundary. The photos
+  // overflow their crop frames by far more than 1px, so nothing visible changes.
   const cells = [
-    { photo: photos[2], width: 197, height: 196 }, // top-left
-    { photo: photos[3], width: 198, height: 196 }, // top-right
+    { photo: photos[2], width: 197, height: 197 }, // top-left
+    { photo: photos[3], width: 198, height: 197 }, // top-right
     { photo: photos[0], width: 198, height: 196 }, // bot-left
     { photo: photos[1], width: 198, height: 196 }, // bot-right
   ];
@@ -30,7 +34,12 @@ export function MobilePhotoStrip() {
     >
       <div
         className="mx-auto grid grid-cols-2"
-        style={{ maxWidth: "393px", width: "393px", height: "392px" }}
+        style={{
+          maxWidth: "393px",
+          width: "393px",
+          height: "392px",
+          gridTemplateRows: "196px 196px",
+        }}
       >
         {cells.map((cell, i) => (
           <div key={i} className="relative">

@@ -25,7 +25,7 @@ const imgVector19 = "/figma-assets/work/kokop/section6/imgVector19.svg";
 export function KokopSection6Content() {
   return (
     <div className="contents relative size-full" data-node-id="297:57937">
-      <div className="absolute h-[504.44px] left-[272px] overflow-clip top-[2909.08px] w-[896.31px]" data-node-id="143:833" data-name="Layer_2">
+      <div className="absolute h-[504.44px] left-[274.5px] overflow-clip top-[2909.08px] w-[891px]" data-node-id="143:833" data-name="Layer_2">
         <div className="absolute inset-[0_-0.73%_-0.73%_0]" data-node-id="143:834" data-name="Rectangle">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgRectangle} />

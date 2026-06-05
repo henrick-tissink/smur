@@ -49,7 +49,7 @@ export function KokopCaseStudy() {
           unoptimized
           priority
           className="absolute"
-          style={{ left: 287, top: 140, width: 894.44, height: 647.35 }}
+          style={{ left: 274.5, top: 140, width: 891, height: 647.35 }}
         />
       </Reveal>
       {/* Layer_2 (143:1432) has its own bounds inside Frame 143:1426:
@@ -119,14 +119,14 @@ export function KokopCaseStudy() {
           height={515}
           unoptimized
           className="absolute"
-          style={{ left: 734, top: 1201, width: 432, height: 515 }}
+          style={{ left: 734, top: 1201, width: 431.5, height: 515 }}
         />
       </Reveal>
       {/* Left half — packaging photograph */}
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 275, top: 1201, width: 432, height: 515 }}
+          style={{ left: 274.5, top: 1201, width: 432, height: 515 }}
         >
           <Image
             src="/figma-assets/work/kokop/sec1-photo.jpg"
@@ -183,13 +183,13 @@ export function KokopCaseStudy() {
           height={522}
           unoptimized
           className="absolute"
-          style={{ left: 272, top: 2362, width: 436.84, height: 521.96 }}
+          style={{ left: 274.5, top: 2362, width: 436.84, height: 521.96 }}
         />
       </Reveal>
       <Reveal delay={0.05}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 719, top: 2363, width: 458, height: 522 }}
+          style={{ left: 719, top: 2363, width: 446.5, height: 522 }}
         >
           <Image
             src="/figma-assets/work/kokop/sec3-photo.jpg"
@@ -218,7 +218,7 @@ export function KokopCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 271, top: 3438.52, width: 442, height: 528 }}
+          style={{ left: 274.5, top: 3438.52, width: 442, height: 528 }}
         >
           <Image
             src="/figma-assets/work/kokop/insta-phone.png"
@@ -233,7 +233,7 @@ export function KokopCaseStudy() {
       <Reveal delay={0.05}>
         <div
           className="absolute"
-          style={{ left: 731, top: 3438, width: 442, height: 528 }}
+          style={{ left: 731, top: 3438, width: 434.5, height: 528 }}
         >
           <Image
             src="/figma-assets/work/kokop/insta-card.png"
@@ -252,7 +252,15 @@ export function KokopCaseStudy() {
           (mix-blend-multiply) via ./kokop-extras/section8.
           ============================================================ */}
       <Reveal>
-        <KokopSection8Content />
+        {/* The composition's visible (mask-clipped) box renders at [277.16, 1172.42]
+            (pixel-measured); this maps it onto the page grid [274.5, 1165.5]
+            (0.48% h-scale). */}
+        <div
+          className="absolute inset-0"
+          style={{ transform: "translateX(-1.34px) scaleX(0.99524)", transformOrigin: "0 0" }}
+        >
+          <KokopSection8Content />
+        </div>
       </Reveal>
     </div>
   );

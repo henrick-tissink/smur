@@ -44,12 +44,19 @@ type Slide = {
   y: number;
   w: number;
   h: number;
+  /** object-position override — edge-flush slides pin the artwork to the
+      hero edge so object-contain slack can't reopen a sliver of beige. */
+  objectPos?: string;
 };
 
 const SLIDES: Slide[] = [
-  { frame: 7, src: "/figma-assets/hero-carousel/02-interstellar.png", alt: "INTERSTELLAR — real-estate brand & website", x: 1129, y: 361, w: 302, h: 499 },
+  // The pixel-scanned positions read each box 7–10px short of the hero's
+  // right/bottom edges (threshold shrink on antialiased edges). The
+  // interstellar + kokop showcases sit flush against the canvas edge in the
+  // design, so their boxes are pinned to x+w=1440 (and y+h=869 for frame 7).
+  { frame: 7, src: "/figma-assets/hero-carousel/02-interstellar.png", alt: "INTERSTELLAR — real-estate brand & website", x: 1138, y: 370, w: 302, h: 499, objectPos: "right bottom" },
   { frame: 8, src: "/figma-assets/hero-carousel/05-interst.png", alt: "INTERSTELLAR — editorial photography", x: 644, y: 118, w: 292, h: 266 },
-  { frame: 9, src: "/figma-assets/hero-carousel/03-kokop.png", alt: "KOKO.P — coffee + snacks brand", x: 1114, y: 118, w: 319, h: 388 },
+  { frame: 9, src: "/figma-assets/hero-carousel/03-kokop.png", alt: "KOKO.P — coffee + snacks brand", x: 1121, y: 118, w: 319, h: 388, objectPos: "right center" },
   // frame 10 — brand-collateral spread: asset missing from the export drop.
   { frame: 11, src: "/figma-assets/hero-carousel/04-taf.png", alt: "TAF — brand campaign", x: 681, y: 496, w: 424, h: 286 },
   { frame: 12, src: "/figma-assets/hero-carousel/01-crisp.png", alt: "CRISP — bakery brand identity", x: 895, y: 226, w: 328, h: 388 },
@@ -100,7 +107,8 @@ export function HeroCarousel() {
               // every later frame is decoded before its 4s crossfade.
               preload={i === 0}
               loading={i === 0 ? undefined : "eager"}
-              className="object-contain object-center"
+              className="object-contain"
+              style={{ objectPosition: s.objectPos ?? "center" }}
             />
           </div>
         );

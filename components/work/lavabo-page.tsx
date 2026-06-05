@@ -35,7 +35,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 273, top: 140, width: 434.52, height: 312.51 }}
+          style={{ left: 272, top: 140, width: 434.52, height: 312.51 }}
         >
           <Image
             src="/figma-assets/work/lavabo/grid-1.svg"
@@ -51,7 +51,7 @@ export function LavaboCaseStudy() {
       <Reveal delay={0.05}>
         <div
           className="absolute"
-          style={{ left: 731.52, top: 140, width: 434.52, height: 312.51 }}
+          style={{ left: 731.52, top: 140, width: 436.48, height: 312.51 }}
         >
           <Image
             src="/figma-assets/work/lavabo/grid-2.svg"
@@ -67,7 +67,7 @@ export function LavaboCaseStudy() {
       <Reveal delay={0.1}>
         <div
           className="absolute"
-          style={{ left: 273, top: 478.51, width: 434.52, height: 312.51 }}
+          style={{ left: 272, top: 478.51, width: 434.52, height: 312.51 }}
         >
           <Image
             src="/figma-assets/work/lavabo/grid-3.svg"
@@ -82,7 +82,7 @@ export function LavaboCaseStudy() {
       <Reveal delay={0.15}>
         <div
           className="absolute"
-          style={{ left: 731.52, top: 477.51, width: 434.52, height: 312.51 }}
+          style={{ left: 731.52, top: 477.51, width: 436.48, height: 312.51 }}
         >
           <Image
             src="/figma-assets/work/lavabo/grid-4.svg"
@@ -124,7 +124,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 271, top: 1180, width: 896.89, height: 598 }}
+          style={{ left: 272, top: 1180, width: 896, height: 598 }}
         >
           <Image
             src="/figma-assets/work/lavabo/sink-photo.png"
@@ -141,7 +141,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 272, top: 1803, width: 897.71, height: 354.37 }}
+          style={{ left: 272, top: 1803, width: 896, height: 354.37 }}
         >
           <Image
             src="/figma-assets/work/lavabo/logotype-band.svg"
@@ -158,7 +158,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 272, top: 2182, width: 897.71, height: 507.81 }}
+          style={{ left: 272, top: 2182, width: 896, height: 507.81 }}
         >
           <Image
             src="/figma-assets/work/lavabo/letterforms-grid.svg"
@@ -174,8 +174,8 @@ export function LavaboCaseStudy() {
       {/* Sink hero with overlay (Frame 52) at y=2715 */}
       <Reveal>
         <div
-          className="absolute"
-          style={{ left: 274, top: 2715, width: 894, height: 895.5 }}
+          className="absolute overflow-hidden"
+          style={{ left: 272, top: 2715, width: 896, height: 895.5 }}
         >
           <Image
             src="/figma-assets/work/lavabo/sink-hero.png"
@@ -183,7 +183,10 @@ export function LavaboCaseStudy() {
             width={894}
             height={896}
             unoptimized
-            className="block h-full w-full object-cover"
+            className="absolute block max-w-none object-cover"
+            /* baked-in light column on the artboard's right edge; oversize
+               past the clip box so it's cropped out */
+            style={{ left: 0, top: 0, width: "calc(100% + 2px)", height: "100%" }}
           />
           <Image
             src="/figma-assets/work/lavabo/sink-overlay.svg"
@@ -201,7 +204,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 272, top: 3635, width: 897.71, height: 288.77 }}
+          style={{ left: 272, top: 3635, width: 896, height: 288.77 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mark.svg"
@@ -221,7 +224,7 @@ export function LavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 271, top: 3949, width: 898.58, height: 1246.09 }}
+          style={{ left: 272, top: 3949, width: 896, height: 1246.09 }}
         >
           <Image
             src="/figma-assets/work/lavabo/brand-book.png"

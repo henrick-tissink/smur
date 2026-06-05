@@ -33,7 +33,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 1.38, top: 104.43, width: 189.99, height: 136.65 }}
+          style={{ left: 0, top: 104, width: 189.99, height: 136.65 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/grid-1.svg"
@@ -49,7 +49,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal delay={0.05}>
         <div
           className="absolute"
-          style={{ left: 202.01, top: 104, width: 189.99, height: 136.65 }}
+          style={{ left: 203.01, top: 104, width: 189.99, height: 136.65 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/grid-2.svg"
@@ -65,7 +65,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal delay={0.1}>
         <div
           className="absolute"
-          style={{ left: 0, top: 250.55, width: 189.99, height: 136.65 }}
+          style={{ left: 0, top: 251.2, width: 189.99, height: 136.65 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/grid-3.svg"
@@ -80,7 +80,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal delay={0.15}>
         <div
           className="absolute"
-          style={{ left: 201.4, top: 251.78, width: 189.99, height: 136.65 }}
+          style={{ left: 203.01, top: 251.2, width: 189.99, height: 136.65 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/grid-4.svg"
@@ -97,7 +97,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 0, top: 735, width: 392.2, height: 261.5 }}
+          style={{ left: 0, top: 735, width: 393, height: 261.5 }}
         >
           <Image
             src="/figma-assets/work/lavabo/sink-photo.png"
@@ -114,7 +114,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 0, top: 1008.5, width: 392.56, height: 154.96 }}
+          style={{ left: 0, top: 1008.5, width: 393, height: 154.96 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/logotype-band.svg"
@@ -131,7 +131,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 0, top: 1175.47, width: 392.56, height: 222.06 }}
+          style={{ left: 0, top: 1175.47, width: 393, height: 222.06 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/letterforms-grid.svg"
@@ -148,7 +148,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 1, top: 1409.53, width: 390.94, height: 391.6 }}
+          style={{ left: 0, top: 1409.53, width: 393, height: 391.6 }}
         >
           <Image
             src="/figma-assets/work/lavabo/sink-hero.png"
@@ -174,7 +174,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 0, top: 1813.12, width: 392.56, height: 126.28 }}
+          style={{ left: 0, top: 1813.12, width: 393, height: 126.28 }}
         >
           <Image
             src="/figma-assets/work/lavabo/mobile/mark.svg"
@@ -192,7 +192,7 @@ export function MobileLavaboCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 0, top: 1951.4, width: 392.94, height: 544.91 }}
+          style={{ left: 0, top: 1951.4, width: 393, height: 544.91 }}
         >
           <Image
             src="/figma-assets/work/lavabo/brand-book.png"

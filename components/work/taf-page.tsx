@@ -35,7 +35,7 @@ export function TafCaseStudy() {
           src="/figma-assets/work/taf/hero.svg"
           alt="TAF brand hero"
           className="absolute"
-          style={{ left: 273, top: 140, width: 896.24, height: 649.13 }}
+          style={{ left: 273, top: 140, width: 900, height: 649.13 }}
         />
       </Reveal>
 
@@ -138,7 +138,7 @@ export function TafCaseStudy() {
           style={{
             left: 738.52,
             top: 1254.66,
-            width: 434.52,
+            width: 434.48,
             height: 587.37,
           }}
         />
@@ -196,7 +196,7 @@ export function TafCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 273, top: 4202.03, width: 899, height: 600 }}
+          style={{ left: 273, top: 4202.03, width: 900, height: 600 }}
         >
           <Image
             src="/figma-assets/work/taf/bottom/photo.jpg"

@@ -27,10 +27,10 @@ const imgVector20 = "/figma-assets/work/kabinett/row3-right/imgVector20.svg";
 export function KabinettRow3RightContent() {
   return (
     <div className="contents relative size-full" data-node-id="73:39506" data-name="Layer_2">
-      <div className="absolute inset-[59.89%_19.16%_28.37%_50.67%]" data-node-id="73:39507" data-name="Vector">
+      <div className="absolute inset-[59.89%_19.028%_28.37%_50.67%]" data-node-id="73:39507" data-name="Vector">
         <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
       </div>
-      <div className="absolute contents inset-[59.89%_19.16%_28.37%_50.67%]" data-node-id="73:39508" data-name="Clip path group">
+      <div className="absolute contents inset-[59.89%_19.028%_28.37%_50.67%]" data-node-id="73:39508" data-name="Clip path group">
         <div className="absolute contents inset-[58.2%_11.06%_25.21%_50.54%]" data-node-id="73:39511" data-name="Group">
           <div className="absolute inset-[58.2%_11.06%_25.21%_50.54%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[1.91px_83.92px] mask-size-[434.52px_585.489px]" data-node-id="73:39512" style={{ maskImage: `url('${imgRectangle}')` }} data-name="Rectangle">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -39,7 +39,7 @@ export function KabinettRow3RightContent() {
           </div>
         </div>
       </div>
-      <div className="absolute inset-[59.89%_19.16%_28.37%_50.66%] mix-blend-multiply" data-node-id="73:39513" data-name="Vector">
+      <div className="absolute inset-[59.89%_19.028%_28.37%_50.66%] mix-blend-multiply" data-node-id="73:39513" data-name="Vector">
         <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
       </div>
       <div className="absolute inset-[64.06%_34.09%_32.53%_62.63%]" data-node-id="73:39514" data-name="Vector">

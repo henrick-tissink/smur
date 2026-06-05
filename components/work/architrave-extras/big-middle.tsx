@@ -470,7 +470,8 @@ const imgVector460 = "/figma-assets/work/architrave/big/imgVector460.svg";
 export function ArchitraveBigMiddleContent() {
   return (
     <div className="contents relative size-full" data-node-id="71:2406" data-name="Layer_1">
-      <div className="absolute inset-[59.81%_19.2%_16%_18.4%]" data-node-id="71:2407" data-name="Vector">
+      {/* Horizontal insets snapped to the page grid (L=273.64 → 19.003%, R=1159.52 → 19.478%) */}
+      <div className="absolute inset-[59.81%_19.478%_16%_19.003%]" data-node-id="71:2407" data-name="Vector">
         <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
       </div>
       <div className="absolute contents inset-[61.42%_29.41%_30.4%_28.42%]" data-node-id="71:2408" data-name="Clip path group">

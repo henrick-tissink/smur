@@ -107,7 +107,7 @@ function Form() {
     >
       <div
         className="absolute"
-        style={{ left: 43, top: 75, width: 310 }}
+        style={{ left: 42, top: 75, width: 310 }}
       >
         <Reveal>
           <form className="flex flex-col gap-[40px] text-[14px] text-ink">

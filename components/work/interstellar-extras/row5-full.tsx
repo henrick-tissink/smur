@@ -63,14 +63,15 @@ const imgLayer2 = "/figma-assets/work/interstellar/row5-full/imgLayer2.svg";
 */
 export function InterstellarRow5Content() {
   return (
-    <div className="absolute" style={{ left: 282, top: 4099.84, width: 889, height: 564 }}>
+    // Root + right vector snapped to the page grid [283, 1170.2]
+    <div className="absolute" style={{ left: 283, top: 4099.84, width: 887.2, height: 564 }}>
       <div className="relative size-full">
         <div className="absolute h-[564px] left-0 top-0 w-[435px]">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <img alt="" className="absolute h-[295.79%] left-[-77.94%] max-w-none top-[-132.95%] w-[256.29%]" src={imgRectangle} />
           </div>
         </div>
-        <div className="absolute h-[564px] left-[457px] top-0 w-[432px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} /></div>
+        <div className="absolute h-[564px] left-[455.2px] top-0 w-[432px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} /></div>
         <div className="absolute h-[99.912px] left-[576.13px] top-[226.09px] w-[195.509px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup} /></div>
         <div className="absolute h-[113.604px] left-[628.88px] top-[381.53px] w-[89.995px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1} /></div>
         <div className="absolute h-[68.41px] left-[647.2px] top-[95.51px] w-[53.349px]"><img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup2} /></div>

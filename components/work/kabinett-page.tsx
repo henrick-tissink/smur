@@ -39,9 +39,9 @@ export function KabinettCaseStudy() {
           alt="Kabinett hero"
           className="absolute"
           style={{
-            left: 273,
+            left: 272,
             top: 139.55,
-            width: 894.44,
+            width: 894,
             height: 645.38,
           }}
         />
@@ -95,7 +95,7 @@ export function KabinettCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 271, top: 1249.93, width: 434, height: 585 }}
+          style={{ left: 272, top: 1249.93, width: 434, height: 585 }}
         >
           <Image
             src="/figma-assets/work/kabinett/row1/photo.jpg"
@@ -130,7 +130,7 @@ export function KabinettCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 271, top: 1859.68, width: 894, height: 1100 }}
+          style={{ left: 272, top: 1859.68, width: 894, height: 1100 }}
         >
           <Image
             src="/figma-assets/work/kabinett/row2-poster.png"
@@ -171,7 +171,7 @@ export function KabinettCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 272, top: 3595.78, width: 893, height: 608 }}
+          style={{ left: 272, top: 3595.78, width: 894, height: 608 }}
         >
           <img
             src="/figma-assets/work/kabinett/row4-photo.svg"
@@ -183,7 +183,7 @@ export function KabinettCaseStudy() {
             style={{
               left: -19,
               top: -5,
-              width: 912,
+              width: 913, // covers the full 894 wrapper (was 1px short on the right)
               height: 688,
             }}
           />
@@ -201,7 +201,7 @@ export function KabinettCaseStudy() {
       <Reveal>
         <div
           className="absolute"
-          style={{ left: 272, top: 4242.76, width: 896, height: 604 }}
+          style={{ left: 272, top: 4242.76, width: 894, height: 604 }}
         >
           <KabinettBottomContent />
         </div>

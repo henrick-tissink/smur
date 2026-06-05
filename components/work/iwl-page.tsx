@@ -43,7 +43,7 @@ export function IwlCaseStudy() {
           src="/figma-assets/work/iwl/hero-bg.svg"
           alt=""
           className="absolute"
-          style={{ left: 272, top: 140, width: 898, height: 389 }}
+          style={{ left: 271, top: 140, width: 898.64, height: 389 }}
         />
       </Reveal>
       <Reveal delay={0.05}>
@@ -135,7 +135,7 @@ export function IwlCaseStudy() {
       <Reveal delay={0.05}>
         <div
           className="absolute"
-          style={{ left: 734, top: 967, width: 436.14, height: 521.96 }}
+          style={{ left: 734, top: 967, width: 435.64, height: 521.96 }}
         >
           <img
             src="/figma-assets/work/iwl/row1-panel-bg.svg"
@@ -171,7 +171,7 @@ export function IwlCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 270.64, top: 1514, width: 899, height: 595.8 }}
+          style={{ left: 271, top: 1514, width: 898.64, height: 595.8 }}
         >
           <Image
             src="/figma-assets/work/iwl/banner.png"
@@ -179,7 +179,10 @@ export function IwlCaseStudy() {
             width={1798}
             height={1195}
             unoptimized
-            className="block h-full w-full object-cover"
+            className="absolute block max-w-none object-cover"
+            /* baked-in light columns on the artboard's right edge; oversize
+               past the clip box so they're cropped out */
+            style={{ left: 0, top: 0, width: "calc(100% + 2.5px)", height: "100%" }}
           />
         </div>
       </Reveal>
@@ -205,7 +208,7 @@ export function IwlCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 276.64, top: 2656, width: 893, height: 608.34 }}
+          style={{ left: 271, top: 2656, width: 898.64, height: 608.34 }}
         >
           <Image
             src="/figma-assets/work/iwl/pattern.png"
@@ -213,7 +216,10 @@ export function IwlCaseStudy() {
             width={1789}
             height={1216}
             unoptimized
-            className="block h-full w-full object-cover"
+            className="absolute block max-w-none object-cover"
+            /* the exported artboard has ~4 baked-in white columns on its left
+               edge; oversize past the clip box so they're cropped out */
+            style={{ left: -2.2, top: 0, width: "calc(100% + 2.2px)", height: "100%" }}
           />
         </div>
       </Reveal>
@@ -230,7 +236,7 @@ export function IwlCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 273.64, top: 3289.34, width: 434.57, height: 522.42 }}
+          style={{ left: 271, top: 3289.34, width: 434.57, height: 522.42 }}
         >
           <Image
             src="/figma-assets/work/iwl/row4-left.png"
@@ -269,7 +275,7 @@ export function IwlCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 270, top: 3836.76, width: 897.6, height: 1080.9 }}
+          style={{ left: 271, top: 3836.76, width: 898.64, height: 1080.9 }}
         >
           <Image
             src="/figma-assets/work/iwl/poster.png"

@@ -198,7 +198,7 @@ export function CrispCaseStudy() {
       <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 753, top: 1405.46, width: 431, height: 534 }}
+          style={{ left: 753, top: 1405.46, width: 440, height: 534 }}
         >
           <Image
             src="/figma-assets/work/crisp/row1-badges.png"
@@ -264,7 +264,7 @@ export function CrispCaseStudy() {
       <Reveal eager>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 757, top: 2613, width: 429, height: 530 }}
+          style={{ left: 757, top: 2613, width: 436, height: 530 }}
         >
           <Image
             src="/figma-assets/work/crisp/business-cards.png"
@@ -284,7 +284,7 @@ export function CrispCaseStudy() {
       <Reveal eager>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 293, top: 3171.71, width: 899, height: 610.88 }}
+          style={{ left: 293, top: 3171.71, width: 900, height: 610.88 }}
         >
           <Image
             src="/figma-assets/work/crisp/band-bg.jpg"
@@ -335,7 +335,7 @@ export function CrispCaseStudy() {
           style={{
             left: 754.36,
             top: 3811.59,
-            width: 429.972,
+            width: 438.64,
             height: 524.485,
           }}
         >
@@ -347,12 +347,13 @@ export function CrispCaseStudy() {
             unoptimized
             className="absolute max-w-none"
             /* Photo container in Figma: 436.282 × 654.451 offset (-2.72, -130.34)
-               within the 430×524 section. Anchor to the same offset here. */
+               within the 430×524 section — scaled ×1.0116 so it covers the
+               grid-snapped 438.64-wide wrapper (right edge at 1193). */
             style={{
-              width: 436.282,
-              height: 654.451,
+              width: 441.36,
+              height: 662.07,
               left: -2.72,
-              top: -130.34,
+              top: -131.86,
               objectFit: "cover",
             }}
           />
@@ -382,7 +383,7 @@ export function CrispCaseStudy() {
       <Reveal eager>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 293, top: 4365.08, width: 899, height: 1114.18 }}
+          style={{ left: 293, top: 4365.08, width: 900, height: 1114.18 }}
         >
           <Image
             src="/figma-assets/work/crisp/now-open-poster.png"
@@ -400,7 +401,7 @@ export function CrispCaseStudy() {
       <Reveal eager>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 293, top: 4365.08, width: 899, height: 1114.18 }}
+          style={{ left: 293, top: 4365.08, width: 900, height: 1114.18 }}
         >
           <Image src="LEGACY" alt="" width={1} height={1} />
         </div>

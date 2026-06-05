@@ -32,7 +32,7 @@ export function MnfCaseStudy() {
           src="/figma-assets/work/mnf/hero.svg"
           alt="Manufaktura Studio hero"
           className="absolute"
-          style={{ left: 269, top: 140, width: 899.78, height: 370.67 }}
+          style={{ left: 270, top: 140, width: 899, height: 370.67 }}
         />
       </Reveal>
 
@@ -82,7 +82,7 @@ export function MnfCaseStudy() {
       <Reveal delay={0.05}>
         <div
           className="absolute"
-          style={{ left: 270, top: 900, width: 900, height: 545 }}
+          style={{ left: 270, top: 900, width: 899, height: 545 }}
         >
           <Image
             src="/figma-assets/work/mnf/screens.jpg"
@@ -124,7 +124,7 @@ export function MnfCaseStudy() {
           src="/figma-assets/work/mnf/row1-right.svg"
           alt="Manufaktura site layout"
           className="absolute"
-          style={{ left: 731.65, top: 1753.63, width: 437.65, height: 299.26 }}
+          style={{ left: 731.65, top: 1753.63, width: 437.35, height: 299.26 }}
         />
       </Reveal>
 

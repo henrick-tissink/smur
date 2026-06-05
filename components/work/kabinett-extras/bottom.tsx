@@ -27,7 +27,7 @@ const imgVector19 = "/figma-assets/work/kabinett/bottom-full/imgVector19.svg";
 export function KabinettBottomContent() {
   return (
     <div className="relative size-full" data-node-id="73:40115" data-name="Layer_2">
-      <div className="absolute inset-[0_-0.08%_-0.06%_0]" data-node-id="73:40116" data-name="Rectangle">
+      <div className="absolute inset-[0_0_-0.06%_0]" data-node-id="73:40116" data-name="Rectangle">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgRectangle} />
         </div>

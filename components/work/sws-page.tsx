@@ -114,7 +114,7 @@ export function SwsCaseStudy() {
           alt=""
           className="absolute"
           style={{
-            left: 277,
+            left: 271.38,
             top: 1221.41,
             width: 898.58,
             height: 2010.67,
@@ -153,7 +153,7 @@ export function SwsCaseStudy() {
           alt=""
           className="absolute"
           style={{
-            left: 277,
+            left: 271.38,
             top: 3257.08,
             width: 898.58,
             height: 656.36,

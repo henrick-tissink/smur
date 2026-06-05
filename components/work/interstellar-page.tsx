@@ -39,7 +39,7 @@ export function InterstellarCaseStudy() {
       <Reveal>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 276.95, top: 140, width: 887.54, height: 487.78 }}
+          style={{ left: 283, top: 140, width: 887.2, height: 487.78 }}
         >
           <Image
             src="/figma-assets/work/interstellar/hero/photo.jpg"
@@ -65,10 +65,11 @@ export function InterstellarCaseStudy() {
         </div>
       ))}
 
-      {/* Mix-blend-color overlay covering the whole hero region */}
+      {/* Mix-blend-color overlay covering the whole hero region.
+          Horizontal insets snapped to the hero's grid footprint [283, 1170.2]. */}
       <div
         className="absolute"
-        style={{ inset: "2.76% 19.13% 87.63% 19.26%", mixBlendMode: "color" }}
+        style={{ inset: "2.76% 18.736% 87.63% 19.653%", mixBlendMode: "color" }}
       >
         <img
           src="/figma-assets/work/interstellar/hero/blend.svg"
@@ -140,7 +141,7 @@ export function InterstellarCaseStudy() {
           src="/figma-assets/work/interstellar/row1-right.svg"
           alt="Interstellar brand composition"
           className="absolute"
-          style={{ left: 740.70, top: 1367.62, width: 429.46, height: 308.87 }}
+          style={{ left: 740.7, top: 1367.62, width: 429.5, height: 308.87 }}
         />
       </Reveal>
 
@@ -154,7 +155,7 @@ export function InterstellarCaseStudy() {
           src="/figma-assets/work/interstellar/row2-bg.svg"
           alt="Interstellar brand application"
           className="absolute"
-          style={{ left: 283, top: 1702.92, width: 887.16, height: 308.87 }}
+          style={{ left: 283, top: 1702.92, width: 887.2, height: 308.87 }}
         />
       </Reveal>
       <Reveal eager delay={0.05}>
@@ -196,7 +197,7 @@ export function InterstellarCaseStudy() {
           src="/figma-assets/work/interstellar/row3-left-bg.svg"
           alt=""
           className="absolute"
-          style={{ left: 285, top: 2037.59, width: 429, height: 556 }}
+          style={{ left: 283, top: 2037.59, width: 429, height: 556 }}
         />
       </Reveal>
       {/* RIGHT panel (artboard 121) — flat export of the "WE DEAL LEGACY,
@@ -206,7 +207,7 @@ export function InterstellarCaseStudy() {
       <Reveal eager delay={0.05}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 741, top: 2037.59, width: 428, height: 556 }}
+          style={{ left: 741, top: 2037.59, width: 429.2, height: 556 }}
         >
           <Image
             src="/figma-assets/work/interstellar/row3-right.png"
@@ -222,7 +223,7 @@ export function InterstellarCaseStudy() {
       <Reveal eager delay={0.1}>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 285, top: 2037.59, width: 429, height: 556 }}
+          style={{ left: 283, top: 2037.59, width: 429, height: 556 }}
         >
           <img
             src="/figma-assets/work/interstellar/row3-photo.svg"
@@ -249,7 +250,7 @@ export function InterstellarCaseStudy() {
       <Reveal eager>
         <div
           className="absolute overflow-hidden"
-          style={{ left: 283, top: 2618.59, width: 887.53, height: 1456.24 }}
+          style={{ left: 283, top: 2618.59, width: 887.2, height: 1456.24 }}
         >
           <Image
             src="/figma-assets/work/interstellar/row4-full.png"
@@ -282,7 +283,7 @@ export function InterstellarCaseStudy() {
           src="/figma-assets/work/interstellar/row6.svg"
           alt="Interstellar bottom composition"
           className="absolute"
-          style={{ left: 278, top: 4688.84, width: 898.39, height: 520.62 }}
+          style={{ left: 283, top: 4688.84, width: 887.2, height: 520.62 }}
         />
       </Reveal>
 

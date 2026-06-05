@@ -41,10 +41,11 @@ export function ArchitraveCaseStudy() {
           (ratio 1.389 vs frame 1.387, Δ0.1%), so object-cover is exact.
           ============================================================ */}
       {[
-        { src: "hero-grid-tl.png", left: 268, top: 140.37, alt: "Architrave Studio logo — white on charcoal" },
-        { src: "hero-grid-tr.png", left: 728.52, top: 140.37, alt: "Architrave Studio logo — white on sage" },
-        { src: "hero-grid-bl.png", left: 268, top: 478.76, alt: "Architrave Studio logo — charcoal on white" },
-        { src: "hero-grid-br.png", left: 728.37, top: 478.76, alt: "Architrave Studio logo — white on taupe" },
+        // Columns snapped to the page grid: L=273.64, right edge=1159.52
+        { src: "hero-grid-tl.png", left: 273.64, top: 140.37, alt: "Architrave Studio logo — white on charcoal" },
+        { src: "hero-grid-tr.png", left: 725, top: 140.37, alt: "Architrave Studio logo — white on sage" },
+        { src: "hero-grid-bl.png", left: 273.64, top: 478.76, alt: "Architrave Studio logo — charcoal on white" },
+        { src: "hero-grid-br.png", left: 725, top: 478.76, alt: "Architrave Studio logo — white on taupe" },
       ].map((q, i) => (
         <Reveal key={q.src} delay={0.04 * i}>
           <div
@@ -108,7 +109,14 @@ export function ArchitraveCaseStudy() {
           are root-frame-relative percent so children mount cleanly.
           ============================================================ */}
       <Reveal>
-        <ArchitraveGroup80Content />
+        {/* Visible (mask-clipped) box renders at [265, 1160] (pixel-measured);
+            map onto the page grid [273.64, 1159.52] (1% h-scale). */}
+        <div
+          className="absolute inset-0"
+          style={{ transform: "translateX(11.34px) scaleX(0.98981)", transformOrigin: "0 0" }}
+        >
+          <ArchitraveGroup80Content />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -120,7 +128,7 @@ export function ArchitraveCaseStudy() {
           src="/figma-assets/work/architrave/row1.svg"
           alt="Architrave Studio brand application"
           className="absolute"
-          style={{ left: 263, top: 1854.70, width: 895, height: 312 }}
+          style={{ left: 273.64, top: 1854.70, width: 885.88, height: 312 }}
         />
       </Reveal>
 
@@ -196,9 +204,9 @@ export function ArchitraveCaseStudy() {
         <div
           className="absolute overflow-hidden"
           style={{
-            left: 265,
+            left: 273.64,
             top: 3883.24,
-            width: 897.62,
+            width: 885.88,
             height: 495.13,
           }}
         >
