@@ -5,22 +5,24 @@ import { crisp } from "@/content/crisp";
 import { Reveal } from "../reveal";
 
 /*
-  Mobile CRISP case study. CRISP has no dedicated mobile Figma design, so this
-  is a mobile-native reflow (Lavabo-style): a readable native-size intro, then
-  the desktop flat-image sections re-stacked full-bleed at the 393 mobile width.
-  Rendered inside the route's 393 zoom wrapper. (The desktop vector brand-mark
-  hero has no flat export and can't be cleanly reused, so the case study opens
-  on the intro + the café shot, which already carries the CRISP logotype.)
+  Mobile CRISP case study — full desktop parity (June 2026).
+  Sections mirror the desktop order using the designer's flat artboards
+  (EXPORTS SMUR WEBSITE 2/PROJECTS/CRISP):
+    hero (artboard 89) → intro → café (91) → badges (91_1) → pattern band
+    (93) → instagram (95) → cards (96) → band w/ baked CRISP overlay (97)
+    → row3 icon tile (99) → row3 pastry photo + circular-stamp overlay
+    (composite) → "now open" poster (100).
 */
-const SECTIONS = [
+const SECTIONS_A = [
   { src: "/figma-assets/work/crisp/row1-cafe.jpg", w: 851, h: 1044, alt: "CRISP café interior with logotype" },
-  { src: "/figma-assets/work/crisp/band-pattern.png", w: 1771, h: 1208, alt: "CRISP pattern — wordmark, croissant marks and ‘artisanal patisserie’ stamps" },
   { src: "/figma-assets/work/crisp/row1-badges.png", w: 848, h: 1045, alt: "CRISP — artisanal patisserie marks" },
+  { src: "/figma-assets/work/crisp/band-pattern.png", w: 1771, h: 1208, alt: "CRISP pattern — wordmark, croissant marks and ‘artisanal patisserie’ stamps" },
   { src: "/figma-assets/work/crisp/instagram-mockup.png", w: 867, h: 1045, alt: "CRISP Instagram feed on a phone" },
   { src: "/figma-assets/work/crisp/business-cards.png", w: 847, h: 1045, alt: "CRISP business cards on a sage background" },
-  { src: "/figma-assets/work/crisp/band-bg.jpg", w: 2404, h: 1633, alt: "CRISP brand showcase" },
-  { src: "/figma-assets/work/crisp/now-open-poster.png", w: 1796, h: 2228, alt: "CRISP ‘We are now open!’ folded poster" },
+  { src: "/figma-assets/work/crisp/band-full.png", w: 1786, h: 1214, alt: "CRISP brand showcase — pastry with the CRISP wordmark" },
+  { src: "/figma-assets/work/crisp/row3-icons.png", w: 869, h: 1045, alt: "CRISP icon set — croissant, coffee and heart line marks" },
 ];
+const POSTER = { src: "/figma-assets/work/crisp/now-open-poster.png", w: 1796, h: 2228, alt: "CRISP ‘We are now open!’ folded poster" };
 
 export function MobileCrispCaseStudy() {
   return (
@@ -29,11 +31,24 @@ export function MobileCrispCaseStudy() {
       className="mx-auto"
       style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
     >
+      {/* Hero brand mark (artboard 89) — projects open on an image. */}
+      <Reveal eager>
+        <Image
+          src="/figma-assets/work/crisp/hero-flat.png"
+          alt="CRISP — artisanal patisserie brand mark"
+          width={1766}
+          height={1218}
+          unoptimized
+          priority
+          className="block h-auto w-full"
+        />
+      </Reveal>
+
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] pb-[36px] text-center">
+        <div className="px-[43px] py-[36px] text-center">
           <p
-            className="font-heading uppercase text-ink"
+            className="font-sans uppercase text-ink"
             style={{ fontSize: "40px", lineHeight: 1, letterSpacing: "0.01em" }}
           >
             {crisp.eyebrow}
@@ -47,9 +62,9 @@ export function MobileCrispCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Full-bleed visual sections. */}
+      {/* Full-bleed visual sections in desktop order. */}
       <div className="flex flex-col gap-[12px] pb-[24px]">
-        {SECTIONS.map((s, i) => (
+        {SECTIONS_A.map((s, i) => (
           <Reveal key={s.src} eager delay={0.03 * i}>
             <Image
               src={s.src}
@@ -61,6 +76,43 @@ export function MobileCrispCaseStudy() {
             />
           </Reveal>
         ))}
+
+        {/* Row 3 right — pastry photo with the circular-stamp overlay,
+            reproduced from the desktop composite (Group 49) using
+            section-relative percentages. */}
+        <Reveal eager>
+          <div
+            className="relative w-full overflow-hidden"
+            style={{ aspectRatio: "438.64 / 524.485" }}
+          >
+            <Image
+              src="/figma-assets/work/crisp/row3-right-photo.jpg"
+              alt="CRISP pastry photograph"
+              width={1670}
+              height={2505}
+              unoptimized
+              className="absolute max-w-none object-cover"
+              style={{ left: "-0.62%", top: "-25.14%", width: "100.62%", height: "126.23%" }}
+            />
+            <img
+              src="/figma-assets/work/crisp/row3-right-overlay.svg"
+              alt=""
+              className="absolute"
+              style={{ left: "26.06%", top: "28.88%", width: "46.98%", height: "40.06%" }}
+            />
+          </div>
+        </Reveal>
+
+        <Reveal eager>
+          <Image
+            src={POSTER.src}
+            alt={POSTER.alt}
+            width={POSTER.w}
+            height={POSTER.h}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
       </div>
     </div>
   );

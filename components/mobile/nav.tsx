@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { nav } from "@/content/home";
+import { contactFAQ } from "@/content/contact";
 
 /*
   Mobile nav (Figma 268:31918 "navi mobile") at x=26 y=47 within 393-wide hero.
@@ -95,17 +96,44 @@ export function MobileNav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
   Full-screen menu overlay — Figma 282:40808 (393 × 852).
   - Cream #fff7f4 background, dark #35221a text/icons
   - Close X at right=30, top=47 (24 × 21)
-  - Centered column at top=243: SMUR logo, 4 links, gap=61
-  - INSTAGRAM / PINTEREST near bottom, italic 15px
+  - Column of SMUR logo + 4 links, gap=61. Figma puts it at top=243, but on
+    real phones the browser chrome eats viewport height and the column sat
+    visibly low (and jumped when the chrome collapsed) — client asked to
+    "move everything higher up", so it now starts at top=140.
+  - INSTAGRAM / PINTEREST near bottom — live links to the studio profiles.
+  - The SMUR logo navigates home (client request).
+
+  HEIGHT: the overlay lives inside the route's `zoom: 100vw/393` wrapper.
+  CSS viewport units (100dvh) resolve against the real viewport and are
+  then scaled by the zoom — on a 430pt iPhone the overlay rendered ~9%
+  taller than the screen and the socials were cut off at the bottom
+  (June 2026 client bug report). The fix computes the design-space height
+  in JS — innerHeight ÷ zoom = innerHeight × 393 / innerWidth — and keeps
+  it in sync as the browser chrome collapses/expands.
 */
 function MobileMenu({ onClose }: { onClose: () => void }) {
+  const [overlayH, setOverlayH] = useState<number | null>(null);
+  useLayoutEffect(() => {
+    const update = () =>
+      setOverlayH((window.innerHeight * 393) / window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    window.visualViewport?.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      window.visualViewport?.removeEventListener("resize", update);
+    };
+  }, []);
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
-      className="fixed inset-0 z-[60]"
-      style={{ backgroundColor: "#fff7f4" }}
+      className="fixed inset-x-0 top-0 z-[60]"
+      style={{
+        backgroundColor: "#fff7f4",
+        height: overlayH !== null ? `${overlayH}px` : "100dvh",
+      }}
     >
       <button
         type="button"
@@ -126,17 +154,19 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
 
       <div
         className="absolute left-1/2 flex flex-col items-center"
-        style={{ top: 243, gap: 61, transform: "translateX(-50%)" }}
+        style={{ top: 140, gap: 61, transform: "translateX(-50%)" }}
       >
-        <Image
-          src="/figma-assets/mobile/smur-logo.svg"
-          alt="SMUR."
-          width={86}
-          height={19}
-          unoptimized
-          className="block"
-          style={{ width: 85.5, height: "auto" }}
-        />
+        <Link href="/" aria-label="SMUR — home" onClick={onClose}>
+          <Image
+            src="/figma-assets/mobile/smur-logo.svg"
+            alt="SMUR."
+            width={86}
+            height={19}
+            unoptimized
+            className="block"
+            style={{ width: 85.5, height: "auto" }}
+          />
+        </Link>
         {nav.links.map((l) => {
           // Shared nav.links target the desktop section ids (#brand-identity,
           // #about), which are display:none on mobile. Point same-page hash
@@ -172,7 +202,23 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           fontSize: 15,
         }}
       >
-        INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
+        <a
+          href={contactFAQ.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-opacity hover:opacity-70"
+        >
+          INSTAGRAM
+        </a>
+        &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+        <a
+          href={contactFAQ.pinterestUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-opacity hover:opacity-70"
+        >
+          PINTEREST
+        </a>
       </p>
     </div>
   );

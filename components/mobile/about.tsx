@@ -1,4 +1,5 @@
 import { about } from "@/content/home";
+import { contactFAQ } from "@/content/contact";
 import { FigmaImage } from "../figma-image";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
@@ -18,7 +19,12 @@ export function MobileAbout() {
       aria-labelledby="m-about-title"
       data-nav-scheme="light"
       className="bg-about"
-      style={{ height: "1021px" }}
+      /* Figma height is 1021 with the socials 49px above the section end.
+         On real iPhones, Safari's collapsed bottom toolbar + home indicator
+         float over the last ~80px of the page, hiding the socials (June 2026
+         client bug report). The section is 60px taller so the socials keep
+         their designed position but have clearance below the page end. */
+      style={{ height: "1081px" }}
     >
       <div
         className="relative mx-auto h-full"
@@ -82,7 +88,8 @@ export function MobileAbout() {
             `bottom` resolve against the top of the section, so the portrait
             briefly rendered over the photo strip above and "popped down" when
             the reveal transform cleared. */}
-        <div className="absolute" style={{ right: "75px", bottom: "122px" }}>
+        {/* 122px in Figma + 60px toolbar clearance (see section comment). */}
+        <div className="absolute" style={{ right: "75px", bottom: "182px" }}>
           <Reveal delay={0.15}>
             <FigmaImage
               src={about.portrait.image.src}
@@ -98,14 +105,33 @@ export function MobileAbout() {
 
         <div
           className="absolute"
-          style={{ left: "16px", right: "16px", bottom: "49px" }}
+          /* 49px in Figma + 60px toolbar clearance (see section comment) —
+             keeps the socials at the same y as the design while the extra
+             section height sits below them. */
+          style={{ left: "16px", right: "16px", bottom: "109px" }}
         >
           <Reveal delay={0.2}>
             <p
               className="font-sans text-center italic text-white"
               style={{ fontSize: "15px", lineHeight: "normal" }}
             >
-              INSTAGRAM&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;PINTEREST
+              <a
+                href={contactFAQ.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-70"
+              >
+                INSTAGRAM
+              </a>
+              &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+              <a
+                href={contactFAQ.pinterestUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-70"
+              >
+                PINTEREST
+              </a>
             </p>
           </Reveal>
         </div>

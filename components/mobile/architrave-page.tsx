@@ -59,7 +59,7 @@ export function MobileArchitraveCaseStudy() {
       <Reveal eager>
         <div className="px-[43px] pb-[36px] text-center">
           <p
-            className="font-heading uppercase text-ink"
+            className="font-sans uppercase text-ink"
             style={{ fontSize: "26px", lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
             {architrave.eyebrow}
@@ -73,10 +73,51 @@ export function MobileArchitraveCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Full-bleed visual sections. */}
+      {/* Full-bleed visual sections in desktop order (June 2026 parity):
+          group80 magazine spread (artboard 83) → row1 banner (SVG) →
+          row2 tiles → big-middle presentation (artboard 87) → pattern. */}
       <div className="flex flex-col gap-[12px] pb-[24px]">
-        {SECTIONS.map((s, i) => (
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/architrave.png"
+            alt="Architrave Studio — ‘Designing the reflection of you’ spread"
+            width={1791}
+            height={1294}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+        <Reveal eager>
+          <img
+            src="/figma-assets/work/architrave/row1.svg"
+            alt="Architrave Studio logotype banner"
+            className="block h-auto w-full"
+          />
+        </Reveal>
+        {SECTIONS.slice(0, 2).map((s, i) => (
           <Reveal key={s.src} eager delay={0.03 * i}>
+            <Image
+              src={s.src}
+              alt={s.alt}
+              width={s.w}
+              height={s.h}
+              unoptimized
+              className="block h-auto w-full"
+            />
+          </Reveal>
+        ))}
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/architrave-anim/frame-presentation.png"
+            alt="Architrave Studio editorial presentation spread"
+            width={1798}
+            height={2217}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+        {SECTIONS.slice(2).map((s) => (
+          <Reveal key={s.src} eager>
             <Image
               src={s.src}
               alt={s.alt}

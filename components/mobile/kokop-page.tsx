@@ -5,20 +5,19 @@ import { kokop } from "@/content/kokop";
 import { Reveal } from "../reveal";
 
 /*
-  Mobile KOKOP (KOKO.P café) case study. KOKOP has no dedicated mobile Figma
-  design, so this is a mobile-native reflow (Lavabo/CRISP-style): a readable
-  native-size intro, then the desktop flat-image showcase sections re-stacked
-  full-bleed at the 393 mobile width. Rendered inside the route's 393 zoom
-  wrapper. (The desktop vector brand-mark hero, the terracotta/logo split
-  panels, the brand-book vector overlays and the final 192-vector typography
-  composition have no clean flat export, so the case study opens on the intro
-  + the flat showcase photographs.)
+  Mobile KOKO.P case study — full desktop parity (June 2026).
+  Desktop section order: hero brand grid (artboards 148_1/149/150/151 as
+  the 2×2 quadrants) → intro → sec1 (salmon logo tile SVG + packaging
+  photo) → café mockup → sec3 (dark logo tile SVG + storefront photo) →
+  brand-book interior (artboard 158) → instagram phone.
+  The final folded-menu composition (desktop section 8) has no flat
+  export — it remains desktop-only.
 */
-const SECTIONS = [
-  { src: "/figma-assets/work/kokop/sec1-photo.jpg", w: 3680, h: 2456, alt: "KOKO.P branded packaging" },
-  { src: "/figma-assets/work/kokop/cafe-storefront.png", w: 1787, h: 1193, alt: "KOKO.P café branding mockup" },
-  { src: "/figma-assets/work/kokop/sec3-photo.jpg", w: 2080, h: 3120, alt: "KOKO.P storefront / brand application" },
-  { src: "/figma-assets/work/kokop/insta-phone.png", w: 1748, h: 2089, alt: "KOKO.P Instagram feed mockup" },
+const HERO_GRID = [
+  { src: "/figma-assets/work/kokop/hero-q1.png", alt: "KOKO.P logo — dark ground" },
+  { src: "/figma-assets/work/kokop/hero-q2.png", alt: "KOKO.P logo — cream ground" },
+  { src: "/figma-assets/work/kokop/hero-q3.png", alt: "KOKO.P logo — terracotta ground" },
+  { src: "/figma-assets/work/kokop/hero-q4.png", alt: "KOKO.P logo — brown ground" },
 ];
 
 export function MobileKokopCaseStudy() {
@@ -28,41 +27,114 @@ export function MobileKokopCaseStudy() {
       className="mx-auto"
       style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
     >
-      {/* Readable intro. */}
+      {/* 2×2 hero brand-mark grid — projects open on an image. */}
       <Reveal eager>
-        <div className="px-[43px] pb-[36px] text-center">
-          <p
-            className="font-heading uppercase text-ink"
-            style={{ fontSize: "40px", lineHeight: 1, letterSpacing: "0.01em" }}
-          >
-            {kokop.eyebrow}
-          </p>
-          {kokop.body.map((para, i) => (
-            <p
-              key={i}
-              className={`${i === 0 ? "mt-[20px]" : "mt-[1em]"} text-ink`}
-              style={{ fontSize: "15px", lineHeight: 1.45 }}
-            >
-              {para}
-            </p>
+        <div className="grid grid-cols-2 gap-[2px]">
+          {HERO_GRID.map((q) => (
+            <Image
+              key={q.src}
+              src={q.src}
+              alt={q.alt}
+              width={870}
+              height={626}
+              unoptimized
+              priority
+              className="block h-auto w-full"
+            />
           ))}
         </div>
       </Reveal>
 
-      {/* Full-bleed visual sections. */}
+      {/* Readable intro. */}
+      <Reveal eager>
+        <div className="px-[43px] py-[36px] text-center">
+          <p
+            className="font-sans uppercase text-ink"
+            style={{ fontSize: "40px", lineHeight: 1, letterSpacing: "0.01em" }}
+          >
+            {kokop.eyebrow}
+          </p>
+          <p
+            className="mt-[20px] text-ink"
+            style={{ fontSize: "15px", lineHeight: 1.45 }}
+          >
+            {kokop.body}
+          </p>
+        </div>
+      </Reveal>
+
+      {/* Full-bleed visual sections in desktop order. */}
       <div className="flex flex-col gap-[12px] pb-[24px]">
-        {SECTIONS.map((s, i) => (
-          <Reveal key={s.src} eager delay={0.03 * i}>
-            <Image
-              src={s.src}
-              alt={s.alt}
-              width={s.w}
-              height={s.h}
-              unoptimized
-              className="block h-auto w-full"
-            />
-          </Reveal>
-        ))}
+        {/* Sec 1 — salmon logo tile (consolidated SVG) + packaging photo. */}
+        <Reveal eager>
+          <img
+            src="/figma-assets/work/kokop/sec1-right-logo.svg"
+            alt="KOKO.P — coffee and snacks logotype on salmon"
+            className="block h-auto w-full"
+          />
+        </Reveal>
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/kokop/sec1-photo.jpg"
+            alt="KOKO.P branded packaging"
+            width={869}
+            height={1048}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/kokop/cafe-storefront.png"
+            alt="KOKO.P café branding mockup"
+            width={1787}
+            height={1193}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+
+        {/* Sec 3 — dark kokopelli tile (consolidated SVG) + storefront. */}
+        <Reveal eager>
+          <img
+            src="/figma-assets/work/kokop/sec3-left-logo.svg"
+            alt="KOKO.P kokopelli mark on dark ground"
+            className="block h-auto w-full"
+          />
+        </Reveal>
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/kokop/sec3-photo.jpg"
+            alt="KOKO.P storefront / brand application"
+            width={874}
+            height={1045}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/kokop/brand-interior.png"
+            alt="KOKO.P café interior with brand applications"
+            width={1794}
+            height={1010}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
+
+        <Reveal eager>
+          <Image
+            src="/figma-assets/work/kokop/insta-phone.png"
+            alt="KOKO.P Instagram feed mockup"
+            width={1748}
+            height={2089}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </Reveal>
       </div>
     </div>
   );

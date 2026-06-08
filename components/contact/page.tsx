@@ -11,6 +11,7 @@ import {
   contactHero,
 } from "@/content/contact";
 import { BouncingArrow } from "../bouncing-arrow";
+import { useContactSubmit } from "./use-contact-submit";
 import { Chevron } from "../chevron";
 import { Reveal } from "../reveal";
 import { TitleMask } from "../title-mask";
@@ -135,9 +136,10 @@ function ContactHero() {
 }
 
 function ContactForm() {
-  // No backend yet (forms are out of scope) — clicking Save & Send just
-  // confirms the action by flipping the button to "SENT".
-  const [sent, setSent] = useState(false);
+  // Submission posts to /api/contact; the button only flips to SENT when the
+  // message is actually delivered (June 2026 client request).
+  const { state, submit } = useContactSubmit();
+  const sent = state === "sent";
   return (
     <section
       data-nav-scheme="dark"
@@ -151,7 +153,7 @@ function ContactForm() {
             className="flex flex-col gap-[44px]"
             onSubmit={(e) => {
               e.preventDefault();
-              setSent(true);
+              void submit(e.currentTarget);
             }}
           >
             {/* Row 1: First + Last name side by side */}
@@ -185,6 +187,7 @@ function ContactForm() {
               ) : f.kind === "checkboxGroup" ? (
                 <CheckboxGroup
                   key={f.id}
+                  id={f.id}
                   label={f.label}
                   options={f.options}
                 />
@@ -196,20 +199,24 @@ function ContactForm() {
                 />
               ),
             )}
-            <div className="mt-[20px] flex justify-center">
+            <div className="mt-[20px] flex flex-col items-center gap-[12px]">
               {/* SAVE & SEND — Figma BUTTON 310:58094, same spec as the home
                   CtaButton (geometry, color, Union arrow). */}
               <button
                 type="submit"
-                disabled={sent}
+                disabled={sent || state === "sending"}
                 className={`group inline-flex items-center gap-[6.498px] rounded-[18.05px] border-[1.444px] border-[#a98a8a] px-[24.548px] py-[5.776px] text-[20.22px] uppercase leading-[1.21] transition-colors ${
                   sent
                     ? "cursor-default bg-ink text-cream"
-                    : "text-[#a18080] hover:bg-ink hover:text-cream"
+                    : state === "sending"
+                      ? "cursor-wait text-[#a18080]"
+                      : "text-[#a18080] hover:bg-ink hover:text-cream"
                 }`}
               >
-                <span>{sent ? "SENT" : contactForm.buttonLabel}</span>
-                {!sent && (
+                <span>
+                  {sent ? "SENT" : state === "sending" ? "SENDING…" : contactForm.buttonLabel}
+                </span>
+                {!sent && state !== "sending" && (
                   <span
                     aria-hidden
                     className="block shrink-0 transition-transform duration-300 group-hover:translate-x-1"
@@ -227,6 +234,14 @@ function ContactForm() {
                   />
                 )}
               </button>
+              {state === "error" && (
+                <p role="alert" className="text-center text-[15px] italic text-accent">
+                  Something went wrong — please try again or email{" "}
+                  <a href="mailto:hello@smur-world.com" className="underline">
+                    hello@smur-world.com
+                  </a>
+                </p>
+              )}
             </div>
           </form>
         </Reveal>
@@ -258,7 +273,8 @@ function FieldText({
       <input
         id={inputId}
         name={id}
-        type="text"
+        type={id === "email" ? "email" : "text"}
+        required={id === "email"}
         placeholder={placeholder}
         className="border-b-[2.113px] border-accent/50 bg-transparent py-[6px] text-[17px] text-accent caret-accent placeholder:text-accent outline-none transition-colors focus:border-accent"
       />
@@ -303,9 +319,11 @@ function FieldTextarea({
 }
 
 function CheckboxGroup({
+  id,
   label,
   options,
 }: {
+  id: string;
   label: string;
   options: readonly string[];
 }) {
@@ -323,6 +341,8 @@ function CheckboxGroup({
               <label className="flex cursor-pointer items-center gap-[14px] text-[16px] italic text-accent">
                 <input
                   type="checkbox"
+                  name={id}
+                  value={opt}
                   checked={isOn}
                   onChange={() =>
                     setChecked((prev) => {

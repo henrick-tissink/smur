@@ -18,9 +18,11 @@ import { Reveal } from "../reveal";
 
   Now a real carousel — prev/next cycle the testimonials pulled from
   "Written content.pdf" (May 2026), mirroring the desktop component.
-  Laid out in flow (not fixed `top`s) with a `min-height` so the longer
-  quotes push the attribution + arrows down instead of overlapping them
-  (same flow-layout fix used on the contact FAQ).
+
+  Layout per client feedback (June 2026): the arrows are PINNED near the
+  bottom corners (left arrow at the left margin, right arrow at the right
+  margin) and never move; the quote + attribution center vertically in the
+  flexible space above them, regardless of quote length.
 */
 export function MobileTestimonial() {
   const [index, setIndex] = useState(0);
@@ -32,28 +34,32 @@ export function MobileTestimonial() {
     <section
       aria-label="Testimonial"
       data-nav-scheme="dark"
-      className="bg-band text-ink"
+      className="flex flex-col bg-band text-ink"
       style={{ minHeight: "522px" }}
     >
-      <div className="mx-auto flex w-full max-w-[393px] flex-col items-center px-[42px] pt-[90px] pb-[80px] text-center">
-        <Reveal key={`q-${index}`}>
-          <p
-            className="whitespace-pre-line text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.33 }}
-          >
-            {t.quote}
-          </p>
-        </Reveal>
-        <Reveal key={`a-${index}`} delay={0.06}>
-          <p
-            className="mt-[30px] font-sans italic text-ink"
-            style={{ fontSize: "20px", lineHeight: "normal" }}
-          >
-            {t.attribution}
-          </p>
-        </Reveal>
+      <div className="mx-auto flex w-full max-w-[393px] flex-1 flex-col">
+        {/* Quote + attribution center in the flexible space above the arrows */}
+        <div className="flex flex-1 flex-col items-center justify-center px-[42px] pt-[40px] pb-[20px] text-center">
+          <Reveal key={`q-${index}`}>
+            <p
+              className="whitespace-pre-line text-ink"
+              style={{ fontSize: "15px", lineHeight: 1.33 }}
+            >
+              {t.quote}
+            </p>
+          </Reveal>
+          <Reveal key={`a-${index}`} delay={0.06}>
+            <p
+              className="mt-[30px] font-sans italic text-ink"
+              style={{ fontSize: "20px", lineHeight: "normal" }}
+            >
+              {t.attribution}
+            </p>
+          </Reveal>
+        </div>
 
-        <div className="mt-[48px] flex items-center justify-center gap-[42px]">
+        {/* Arrows pinned at the bottom corners */}
+        <div className="flex items-center justify-between px-[42px] pb-[90px]">
           <button
             type="button"
             aria-label="Previous testimonial"
