@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "../reveal";
-import { KabinettBottomContent } from "./kabinett-extras/bottom";
-import { KabinettRow3RightContent } from "./kabinett-extras/row3-right";
 
 /*
   Desktop kabinett (Kabinett Wine & Spirits) case study.
@@ -34,17 +32,71 @@ export function KabinettCaseStudy() {
           Frame (273, 139.55), 894.44×645.38. Consolidated SVG.
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/kabinett/hero.svg"
-          alt="Kabinett hero"
+        {/* 2×2 lockup grid — four artboard quadrants color-matched to the
+            hero.svg background rects (TL #2D2D2D, TR #E3E4E5, BL #922E46,
+            BR #DFD3D1). Each quadrant is 434.52×311.509 at its rect origin
+            (relative to the hero box at 272/139.55). */}
+        <div
           className="absolute"
-          style={{
-            left: 272,
-            top: 139.55,
-            width: 894,
-            height: 645.38,
-          }}
-        />
+          style={{ left: 272, top: 139.55, width: 894, height: 645.377 }}
+        >
+          {/* Top-left — dark #2D2D2D (artboard 137) */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 1.07, top: 0, width: 434.52, height: 311.509 }}
+          >
+            <Image
+              src="/figma-assets/work/kabinett/hero-q-dark.png"
+              alt="Kabinett lockup on charcoal"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          {/* Top-right — grey #E3E4E5 (artboard 138) */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 459.92, top: 0.11, width: 434.52, height: 311.509 }}
+          >
+            <Image
+              src="/figma-assets/work/kabinett/hero-q-grey.png"
+              alt="Kabinett lockup on grey"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          {/* Bottom-left — burgundy #922E46 (artboard 139) */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 0, top: 333.868, width: 434.52, height: 311.509 }}
+          >
+            <Image
+              src="/figma-assets/work/kabinett/hero-q-burgundy.png"
+              alt="Kabinett lockup on burgundy"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          {/* Bottom-right — rose #DFD3D1 (artboard 140) */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 459.92, top: 333.868, width: 434.52, height: 311.509 }}
+          >
+            <Image
+              src="/figma-assets/work/kabinett/hero-q-rose.png"
+              alt="Kabinett lockup on rose"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -148,12 +200,19 @@ export function KabinettCaseStudy() {
           Frame (272, 2985), 433.51×586. Consolidated SVG.
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/kabinett/row3-left.svg"
-          alt="Kabinett brand composition"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 272, top: 2985, width: 433.51, height: 586 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/kabinett/row3-left.png"
+            alt="Kabinett Wine & Spirits wordmark on burgundy"
+            width={870}
+            height={1176}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -162,7 +221,21 @@ export function KabinettCaseStudy() {
           + masked photo + mix-blend overlay via
           ./kabinett-extras/row3-right.
           ============================================================ */}
-      <KabinettRow3RightContent />
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 729.52, top: 2985.37, width: 434.62, height: 585.49 }}
+        >
+          <Image
+            src="/figma-assets/work/kabinett/row3-right-flat.png"
+            alt="Kabinett — wine glasses with the logotype overlay"
+            width={872}
+            height={1257}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
 
       {/* ============================================================
           Section 7 — Row 4 (Clip path group 73:39825)
@@ -173,19 +246,13 @@ export function KabinettCaseStudy() {
           className="absolute overflow-hidden"
           style={{ left: 272, top: 3595.78, width: 894, height: 608 }}
         >
-          <img
-            src="/figma-assets/work/kabinett/row4-photo.svg"
-            alt="Kabinett editorial"
-            className="absolute max-w-none"
-            /* Image extends beyond section bounds per Figma inset
-               [72.03% 19.1% 14.17% 17.58%] = (253, 3590) 912×688.
-               Wrapper-relative: left = 253-272 = -19, top = 3590-3596 = -5 */
-            style={{
-              left: -19,
-              top: -5,
-              width: 913, // covers the full 894 wrapper (was 1px short on the right)
-              height: 688,
-            }}
+          <Image
+            src="/figma-assets/work/kabinett/row4-pattern.png"
+            alt="Kabinett repeating logotype pattern"
+            width={1771}
+            height={1221}
+            unoptimized
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -200,10 +267,17 @@ export function KabinettCaseStudy() {
           ============================================================ */}
       <Reveal>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 272, top: 4242.76, width: 894, height: 604 }}
         >
-          <KabinettBottomContent />
+          <Image
+            src="/figma-assets/work/kabinett/bottom-flat.png"
+            alt="Kabinett business cards and brand collateral"
+            width={1793}
+            height={1210}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
         </div>
       </Reveal>
 

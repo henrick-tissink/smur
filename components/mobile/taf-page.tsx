@@ -27,13 +27,44 @@ export function MobileTafCaseStudy() {
       className="mx-auto"
       style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
     >
-      {/* Hero brand grid (consolidated SVG) — projects open on an image. */}
+      {/* Hero brand grid — four quadrant artboards mapped by color:
+         TL #2D2D2D dark (126), TR #EAB5BA pink (127), BR #FF8A80 coral
+         (129), BL #DFD8CE tan (128). */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/taf/hero.svg"
-          alt="TAF — brand mark grid"
-          className="block h-auto w-full"
-        />
+        <div className="grid grid-cols-2">
+          <Image
+            src="/figma-assets/work/taf/hero-q-dark.png"
+            alt="TAF brand mark — dark"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-auto w-full"
+          />
+          <Image
+            src="/figma-assets/work/taf/hero-q-pink.png"
+            alt="TAF brand mark — pink"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-auto w-full"
+          />
+          <Image
+            src="/figma-assets/work/taf/hero-q-tan.png"
+            alt="TAF brand mark — tan"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-auto w-full"
+          />
+          <Image
+            src="/figma-assets/work/taf/hero-q-coral.png"
+            alt="TAF brand mark — coral"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-auto w-full"
+          />
+        </div>
       </Reveal>
 
       {/* Readable intro. */}
@@ -69,11 +100,14 @@ export function MobileTafCaseStudy() {
           </Reveal>
         ))}
 
-        {/* Row 1 right — pink icon tile (consolidated SVG). */}
+        {/* Row 1 right — pink icon tile (flat artboard 132). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/taf/row1-right.svg"
+          <Image
+            src="/figma-assets/work/taf/row1-right.png"
             alt="TAF brand icons on pink"
+            width={870}
+            height={1176}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>

@@ -31,12 +31,66 @@ export function TafCaseStudy() {
           Frame (273, 140), 896.24×649.13. Consolidated SVG.
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/taf/hero.svg"
-          alt="TAF brand hero"
+        <div
           className="absolute"
           style={{ left: 273, top: 140, width: 900, height: 649.13 }}
-        />
+        >
+          {/* Four quadrant artboards mapped by background color (matches
+             hero.svg quadrant fills): TL #2D2D2D dark (126), TR #EAB5BA
+             pink (127), BR #FF8A80 coral (129), BL #DFD8CE tan (128). */}
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 1.38, top: 0, width: 434.52, height: 312.51 }}
+          >
+            <Image
+              src="/figma-assets/work/taf/hero-q-dark.png"
+              alt="TAF brand mark — dark"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 461.72, top: 1.67, width: 434.52, height: 312.51 }}
+          >
+            <Image
+              src="/figma-assets/work/taf/hero-q-pink.png"
+              alt="TAF brand mark — pink"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 461.72, top: 336.61, width: 434.52, height: 312.51 }}
+          >
+            <Image
+              src="/figma-assets/work/taf/hero-q-coral.png"
+              alt="TAF brand mark — coral"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+          <div
+            className="absolute overflow-hidden"
+            style={{ left: 0, top: 336.61, width: 434.52, height: 312.51 }}
+          >
+            <Image
+              src="/figma-assets/work/taf/hero-q-tan.png"
+              alt="TAF brand mark — tan"
+              width={870}
+              height={626}
+              unoptimized
+              className="block h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -89,39 +143,12 @@ export function TafCaseStudy() {
           style={{ left: 273, top: 1254, width: 434.52, height: 587.37 }}
         >
           <Image
-            src="/figma-assets/work/taf/row1-left-photo.jpg"
-            alt="TAF brand photograph"
-            width={2084}
-            height={2811}
+            src="/figma-assets/work/taf/row1-left-flat.png"
+            alt="TAF — cleaning product photo with the logotype overlay"
+            width={867}
+            height={1176}
             unoptimized
-            className="absolute max-w-none"
-            /* Figma inset for the photo within the root frame is
-               [24.08% 47.54% 61.14% 14.84%] — extends beyond the
-               section. Reproduce the offset within the wrapper:
-                 wrapper-relative left = (root left) − (section left)
-                                       = 213.70 − 273 = -59.30
-                 wrapper-relative top  = 1190.04 − 1254 = -63.96 */
-            style={{
-              width: 541.72,
-              height: 730.02,
-              left: -59.30,
-              top: -63.96,
-              objectFit: "cover",
-            }}
-          />
-          {/* Masked overlay graphic positioned within the same section.
-             Wrapper-relative left = 370.66 − 273 = 97.66
-                                top = 1498.91 − 1254 = 244.91 */}
-          <img
-            src="/figma-assets/work/taf/row1-left-overlay.svg"
-            alt=""
-            className="absolute max-w-none"
-            style={{
-              width: 246.52,
-              height: 48.43,
-              left: 97.66,
-              top: 244.91,
-            }}
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -131,17 +158,19 @@ export function TafCaseStudy() {
           Frame (738.52, 1254.66), 434.52×587.37. Consolidated SVG.
           ============================================================ */}
       <Reveal delay={0.05}>
-        <img
-          src="/figma-assets/work/taf/row1-right.svg"
-          alt="TAF brand application"
-          className="absolute"
-          style={{
-            left: 738.52,
-            top: 1254.66,
-            width: 434.48,
-            height: 587.37,
-          }}
-        />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 738.52, top: 1254.66, width: 434.48, height: 587.37 }}
+        >
+          <Image
+            src="/figma-assets/work/taf/row1-right.png"
+            alt="TAF brand application"
+            width={870}
+            height={1176}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -199,41 +228,14 @@ export function TafCaseStudy() {
           style={{ left: 273, top: 4202.03, width: 900, height: 600 }}
         >
           <Image
-            src="/figma-assets/work/taf/bottom/photo.jpg"
-            alt="TAF brand photograph"
-            width={2834}
-            height={1889}
+            src="/figma-assets/work/taf/bottom-full.png"
+            alt="TAF brand campaign — hands holding product with the logotype"
+            width={1794}
+            height={1196}
             unoptimized
             className="block h-full w-full object-cover"
           />
-          {/* 7 vector marks positioned within this section using insets
-             relative to the 899×600 wrapper. */}
-          {taf.bottomVectors.map((v) => (
-            <div key={v.src} className="absolute" style={{ inset: v.inset }}>
-              <img
-                src={`/figma-assets/work/taf/bottom/${v.src}`}
-                alt=""
-                className="absolute inset-0 block h-full w-full"
-                style={{ maxWidth: "none" }}
-              />
-            </div>
-          ))}
         </div>
-      </Reveal>
-
-      {/* Floating brand vector (73:29063) at frame (717.26, 4250.49), 275×87 */}
-      <Reveal>
-        <img
-          src="/figma-assets/work/taf/floating.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 717.26,
-            top: 4250.49,
-            width: 275.25,
-            height: 87.60,
-          }}
-        />
       </Reveal>
     </div>
   );

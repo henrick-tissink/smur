@@ -88,9 +88,12 @@ export function MobileArchitraveCaseStudy() {
           />
         </Reveal>
         <Reveal eager>
-          <img
-            src="/figma-assets/work/architrave/row1.svg"
+          <Image
+            src="/figma-assets/work/architrave/row1.png"
             alt="Architrave Studio logotype banner"
+            width={1794}
+            height={626}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>

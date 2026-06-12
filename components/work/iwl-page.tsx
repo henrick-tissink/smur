@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { iwl, iwlFrame } from "@/content/iwl";
 import { Reveal } from "../reveal";
-import { IwlRow2Content } from "./iwl-extras/row2-content";
 
 /*
   Desktop IWL (Harvard Institute for World Literature) case study.
@@ -134,30 +133,16 @@ export function IwlCaseStudy() {
       {/* RIGHT — burgundy panel with Möbius mark */}
       <Reveal delay={0.05}>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 734, top: 967, width: 435.64, height: 521.96 }}
         >
-          <img
-            src="/figma-assets/work/iwl/row1-panel-bg.svg"
-            alt=""
-            className="absolute inset-0 block h-full w-full"
-            style={{ maxWidth: "none" }}
-          />
-          {/* Möbius brand mark — Layer_2 inside the burgundy panel.
-             Inset within the 436.14 × 521.96 panel:
-               top 8.5% = 44.37, left 35.01% = 152.69,
-               width = 100-35.11-35.01% × 436.14 = 130.32,
-               height = 100-8.5-8.29% × 521.96 = 434.32 */}
-          <img
-            src="/figma-assets/work/iwl/row1-mobius.svg"
+          <Image
+            src="/figma-assets/work/iwl/row1-right.png"
             alt="IWL Möbius mark"
-            className="absolute"
-            style={{
-              left: 152.69,
-              top: 44.37,
-              width: 130.32,
-              height: 434.32,
-            }}
+            width={874}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -196,7 +181,19 @@ export function IwlCaseStudy() {
           positioning wrapper needed.
           ============================================================ */}
       <Reveal>
-        <IwlRow2Content />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 271, top: 2134.75, width: 898.64, height: 491 }}
+        >
+          <Image
+            src="/figma-assets/work/iwl/row2-band.png"
+            alt="IWL business card band — burgundy seal and Delia Ungureanu card"
+            width={1793}
+            height={985}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================

@@ -77,30 +77,17 @@ export function MobileCrispCaseStudy() {
           </Reveal>
         ))}
 
-        {/* Row 3 right — pastry photo with the circular-stamp overlay,
-            reproduced from the desktop composite (Group 49) using
-            section-relative percentages. */}
+        {/* Row 3 right — pastry photo with the circular croissant stamp,
+            using the designer's flat artboard (99_1, stamp baked in). */}
         <Reveal eager>
-          <div
-            className="relative w-full overflow-hidden"
-            style={{ aspectRatio: "438.64 / 524.485" }}
-          >
-            <Image
-              src="/figma-assets/work/crisp/row3-right-photo.jpg"
-              alt="CRISP pastry photograph"
-              width={1670}
-              height={2505}
-              unoptimized
-              className="absolute max-w-none object-cover"
-              style={{ left: "-0.62%", top: "-25.14%", width: "100.62%", height: "126.23%" }}
-            />
-            <img
-              src="/figma-assets/work/crisp/row3-right-overlay.svg"
-              alt=""
-              className="absolute"
-              style={{ left: "26.06%", top: "28.88%", width: "46.98%", height: "40.06%" }}
-            />
-          </div>
+          <Image
+            src="/figma-assets/work/crisp/row3-right-flat.png"
+            alt="CRISP pastry photograph with circular croissant stamp"
+            width={857}
+            height={1044}
+            unoptimized
+            className="block h-auto w-full"
+          />
         </Reveal>
 
         <Reveal eager>

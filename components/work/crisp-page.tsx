@@ -315,12 +315,19 @@ export function CrispCaseStudy() {
           Frame (293, 3811.59), 436×524.
           ============================================================ */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/crisp/row3-left.svg"
-          alt="CRISP brand composition"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 293, top: 3811.59, width: 436.362, height: 524.485 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/crisp/row3-icons.png"
+            alt="CRISP brand composition"
+            width={869}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -340,37 +347,14 @@ export function CrispCaseStudy() {
           }}
         >
           <Image
-            src="/figma-assets/work/crisp/row3-right-photo.jpg"
-            alt="CRISP pastry photograph"
-            width={1670}
-            height={2505}
+            src="/figma-assets/work/crisp/row3-right-flat.png"
+            alt="CRISP pastry photograph with circular croissant stamp"
+            width={857}
+            height={1044}
             unoptimized
-            className="absolute max-w-none"
-            /* Photo container in Figma: 436.282 × 654.451 offset (-2.72, -130.34)
-               within the 430×524 section — scaled ×1.0116 so it covers the
-               grid-snapped 438.64-wide wrapper (right edge at 1193). */
-            style={{
-              width: 441.36,
-              height: 662.07,
-              left: -2.72,
-              top: -131.86,
-              objectFit: "cover",
-            }}
+            className="block h-full w-full object-cover"
           />
         </div>
-      </Reveal>
-      <Reveal eager delay={0.05}>
-        <img
-          src="/figma-assets/work/crisp/row3-right-overlay.svg"
-          alt=""
-          className="absolute"
-          style={{
-            left: 868.69, // 754.36 + 114.33
-            top: 3963.06, // 3811.59 + 151.47
-            width: 206.087,
-            height: 210.111,
-          }}
-        />
       </Reveal>
 
       {/* ============================================================

@@ -65,11 +65,14 @@ export function MobileKokopCaseStudy() {
 
       {/* Full-bleed visual sections in desktop order. */}
       <div className="flex flex-col gap-[12px] pb-[24px]">
-        {/* Sec 1 — salmon logo tile (consolidated SVG) + packaging photo. */}
+        {/* Sec 1 — salmon logo tile (logotype + stacked KOKO.P accent baked in). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/kokop/sec1-right-logo.svg"
+          <Image
+            src="/figma-assets/work/kokop/sec1-right.png"
             alt="KOKO.P — coffee and snacks logotype on salmon"
+            width={875}
+            height={1045}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>
@@ -95,11 +98,14 @@ export function MobileKokopCaseStudy() {
           />
         </Reveal>
 
-        {/* Sec 3 — dark kokopelli tile (consolidated SVG) + storefront. */}
+        {/* Sec 3 — dark kokopelli tile (business card composition baked in). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/kokop/sec3-left-logo.svg"
-            alt="KOKO.P kokopelli mark on dark ground"
+          <Image
+            src="/figma-assets/work/kokop/sec3-left.png"
+            alt="KOKO.P kokopelli mark business card on dark ground"
+            width={875}
+            height={1045}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>

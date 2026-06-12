@@ -3,21 +3,18 @@
 import Image from "next/image";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "../reveal";
-import { ArchitraveBigMiddleContent } from "./architrave-extras/big-middle";
-import { ArchitraveGroup80Content } from "./architrave-extras/group80";
 
 /*
   Desktop ARCHITRAVE (Architrave Studio) case study.
   Figma 71:982, 1440 × 4593, cream #fff7f4. Desktop only.
 
-  Substantial deferrals — this is a vector-dense Figma frame:
-    - Group 80 (895×647): masked photo + 60+ inline vectors. DEFERRED.
-    - Row 2 LEFT (Layer_1, 423×521): 60+ inline vectors. DEFERRED.
-    - Row 2 RIGHT (Group 82, 435×522): 67+ inline vectors + 2 masked
-      photos + small text labels. DEFERRED.
-    - Big middle (Layer_1, 898×1111): too dense to inline. DEFERRED.
-  Hero (4 quadrant badges + top-left), title, Row 1 (consolidated) and
-  Bottom (masked photo) render.
+  The vector-dense sections now use original full-res PNG exports
+  instead of inline vector reconstructions:
+    - Group 80 (895×647)  → architrave.png (1791×1294)
+    - Row 1 (885×312)     → row1.png (1794×626)
+    - Row 2 L/R           → row2-left.png / row2-right.png
+    - Big middle (898×1111) → architrave-anim/frame-presentation.png
+  Hero (4 quadrant badges), title and bottom pattern also render.
 */
 export function ArchitraveCaseStudy() {
   const { width, height } = architraveFrame.desktop;
@@ -103,33 +100,46 @@ export function ArchitraveCaseStudy() {
 
       {/* ============================================================
           Section 3 — Group 80 (first content section, 297:57104)
-          Frame (265, 1184), 895×647. Fully inlined via
-          ./architrave-extras/group80: bg photo + inner inset photo +
-          57 typography/wordmark vectors + mix-blend overlays. Insets
-          are root-frame-relative percent so children mount cleanly.
+          Frame (265, 1184), 895×647. Replaces the ~61-vector + masked
+          photo inline composition with the original full-res spread
+          export (1791×1294). object-cover at the page-grid box; the
+          clean PNG needs no translate/scale mask fudge.
           ============================================================ */}
       <Reveal>
-        {/* Visible (mask-clipped) box renders at [265, 1160] (pixel-measured);
-            map onto the page grid [273.64, 1159.52] (1% h-scale). */}
         <div
-          className="absolute inset-0"
-          style={{ transform: "translateX(11.34px) scaleX(0.98981)", transformOrigin: "0 0" }}
+          className="absolute overflow-hidden"
+          style={{ left: 273.64, top: 1159.52, width: 885.88, height: 647 }}
         >
-          <ArchitraveGroup80Content />
+          <Image
+            src="/figma-assets/work/architrave.png"
+            alt="Architrave Studio — ‘You. Your interior. Your reflection.’ spread"
+            width={1791}
+            height={1294}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
         </div>
       </Reveal>
 
       {/* ============================================================
           Section 4 — Row 1 (Layer_1 73:1699)
-          Frame (263, 1854.70), 895×312. Consolidated SVG.
+          Frame (263, 1854.70), 895×312. Replaces the consolidated SVG
+          with the original taupe logotype banner export (1794×626).
           ============================================================ */}
       <Reveal>
-        <img
-          src="/figma-assets/work/architrave/row1.svg"
-          alt="Architrave Studio brand application"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 273.64, top: 1854.70, width: 885.88, height: 312 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/architrave/row1.png"
+            alt="Architrave Studio brand application"
+            width={1794}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -180,14 +190,25 @@ export function ArchitraveCaseStudy() {
       </Reveal>
 
       {/* ============================================================
-          Section 6 — Big middle (Layer_1 71:2406, 466 assets)
-          Frame (265, 2747.06), 898×1111. Full composition inlined via
-          ./architrave-extras/big-middle: 2 masked interior photos +
-          ~460 typography vectors forming the brand-book layout.
-          Root-frame-relative insets so mounts as direct child.
+          Section 6 — Big middle (Layer_1 71:2406)
+          Frame (265, 2747.06), 898×1111. Replaces the ~466-vector
+          inline composition with the original full-res presentation
+          export (1798×2217). object-cover at the Figma box.
           ============================================================ */}
       <Reveal>
-        <ArchitraveBigMiddleContent />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 265, top: 2747.06, width: 898, height: 1111 }}
+        >
+          <Image
+            src="/figma-assets/work/architrave-anim/frame-presentation.png"
+            alt="Architrave Studio editorial presentation spread"
+            width={1798}
+            height={2217}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================

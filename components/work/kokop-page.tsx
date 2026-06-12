@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { kokop, kokopFrame } from "@/content/kokop";
 import { Reveal } from "../reveal";
-import { KokopSection6Content } from "./kokop-extras/section6";
 import { KokopSection8Content } from "./kokop-extras/section8";
 
 /*
@@ -40,38 +39,72 @@ export function KokopCaseStudy() {
           Section 1 — Top hero (Frame 143:1426, y=140, 894×647)
           Layer_1 (bg quadrants) + Layer_2 (KOKO.P logotypes) stack
           ============================================================ */}
+      {/* 2×2 quadrant grid (mirrors mobile mapping: q1 dark TL, q2 cream TR,
+         q3 terracotta BL, q4 brown BR). Box 891×647.35; each quadrant is
+         half = 445.5 × 323.675, positioned at frame-absolute coords. */}
       <Reveal>
-        <Image
-          src="/figma-assets/work/kokop/hero-grid.svg"
-          alt=""
-          width={894}
-          height={647}
-          unoptimized
-          priority
-          className="absolute"
-          style={{ left: 274.5, top: 140, width: 891, height: 647.35 }}
-        />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 274.5, top: 140, width: 445.5, height: 323.675 }}
+        >
+          <Image
+            src="/figma-assets/work/kokop/hero-q1.png"
+            alt="KOKO.P logo — dark ground"
+            width={870}
+            height={626}
+            unoptimized
+            priority
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
-      {/* Layer_2 (143:1432) has its own bounds inside Frame 143:1426:
-         offset (113.51, 72.13), size 667.41×501.31 — must position at those
-         exact dims, NOT stretch over the full 894×647 quadrant grid (that
-         distorts the logos out of their centered positions). */}
       <Reveal>
-        <Image
-          src="/figma-assets/work/kokop/hero-logos.svg"
-          alt="KOKO.P logotype in four colorways"
-          width={667}
-          height={501}
-          unoptimized
-          priority
-          className="absolute"
-          style={{
-            left: 287 + 113.51,
-            top: 140 + 72.13,
-            width: 667.41,
-            height: 501.31,
-          }}
-        />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 720, top: 140, width: 445.5, height: 323.675 }}
+        >
+          <Image
+            src="/figma-assets/work/kokop/hero-q2.png"
+            alt="KOKO.P logo — cream ground"
+            width={870}
+            height={626}
+            unoptimized
+            priority
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 274.5, top: 463.675, width: 445.5, height: 323.675 }}
+        >
+          <Image
+            src="/figma-assets/work/kokop/hero-q3.png"
+            alt="KOKO.P logo — terracotta ground"
+            width={870}
+            height={626}
+            unoptimized
+            priority
+            className="block h-full w-full object-cover"
+          />
+        </div>
+      </Reveal>
+      <Reveal>
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 720, top: 463.675, width: 445.5, height: 323.675 }}
+        >
+          <Image
+            src="/figma-assets/work/kokop/hero-q4.png"
+            alt="KOKO.P logo — brown ground"
+            width={870}
+            height={626}
+            unoptimized
+            priority
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -110,17 +143,21 @@ export function KokopCaseStudy() {
           Photo on LEFT half + terracotta panel on RIGHT half + KOKO.P
           logo accent inside right panel
           ============================================================ */}
-      {/* Right half — terracotta solid panel (#D1766B) */}
+      {/* Right half — terracotta tile (logotype + stacked KOKO.P accent baked in) */}
       <Reveal delay={0.05}>
-        <Image
-          src="/figma-assets/work/kokop/sec1-right-logo.svg"
-          alt=""
-          width={432}
-          height={515}
-          unoptimized
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 734, top: 1201, width: 431.5, height: 515 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/kokop/sec1-right.png"
+            alt="KOKO.P coffee and snacks logotype on salmon"
+            width={875}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
       {/* Left half — packaging photograph */}
       <Reveal>
@@ -138,18 +175,8 @@ export function KokopCaseStudy() {
           />
         </div>
       </Reveal>
-      {/* KOKO.P logo overlay centered in right panel */}
-      <Reveal delay={0.1}>
-        <Image
-          src="/figma-assets/work/kokop/sec1-accent.svg"
-          alt="KOKO.P logo"
-          width={191}
-          height={353}
-          unoptimized
-          className="absolute"
-          style={{ left: 854, top: 1292, width: 191.22, height: 353.27 }}
-        />
-      </Reveal>
+      {/* accent overlay removed — logotype + stacked KOKO.P mark are baked
+         into sec1-right.png */}
 
       {/* ============================================================
           Section 4 — Café mockup (Group 125, y=1742, 891×595)
@@ -176,15 +203,19 @@ export function KokopCaseStudy() {
           KOKO.P logo on LEFT + storefront photo on RIGHT (masked)
           ============================================================ */}
       <Reveal>
-        <Image
-          src="/figma-assets/work/kokop/sec3-left-logo.svg"
-          alt="KOKO.P brand logo composition"
-          width={437}
-          height={522}
-          unoptimized
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 274.5, top: 2362, width: 436.84, height: 521.96 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/kokop/sec3-left.png"
+            alt="KOKO.P kokopelli mark business card on dark ground"
+            width={875}
+            height={1045}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
       <Reveal delay={0.05}>
         <div
@@ -204,11 +235,24 @@ export function KokopCaseStudy() {
 
       {/* ============================================================
           Section 6 — Brand book layout (Group 122, 297:57937)
-          y=2909, 896×504. Inlined: bg photo + 20 KOKO.P text-label
-          vectors via ./kokop-extras/section6.
+          y=2909, 891×504.44. Full-res café-interior photo with the KOKO.P
+          signage typography baked in (replaces the cropped imgRectangle base
+          + 20 vector text labels).
           ============================================================ */}
       <Reveal>
-        <KokopSection6Content />
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 274.5, top: 2909.08, width: 891, height: 504.44 }}
+        >
+          <Image
+            src="/figma-assets/work/kokop/brand-interior.png"
+            alt="KOKO.P café exterior with branded signage"
+            width={1794}
+            height={1010}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================

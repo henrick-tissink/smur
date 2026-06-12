@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { lavaboFrame } from "@/content/lavabo";
+import { lavabo, lavaboFrame } from "@/content/lavabo";
 import { Reveal } from "../reveal";
 
 /*
@@ -36,13 +36,13 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 0, top: 104, width: 189.99, height: 136.65 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/grid-1.svg"
+            src="/figma-assets/work/lavabo/grid-black.png"
             alt="LAVABO logotype — black ground"
-            width={190}
-            height={137}
+            width={870}
+            height={626}
             unoptimized
             priority
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -52,13 +52,13 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 203.01, top: 104, width: 189.99, height: 136.65 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/grid-2.svg"
+            src="/figma-assets/work/lavabo/grid-sage.png"
             alt="LAVABO logotype — sand ground"
-            width={190}
-            height={137}
+            width={870}
+            height={626}
             unoptimized
             priority
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -68,12 +68,12 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 0, top: 251.2, width: 189.99, height: 136.65 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/grid-3.svg"
+            src="/figma-assets/work/lavabo/grid-blush.png"
             alt="LAVABO logotype — blush ground"
-            width={190}
-            height={137}
+            width={870}
+            height={626}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -83,13 +83,40 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 203.01, top: 251.2, width: 189.99, height: 136.65 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/grid-4.svg"
+            src="/figma-assets/work/lavabo/grid-slate.png"
             alt="LAVABO logotype — slate ground"
-            width={190}
-            height={137}
+            width={870}
+            height={626}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
+        </div>
+      </Reveal>
+
+      {/* Intro eyebrow + body — sits in the gap between the logotype grid
+         and the sink photo, matching every other mobile case study. Text
+         from content/lavabo.ts (same copy as the desktop intro). */}
+      <Reveal>
+        <div
+          className="absolute text-center"
+          style={{ left: 0, top: 440, width: 393, color: "#35221a" }}
+        >
+          <div className="px-[43px]">
+            <p
+              className="italic"
+              style={{
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontWeight: 400,
+                fontSize: 20,
+                lineHeight: 1,
+              }}
+            >
+              {lavabo.eyebrow}
+            </p>
+            <p className="mt-[18px]" style={{ fontSize: 15, lineHeight: 1.45 }}>
+              {lavabo.body}
+            </p>
+          </div>
         </div>
       </Reveal>
 
@@ -117,12 +144,12 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 0, top: 1008.5, width: 393, height: 154.96 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/logotype-band.svg"
+            src="/figma-assets/work/lavabo/logotype-band.png"
             alt=""
-            width={393}
-            height={155}
+            width={1797}
+            height={709}
             unoptimized
-            className="block h-auto w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -134,12 +161,12 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 0, top: 1175.47, width: 393, height: 222.06 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/letterforms-grid.svg"
+            src="/figma-assets/work/lavabo/letterforms-grid.png"
             alt=""
-            width={393}
-            height={222}
+            width={1797}
+            height={1016}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -177,12 +204,12 @@ export function MobileLavaboCaseStudy() {
           style={{ left: 0, top: 1813.12, width: 393, height: 126.28 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mobile/mark.svg"
+            src="/figma-assets/work/lavabo/mark.png"
             alt=""
-            width={393}
-            height={126}
+            width={1796}
+            height={579}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>

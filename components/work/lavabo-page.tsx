@@ -38,13 +38,13 @@ export function LavaboCaseStudy() {
           style={{ left: 272, top: 140, width: 434.52, height: 312.51 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/grid-1.svg"
+            src="/figma-assets/work/lavabo/grid-black.png"
             alt="LAVABO logotype — black ground"
-            width={435}
-            height={313}
+            width={870}
+            height={626}
             unoptimized
             priority
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -54,13 +54,13 @@ export function LavaboCaseStudy() {
           style={{ left: 731.52, top: 140, width: 436.48, height: 312.51 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/grid-2.svg"
+            src="/figma-assets/work/lavabo/grid-sage.png"
             alt="LAVABO logotype — sand ground"
-            width={435}
-            height={313}
+            width={870}
+            height={626}
             unoptimized
             priority
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -70,12 +70,12 @@ export function LavaboCaseStudy() {
           style={{ left: 272, top: 478.51, width: 434.52, height: 312.51 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/grid-3.svg"
+            src="/figma-assets/work/lavabo/grid-blush.png"
             alt="LAVABO logotype — blush ground"
-            width={435}
-            height={313}
+            width={870}
+            height={626}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -85,12 +85,12 @@ export function LavaboCaseStudy() {
           style={{ left: 731.52, top: 477.51, width: 436.48, height: 312.51 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/grid-4.svg"
+            src="/figma-assets/work/lavabo/grid-slate.png"
             alt="LAVABO logotype — slate ground"
-            width={435}
-            height={313}
+            width={870}
+            height={626}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -144,12 +144,12 @@ export function LavaboCaseStudy() {
           style={{ left: 272, top: 1803, width: 896, height: 354.37 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/logotype-band.svg"
+            src="/figma-assets/work/lavabo/logotype-band.png"
             alt=""
-            width={898}
-            height={355}
+            width={1797}
+            height={709}
             unoptimized
-            className="block h-auto w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -161,12 +161,12 @@ export function LavaboCaseStudy() {
           style={{ left: 272, top: 2182, width: 896, height: 507.81 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/letterforms-grid.svg"
+            src="/figma-assets/work/lavabo/letterforms-grid.png"
             alt=""
-            width={898}
-            height={508}
+            width={1797}
+            height={1016}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>
@@ -207,12 +207,12 @@ export function LavaboCaseStudy() {
           style={{ left: 272, top: 3635, width: 896, height: 288.77 }}
         >
           <Image
-            src="/figma-assets/work/lavabo/mark.svg"
+            src="/figma-assets/work/lavabo/mark.png"
             alt=""
-            width={898}
-            height={289}
+            width={1796}
+            height={579}
             unoptimized
-            className="block h-full w-full"
+            className="block h-full w-full object-cover"
           />
         </div>
       </Reveal>

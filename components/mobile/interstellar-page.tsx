@@ -50,46 +50,55 @@ export function MobileInterstellarCaseStudy() {
       </Reveal>
 
       <div className="flex flex-col gap-[12px] pb-[24px]">
-        {/* Row 1 — logo tiles (consolidated SVGs). */}
+        {/* Row 1 — top of the 2×2 logo-lockup grid (artboard exports
+            116_1 charcoal, 117 sage), full-width stacked tiles. */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/interstellar/row1-left.svg"
-            alt="Interstellar brand composition"
+          <Image
+            src="/figma-assets/work/interstellar/lockup-charcoal.png"
+            alt="Interstellar wordmark in white on a charcoal ground"
+            width={870}
+            height={626}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>
         <Reveal eager>
-          <img
-            src="/figma-assets/work/interstellar/row1-right.svg"
-            alt="Interstellar brand composition"
+          <Image
+            src="/figma-assets/work/interstellar/lockup-sage.png"
+            alt="Interstellar wordmark in white with a gold star on a sage ground"
+            width={870}
+            height={626}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>
 
-        {/* Row 2 — full-width band + two label overlays (desktop composite
-            reproduced with section-relative percentages). */}
+        {/* Row 2 — bottom of the grid: light #D6D2C9 (119) LEFT + gold
+            #B08039 (118) RIGHT, side by side. Original artboard exports
+            replace the former single full-width gold band (which
+            mis-painted the left panel gold). */}
         <Reveal eager>
-          <div
-            className="relative w-full"
-            style={{ aspectRatio: "887.2 / 308.87" }}
-          >
-            <img
-              src="/figma-assets/work/interstellar/row2-bg.svg"
-              alt="Interstellar brand application"
-              className="absolute inset-0 block h-full w-full"
-            />
-            <img
-              src="/figma-assets/work/interstellar/row2-overlay1.svg"
-              alt=""
-              className="absolute"
-              style={{ left: "12.51%", top: "41.01%", width: "22.34%", height: "15.98%" }}
-            />
-            <img
-              src="/figma-assets/work/interstellar/row2-overlay2.svg"
-              alt=""
-              className="absolute"
-              style={{ left: "64.62%", top: "41.01%", width: "22.34%", height: "15.98%" }}
-            />
+          <div className="flex w-full gap-[12px]">
+            <div className="min-w-0 flex-1">
+              <Image
+                src="/figma-assets/work/interstellar/lockup-light.png"
+                alt="Interstellar wordmark in black with a gold star on a light warm-grey ground"
+                width={870}
+                height={626}
+                unoptimized
+                className="block h-auto w-full"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <Image
+                src="/figma-assets/work/interstellar/lockup-gold.png"
+                alt="Interstellar wordmark in white on a gold ground"
+                width={870}
+                height={626}
+                unoptimized
+                className="block h-auto w-full"
+              />
+            </div>
           </div>
         </Reveal>
 

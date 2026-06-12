@@ -26,13 +26,44 @@ export function MobileKabinettCaseStudy() {
       className="mx-auto"
       style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
     >
-      {/* Hero (consolidated SVG) — projects open on an image. */}
+      {/* Hero — 2×2 lockup grid (four artboard quadrants color-matched to
+          the desktop hero.svg rects: TL #2D2D2D, TR #E3E4E5, BL #922E46,
+          BR #DFD3D1). Full-bleed, kept at the hero's 894.44×645.377 ratio. */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/kabinett/hero.svg"
-          alt="Kabinett Wine & Spirits — brand mark grid"
-          className="block h-auto w-full"
-        />
+        <div className="grid w-full grid-cols-2" style={{ aspectRatio: "894.44 / 645.377" }}>
+          <Image
+            src="/figma-assets/work/kabinett/hero-q-dark.png"
+            alt="Kabinett lockup on charcoal"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+          <Image
+            src="/figma-assets/work/kabinett/hero-q-grey.png"
+            alt="Kabinett lockup on grey"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+          <Image
+            src="/figma-assets/work/kabinett/hero-q-burgundy.png"
+            alt="Kabinett lockup on burgundy"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+          <Image
+            src="/figma-assets/work/kabinett/hero-q-rose.png"
+            alt="Kabinett lockup on rose"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* Readable intro. */}
@@ -68,11 +99,14 @@ export function MobileKabinettCaseStudy() {
           </Reveal>
         ))}
 
-        {/* Row 3 — KABINETT wordmark tile (consolidated SVG). */}
+        {/* Row 3 — KABINETT wordmark tile (artboard 144). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/kabinett/row3-left.svg"
+          <Image
+            src="/figma-assets/work/kabinett/row3-left.png"
             alt="Kabinett Wine & Spirits wordmark on burgundy"
+            width={870}
+            height={1176}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>
@@ -90,11 +124,14 @@ export function MobileKabinettCaseStudy() {
           </Reveal>
         ))}
 
-        {/* Row 4 — repeating logotype pattern (consolidated SVG). */}
+        {/* Row 4 — repeating logotype pattern (artboard 146). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/kabinett/row4-photo.svg"
+          <Image
+            src="/figma-assets/work/kabinett/row4-pattern.png"
             alt="Kabinett repeating logotype pattern"
+            width={1771}
+            height={1221}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>

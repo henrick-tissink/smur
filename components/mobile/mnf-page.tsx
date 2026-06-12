@@ -71,16 +71,22 @@ export function MobileMnfCaseStudy() {
 
         {/* Row 1 — M monogram tiles (consolidated SVGs). */}
         <Reveal eager>
-          <img
-            src="/figma-assets/work/mnf/row1-left.svg"
+          <Image
+            src="/figma-assets/work/mnf/row1-left.png"
             alt="Manufaktura M monogram — dark ground"
+            width={870}
+            height={626}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>
         <Reveal eager>
-          <img
-            src="/figma-assets/work/mnf/row1-right.svg"
+          <Image
+            src="/figma-assets/work/mnf/row1-right.png"
             alt="Manufaktura M monogram — sage ground"
+            width={870}
+            height={626}
+            unoptimized
             className="block h-auto w-full"
           />
         </Reveal>

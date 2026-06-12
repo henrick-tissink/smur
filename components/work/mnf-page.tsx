@@ -107,12 +107,19 @@ export function MnfCaseStudy() {
           Frame (270, 1753.63), 437.65×299.26. Consolidated SVG.
           ============================================================ */}
       <Reveal eager>
-        <img
-          src="/figma-assets/work/mnf/row1-left.svg"
-          alt="Manufaktura site layout"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 270, top: 1753.63, width: 437.65, height: 299.26 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/mnf/row1-left.png"
+            alt="Manufaktura M monogram — dark ground"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -120,12 +127,19 @@ export function MnfCaseStudy() {
           Frame (731.65, 1753.63), 437.65×299.26. Consolidated SVG.
           ============================================================ */}
       <Reveal eager delay={0.05}>
-        <img
-          src="/figma-assets/work/mnf/row1-right.svg"
-          alt="Manufaktura site layout"
-          className="absolute"
+        <div
+          className="absolute overflow-hidden"
           style={{ left: 731.65, top: 1753.63, width: 437.35, height: 299.26 }}
-        />
+        >
+          <Image
+            src="/figma-assets/work/mnf/row1-right.png"
+            alt="Manufaktura M monogram — sage ground"
+            width={870}
+            height={626}
+            unoptimized
+            className="block h-full w-full object-cover"
+          />
+        </div>
       </Reveal>
 
       {/* ============================================================
@@ -172,50 +186,23 @@ export function MnfCaseStudy() {
 
       {/* ============================================================
           Section 6 — Bottom (Group 27, 71:981)
-          Frame (270, 3937.30), 899×575. Bg photo + mix-blend-multiply
-          overlay + 18 letter vectors spelling the Manufaktura wordmark.
+          Frame (270, 3937.30), 899×575. Full flat artboard 77
+          (1791×1208) with the "MANUFAKTURA STUDIO___" wordmark baked in,
+          replacing the low-res photo + blend overlay + 18 letter vectors.
           ============================================================ */}
       <Reveal eager>
         <div
-          className="absolute"
+          className="absolute overflow-hidden"
           style={{ left: 270, top: 3937.30, width: 899, height: 575 }}
         >
-          {/* Bg photo */}
-          <img
-            src="/figma-assets/work/mnf/bottom/photo.png"
-            alt="Manufaktura Studio architecture"
-            className="absolute"
-            style={{
-              left: 0,
-              top: 2,
-              width: 899,
-              height: 573,
-              objectFit: "cover",
-              maxWidth: "none",
-            }}
+          <Image
+            src="/figma-assets/work/mnf/bottom-full.png"
+            alt="Manufaktura Studio interior with the studio wordmark"
+            width={1791}
+            height={1208}
+            unoptimized
+            className="block h-full w-full object-cover"
           />
-          {/* mix-blend-multiply overlay vector */}
-          <img
-            src="/figma-assets/work/mnf/bottom/blend.svg"
-            alt=""
-            className="absolute inset-0 block h-full w-full"
-            style={{ mixBlendMode: "multiply", maxWidth: "none" }}
-          />
-          {/* 18 letter vectors (Manufaktura wordmark + bottom line) */}
-          {mnf.bottomVectors.map((v) => (
-            <img
-              key={v.src}
-              src={`/figma-assets/work/mnf/bottom/${v.src}`}
-              alt=""
-              className="absolute"
-              style={{
-                left: v.left,
-                top: v.top,
-                width: v.width,
-                height: v.height,
-              }}
-            />
-          ))}
         </div>
       </Reveal>
 
