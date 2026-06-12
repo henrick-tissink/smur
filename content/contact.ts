@@ -106,13 +106,13 @@ export const contactFAQ = {
   myWorkLink: "my work :)",
   socials: "INSTAGRAM   /   PINTEREST",
   instagramUrl: "https://www.instagram.com/smurstudio/",
-  pinterestUrl: "https://pinterest.com/smurstudio/_saved/",
+  pinterestUrl: "https://ro.pinterest.com/smurstudio/_saved/",
   // FAQ strip — dedicated photos from EXPORTS/Let_s work (May 2026).
   // Each thumb links to its case study.
   workThumbs: [
     { src: "/figma-assets/contact/faq-strip/crisp.png", href: "/work/crisp" },
     { src: "/figma-assets/contact/faq-strip/interstellar.png", href: "/work/interstellar" },
     { src: "/figma-assets/contact/faq-strip/kokop.png", href: "/work/kokop" },
-    { src: "/figma-assets/contact/faq-strip/lavabo-1.png", href: "/work/lavabo" },
+    { src: "/figma-assets/contact/faq-strip/taf.png", href: "/work/taf" },
   ],
 } as const;

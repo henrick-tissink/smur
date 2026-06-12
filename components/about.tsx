@@ -105,7 +105,7 @@ export function About() {
               </a>
               &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
               <a
-                href="https://pinterest.com/smurstudio/_saved/"
+                href="https://ro.pinterest.com/smurstudio/_saved/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-opacity hover:opacity-70"

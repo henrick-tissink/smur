@@ -350,40 +350,91 @@ function FAQ() {
         ))}
       </div>
 
-      {/* Photo gallery strip — links to the Work index (June 2026 feedback:
-          the desktop FAQ has this strip; it was missing on mobile). Fills the
-          gap that was previously empty margin above "my work :)". */}
-      <Link
-        href="/work"
-        aria-label="See all my work"
-        className="mt-[80px] flex w-full transition-transform duration-500 hover:scale-[1.01]"
-        style={{ height: 95 }}
+      {/* Work showcase — a 2×2 grid of case-study thumbs with the "my work :)"
+          arrow to its LEFT pointing into the grid. Mirrors the desktop
+          arrow→strip relationship, reflowed for the narrow column so the arrow
+          actually points at the work (June 2026 feedback: on mobile the arrow
+          previously sat below a full-width strip, pointing at nothing). */}
+      <div
+        className="mt-[72px] flex items-center"
+        style={{ paddingLeft: 43, paddingRight: 0 }}
       >
-        {contactFAQ.workThumbs.map((thumb) => (
-          <span key={thumb.src} className="relative block flex-1 overflow-hidden">
-            <Image
-              src={thumb.src}
-              alt=""
-              fill
-              unoptimized
-              sizes="99px"
-              className="object-cover"
-            />
+        {/* arrow + label, vertically centered against the grid */}
+        <Link
+          href="/work"
+          className="flex shrink-0 flex-col text-cream"
+          style={{ width: 108 }}
+        >
+          <BouncingUnionArrow />
+          <span className="mt-[10px] italic" style={{ fontSize: 15.105 }}>
+            {contactFAQ.myWorkLink}
           </span>
-        ))}
-      </Link>
+        </Link>
 
-      {/* my work :) link */}
-      <Link
-        href="/work"
-        className="mt-[60px] flex items-center gap-[8px] text-cream"
-        style={{ marginLeft: 43 }}
-      >
-        <BouncingUnionArrow />
-        <span className="italic" style={{ fontSize: 15.105 }}>
-          {contactFAQ.myWorkLink}
-        </span>
-      </Link>
+        {/* Pinwheel collage (matches the design): top-left + bottom-right are
+            squares, top-right + bottom-left are wider landscape tiles, so the
+            row dividers are offset. No gaps; bleeds flush to the right edge.
+            One flex column of two flex rows; the wide tile in each row is
+            `flex-1` so it absorbs any rounding (no subpixel seams). */}
+        <Link
+          href="/work"
+          aria-label="See all my work"
+          className="flex flex-1 flex-col transition-transform duration-500 hover:scale-[1.01]"
+        >
+          {/* Row 1 — CRISP (square) | INTERSTELLAR (wide) */}
+          <div className="flex" style={{ height: 120 }}>
+            <span
+              className="relative block overflow-hidden"
+              style={{ flex: "0 0 108px" }}
+            >
+              <Image
+                src={contactFAQ.workThumbs[0].src}
+                alt=""
+                fill
+                unoptimized
+                sizes="105px"
+                className="object-cover"
+              />
+            </span>
+            <span className="relative block flex-1 overflow-hidden">
+              <Image
+                src={contactFAQ.workThumbs[1].src}
+                alt=""
+                fill
+                unoptimized
+                sizes="137px"
+                className="object-cover"
+              />
+            </span>
+          </div>
+          {/* Row 2 — KOKO.P (wide) | LAVABO (square) */}
+          <div className="flex" style={{ height: 120 }}>
+            <span className="relative block flex-1 overflow-hidden">
+              <Image
+                src={contactFAQ.workThumbs[2].src}
+                alt=""
+                fill
+                unoptimized
+                sizes="137px"
+                className="object-cover"
+              />
+            </span>
+            <span
+              className="relative block overflow-hidden"
+              style={{ flex: "0 0 108px" }}
+            >
+              <Image
+                src={contactFAQ.workThumbs[3].src}
+                alt=""
+                fill
+                unoptimized
+                sizes="105px"
+                className="object-cover"
+              />
+            </span>
+          </div>
+        </Link>
+      </div>
 
       {/* INSTAGRAM / PINTEREST — live links (June 2026 feedback) */}
       <p
