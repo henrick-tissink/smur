@@ -40,24 +40,28 @@ type Layout = {
 };
 
 const layoutByService: Record<string, Layout> = {
+  // Figma dropdownsTop/imageTop were 275/425 and 329/479; both pulled up by a
+  // per-card delta (18 / 38) to tighten the body→dropdowns gap to ~24px (June
+  // 2026 client request). Image moves up with the dropdowns so the
+  // dropdowns→image spacing is unchanged; the section just gets shorter.
   "brand-identity": {
     textTop: 0,
     bodyTop: 113,
-    dropdownsTop: 275,
-    imageTop: 425, // 1348 - 923
+    dropdownsTop: 257, // was 275
+    imageTop: 407, // was 425 (1348 - 923)
     imageWidth: 307,
     imageHeight: 401,
-    sectionHeight: 826, // 1749 - 923
+    sectionHeight: 808, // was 826
   },
   "naming-positioning": {
     // Group 76 at y=1820 (section). CRISP image at 2299 (rel 479). Section to 2696 (h=876).
     textTop: 0,
     bodyTop: 167,
-    dropdownsTop: 329,
-    imageTop: 479,
+    dropdownsTop: 291, // was 329
+    imageTop: 441, // was 479
     imageWidth: 306,
     imageHeight: 397,
-    sectionHeight: 876,
+    sectionHeight: 838, // was 876
   },
 };
 
