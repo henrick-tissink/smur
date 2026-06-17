@@ -12,19 +12,11 @@
 
   Without RESEND_API_KEY the route returns 503 and the UI shows an error
   with the direct email address — it never pretends to have sent.
+
+  Email content (branded HTML + plain-text fallback) lives in ./email.ts.
 */
 
-const FIELD_LABELS: Record<string, string> = {
-  firstName: "First name",
-  lastName: "Last name",
-  email: "Email address",
-  business: "Business name",
-  interests: "What can I help you with?",
-  brandAbout: "What is your brand about?",
-  deadline: "Ideal deadline",
-  details: "Additional details",
-  source: "How did you find the website?",
-};
+import { buildHtml, buildText, fullName } from "./email";
 
 export async function POST(request: Request) {
   let data: Record<string, unknown>;
@@ -46,18 +38,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Contact form is not configured" }, { status: 503 });
   }
 
-  const lines = Object.entries(FIELD_LABELS)
-    .map(([key, label]) => {
-      const v = data[key];
-      const text = Array.isArray(v) ? v.join(", ") : typeof v === "string" ? v.trim() : "";
-      return text ? `${label}:\n${text}` : null;
-    })
-    .filter(Boolean)
-    .join("\n\n");
-
-  const name = [data.firstName, data.lastName]
-    .filter((v): v is string => typeof v === "string" && v.trim() !== "")
-    .join(" ");
+  const name = fullName(data);
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -70,7 +51,8 @@ export async function POST(request: Request) {
       to: [process.env.CONTACT_TO_EMAIL ?? "hello@smur-world.com"],
       reply_to: email,
       subject: `New project inquiry${name ? ` from ${name}` : ""}`,
-      text: lines || "(empty form)",
+      html: buildHtml(data, name, email),
+      text: buildText(data),
     }),
   });
 
