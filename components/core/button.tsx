@@ -13,9 +13,15 @@ type Props = {
 const base =
   "group inline-flex items-center gap-[10px] px-[26px] py-[13px] " +
   "font-[family-name:var(--font-ui)] text-[14px] uppercase tracking-[0.06em] " +
-  "transition-[background-color,color,transform] duration-200 " +
+  "border-[length:var(--hairline-button)] border-solid " +
+  "transition-[background-color,color,border-color,transform] duration-200 " +
   "ease-[var(--ease-brand)] active:scale-[var(--scale-press)] " +
-  "hover:bg-[var(--color-accent)] hover:text-[var(--color-cream)]";
+  "hover:bg-[var(--color-accent)] hover:text-[var(--color-cream)] hover:border-[var(--color-accent)]";
+
+const variantClasses = {
+  outline: "bg-transparent text-[var(--color-ink)] border-[var(--color-ink)]",
+  solid: "bg-[var(--color-accent)] text-[var(--color-cream)] border-transparent",
+} as const;
 
 export function Button({
   children,
@@ -27,13 +33,9 @@ export function Button({
 }: Props) {
   const style = {
     borderRadius: "var(--radius-pill)",
-    border:
-      variant === "outline"
-        ? "var(--hairline-button) solid var(--color-ink)"
-        : "var(--hairline-button) solid transparent",
-    backgroundColor: variant === "solid" ? "var(--color-accent)" : "transparent",
-    color: variant === "solid" ? "var(--color-cream)" : "var(--color-ink)",
   } as const;
+
+  const classes = `${base} ${variantClasses[variant]} ${className}`;
 
   const content = (
     <>
@@ -44,13 +46,13 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} className={`${base} ${className}`} style={style}>
+      <a href={href} className={classes} style={style}>
         {content}
       </a>
     );
   }
   return (
-    <button type="button" onClick={onClick} className={`${base} ${className}`} style={style}>
+    <button type="button" onClick={onClick} className={classes} style={style}>
       {content}
     </button>
   );

@@ -13,6 +13,13 @@ describe("CSS token layers mirror lib/tokens.ts", () => {
     }
   });
 
+  it("globals.css @theme block declares every palette hex (no drift from tokens.css)", () => {
+    const css = read("../globals.css");
+    for (const hex of Object.values(colors)) {
+      expect(css.toUpperCase()).toContain(hex.toUpperCase());
+    }
+  });
+
   it("motion.css declares the brand easing", () => {
     const css = read("./motion.css");
     expect(css).toContain(motion.ease);

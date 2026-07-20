@@ -4,7 +4,7 @@
   Body 17/1.33; headings 58–84 with tight line-height (0.97–1.21).
 */
 :root {
-  --font-serif: var(--font-dm-serif-display), "Cormorant Garamond", serif;
+  --font-serif: var(--font-dm-serif-display), serif;
   --font-body: var(--font-dm-sans), system-ui, sans-serif;
   --font-ui: var(--font-open-sans), system-ui, sans-serif;
   --font-accent: var(--font-quicksand), system-ui, sans-serif;

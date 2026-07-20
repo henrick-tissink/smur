@@ -28,4 +28,22 @@ describe("Button", () => {
     const { container } = render(<Button trailingArrow>NEXT</Button>);
     expect(container.querySelector("svg")).toBeInTheDocument();
   });
+
+  it("outline variant leaves background unset via inline style so :hover can apply", () => {
+    render(<Button>X</Button>);
+    const el = screen.getByRole("button");
+    const classes = el.className.split(/\s+/);
+    expect(el.style.backgroundColor).toBeFalsy();
+    expect(classes).toContain("hover:bg-[var(--color-accent)]");
+    expect(classes).toContain("hover:text-[var(--color-cream)]");
+  });
+
+  it("solid variant applies the accent background via a class, not inline style", () => {
+    render(<Button variant="solid">X</Button>);
+    const el = screen.getByRole("button");
+    const classes = el.className.split(/\s+/);
+    expect(el.style.backgroundColor).toBeFalsy();
+    expect(classes).toContain("bg-[var(--color-accent)]");
+    expect(classes).toContain("text-[var(--color-cream)]");
+  });
 });
