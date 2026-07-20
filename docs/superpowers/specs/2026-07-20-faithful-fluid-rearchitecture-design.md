@@ -16,7 +16,7 @@ The current build is **high pixel-fidelity, low structural fidelity**. It looks 
 - **No component reuse — the inverse of a design system.** Each work page is bespoke absolute coordinates: `components/work/architrave-extras/big-middle.tsx` is 2,077 lines; `components/work/kokop-extras/section8.tsx` is 944 lines of inlined SVG vectors. Machine transcriptions, effectively un-editable by hand.
 - **Typography baked as SVG.** Headings render as SVG masks (`components/title-mask.tsx`) and some pages inline vector typography (kokop's 192-path `mix-blend-multiply` composition). Heavy, non-editable, weaker a11y/SEO. This existed because the licensed heading font was unavailable.
 - **Tokens partial.** Colors are tokenized (`app/globals.css:13–21`, and they match the spec); spacing, radii, hairlines, and motion are not — they live as scattered magic numbers.
-- **Font divergence.** Spec's display serif is Myanmar MN (currently substituted by DM Serif Display in `app/layout.tsx`). The licensed Myanmar MN / Avenir files are now available and will be self-hosted.
+- **Fonts.** Production (`smur-world.com`) serves only free Google fonts — DM Sans, DM Serif Display, Open Sans, Quicksand (verified from the deployed `@font-face` rules). No Myanmar MN or Avenir is served: the display headlines are SVG letterforms (`TitleMask`) and DM Serif Display substitutes for Myanmar MN in live serif text. The rebuild keeps this exact font set — no licensed fonts, no new webfonts.
 
 The paradox: the very thing that makes it look 100% at 1440 (pixel transcription + zoom) is exactly what makes it brittle.
 
@@ -42,7 +42,7 @@ The paradox: the very thing that makes it look 100% at 1440 (pixel transcription
 |---|----------|--------|
 | Fidelity target | Behaviour at non-design widths | **Faithful + fluid** — matched at 1440/393, graceful reflow between |
 | Scope | Spec granularity | **One unified spec**, implementation **phased** (foundation → Home → work → contact) |
-| Heading font | Serif face | **Licensed Myanmar MN** (self-hosted); Avenir for wordmark/fine print. Newsreader / Nunito Sans as documented fallbacks |
+| Fonts | Typefaces | **Match the live production set** — DM Serif Display (live serif headings), DM Sans (body/eyebrow), Open Sans + Quicksand (minor roles). Display headlines stay SVG letterforms. No licensed fonts, no Myanmar MN/Avenir/Newsreader |
 | Layout engine | Responsive mechanism | **Fluid `clamp()` tokens + CSS grid/flex reflow**, centered max-width-1440 canvas |
 | Vectors (D) | Baked SVG → real text | **Fidelity-first hybrid** — real text only where the licensed fonts reproduce the design 1:1; keep vector art where converting would deviate; retained SVGs carry alt + sr-only text |
 
@@ -60,14 +60,15 @@ The design system's four families as semantic tokens (values already match the c
 Rule: one background per section; the page reads as calm colour blocks stacked vertically.
 
 ### Type
-Role-based scale with fluid `clamp()` interpolation between mobile and desktop sizes:
-- `--font-display` = Myanmar MN (headings, Title Case) — sizes 58–84px, line-height 0.97–1.21.
+Role-based scale with fluid `clamp()` interpolation between mobile and desktop sizes. **Font set = exactly what production serves today** (all free Google fonts via `next/font/google`):
+- **Display headlines** = SVG letterforms (`TitleMask`, the outlined Myanmar MN artwork) — kept, no webfont. Sizes 58–84px, line-height 0.97–1.21.
+- `--font-serif` = DM Serif Display (live serif headings — the Myanmar MN substitute; normal + italic).
 - `--font-body` = DM Sans (body 17px / 1.33; italic mauve eyebrow, lowercase).
-- `--font-ui` = Open Sans (UPPERCASE nav/labels/buttons).
-- `--font-wordmark` = Avenir (the "SMUR." mark, fine print).
-- Minor roles: Cormorant, Quicksand as in source.
+- `--font-ui` = Open Sans (specific spots, e.g. CRISP curve text).
+- `--font-quicksand` = Quicksand (minor, e.g. kabinett address).
+- **Wordmark** = SVG logo asset (no Avenir font); fine print falls back to DM Sans.
 
-Each heading role emits a `clamp(min, fluid, max)` so type scales smoothly across the viewport instead of zooming.
+Each live heading role emits a `clamp(min, fluid, max)` so type scales smoothly across the viewport instead of zooming. Clean up the stray hardcoded `Cormorant:Bold` / `Quicksand:Regular` font-family strings (no matching `@font-face` — they silently fall back).
 
 ### Space
 Tokenize the real layout scale: `6·15·25·30·35·55·61`, section rhythm ~130px, nav outer padding 86px, ~218px content gutter, 430px content columns. Fluid (`clamp`) where a value must scale with viewport; fixed where it's a true constant. Eliminates the ~782 magic numbers.
@@ -98,7 +99,7 @@ Pages become declarative compositions of sections fed by existing content data (
 
 ## 8. Real-text vs vector policy (D — fidelity-first hybrid)
 
-- **Convert to real text** (in licensed fonts) where it reproduces the design faithfully: standard headings, eyebrows, body copy. Retire `TitleMask` for these.
+- **Convert to real text** (DM Serif Display for serif, DM Sans for body/eyebrow) where it reproduces the design faithfully. Note: with no truer Myanmar MN webfont in play, the large display headlines mostly **stay as SVG letterforms** (they're pixel-identical and free); conversion to live text applies to smaller/secondary headings where DM Serif Display matches.
 - **Keep the baked SVG/vector asset** wherever converting would visibly deviate from the design: complex typographic compositions (e.g. kokop's 192-vector `mix-blend-multiply` overlay), brand-book/signage typography that is physically part of a photograph, precise vector art.
 - **Every retained SVG carries `alt` + visually-hidden text** so a11y/SEO do not regress (as `TitleMask` already does).
 - Decision rule, per element: *real text only if it matches the design 1:1; otherwise keep the vector.*
@@ -113,8 +114,9 @@ Pages become declarative compositions of sections fed by existing content data (
 
 ## 10. Fonts logistics
 
-- Self-host **Myanmar MN** (display) and **Avenir** (wordmark/fine print) via `next/font/local`. **Dependency:** the licensed font files must be added to the repo (proposed `fonts/`), supplied by the user.
-- Until supplied, wire **Newsreader** (display) and **Nunito Sans** (wordmark) as documented `next/font/google` fallbacks so implementation is unblocked; swap to local files when available.
+- Keep the **exact font set production already serves**, all via `next/font/google`: **DM Sans** (body/eyebrow, normal + italic), **DM Serif Display** (live serif headings, normal + italic), **Open Sans**, **Quicksand**. No new fonts, no licensed files, no `next/font/local`.
+- **Display headlines stay as SVG letterforms** (`public/figma-assets/titles/*.svg`) — pixel-identical to today and zero licensing.
+- No `fonts/` folder and **no font-file dependency** on the user. Nothing to purchase.
 
 ## 11. Tradeoff (G)
 
@@ -151,11 +153,11 @@ Design site → verification is primarily visual + a11y:
 
 ## 15. Open dependencies
 
-- **Licensed font files** (Myanmar MN, Avenir) from the user. Non-blocking (fallbacks wired) but required for full fidelity.
+- **None.** Fonts match the live production set (no purchase, no files to supply). All assets already exist in the repo.
 
 ## 16. Phasing summary (for the implementation plan)
 
-1. Token foundation + `core/` + font wiring.
+1. Token foundation + `core/` + font wiring (existing Google-font set; no new fonts).
 2. Navigation components.
 3. Home sections + Home page (desktop + mobile) + visual diff.
 4. Work `WorkCard`/`WorkPage` primitives + per-project rebuild + visual diff.
