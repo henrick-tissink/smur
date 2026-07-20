@@ -1,0 +1,20 @@
+/*
+  Font roles map to the next/font CSS variables set in app/layout.tsx.
+  Fluid heading scale: clamp(min @393, preferred, max @1440).
+  Body 17/1.33; headings 58–84 with tight line-height (0.97–1.21).
+*/
+:root {
+  --font-serif: var(--font-dm-serif-display), "Cormorant Garamond", serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-ui: var(--font-open-sans), system-ui, sans-serif;
+  --font-accent: var(--font-quicksand), system-ui, sans-serif;
+
+  /* Fluid type scale (viewport 393 → 1440). */
+  --text-body: 17px;
+  --leading-body: 1.33;
+  --text-eyebrow: 20px;
+  --text-h3: clamp(20px, 1.1rem + 0.6vw, 24px);
+  --text-h2: clamp(34px, 1.6rem + 2.4vw, 58px);
+  --text-display: clamp(48px, 2rem + 4vw, 84px);
+  --leading-display: 1.05; /* within the 0.97–1.21 range */
+}

@@ -1,0 +1,19 @@
+/*
+  Spacing scale from the real layout: 6·15·25·30·35·55·61.
+  Layout metrics: 86px nav padding, ~218px gutter, 430px content column,
+  ~130px section rhythm (fluid so it relaxes on smaller viewports).
+*/
+:root {
+  --space-1: 6px;
+  --space-2: 15px;
+  --space-3: 25px;
+  --space-4: 30px;
+  --space-5: 35px;
+  --space-6: 55px;
+  --space-7: 61px;
+
+  --nav-pad-x: clamp(20px, 5vw, 86px);
+  --gutter: clamp(24px, 15vw, 218px);
+  --col-content: 430px;
+  --space-section: clamp(72px, 9vw, 130px);
+}

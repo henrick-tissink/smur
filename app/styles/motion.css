@@ -1,0 +1,8 @@
+/* Motion tokens — restrained, no bounces (spec §5). */
+:root {
+  --ease-brand: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-card-hover: 520ms;
+  --scale-card-hover: 1.035;
+  --scale-press: 0.985;
+  --opacity-link-dim: 0.55;
+}

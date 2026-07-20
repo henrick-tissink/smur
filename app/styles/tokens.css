@@ -1,0 +1,19 @@
+/* Color + shape tokens — mirror lib/tokens.ts (guarded by tokens.css.test.ts). */
+:root {
+  --color-page: #FFF7F4;
+  --color-ink: #35221A;
+  --color-ink-muted: #6A6660;
+  --color-cream: #FFF7F4;
+  --color-line: #D9D2C8;
+  --color-hero: #CBB3A6;
+  --color-accent: #A98A8A;
+  --color-about: #906553;
+  --color-band: #BBC2B5;
+
+  --radius-pill: 18px;
+  --radius-card: 5px;
+  --radius-media: 0px;
+
+  --hairline-button: 1.44px;
+  --hairline-underline: 2px;
+}
