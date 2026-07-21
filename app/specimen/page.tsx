@@ -1,4 +1,5 @@
 import { Eyebrow, Button, Icon, Wordmark } from "@/components/core";
+import { Nav, MobileNav } from "@/components/navigation";
 import { colors } from "@/lib/tokens";
 
 export default function SpecimenPage() {
@@ -41,6 +42,20 @@ export default function SpecimenPage() {
           <Icon name="hamburger" />
           <Icon name="close" />
         </span>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>navigation</Eyebrow>
+        {/* Nav is position:absolute; give each demo a tall relative band so it sits over a colored ground */}
+        <div style={{ position: "relative", height: 120, marginTop: 12, background: "var(--color-hero)" }}>
+          <Nav scheme="light" />
+        </div>
+        <div style={{ position: "relative", height: 120, marginTop: 12, background: "var(--color-page)", border: "1px solid var(--color-line)" }}>
+          <Nav scheme="dark" />
+        </div>
+        <div style={{ position: "relative", height: 160, marginTop: 12, background: "var(--color-hero)", maxWidth: 393 }}>
+          <MobileNav scheme="dark" />
+        </div>
       </section>
     </main>
   );
