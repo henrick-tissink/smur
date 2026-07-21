@@ -34,6 +34,7 @@ export function FigmaImage({
   crop,
   priority,
   className,
+  fluid,
 }: {
   src: string;
   alt: string;
@@ -47,6 +48,8 @@ export function FigmaImage({
   crop: Crop;
   priority?: boolean;
   className?: string;
+  /** when true, use fluid width (100%, maxWidth, aspect-ratio) instead of fixed px */
+  fluid?: boolean;
 }) {
   const rotated = crop.rotate !== undefined && crop.rotate !== 0;
   const imgStyle: CSSProperties = {
@@ -89,10 +92,14 @@ export function FigmaImage({
     );
   }
 
+  const outerStyle = fluid
+    ? { width: "100%", maxWidth: width, aspectRatio: `${width} / ${height}` }
+    : { width, height };
+
   return (
     <div
       className={`relative overflow-hidden ${className ?? ""}`}
-      style={{ width, height }}
+      style={outerStyle}
     >
       <Image
         src={src}
