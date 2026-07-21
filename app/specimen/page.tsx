@@ -6,6 +6,12 @@ import { ServiceSection } from "@/components/sections/service-section";
 import { ServicesListSection } from "@/components/sections/services-list-section";
 import { MobileServiceSection } from "@/components/sections/mobile-service-section";
 import { MobileServicesListSection } from "@/components/sections/mobile-services-list-section";
+import { Testimonial } from "@/components/sections/testimonial";
+import { MobileTestimonial } from "@/components/sections/mobile-testimonial";
+import { PhotoStrip } from "@/components/sections/photo-strip";
+import { MobilePhotoStrip } from "@/components/sections/mobile-photo-strip";
+import { About } from "@/components/sections/about";
+import { MobileAbout } from "@/components/sections/mobile-about";
 import { services } from "@/content/home";
 import { colors } from "@/lib/tokens";
 
@@ -94,6 +100,33 @@ export default function SpecimenPage() {
       </section>
       <section style={{ marginTop: 40 }}>
         <div style={{ marginTop: 12, width: 393 }}><MobileServicesListSection /></div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>testimonial — desktop</Eyebrow>
+        <div style={{ marginTop: 12 }}><Testimonial /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>testimonial — mobile</Eyebrow>
+        <div style={{ marginTop: 12, width: 393 }}><MobileTestimonial /></div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>photo strip — desktop</Eyebrow>
+        <div style={{ marginTop: 12 }}><PhotoStrip /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>photo strip — mobile</Eyebrow>
+        <div style={{ marginTop: 12, width: 393 }}><MobilePhotoStrip /></div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>about — desktop</Eyebrow>
+        <div style={{ marginTop: 12 }}><About /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>about — mobile</Eyebrow>
+        <div style={{ marginTop: 12, width: 393 }}><MobileAbout /></div>
       </section>
     </main>
   );

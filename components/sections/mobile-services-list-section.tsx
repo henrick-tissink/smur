@@ -31,11 +31,11 @@ function cqw(px: number) {
 */
 export function MobileServicesListSection() {
   const service = services[2];
-  const titleId = `${service.id}-title`;
+  const titleId = `m-${service.id}-title`;
 
   return (
     <section
-      id={service.id}
+      id={`m-${service.id}`}
       aria-labelledby={titleId}
       data-nav-scheme="dark"
       className="w-full"

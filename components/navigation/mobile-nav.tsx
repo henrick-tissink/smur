@@ -20,7 +20,7 @@ export function MobileNav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
         className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-[26px] pt-[32px]"
         style={{ color }}
       >
-        <Link href="/#home" aria-label="SMUR — home" className="block">
+        <Link href="/#m-home" aria-label="SMUR — home" className="block">
           <Wordmark src="/figma-assets/mobile/smur-logo.svg" width={85.5} height={19} />
         </Link>
         <button

@@ -27,6 +27,22 @@ describe("MobileMenu", () => {
     expect(onClose).toHaveBeenCalled();
   });
 
+  it("rewrites same-page hash links to their mobile (m-) section ids", () => {
+    render(<MobileMenu onClose={() => {}} />);
+    // ABOUT (/#about in shared nav content) must target the mobile section.
+    const about = nav.links.find((l) => l.href.startsWith("/#") && l.href.includes("about"));
+    expect(about).toBeDefined();
+    expect(screen.getByRole("link", { name: about!.label })).toHaveAttribute(
+      "href",
+      `/#m-${about!.href.slice(2)}`,
+    );
+    // Non-hash links (e.g. /work, /contact) stay unchanged.
+    const nonHash = nav.links.find((l) => !l.href.startsWith("/#"));
+    if (nonHash) {
+      expect(screen.getByRole("link", { name: nonHash.label })).toHaveAttribute("href", nonHash.href);
+    }
+  });
+
   it("renders the social links", () => {
     render(<MobileMenu onClose={() => {}} />);
     expect(screen.getByRole("link", { name: "INSTAGRAM" })).toBeInTheDocument();

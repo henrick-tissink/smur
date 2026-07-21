@@ -6,7 +6,7 @@ import { MobileNav } from "@/components/navigation/mobile-nav";
 describe("MobileNav", () => {
   it("renders the home-linked wordmark and a menu button", () => {
     render(<MobileNav />);
-    expect(screen.getByRole("link", { name: /SMUR/i })).toHaveAttribute("href", "/#home");
+    expect(screen.getByRole("link", { name: /SMUR/i })).toHaveAttribute("href", "/#m-home");
     expect(screen.getByRole("button", { name: /open menu/i })).toBeInTheDocument();
   });
 

@@ -6,9 +6,9 @@ describe("MobileHero", () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  it("renders the #home hero with headline and body", () => {
+  it("renders the #m-home hero with headline and body", () => {
     const { container } = render(<MobileHero />);
-    expect(container.querySelector("section#home")).toBeInTheDocument();
+    expect(container.querySelector("section#m-home")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/who you are/i)).toBeInTheDocument();
   });

@@ -80,7 +80,7 @@ export function MobileHero() {
 
   return (
     <section
-      id="home"
+      id="m-home"
       aria-label="Hero"
       data-nav-scheme="dark"
       className="w-full"

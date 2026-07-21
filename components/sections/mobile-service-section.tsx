@@ -94,7 +94,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
   const layout = layoutByService[service.id];
   if (!layout) return null;
 
-  const titleId = `${service.id}-title`;
+  const titleId = `m-${service.id}-title`;
   const hasDropdowns = service.dropdowns.length > 0;
   // Gap from the bottom of the (collapsed) dropdowns to the image so the image
   // lands at its Figma y. When a dropdown expands, the flow below it shifts.
@@ -105,7 +105,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
 
   return (
     <section
-      id={service.id}
+      id={`m-${service.id}`}
       aria-labelledby={titleId}
       data-nav-scheme="dark"
       className="w-full"

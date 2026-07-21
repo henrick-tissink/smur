@@ -51,20 +51,29 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         className="flex flex-col items-center"
         style={{ marginTop: "clamp(96px, 20vh, 160px)", gap: "61px" }}
       >
-        <Link href="/#home" aria-label="SMUR — home" onClick={onClose}>
+        <Link href="/#m-home" aria-label="SMUR — home" onClick={onClose}>
           <Wordmark width={86} height={19} />
         </Link>
-        {nav.links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onClose}
-            className="block text-center uppercase transition-opacity hover:opacity-70"
-            style={{ fontFamily: "var(--font-body)", fontSize: `${nav.fontSize}px` }}
-          >
-            {link.label}
-          </Link>
-        ))}
+        {nav.links.map((link) => {
+          // Shared nav.links target the desktop section ids (#brand-identity,
+          // #about), which are display:none on mobile. Point same-page hash
+          // links at the mobile (m-) sections so they scroll to the right
+          // place — mirrors legacy components/mobile/nav.tsx MobileMenu.
+          const href = link.href.startsWith("/#")
+            ? `/#m-${link.href.slice(2)}`
+            : link.href;
+          return (
+            <Link
+              key={link.href}
+              href={href}
+              onClick={onClose}
+              className="block text-center uppercase transition-opacity hover:opacity-70"
+              style={{ fontFamily: "var(--font-body)", fontSize: `${nav.fontSize}px` }}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </div>
 
       <p
