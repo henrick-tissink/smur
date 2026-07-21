@@ -15,4 +15,10 @@ describe("ServicesListSection", () => {
     const cta = screen.getByRole("link", { name: new RegExp(ctaButton, "i") });
     expect(cta).toHaveAttribute("href", "/contact");
   });
+  it("CTA uses the foundation Button treatment, not the legacy inline hover", () => {
+    render(<ServicesListSection />);
+    const cta = screen.getByRole("link", { name: new RegExp(ctaButton, "i") });
+    expect(cta.className).toContain("hover:bg-[var(--color-accent)]");
+    expect(cta.className).not.toContain("hover:opacity-80");
+  });
 });

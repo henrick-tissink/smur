@@ -37,7 +37,7 @@ export function ServicesListSection() {
       }}
     >
       <div className="flex flex-col gap-[clamp(40px,6vw,120px)] md:flex-row md:items-start md:justify-between">
-        <div className="w-full md:w-[430px] md:shrink-0">
+        <div className="w-full md:min-w-0 md:max-w-[430px] md:flex-1">
           <Reveal>
             <span className="eyebrow">{service.eyebrow}</span>
           </Reveal>
@@ -83,7 +83,7 @@ export function ServicesListSection() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.1} className="w-full md:w-auto md:shrink-0">
+        <Reveal delay={0.1} className="w-full md:min-w-0 md:flex-1">
           <div
             className="relative mx-auto overflow-hidden"
             style={{ width: "100%", maxWidth: service.frameWidth, aspectRatio: `${service.frameWidth} / ${service.frameHeight}` }}

@@ -27,12 +27,18 @@ import { ServiceAccordion } from "./service-accordion";
     never renders larger than the source composition, and `service.overlay`
     (CRISP wordmark) is positioned as a percentage of the frame so it tracks
     the image's fluid scaling instead of drifting at fixed px.
+  - Both columns are `md:flex-1 md:min-w-0` (not `shrink-0`) so the row
+    compresses to fit any viewport ≥768px instead of overflowing — two
+    ~430px non-shrinking columns + gap only fit at ~1340px+. The text column
+    caps at `md:max-w-[430px]` and the image wrapper's inner element caps at
+    `maxWidth: service.frameWidth`, so at 1440px both still render at their
+    Figma design size with `justify-between` pushing them to the row edges.
 */
 export function ServiceSection({ service }: { service: Service }) {
   const titleId = `${service.id}-title`;
 
   const text = (
-    <div className="w-full md:w-[430px] md:shrink-0">
+    <div className="w-full md:min-w-0 md:max-w-[430px] md:flex-1">
       <Reveal>
         <span className="eyebrow">{service.eyebrow}</span>
       </Reveal>
@@ -80,7 +86,7 @@ export function ServiceSection({ service }: { service: Service }) {
   );
 
   const image = (
-    <Reveal delay={0.1} className="w-full md:w-auto md:shrink-0">
+    <Reveal delay={0.1} className="w-full md:min-w-0 md:flex-1">
       <div
         className="relative mx-auto"
         style={{ width: "100%", maxWidth: service.frameWidth }}
