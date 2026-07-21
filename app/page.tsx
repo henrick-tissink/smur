@@ -1,50 +1,69 @@
-import { About } from "@/components/about";
-import { Hero } from "@/components/hero";
-import { MobileLayout } from "@/components/mobile";
-import { Nav } from "@/components/nav";
-import { PhotoStrip } from "@/components/photo-strip";
-import { ServiceCard } from "@/components/service-card";
-import { ServicesList } from "@/components/services-list";
-import { Testimonial } from "@/components/testimonial";
 import { services } from "@/content/home";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { Hero } from "@/components/sections/hero";
+import { MobileHero } from "@/components/sections/mobile-hero";
+import { ServiceSection } from "@/components/sections/service-section";
+import { MobileServiceSection } from "@/components/sections/mobile-service-section";
+import { ServicesListSection } from "@/components/sections/services-list-section";
+import { MobileServicesListSection } from "@/components/sections/mobile-services-list-section";
+import { Testimonial } from "@/components/sections/testimonial";
+import { MobileTestimonial } from "@/components/sections/mobile-testimonial";
+import { PhotoStrip } from "@/components/sections/photo-strip";
+import { MobilePhotoStrip } from "@/components/sections/mobile-photo-strip";
+import { About } from "@/components/sections/about";
+import { MobileAbout } from "@/components/sections/mobile-about";
 
 /*
-  Renders BOTH mobile and desktop layouts; CSS visibility toggles which one
-  the user sees based on viewport. Server-rendered so no FOUC.
+  Renders BOTH mobile and desktop trees; CSS visibility (`md:hidden` /
+  `hidden md:block`) toggles which one the user sees. Server-rendered so no
+  FOUC. No `zoom`, no `transform: scale`, no fixed 1440px/393px canvas —
+  every section is fluid/responsive on its own (faithful-fluid rebuild).
 
-  Each layout is wrapped in a CSS `zoom` container so it scales proportionally
-  with the viewport (instead of overflowing or sitting with awkward margins
-  at non-design widths):
-    - Desktop (designed at 1440 wide): zoom = min(1, viewport / 1440)
-      Caps at 1.0 so the layout doesn't grow beyond its native size on
-      ultra-wide displays; scales down between the breakpoint (768) and 1440.
-    - Mobile (designed at 393 wide): zoom = viewport / 393
-      No cap — the design scales freely to fill the viewport from 0 to 767.
+  Desktop sections carry their own internal vertical padding
+  (`--space-section`) baked in, so `<main>` stacks them with correct rhythm
+  with zero extra gap needed here.
 
-  Why `zoom` and not `transform: scale`: `zoom` actually changes the
-  effective box size (no need to manually compute container heights),
-  preserves position: fixed semantics for the nav, and is supported in all
-  modern browsers (Chrome, Safari, Firefox 126+).
+  Mobile sections do NOT carry inter-section spacing (each is a
+  fixed-content block sized to its own Figma height), so the legacy
+  mobile rhythm (marginTop 71/71/71/53/0/0, see former
+  `components/mobile/index.tsx`) is reproduced here fluidly: `clamp()` holds
+  the exact Figma px value at the 393 design width and the mobile breakpoint
+  ceiling (767px), while easing down proportionally on narrower phones
+  instead of collapsing abruptly.
 */
 export default function Home() {
   return (
     <>
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
-        <MobileLayout />
+      {/* Mobile tree — m- ids, shown < md */}
+      <div className="md:hidden">
+        <MobileNav />
+        <main>
+          <MobileHero />
+          <div style={{ marginTop: "clamp(48px, 18.07vw, 71px)" }}>
+            <MobileServiceSection service={services[0]} />
+          </div>
+          <div style={{ marginTop: "clamp(48px, 18.07vw, 71px)" }}>
+            <MobileServiceSection service={services[1]} />
+          </div>
+          <div style={{ marginTop: "clamp(48px, 18.07vw, 71px)" }}>
+            <MobileServicesListSection />
+          </div>
+          <div style={{ marginTop: "clamp(36px, 13.49vw, 53px)" }}>
+            <MobileTestimonial />
+          </div>
+          <MobilePhotoStrip />
+          <MobileAbout />
+        </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "min(1, calc(100vw / 1440px))" }}
-      >
+      {/* Desktop tree — canonical ids, shown >= md */}
+      <div className="hidden md:block">
         <Nav scheme="light" />
         <main>
           <Hero />
-          <ServiceCard service={services[0]} />
-          <ServiceCard service={services[1]} />
-          <ServicesList />
+          <ServiceSection service={services[0]} />
+          <ServiceSection service={services[1]} />
+          <ServicesListSection />
           <Testimonial />
           <PhotoStrip />
           <About />
