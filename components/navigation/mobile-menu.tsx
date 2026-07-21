@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { Wordmark, Icon } from "@/components/core";
 import { nav } from "@/content/home";
@@ -11,13 +12,31 @@ import { contactFAQ } from "@/content/contact";
   innerHeight×393/innerWidth compensation is needed.
 */
 export function MobileMenu({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    // TODO: full focus-trap (move focus into dialog on open, return to trigger on close)
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [onClose]);
+
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
       className="fixed inset-0 z-[60] flex flex-col items-center"
-      style={{ backgroundColor: "var(--color-page)", color: "var(--color-ink)" }}
+      style={{ backgroundColor: "var(--color-cream)", color: "var(--color-ink)" }}
     >
       <button
         type="button"
@@ -41,7 +60,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
             href={link.href}
             onClick={onClose}
             className="block text-center uppercase transition-opacity hover:opacity-70"
-            style={{ fontFamily: "var(--font-body)", fontSize: "17px" }}
+            style={{ fontFamily: "var(--font-body)", fontSize: `${nav.fontSize}px` }}
           >
             {link.label}
           </Link>

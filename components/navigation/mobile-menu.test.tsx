@@ -32,4 +32,25 @@ describe("MobileMenu", () => {
     expect(screen.getByRole("link", { name: "INSTAGRAM" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "PINTEREST" })).toBeInTheDocument();
   });
+
+  it("calls onClose when Escape is pressed", async () => {
+    const onClose = vi.fn();
+    render(<MobileMenu onClose={onClose} />);
+    await userEvent.keyboard("{Escape}");
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it("locks body scroll while mounted and restores it on unmount", () => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "auto";
+
+    const { unmount } = render(<MobileMenu onClose={() => {}} />);
+    expect(document.body.style.overflow).toBe("hidden");
+
+    unmount();
+    expect(document.body.style.overflow).not.toBe("hidden");
+    expect(document.body.style.overflow).toBe("auto");
+
+    document.body.style.overflow = previousOverflow;
+  });
 });

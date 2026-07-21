@@ -31,7 +31,11 @@ export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
         <nav aria-label="Sections">
           <ul
             className="flex items-center uppercase"
-            style={{ gap: `${nav.linkGap}px`, fontFamily: "var(--font-body)", fontSize: "17px" }}
+            style={{
+              gap: `${nav.linkGap}px`,
+              fontFamily: "var(--font-body)",
+              fontSize: `${nav.fontSize}px`,
+            }}
           >
             {nav.links.map((link) => (
               <li key={link.label} className="shrink-0">
