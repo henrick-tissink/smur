@@ -2,6 +2,11 @@ import { Eyebrow, Button, Icon, Wordmark } from "@/components/core";
 import { Nav, MobileNav } from "@/components/navigation";
 import { Hero } from "@/components/sections/hero";
 import { MobileHero } from "@/components/sections/mobile-hero";
+import { ServiceSection } from "@/components/sections/service-section";
+import { ServicesListSection } from "@/components/sections/services-list-section";
+import { MobileServiceSection } from "@/components/sections/mobile-service-section";
+import { MobileServicesListSection } from "@/components/sections/mobile-services-list-section";
+import { services } from "@/content/home";
 import { colors } from "@/lib/tokens";
 
 export default function SpecimenPage() {
@@ -67,6 +72,28 @@ export default function SpecimenPage() {
       <section style={{ marginTop: 40 }}>
         <Eyebrow>hero — mobile</Eyebrow>
         <div style={{ marginTop: 12, width: 393 }}><MobileHero /></div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>service sections — desktop</Eyebrow>
+        <div style={{ marginTop: 12 }}><ServiceSection service={services[0]} /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 12 }}><ServiceSection service={services[1]} /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 12 }}><ServicesListSection /></div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>service sections — mobile</Eyebrow>
+        <div style={{ marginTop: 12, width: 393 }}><MobileServiceSection service={services[0]} /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 12, width: 393 }}><MobileServiceSection service={services[1]} /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 12, width: 393 }}><MobileServicesListSection /></div>
       </section>
     </main>
   );
