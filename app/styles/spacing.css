@@ -12,7 +12,7 @@
   --space-6: 55px;
   --space-7: 61px;
 
-  --nav-pad-x: clamp(20px, 5vw, 86px);
+  --nav-pad-x: clamp(20px, 6vw, 86px);
   --gutter: clamp(24px, 15vw, 218px);
   --col-content: 430px;
   --space-section: clamp(72px, 9vw, 130px);
