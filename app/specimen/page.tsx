@@ -1,5 +1,7 @@
 import { Eyebrow, Button, Icon, Wordmark } from "@/components/core";
 import { Nav, MobileNav } from "@/components/navigation";
+import { Hero } from "@/components/sections/hero";
+import { MobileHero } from "@/components/sections/mobile-hero";
 import { colors } from "@/lib/tokens";
 
 export default function SpecimenPage() {
@@ -56,6 +58,15 @@ export default function SpecimenPage() {
         <div style={{ position: "relative", height: 160, marginTop: 12, background: "var(--color-hero)", maxWidth: 393 }}>
           <MobileNav scheme="dark" />
         </div>
+      </section>
+
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>hero — desktop</Eyebrow>
+        <div style={{ marginTop: 12 }}><Hero /></div>
+      </section>
+      <section style={{ marginTop: 40 }}>
+        <Eyebrow>hero — mobile</Eyebrow>
+        <div style={{ marginTop: 12, width: 393 }}><MobileHero /></div>
       </section>
     </main>
   );
