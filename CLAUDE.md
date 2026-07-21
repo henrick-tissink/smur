@@ -47,19 +47,15 @@ We are reproducing the SMUR Figma design as faithfully as possible — pixel-acc
 
    Rule: **for every component instance you intend to render, call `get_design_context` on it**, not just `get_metadata`. Logos are usually SVG assets — not text approximations. The link set is whatever the designer wrote, not what a "normal nav" would have. Spacing and inner positioning are part of the design, not negotiable.
 
-7. **Reproduce at the design's native width.** The Figma is a fixed 1440px composition with specific pixel positions for every element. Build the desktop layout to match those positions and sizes exactly. Responsive scaling for narrower viewports comes after the 1440 layout matches.
+7. **Reproduce at the design's native width — but build faithful-FLUID, not a fixed canvas.** The Figma is a 1440px desktop / 393px mobile composition with specific pixel positions for every element; those are the target values to match at that design width. But the home page (as of the faithful-fluid rearchitecture) is NOT rendered as a static 1440/393 canvas — it's a responsive build where every section reflows across viewport widths, using tokens/`clamp()`/container queries (see rule 8) to hold the Figma proportions at the design width and scale sanely outside it. Match the pixel positions AT 1440/393 first, then verify the fluid behavior in between and beyond those widths. `/work` and `/contact` still use the older fixed-canvas approach (not yet rebuilt — see rule 8 note).
 
-8. **Use fixed-height containers with absolutely positioned children for sections — not natural flow.** Past mistake (2026-05-20, mobile build): laid out service cards with natural flow (eyebrow + mt-25 + title + mt-35 + body + mt-35 + dropdowns + 80px gap + image). Result: each section was 30-70px taller than Figma intended. Cumulative drift pushed every section below the first off by 60-141px and the body total ended up at 5422 instead of 5281.
+8. **Home sections are tokenized and responsive — pixel-composed sections use the aspect-ratio-stage + container-query pattern; NO `zoom`, NO `transform: scale`.** This supersedes the earlier "fixed-height absolute-positioned, treat as a static canvas" approach. Two patterns now cover `components/sections/*`:
 
-   Browser text wrapping, line-height handling, and padding defaults differ subtly from Figma's text metrics — they accumulate. Don't fight it with margin tuning. Instead:
+   - **Pixel-composed sections (hero, about — where exact Figma pixel positions matter most)**: an outer stage sized with `aspect-ratio` (matching the Figma frame's own W:H ratio) and `container-type: inline-size`, with children positioned using `cqw` (container-query width) units instead of raw px. This scales every child in lockstep with the stage's actual rendered width, so Figma's pixel grid reproduces proportionally at any viewport size — no JS resize listeners, no discrete breakpoint jumps.
+   - **Everything else (service cards, testimonial, photo strip, nav, etc.)**: ordinary flex/grid layout, spaced and sized with `clamp()`-based design tokens (see `lib/tokens.ts` / `app/styles/*`) that hold the Figma value at the design width and ease down/up outside it.
+   - **Forbidden:** CSS `zoom`, `transform: scale(...)` on whole sections, and fixed-height containers with absolutely-positioned pixel children as a substitute for responsiveness — all of these either break at non-design viewport widths or fake fluidity without actually reflowing content.
 
-   - Each section: `position: relative` with explicit `height: <figma section height>px`
-   - Each child block inside: `position: absolute` with `top: <figma y>px left: <figma x>px width: <figma w>px`
-   - Pull the y-coordinates directly from `get_metadata` (subtracting the section's parent y to get relative values)
-
-   Confirmed working on: desktop About section, all 7 mobile sections. The mobile rebuild after this restructure matched Figma's 5281px target exactly. Same pattern should be applied to any new section.
-
-   Bonus from this layout style: catching mistranscribed values is trivial. The mobile hero body had been at `top: 619px` instead of `top: 449px` — visible immediately as a body paragraph overlapping the feature image. With natural flow that bug would have been masked by neighbouring elements shifting.
+   Note: `/work` and `/contact` (and their supporting `components/work/`, `components/contact/`, `components/mobile/*-page.tsx` files) still use the legacy fixed-height/absolute-position approach described in earlier revisions of this rule. They have not been rebuilt faithful-fluid yet — don't "fix" them opportunistically as part of unrelated home-page work; that's a separate, explicit task.
 
 9. **Match the frame's total height.** The HOME frame is 5187px tall (desktop) / 5281px tall (mobile). If our build renders significantly taller or shorter, our section spacing is wrong — revisit per-section heights, not section margins.
 
@@ -99,7 +95,9 @@ We are reproducing the SMUR Figma design as faithfully as possible — pixel-acc
 
 16. **Scope CSS transitions narrowly: prefer `transition-[property]` over `transition-colors`.** Tailwind's `transition-colors` animates color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, AND gradient stops simultaneously. If only one property is changing, `transition-[background-color]` (or whichever) prevents incidental animations on unrelated state changes.
 
-17. **Mobile and desktop in Figma are SEPARATE designs, not responsive variants.** Different assets, different native fill colors, different layouts. Always pull each from its dedicated page and build with independent components — `MobileNav` and `Nav`, `MobileHero` and `Hero`, etc. (Already covered in the Mobile section, but worth restating: a "responsive squeeze" of the desktop is always wrong.)
+17. **Mobile and desktop in Figma are SEPARATE designs — kept as separate components, but no longer separate pages/trees.** Different assets, different native fill colors, different layouts, still hold: pull each from its dedicated Figma page and build/maintain independent components — `MobileHero` and `Hero`, `MobileAbout` and `About`, etc. — never a "responsive squeeze" of the desktop markup.
+
+    What changed in the faithful-fluid rearchitecture: `app/page.tsx` now renders BOTH the mobile and desktop component trees in the same server-rendered HTML and toggles visibility with CSS (`md:hidden` / `hidden md:block`) rather than picking one tree with JS at a breakpoint. Because both trees are in the DOM together, mobile components use `m-`-prefixed ids (and `MobileMenu` rewrites internal links accordingly) to avoid duplicate-id collisions with their desktop counterparts (e.g. two `#services` anchors on one page would be invalid). Foundation tokens (`lib/tokens.ts`, `app/styles/*`) and shared primitives (`components/core/*`) are shared between both trees — only the Figma-driven layout/positioning differs.
 
 ### Dev-server quirks
 
@@ -120,6 +118,16 @@ We are reproducing the SMUR Figma design as faithfully as possible — pixel-acc
 The Figma has a **dedicated mobile design**, not a responsive squeeze of the 1440 desktop. Mobile design is on page `all pages mobile` (`268:2187`); the home frame is `home` (`268:3521`) at **393 × 5281**. Components live on `components mobile` (`268:4639`).
 
 Mobile is in scope. Same fidelity rules apply (rules 1–6 above). Build mobile views as separate components and switch layouts at a Tailwind breakpoint — *don't* try to make desktop components reflow responsively, because the mobile Figma has different proportions, component sizes, and even different sub-layouts (e.g., mobile dropdowns are styled differently from desktop).
+
+### Foundation reference
+
+The home page is built on a shared token/component foundation, not one-off per-section styling:
+
+- `lib/tokens.ts` + `app/styles/*` (`tokens.css`, `typography.css`, `spacing.css`, `motion.css`) — the `clamp()`-based design tokens referenced throughout this doc.
+- `components/core/*` — shared primitives (button, eyebrow, wordmark, icon).
+- `components/navigation/*` — current `Nav`/`MobileNav`/`MobileMenu` (the home page's nav; `components/nav.tsx` and `components/mobile/nav.tsx` are the older versions still used by `/work` and `/contact`).
+- `components/sections/*` — current home sections (hero, about, service/services-list, testimonial, photo-strip, and their `Mobile*` counterparts), superseding the old top-level `components/hero.tsx`, `components/about.tsx`, `components/service-card.tsx`, etc. and the old `components/mobile/*` section files (all retired — see git history for the removal commit).
+- `docs/superpowers/specs/2026-07-20-faithful-fluid-rearchitecture-design.md` and `docs/superpowers/plans/2026-07-21-*.md` — the design spec and implementation plans behind this architecture, useful background before touching `components/sections/*` or the token foundation.
 
 ### Out of scope (do not work on without explicit ask)
 
