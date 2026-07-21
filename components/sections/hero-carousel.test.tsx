@@ -25,10 +25,26 @@ describe("HeroCarousel (fluid)", () => {
   });
 
   it("auto-advances the active slide on the interval", () => {
+    // The active slide is the one whose <Image> has a non-empty `alt`
+    // (the component sets alt={active ? s.alt : ""} on every other slide).
+    // Asserting the active alt actually changes proves the interval is
+    // driving `setIndex` — asserting "exactly one .opacity-100" would pass
+    // even with a dead interval, since exactly one slide is always active.
     const { container } = render(<HeroCarousel />);
-    const activeAtStart = container.querySelectorAll(".opacity-100").length;
+    const getActiveAlt = () =>
+      container.querySelector("img[alt]:not([alt=''])")?.getAttribute("alt");
+
+    const firstAlt = getActiveAlt();
+    expect(firstAlt).toBeTruthy();
+
     act(() => { vi.advanceTimersByTime(1000); });
-    expect(activeAtStart).toBe(1); // exactly one active before and after
-    expect(container.querySelectorAll(".opacity-100").length).toBe(1);
+    const secondAlt = getActiveAlt();
+    expect(secondAlt).toBeTruthy();
+    expect(secondAlt).not.toBe(firstAlt); // advanced to a different slide
+
+    // Advancing through the remaining slides should wrap back to the first.
+    const SLIDE_COUNT = 5;
+    act(() => { vi.advanceTimersByTime(1000 * (SLIDE_COUNT - 1)); });
+    expect(getActiveAlt()).toBe(firstAlt);
   });
 });

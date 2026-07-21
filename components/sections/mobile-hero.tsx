@@ -123,7 +123,7 @@ export function MobileHero() {
                     alt={f.alt}
                     width={1728}
                     height={2304}
-                    priority
+                    preload
                     unoptimized
                     className="absolute object-cover"
                     style={{
