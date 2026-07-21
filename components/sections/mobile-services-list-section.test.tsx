@@ -22,4 +22,10 @@ describe("MobileServicesListSection", () => {
     const { container } = render(<MobileServicesListSection />);
     expect(container.querySelector("section")).toHaveAttribute("data-nav-scheme", "dark");
   });
+
+  it("uses a fluid aspect-ratio stage (so absolutely-positioned children get height)", () => {
+    const { container } = render(<MobileServicesListSection />);
+    const stage = container.querySelector("[data-services-list-stage]") as HTMLElement;
+    expect(stage.style.aspectRatio.replace(/\s/g, "")).toBe("393/526");
+  });
 });

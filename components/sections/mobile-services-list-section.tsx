@@ -5,9 +5,11 @@ import { TitleMask } from "@/components/title-mask";
 // Mobile service title is 45px vs the desktop SVG export's 58px.
 const MOBILE_TITLE_SCALE = 45 / 58;
 
-/** Native stage width the layout px values below were measured against —
- *  same convention as MobileServiceSection: the stage has no fixed
- *  aspect-ratio (auto height), so both axes convert to `cqw`. */
+/** Native stage size the layout px values below were measured against
+ *  (Figma section size 393×526, same as the legacy `height: 526px` build).
+ *  The stage is fully absolutely-positioned children with no in-flow
+ *  content, so it needs an explicit aspect-ratio to get any block height —
+ *  `container-type: inline-size` alone only contains the inline axis. */
 const STAGE_W = 393;
 function cqw(px: number) {
   return `${(px / STAGE_W) * 100}cqw`;
@@ -43,7 +45,7 @@ export function MobileServicesListSection() {
       <div
         data-services-list-stage
         className="relative mx-auto w-full max-w-[393px]"
-        style={{ containerType: "inline-size" }}
+        style={{ containerType: "inline-size", aspectRatio: "393 / 526" }}
       >
         <div
           className="absolute"
