@@ -15,9 +15,9 @@
 
 type Props = {
   src: string;
-  /** Native viewBox width (px) — sets the displayed width too. Can be a number (rendered as px) or a string (e.g. "40.75cqw"). */
+  /** Displayed width. A number is rendered as px (from the SVG's native viewBox width); a string is used verbatim as a CSS length (e.g. "40.75cqw"). */
   width: number | string;
-  /** Native viewBox height (px). Can be a number (rendered as px) or a string (e.g. "40.75cqw"). */
+  /** Displayed height. A number is rendered as px (from the SVG's native viewBox height); a string is used verbatim as a CSS length (e.g. "40.75cqw"). */
   height: number | string;
   /** Accessible label — also rendered as visually-hidden text. */
   alt: string;
@@ -51,8 +51,8 @@ export function TitleMask({
 }: Props) {
   const style: React.CSSProperties = {
     display: "inline-block",
-    width: len(width) as any,
-    height: len(height) as any,
+    width: len(width),
+    height: len(height),
     WebkitMaskImage: `url(${src})`,
     maskImage: `url(${src})`,
     WebkitMaskRepeat: "no-repeat",
