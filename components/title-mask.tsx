@@ -15,10 +15,10 @@
 
 type Props = {
   src: string;
-  /** Native viewBox width (px) — sets the displayed width too. */
-  width: number;
-  /** Native viewBox height (px). */
-  height: number;
+  /** Native viewBox width (px) — sets the displayed width too. Can be a number (rendered as px) or a string (e.g. "40.75cqw"). */
+  width: number | string;
+  /** Native viewBox height (px). Can be a number (rendered as px) or a string (e.g. "40.75cqw"). */
+  height: number | string;
   /** Accessible label — also rendered as visually-hidden text. */
   alt: string;
   /** Heading level. Pass `null` to render a plain <span>. Default: 2. */
@@ -35,6 +35,10 @@ type Props = {
   className?: string;
 };
 
+const len = (v: number | string): string => {
+  return typeof v === "number" ? `${v}px` : v;
+};
+
 export function TitleMask({
   src,
   width,
@@ -47,8 +51,8 @@ export function TitleMask({
 }: Props) {
   const style: React.CSSProperties = {
     display: "inline-block",
-    width: `${width}px`,
-    height: `${height}px`,
+    width: len(width) as any,
+    height: len(height) as any,
     WebkitMaskImage: `url(${src})`,
     maskImage: `url(${src})`,
     WebkitMaskRepeat: "no-repeat",
@@ -74,7 +78,7 @@ export function TitleMask({
 
   const Mask = (
     <>
-      <span aria-hidden style={style} className={className} />
+      <span aria-hidden style={style} className={className} data-title-mask />
       <span style={visuallyHidden}>{alt}</span>
     </>
   );
