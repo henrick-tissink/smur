@@ -1,13 +1,18 @@
-const SRC = "/figma-assets/smur-logo.svg";
-
 type Props = {
   className?: string;
   width?: number;
   height?: number;
   title?: string;
+  src?: string;
 };
 
-export function Wordmark({ className, width = 108, height = 24, title = "SMUR" }: Props) {
+export function Wordmark({
+  className,
+  width = 108,
+  height = 24,
+  title = "SMUR",
+  src = "/figma-assets/smur-logo.svg",
+}: Props) {
   return (
     <span
       role="img"
@@ -18,8 +23,8 @@ export function Wordmark({ className, width = 108, height = 24, title = "SMUR" }
         width: `${width}px`,
         height: `${height}px`,
         backgroundColor: "currentColor",
-        WebkitMaskImage: `url(${SRC})`,
-        maskImage: `url(${SRC})`,
+        WebkitMaskImage: `url(${src})`,
+        maskImage: `url(${src})`,
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
         WebkitMaskSize: "contain",

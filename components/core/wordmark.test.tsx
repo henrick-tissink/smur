@@ -20,4 +20,16 @@ describe("Wordmark", () => {
     const el = screen.getByRole("img", { name: "SMUR" });
     expect(el).toHaveStyle({ width: "108px", height: "24px" });
   });
+
+  it("defaults to the desktop logo asset", () => {
+    render(<Wordmark />);
+    const el = screen.getByRole("img", { name: "SMUR" });
+    expect((el as HTMLElement).style.maskImage).toContain("/figma-assets/smur-logo.svg");
+  });
+
+  it("accepts a custom src (e.g. the mobile logo)", () => {
+    render(<Wordmark src="/figma-assets/mobile/smur-logo.svg" />);
+    const el = screen.getByRole("img", { name: "SMUR" });
+    expect((el as HTMLElement).style.maskImage).toContain("/figma-assets/mobile/smur-logo.svg");
+  });
 });
