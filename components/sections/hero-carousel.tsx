@@ -1,0 +1,139 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+/*
+  HeroCarousel (fluid) — ported from components/hero-extras/hero-carousel.tsx.
+
+  Reproduces the HERO component set's animation (Figma file
+  UGvU1B8yP5Pa7vQmneV0Cz, component set 165:26896 "HERO", variants Frame 7–12).
+
+  The prototype auto-advances a single HERO instance through its variants. Each
+  variant keeps the beige hero background and places ONE project showcase at its
+  own position + size on the canvas (NOT a shared crop box). So each slide here
+  is absolutely positioned at the showcase's measured frame coordinates (in the
+  native 1440×869 hero space) and we crossfade between them.
+
+  Positions were measured by pixel-scanning the rendered variant set; aspect
+  ratios matched each designer-exported artboard within ~2%, so object-contain
+  shows the full artwork with the beige hero filling any slack.
+
+  FLUID PORT: the legacy component positions each slide in raw px (matching the
+  fixed 1440×869 stage). This component is designed to live inside a fluid,
+  aspect-ratio-locked hero stage, so each slide's px box is converted to a
+  percentage of that 1440×869 stage via `pct()` below. The SLIDES data table
+  stays in px (readable, easy to cross-check against the Figma) — only the
+  inline style computation differs from the legacy file.
+
+  IMAGE OPTIMIZATION — intentionally NOT `unoptimized`. CLAUDE.md rule 3 mandates
+  `unoptimized` for Figma images, but that rule exists for percent-CROP fills
+  (`w-[207.98%] left-[-75.11%]`) where the rendered width exceeds the frame and
+  `sizes` would under-describe it, causing the optimizer to downsample. That
+  cannot happen here: each showcase is object-contain inside a fixed-width box,
+  so rendered width <= box width always, and `sizes={w}px` is an exact upper
+  bound. Letting Next optimize turns ~9MB of source PNG into a few hundred KB of
+  DPR-aware AVIF/WebP sourced from the full-res originals — this is what fixes
+  the "carousel stutters at the start" symptom (un-preloaded multi-MB PNGs not
+  ready by the first crossfade). Off-screen frames load eagerly (cheap now) so
+  no crossfade ever waits on a download.
+
+  NOTE: the component set has 6 variants, but the designer's "animation header"
+  export folder contains only 5 artboards. Frame 10 (a brand-collateral spread)
+  has no exported asset yet, so it is omitted below — see SLIDES gap at frame 10.
+*/
+
+/** Native hero stage the px coordinates below were measured against. */
+const STAGE_W = 1440;
+const STAGE_H = 869;
+
+/** Converts a px value on the STAGE_W×STAGE_H stage to a CSS percentage string. */
+function pctX(px: number) {
+  return `${(px / STAGE_W) * 100}%`;
+}
+function pctY(px: number) {
+  return `${(px / STAGE_H) * 100}%`;
+}
+
+type Slide = {
+  /** Figma variant this reproduces (Frame 7–12). */
+  frame: number;
+  src: string;
+  alt: string;
+  /** showcase box in native 1440×869 hero coordinates */
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  /** object-position override — edge-flush slides pin the artwork to the
+      hero edge so object-contain slack can't reopen a sliver of beige. */
+  objectPos?: string;
+};
+
+const SLIDES: Slide[] = [
+  // The pixel-scanned positions read each box 7–10px short of the hero's
+  // right/bottom edges (threshold shrink on antialiased edges). The
+  // interstellar + kokop showcases sit flush against the canvas edge in the
+  // design, so their boxes are pinned to x+w=1440 (and y+h=869 for frame 7).
+  { frame: 7, src: "/figma-assets/hero-carousel/02-interstellar.png", alt: "INTERSTELLAR — real-estate brand & website", x: 1138, y: 370, w: 302, h: 499, objectPos: "right bottom" },
+  { frame: 8, src: "/figma-assets/hero-carousel/05-interst.png", alt: "INTERSTELLAR — editorial photography", x: 644, y: 118, w: 292, h: 266 },
+  { frame: 9, src: "/figma-assets/hero-carousel/03-kokop.png", alt: "KOKO.P — coffee + snacks brand", x: 1121, y: 118, w: 319, h: 388, objectPos: "right center" },
+  // frame 10 — brand-collateral spread: asset missing from the export drop.
+  { frame: 11, src: "/figma-assets/hero-carousel/04-taf.png", alt: "TAF — brand campaign", x: 681, y: 496, w: 424, h: 286 },
+  { frame: 12, src: "/figma-assets/hero-carousel/01-crisp.png", alt: "CRISP — bakery brand identity", x: 895, y: 226, w: 328, h: 388 },
+];
+
+const INTERVAL_MS = 1000;
+
+export function HeroCarousel() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length);
+    }, INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  return (
+    <div
+      className="absolute inset-0"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      aria-roledescription="carousel"
+      aria-label="Project showcase"
+    >
+      {SLIDES.map((s, i) => {
+        const active = i === index;
+        return (
+          <div
+            key={s.frame}
+            className={`absolute transition-opacity duration-[180ms] ease-out ${
+              active ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ left: pctX(s.x), top: pctY(s.y), width: pctX(s.w), height: pctY(s.h) }}
+            aria-hidden={!active}
+          >
+            <Image
+              src={s.src}
+              alt={active ? s.alt : ""}
+              fill
+              sizes={`${s.w}px`}
+              quality={90}
+              // Next 16: `priority` is deprecated in favour of `preload`. The
+              // first frame is the hero LCP, so preload it (injects a <link> in
+              // <head>). The rest load eagerly — small after optimization — so
+              // every later frame is decoded before its 4s crossfade.
+              preload={i === 0}
+              loading={i === 0 ? undefined : "eager"}
+              className="object-contain"
+              style={{ objectPosition: s.objectPos ?? "center" }}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
