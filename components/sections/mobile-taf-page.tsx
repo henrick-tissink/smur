@@ -1,15 +1,30 @@
-"use client";
-
 import Image from "next/image";
 import { taf } from "@/content/taf";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/reveal";
 
 /*
-  Mobile TAF case study — full desktop parity (June 2026).
+  Faithful-fluid mobile TAF case study — full desktop parity (June 2026).
+  Ported from components/mobile/taf-page.tsx (MobileTafCaseStudy) to
+  Recipe B (container-query flow): the legacy root was a fixed
+  `width: "393px"` canvas scaled by the route's `zoom` wrapper; here the
+  root is a fluid `w-full` box with `containerType: "inline-size"` and
+  every fixed px value (paddingTop, section padding/margin/gap, font
+  sizes) expressed as `mcqw(N)` on the 393-wide legacy basis, so `1cqw`
+  == 1% of the root's rendered width — reproducing the old zoom's
+  proportional scaling without a transform.
+
+  content/taf.ts has no `tafFrame.mobile`, so M_W = 393 (the legacy
+  mobile canvas width) per the task brief.
+
   Desktop section order: hero brand grid (consolidated SVG) → intro →
   row1 (product photo with logo overlay, artboard 130) → row1 right pink
   tile (SVG) → fabric band (134) → website (134_1) → bottom campaign
   shot with the logotype (artboard 135).
+
+  Images / grid / flex flow / Reveal / unoptimized are all unchanged from
+  the legacy component — only fixed-px paddings/margins/font-sizes
+  convert to mcqw. Unitless lineHeight and the "0.01em" letterSpacing
+  stay as-is (em values don't need conversion).
 */
 const SECTIONS = [
   { src: "/figma-assets/work/taf/row1-left-flat.png", w: 867, h: 1176, alt: "TAF — cleaning product photo with the logotype overlay" },
@@ -20,12 +35,22 @@ const SECTIONS_B = [
   { src: "/figma-assets/work/taf/bottom-full.png", w: 1794, h: 1196, alt: "TAF brand campaign — hands holding product with the logotype" },
 ];
 
+const M_W = 393; // legacy mobile canvas width
+
+function mcqw(px: number) {
+  return `${(px / M_W) * 100}cqw`;
+}
+
 export function MobileTafCaseStudy() {
   return (
     <div
       data-nav-scheme="dark"
-      className="mx-auto"
-      style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
+      className="mx-auto w-full"
+      style={{
+        containerType: "inline-size",
+        backgroundColor: "#fff7f4",
+        paddingTop: mcqw(100), // was 100px
+      }}
     >
       {/* Hero brand grid — four quadrant artboards mapped by color:
          TL #2D2D2D dark (126), TR #EAB5BA pink (127), BR #FF8A80 coral
@@ -69,16 +94,19 @@ export function MobileTafCaseStudy() {
 
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] py-[36px] text-center">
+        <div
+          className="text-center"
+          style={{ paddingLeft: mcqw(43), paddingRight: mcqw(43), paddingTop: mcqw(36), paddingBottom: mcqw(36) }}
+        >
           <p
             className="font-sans uppercase text-ink"
-            style={{ fontSize: "40px", lineHeight: 1, letterSpacing: "0.01em" }}
+            style={{ fontSize: mcqw(40), lineHeight: 1, letterSpacing: "0.01em" }}
           >
             {taf.eyebrow}
           </p>
           <p
-            className="mt-[20px] text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.45 }}
+            className="text-ink"
+            style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
             {taf.body}
           </p>
@@ -86,7 +114,7 @@ export function MobileTafCaseStudy() {
       </Reveal>
 
       {/* Full-bleed visual sections in desktop order. */}
-      <div className="flex flex-col gap-[12px] pb-[24px]">
+      <div className="flex flex-col" style={{ gap: mcqw(12), paddingBottom: mcqw(24) }}>
         {SECTIONS.map((s) => (
           <Reveal key={s.src} eager>
             <Image
