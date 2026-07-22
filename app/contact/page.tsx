@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { DesktopContactPage } from "@/components/contact/page";
-import { MobileContactPage } from "@/components/mobile/contact-page";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { ContactHero } from "@/components/sections/contact-hero";
+import { ContactForm } from "@/components/sections/contact-form";
+import { ContactFAQ } from "@/components/sections/contact-faq";
+import { MobileContactHero } from "@/components/sections/mobile-contact-hero";
+import { MobileContactForm } from "@/components/sections/mobile-contact-form";
+import { MobileContactFAQ } from "@/components/sections/mobile-contact-faq";
 
 export const metadata: Metadata = {
   title: "Let's Work Together — SMUR",
@@ -11,30 +15,37 @@ export const metadata: Metadata = {
 };
 
 /*
-  /contact — "Work With Me" inquiry page. Same dual-layout + viewport-zoom
-  pattern as /work. Figma frames:
-    desktop 193:1383 (WORK WE ME), 1440 × 3093, sage hero + cream form + brown FAQ
-    mobile  282:39442 (work w me), 393 × 2683
+  Renders BOTH mobile and desktop trees; CSS visibility (`md:hidden` /
+  `hidden md:block`) toggles which one the user sees. Server-rendered so no
+  FOUC. No `zoom`, no `transform: scale`, no fixed 1440px/393px canvas —
+  every section is fluid/responsive on its own (faithful-fluid rebuild).
+  Same pattern as `app/page.tsx`.
+
+  Both mobile and desktop Contact sections (Form, FAQ) already carry their
+  own internal vertical padding (`var(--space-section)`), so `<main>` stacks
+  them with correct rhythm with zero extra gap needed here — unlike the home
+  mobile tree, which needed explicit `clamp()` margin wrappers because its
+  mobile sections were fixed-height Figma blocks with no self-padding.
 */
 export default function ContactRoute() {
   return (
     <>
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
+      {/* Mobile tree — shown < md */}
+      <div className="md:hidden">
         <MobileNav scheme="light" />
         <main>
-          <MobileContactPage />
+          <MobileContactHero />
+          <MobileContactForm />
+          <MobileContactFAQ />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "min(1, calc(100vw / 1440px))" }}
-      >
+      {/* Desktop tree — shown >= md */}
+      <div className="hidden md:block">
         <Nav scheme="light" />
         <main>
-          <DesktopContactPage />
+          <ContactHero />
+          <ContactForm />
+          <ContactFAQ />
         </main>
       </div>
     </>
