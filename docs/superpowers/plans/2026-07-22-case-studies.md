@@ -137,7 +137,9 @@ describe("SwsCaseStudy (faithful-fluid)", () => {
     const { container } = render(<MobileSwsCaseStudy />);
     const root = container.querySelector<HTMLElement>("[style*='inline-size']");
     expect(root).not.toBeNull();
-    expect(root!.style.width).not.toBe("393px"); // root width was unfixed
+    expect(root!.style.containerType).toBe("inline-size");
+    // root width was unfixed: the legacy `width:393px` inline style is gone
+    expect(container.innerHTML).not.toMatch(/width:\s*393px/);
     expect(container.innerHTML).not.toContain("zoom");
   });
   // For a Recipe A mobile tree (lavabo ONLY), use the aspect-ratio assertion from the desktop test instead.
