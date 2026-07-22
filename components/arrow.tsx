@@ -20,8 +20,8 @@ const ROTATIONS: Record<Direction, number> = {
 
 type Props = {
   direction: Direction;
-  /** Height in CSS pixels. Width auto-derived from aspect ratio. */
-  size?: number;
+  /** Height in CSS length (number for px, or string like "5cqw"). Width auto-derived from aspect ratio. */
+  size?: number | string;
   /** Override color (any CSS color). Default = currentColor. */
   color?: string;
   className?: string;
@@ -35,8 +35,11 @@ export function Arrow({
   className = "",
   ariaLabel,
 }: Props) {
+  const len = (v: number | string) => typeof v === "number" ? `${v}px` : v;
   const aspect = 19.55 / 56.27;
-  const width = size * aspect;
+  const widthValue = typeof size === "number"
+    ? `${size * aspect}px`
+    : `calc(${size} * ${aspect})`;
   const rotation = ROTATIONS[direction];
 
   return (
@@ -46,8 +49,8 @@ export function Arrow({
       aria-hidden={!ariaLabel}
       className={`inline-block ${className}`}
       style={{
-        width: `${width}px`,
-        height: `${size}px`,
+        width: widthValue,
+        height: len(size),
         transform: `rotate(${rotation}deg)`,
         WebkitMaskImage: "url(/figma-assets/arrows/arrow-white.svg)",
         maskImage: "url(/figma-assets/arrows/arrow-white.svg)",

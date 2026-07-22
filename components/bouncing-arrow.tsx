@@ -19,7 +19,7 @@ export function BouncingArrow({
   distance = 18,
 }: {
   direction: "up" | "down" | "left" | "right";
-  size?: number;
+  size?: number | string;
   distance?: number;
 }) {
   const reduced = useReducedMotion();
