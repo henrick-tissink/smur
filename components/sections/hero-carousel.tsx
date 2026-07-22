@@ -124,10 +124,14 @@ export function HeroCarousel() {
               quality={90}
               // Next 16: `priority` is deprecated in favour of `preload`. The
               // first frame is the hero LCP, so preload it (injects a <link> in
-              // <head>). The rest load eagerly — small after optimization — so
-              // every later frame is decoded before its 4s crossfade.
+              // <head>). The rest are `lazy`: a lazy image inside a
+              // `display:none` subtree is never fetched, so on MOBILE (where
+              // this desktop tree is hidden) frames 1-4 don't download. On
+              // desktop they're above the fold, so they load promptly and are
+              // decoded well before their 4s crossfade. Frame 0 stays preloaded
+              // so desktop LCP is unaffected.
               preload={i === 0}
-              loading={i === 0 ? undefined : "eager"}
+              loading={i === 0 ? undefined : "lazy"}
               className="object-contain"
               style={{ objectPosition: s.objectPos ?? "center" }}
             />
