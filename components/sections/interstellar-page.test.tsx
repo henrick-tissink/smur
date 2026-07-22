@@ -71,12 +71,15 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
       "img[src*='row5-full/imgRectangle.jpg']",
     );
     expect(rectImg).not.toBeNull();
-    // Walk up to the row5-full root wrapper (left/top/width/height, no
-    // intermediate `transform: translateY` ancestor).
+    // Walk up to the row5-full root wrapper (left/top/width + a locked
+    // aspect-ratio; no intermediate `transform: translateY` ancestor). The
+    // wrapper is a container-query box whose height comes from aspect-ratio
+    // (its %-height resolved to 0), so the fixed-px interior was converted to
+    // cqw and scales with the wrapper — see row5-full.test.tsx.
     let node: HTMLElement | null = rectImg;
     let row5Root: HTMLElement | null = null;
     while (node && node !== container) {
-      if (node.style.left && node.style.top && node.style.width && node.style.height) {
+      if (node.style.left && node.style.top && node.style.width && node.style.aspectRatio) {
         row5Root = node;
       }
       node = node.parentElement;
@@ -85,11 +88,11 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
     const expectedLeft = `${(283 / STAGE_W) * 100}%`;
     const expectedTop = `${((4099.84 - 330) / STAGE_H) * 100}%`;
     const expectedWidth = `${(887.2 / STAGE_W) * 100}%`;
-    const expectedHeight = `${(564 / STAGE_H) * 100}%`;
     expect(row5Root!.style.left).toBe(expectedLeft);
     expect(row5Root!.style.top).toBe(expectedTop);
     expect(row5Root!.style.width).toBe(expectedWidth);
-    expect(row5Root!.style.height).toBe(expectedHeight);
+    expect(row5Root!.style.aspectRatio.replace(/\s/g, "")).toBe("887.2/564");
+    expect(row5Root!.style.containerType).toBe("inline-size");
   });
 
   // Containing-block guard: the Row 3 masked photo (Section 5) is nested
