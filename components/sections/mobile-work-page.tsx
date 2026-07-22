@@ -110,7 +110,7 @@ export function MobileWorkPage() {
             }}
             aria-hidden
           >
-            <BouncingArrow direction="down" size={cqw(55)} />
+            <BouncingArrow direction="down" size={cqw(72)} />
           </div>
         </Reveal>
 
