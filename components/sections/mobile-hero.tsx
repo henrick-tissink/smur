@@ -46,6 +46,20 @@ const HERO_FRAMES: HeroFrame[] = [
 ];
 const FEATURE_INTERVAL_MS = 1000; // prototype auto-advance cadence
 
+/* Both the mobile and desktop trees are server-rendered into one document and
+   toggled with CSS (`md:hidden` / `hidden md:block`). Eager/`preload` images
+   load even when their tree is `display:none`, so on desktop this mobile hero's
+   full-res `unoptimized` photos (~8.8 MB) used to download for a hero the user
+   never sees. Fix: the frame images are `loading="lazy"` (a lazy image inside a
+   `display:none` subtree is not fetched), and the frames the 1s carousel cycles
+   through are preloaded ONLY when the mobile media query matches — so mobile
+   still fetches them early (unchanged UX) while desktop fetches none of them. */
+const MOBILE_MEDIA = "(max-width: 767px)";
+const HERO_PRELOAD_SRCS = [
+  "/figma-assets/mobile/hero-interstellar.jpg",
+  ...HERO_FRAMES.flatMap((f) => ("empty" in f ? [] : f.src ? [f.src] : [])),
+];
+
 /** Native mobile hero stage the px coordinates below were measured against. */
 const STAGE_W = 393;
 const STAGE_H = 852;
@@ -86,6 +100,18 @@ export function MobileHero() {
       className="w-full"
       style={{ backgroundColor: "var(--color-hero)" }}
     >
+      {/* Media-scoped preloads: the browser fetches these only when the mobile
+          media query matches, so desktop (where this tree is display:none)
+          never downloads them. React 19 hoists these <link>s into <head>. */}
+      {HERO_PRELOAD_SRCS.map((src) => (
+        <link
+          key={src}
+          rel="preload"
+          as="image"
+          href={src}
+          media={MOBILE_MEDIA}
+        />
+      ))}
       <div
         data-hero-stage
         className="relative mx-auto w-full max-w-[393px] overflow-hidden"
@@ -123,7 +149,7 @@ export function MobileHero() {
                     alt={f.alt}
                     width={1728}
                     height={2304}
-                    preload
+                    loading="lazy"
                     unoptimized
                     className="absolute object-cover"
                     style={{
@@ -171,7 +197,7 @@ export function MobileHero() {
                   width={f.imgW}
                   height={f.imgH}
                   unoptimized
-                  loading="eager"
+                  loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               )}

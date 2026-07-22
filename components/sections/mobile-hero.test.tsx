@@ -20,6 +20,29 @@ describe("MobileHero", () => {
     expect(stage.style.containerType).toBe("inline-size");
   });
 
+  it("does not force-load hero photos (lazy so the desktop-hidden tree skips them)", () => {
+    const { container } = render(<MobileHero />);
+    // No hero <img> may be eager: eager images load even inside a display:none
+    // subtree, which is what caused the ~8.8 MB desktop double-load.
+    const eager = [...container.querySelectorAll("img")].filter(
+      (img) => img.getAttribute("loading") === "eager",
+    );
+    expect(eager).toHaveLength(0);
+  });
+
+  it("preloads the cycling frames only under the mobile media query", () => {
+    render(<MobileHero />);
+    // React 19 hoists <link rel=preload> to <head>.
+    const preloads = [
+      ...document.querySelectorAll('link[rel="preload"][as="image"]'),
+    ].filter((l) => l.getAttribute("media") === "(max-width: 767px)");
+    // interstellar composition + kokop + crisp + taf frame photos.
+    expect(preloads.length).toBeGreaterThanOrEqual(4);
+    const hrefs = preloads.map((l) => l.getAttribute("href") ?? "");
+    expect(hrefs.some((h) => h.includes("hero-interstellar"))).toBe(true);
+    expect(hrefs.every((h) => h.startsWith("/figma-assets/"))).toBe(true);
+  });
+
   it("cycles feature frames on the interval, advancing the active tile", () => {
     // HERO_FRAMES is 6 long: [interstellar, empty, empty, kokop, crisp, taf].
     // The active tile is the <Link> with aria-hidden="false"; empty beats
