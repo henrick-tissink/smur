@@ -40,7 +40,7 @@ export function ContactForm() {
       style={{ backgroundColor: "var(--color-page)" }}
     >
       <div
-        className="mx-auto w-full max-w-[596px]"
+        className="w-full"
         style={{
           paddingLeft: "var(--gutter)",
           paddingRight: "var(--gutter)",
@@ -48,6 +48,10 @@ export function ContactForm() {
           paddingBottom: "var(--space-section)",
         }}
       >
+        {/* Inner box caps at the legacy 596px form width and stays centered;
+            the gutter lives on the full-width wrapper above so the form never
+            collapses (border-box would otherwise subtract 2×gutter from 596). */}
+        <div className="mx-auto w-full max-w-[596px]">
         <Reveal>
           <form
             className="flex flex-col gap-[44px]"
@@ -152,6 +156,7 @@ export function ContactForm() {
             </div>
           </form>
         </Reveal>
+        </div>
       </div>
     </section>
   );

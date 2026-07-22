@@ -33,7 +33,7 @@ export function MobileContactForm() {
       style={{ backgroundColor: "var(--color-page)" }}
     >
       <div
-        className="mx-auto w-full max-w-[393px]"
+        className="w-full"
         style={{
           paddingLeft: "var(--gutter)",
           paddingRight: "var(--gutter)",
@@ -41,6 +41,9 @@ export function MobileContactForm() {
           paddingBottom: "var(--space-section)",
         }}
       >
+        {/* Inner box caps at the mobile 393px form width, centered; gutter is
+            on the full-width wrapper so the form never inverts as width grows. */}
+        <div className="mx-auto w-full max-w-[393px]">
         <Reveal>
           <form
             className="flex flex-col gap-[40px] text-[14px] text-accent"
@@ -130,6 +133,7 @@ export function MobileContactForm() {
             </div>
           </form>
         </Reveal>
+        </div>
       </div>
     </section>
   );

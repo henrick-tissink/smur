@@ -195,7 +195,7 @@ export function MobileContactFAQ() {
           >
             INSTAGRAM
           </a>
-          {"   /   "}
+          {"   /   "}
           <a
             href={contactFAQ.pinterestUrl}
             target="_blank"
