@@ -56,6 +56,59 @@ describe("MobileMenu", () => {
     expect(onClose).toHaveBeenCalledOnce();
   });
 
+  it("moves focus into the dialog when opened", () => {
+    render(<MobileMenu onClose={() => {}} />);
+    const dialog = screen.getByRole("dialog");
+    expect(dialog.contains(document.activeElement)).toBe(true);
+  });
+
+  it("returns focus to the previously focused trigger on unmount", () => {
+    const trigger = document.createElement("button");
+    document.body.appendChild(trigger);
+    trigger.focus();
+    expect(document.activeElement).toBe(trigger);
+
+    const { unmount } = render(<MobileMenu onClose={() => {}} />);
+    // focus moved into the dialog
+    expect(document.activeElement).not.toBe(trigger);
+
+    unmount();
+    // focus returned to the trigger
+    expect(document.activeElement).toBe(trigger);
+    trigger.remove();
+  });
+
+  it("traps Tab focus within the dialog (wraps last → first)", async () => {
+    render(<MobileMenu onClose={() => {}} />);
+    const dialog = screen.getByRole("dialog");
+    const focusables = [
+      ...dialog.querySelectorAll<HTMLElement>("a[href], button"),
+    ];
+    const last = focusables[focusables.length - 1];
+    last.focus();
+    expect(document.activeElement).toBe(last);
+
+    await userEvent.tab();
+    // stays inside the dialog, wrapped to the first focusable
+    expect(dialog.contains(document.activeElement)).toBe(true);
+    expect(document.activeElement).toBe(focusables[0]);
+  });
+
+  it("traps Shift+Tab focus within the dialog (wraps first → last)", async () => {
+    render(<MobileMenu onClose={() => {}} />);
+    const dialog = screen.getByRole("dialog");
+    const focusables = [
+      ...dialog.querySelectorAll<HTMLElement>("a[href], button"),
+    ];
+    const first = focusables[0];
+    first.focus();
+    expect(document.activeElement).toBe(first);
+
+    await userEvent.tab({ shift: true });
+    expect(dialog.contains(document.activeElement)).toBe(true);
+    expect(document.activeElement).toBe(focusables[focusables.length - 1]);
+  });
+
   it("locks body scroll while mounted and restores it on unmount", () => {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "auto";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { Wordmark, Icon } from "@/components/core";
 import { nav } from "@/content/home";
@@ -10,13 +10,58 @@ import { contactFAQ } from "@/content/contact";
   Fullscreen menu overlay (Figma 282:40808). Faithful-fluid: plain
   `fixed inset-0` over the real viewport — no zoom wrapper, so none of the old
   innerHeight×393/innerWidth compensation is needed.
+
+  Accessible modal: role=dialog + aria-modal, Escape to close, body-scroll
+  lock, and a full focus trap — focus moves into the dialog on open, Tab
+  cycles within it, and focus returns to the triggering element on close.
 */
 export function MobileMenu({ onClose }: { onClose: () => void }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // TODO: full focus-trap (move focus into dialog on open, return to trigger on close)
+    const dialog = dialogRef.current;
+    // Remember what had focus (the hamburger trigger) so we can restore it.
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const focusable = () =>
+      dialog
+        ? [
+            ...dialog.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            ),
+          ]
+        : [];
+
+    // Move focus into the dialog on open.
+    (focusable()[0] ?? dialog)?.focus();
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const items = focusable();
+      if (items.length === 0) {
+        // Nothing focusable but the dialog — keep focus on it.
+        event.preventDefault();
+        dialog?.focus();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      const inside = !!dialog && dialog.contains(active);
+
+      if (event.shiftKey) {
+        if (!inside || active === first) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (!inside || active === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -27,14 +72,18 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
+      // Restore focus to the trigger on close.
+      previouslyFocused?.focus?.();
     };
   }, [onClose]);
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
+      tabIndex={-1}
       className="fixed inset-0 z-[60] flex flex-col items-center"
       style={{ backgroundColor: "var(--color-cream)", color: "var(--color-ink)" }}
     >
