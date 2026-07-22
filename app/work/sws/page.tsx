@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileSwsCaseStudy } from "@/components/mobile/sws-page";
-import { SwsCaseStudy } from "@/components/work/sws-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { SwsCaseStudy } from "@/components/sections/sws-page";
+import { MobileSwsCaseStudy } from "@/components/sections/mobile-sws-page";
 
 export const metadata: Metadata = {
   title: "Sassy Woman Society — SMUR",
@@ -11,22 +11,21 @@ export const metadata: Metadata = {
 
 /*
   /work/sws — Sassy Woman Society case study.
-  Desktop only in Figma (frame 73:40179, 1440 × 4053). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function SwsRoute() {
   return (
     <>
-      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileSwsCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <SwsCaseStudy />
