@@ -1,18 +1,44 @@
-"use client";
-
 import Image from "next/image";
 import { kokop } from "@/content/kokop";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/reveal";
 
 /*
-  Mobile KOKO.P case study — full desktop parity (June 2026).
+  Faithful-fluid mobile KOKO.P case study — full desktop parity (June
+  2026). Ported from components/mobile/kokop-page.tsx
+  (MobileKokopCaseStudy) to Recipe B (container-query flow): the legacy
+  root was a fixed `width: "393px"` canvas scaled by the route's `zoom`
+  wrapper; here the root is a fluid `w-full` box with
+  `containerType: "inline-size"` and every fixed px value (paddingTop,
+  grid gap, section padding/margin, font sizes) expressed as `mcqw(N)` on
+  the 393-wide legacy basis, so `1cqw` == 1% of the root's rendered
+  width — reproducing the old zoom's proportional scaling without a
+  transform.
+
+  content/kokop.ts has no `kokopFrame.mobile`, so M_W = 393 (the legacy
+  mobile canvas width) per the task brief.
+
   Desktop section order: hero brand grid (artboards 148_1/149/150/151 as
   the 2×2 quadrants) → intro → sec1 (salmon logo tile SVG + packaging
   photo) → café mockup → sec3 (dark logo tile SVG + storefront photo) →
-  brand-book interior (artboard 158) → instagram phone.
-  The final folded-menu composition (desktop section 8) has no flat
-  export — it remains desktop-only.
+  brand-book interior (artboard 158) → instagram phone. The final
+  folded-menu composition (desktop section 8, kokop-extras/section8.tsx)
+  has no flat export — it remains desktop-only, same as legacy.
+
+  kokop.body is a 2-element array; legacy renders it directly as
+  `{kokop.body}` (not mapped, unlike the desktop tree which maps each
+  paragraph separately) — preserved verbatim here, not "fixed", per the
+  never-invent/never-improve rule.
+
+  Panel/aspectRatio/%-insets/Reveal/images are unchanged from the legacy
+  component.
 */
+
+const M_W = 393; // legacy mobile canvas width
+
+function mcqw(px: number) {
+  return `${(px / M_W) * 100}cqw`;
+}
+
 const HERO_GRID = [
   { src: "/figma-assets/work/kokop/hero-q1.png", alt: "KOKO.P logo — dark ground" },
   { src: "/figma-assets/work/kokop/hero-q2.png", alt: "KOKO.P logo — cream ground" },
@@ -24,12 +50,16 @@ export function MobileKokopCaseStudy() {
   return (
     <div
       data-nav-scheme="dark"
-      className="mx-auto"
-      style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
+      className="mx-auto w-full"
+      style={{
+        containerType: "inline-size",
+        backgroundColor: "#fff7f4",
+        paddingTop: mcqw(100), // was 100px
+      }}
     >
       {/* 2×2 hero brand-mark grid — projects open on an image. */}
       <Reveal eager>
-        <div className="grid grid-cols-2 gap-[2px]">
+        <div className="grid grid-cols-2" style={{ gap: mcqw(2) }}>
           {HERO_GRID.map((q) => (
             <Image
               key={q.src}
@@ -47,16 +77,19 @@ export function MobileKokopCaseStudy() {
 
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] py-[36px] text-center">
+        <div
+          className="text-center"
+          style={{ paddingLeft: mcqw(43), paddingRight: mcqw(43), paddingTop: mcqw(36), paddingBottom: mcqw(36) }}
+        >
           <p
             className="font-sans uppercase text-ink"
-            style={{ fontSize: "40px", lineHeight: 1, letterSpacing: "0.01em" }}
+            style={{ fontSize: mcqw(40), lineHeight: 1, letterSpacing: "0.01em" }}
           >
             {kokop.eyebrow}
           </p>
           <p
-            className="mt-[20px] text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.45 }}
+            className="text-ink"
+            style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
             {kokop.body}
           </p>
@@ -64,7 +97,7 @@ export function MobileKokopCaseStudy() {
       </Reveal>
 
       {/* Full-bleed visual sections in desktop order. */}
-      <div className="flex flex-col gap-[12px] pb-[24px]">
+      <div className="flex flex-col" style={{ gap: mcqw(12), paddingBottom: mcqw(24) }}>
         {/* Sec 1 — salmon logo tile (logotype + stacked KOKO.P accent baked in). */}
         <Reveal eager>
           <Image
