@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileLavaboCaseStudy } from "@/components/mobile/lavabo-page";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { LavaboCaseStudy } from "@/components/work/lavabo-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { LavaboCaseStudy } from "@/components/sections/lavabo-page";
+import { MobileLavaboCaseStudy } from "@/components/sections/mobile-lavabo-page";
 
 export const metadata: Metadata = {
   title: "LAVABO — SMUR",
@@ -10,27 +10,23 @@ export const metadata: Metadata = {
 };
 
 /*
-  /work/lavabo — LAVABO concrete-washbasin case study. Same dual-layout +
-  viewport-zoom pattern as /work and /contact. Figma frames:
-    desktop 70:6705 (1440 × 5336)
-    mobile  282:38869 (393 × 2499)
+  /work/lavabo — LAVABO concrete-washbasin case study.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage for
+  BOTH trees (lavabo is the one case study where mobile is ALSO Recipe A,
+  not the usual container-query flow) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function LavaboRoute() {
   return (
     <>
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileLavaboCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <LavaboCaseStudy />
