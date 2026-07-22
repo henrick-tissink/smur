@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileCrispCaseStudy } from "@/components/mobile/crisp-page";
-import { CrispCaseStudy } from "@/components/work/crisp-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { CrispCaseStudy } from "@/components/sections/crisp-page";
+import { MobileCrispCaseStudy } from "@/components/sections/mobile-crisp-page";
 
 export const metadata: Metadata = {
   title: "CRISP — SMUR",
@@ -11,27 +11,22 @@ export const metadata: Metadata = {
 
 /*
   /work/crisp — CRISP artisanal pastry brand identity. Desktop only in
-  Figma (frame 71:3160, 1440 × 5340). Mobile users see the desktop layout
-  scaled proportionally via the zoom wrapper.
+  Figma (frame 71:3160, 1440 × 5340).
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function CrispRoute() {
   return (
     <>
-      {/* Mobile-native reflow (Lavabo-style): full-bleed sections + readable
-          intro at the 393 mobile scale, instead of the shrunk 1440 frame. */}
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileCrispCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <CrispCaseStudy />
