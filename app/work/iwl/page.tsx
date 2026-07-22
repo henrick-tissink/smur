@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileIwlCaseStudy } from "@/components/mobile/iwl-page";
-import { IwlCaseStudy } from "@/components/work/iwl-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { IwlCaseStudy } from "@/components/sections/iwl-page";
+import { MobileIwlCaseStudy } from "@/components/sections/mobile-iwl-page";
 
 export const metadata: Metadata = {
   title: "IWL — Harvard Institute For World Literature — SMUR",
@@ -11,22 +11,19 @@ export const metadata: Metadata = {
 
 /*
   /work/iwl — Harvard Institute for World Literature case study.
-  Desktop only in Figma (frame 71:4377, 1440 × 5081). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: aspect-ratio stage (desktop) + container-query flow
+  (mobile), render-both CSS-toggled at md, new nav. No zoom.
 */
 export default function IwlRoute() {
   return (
     <>
-      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileIwlCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <IwlCaseStudy />

@@ -2,14 +2,37 @@
 
 import Image from "next/image";
 import { iwl } from "@/content/iwl";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/reveal";
 
 /*
-  Mobile IWL case study — full desktop parity (June 2026).
-  Desktop section order: hero band (artboard 101) → intro → row1 (arch
-  photo + Möbius panel, artboard 104) → banner (105) → red business-card
-  band (107) → pattern (107_1) → row4 tiles (110/109) → poster (112).
+  Faithful-fluid mobile IWL case study — full desktop parity (June 2026).
+  Ported from components/mobile/iwl-page.tsx (MobileIwlCaseStudy) to
+  Recipe B (container-query flow): the legacy root was a fixed
+  `width: "393px"` canvas scaled by the route's `zoom` wrapper; here the
+  root is a fluid `w-full` box with `containerType: "inline-size"` and
+  every fixed px value (paddingTop, section padding/margin/gap, font
+  sizes) expressed as `mcqw(N)` on the 393-wide legacy basis, so `1cqw`
+  == 1% of the root's rendered width — reproducing the old zoom's
+  proportional scaling without a transform.
+
+  content/iwl.ts has no `iwlFrame.mobile`, so M_W = 393 (the legacy
+  mobile canvas width) per the task brief.
+
+  Desktop section order: hero band (artboard 101) -> intro -> row1 (arch
+  photo + Möbius panel, artboard 104) -> banner (105) -> red business-card
+  band (107) -> pattern (107_1) -> row4 tiles (110/109) -> poster (112).
+
+  Images are already fluid in the legacy component (w-full h-auto,
+  intrinsic aspect ratio via width/height props) and need no positional
+  conversion — only the surrounding fixed-px spacing/typography does.
 */
+
+const M_W = 393; // legacy mobile canvas width
+
+function mcqw(px: number) {
+  return `${(px / M_W) * 100}cqw`;
+}
+
 const SECTIONS = [
   { src: "/figma-assets/work/iwl/row1-photo.jpg", w: 1964, h: 2946, alt: "IWL editorial photograph" },
   { src: "/figma-assets/work/iwl/row1-right.png", w: 874, h: 1045, alt: "IWL — Möbius marks on the Institute red panel" },
@@ -25,8 +48,12 @@ export function MobileIwlCaseStudy() {
   return (
     <div
       data-nav-scheme="dark"
-      className="mx-auto"
-      style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
+      className="mx-auto w-full"
+      style={{
+        containerType: "inline-size",
+        backgroundColor: "#fff7f4",
+        paddingTop: mcqw(100), // was 100px
+      }}
     >
       {/* Hero band (artboard 101) — projects open on an image. */}
       <Reveal eager>
@@ -43,16 +70,19 @@ export function MobileIwlCaseStudy() {
 
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] py-[36px] text-center">
+        <div
+          className="text-center"
+          style={{ paddingLeft: mcqw(43), paddingRight: mcqw(43), paddingTop: mcqw(36), paddingBottom: mcqw(36) }}
+        >
           <p
             className="font-sans uppercase text-ink"
-            style={{ fontSize: "22px", lineHeight: 1.1, letterSpacing: "0.01em" }}
+            style={{ fontSize: mcqw(22), lineHeight: 1.1, letterSpacing: "0.01em" }}
           >
             {iwl.eyebrow}
           </p>
           <p
-            className="mt-[20px] text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.45 }}
+            className="text-ink"
+            style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
             {iwl.body}
           </p>
@@ -60,7 +90,7 @@ export function MobileIwlCaseStudy() {
       </Reveal>
 
       {/* Full-bleed visual sections in desktop order. */}
-      <div className="flex flex-col gap-[12px] pb-[24px]">
+      <div className="flex flex-col" style={{ gap: mcqw(12), paddingBottom: mcqw(24) }}>
         {SECTIONS.map((s, i) => (
           <Reveal key={s.src} eager delay={0.03 * i}>
             <Image
