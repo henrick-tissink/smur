@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { MobileWorkPage } from "@/components/mobile/work-page";
-import { Nav } from "@/components/nav";
-import { DesktopWorkPage } from "@/components/work/page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { WorkPage } from "@/components/sections/work-page";
+import { MobileWorkPage } from "@/components/sections/mobile-work-page";
 
 export const metadata: Metadata = {
   title: "Selected Work — SMUR",
@@ -11,33 +11,24 @@ export const metadata: Metadata = {
 };
 
 /*
-  /work — Selected Work page. Same nav + viewport-zoom + dual-layout pattern
-  as the home page. The two layouts have the same nav (which is adaptive per
-  data-nav-scheme on the page section), so we render the matching Nav inside
-  each scaled wrapper so it scales with the layout.
-
-  Desktop frame (Figma 1:243): 1440 × 5187, bg #fff7f4
-  Mobile frame  (Figma 268:37131): 393 × 2309, bg #fff7f4
+  /work — Selected Work page. Faithful-fluid: render-both, CSS-toggled at the
+  md breakpoint, no zoom/scale/fixed-canvas wrapper (same pattern as the home
+  route, app/page.tsx). Nav/MobileNav default to scheme="dark" (cream bg
+  #fff7f4, ink text) which matches the work page's data-nav-scheme="dark".
 */
 export default function WorkRoute() {
   return (
     <>
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileWorkPage />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
-          <DesktopWorkPage />
+          <WorkPage />
         </main>
       </div>
     </>
