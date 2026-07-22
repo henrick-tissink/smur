@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileMnfCaseStudy } from "@/components/mobile/mnf-page";
-import { MnfCaseStudy } from "@/components/work/mnf-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { MnfCaseStudy } from "@/components/sections/mnf-page";
+import { MobileMnfCaseStudy } from "@/components/sections/mobile-mnf-page";
 
 export const metadata: Metadata = {
   title: "Manufaktura Studio Architecture — SMUR",
@@ -11,28 +11,21 @@ export const metadata: Metadata = {
 
 /*
   /work/mnf — MNF / Manufaktura Studio Architecture case study.
-  Desktop only in Figma (frame 71:343, 1440 × 4367). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function MnfRoute() {
   return (
     <>
-      {/* Mobile-native reflow (Lavabo/CRISP-style): full-bleed sections +
-          readable intro at the 393 mobile scale, instead of the shrunk 1440
-          frame. */}
-      <div
-        className="relative md:hidden"
-        style={{ zoom: "calc(100vw / 393px)" }}
-      >
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileMnfCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <MnfCaseStudy />

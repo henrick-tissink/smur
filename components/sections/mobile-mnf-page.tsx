@@ -1,16 +1,34 @@
-"use client";
-
 import Image from "next/image";
 import { mnf } from "@/content/mnf";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/reveal";
 
 /*
-  Mobile MNF (Manufaktura Studio) case study — full desktop parity
-  (June 2026). Desktop section order: hero band (consolidated SVG) →
-  intro → cascading website screens → row1 logo tiles (SVGs) → gold
-  fluted card band → brand/interior grid → bottom interior with the
-  wordmark (artboard 77).
+  Faithful-fluid mobile MNF (Manufaktura Studio) case study — full
+  desktop parity (June 2026). Ported from components/mobile/mnf-page.tsx
+  (MobileMnfCaseStudy) to Recipe B (container-query flow): the legacy
+  root was a fixed `width: "393px"` canvas scaled by the route's `zoom`
+  wrapper; here the root is a fluid `w-full` box with
+  `containerType: "inline-size"` and every fixed px value (paddingTop,
+  section padding/margin/gap, font sizes) expressed as `mcqw(N)` on the
+  393-wide legacy basis, so `1cqw` == 1% of the root's rendered width —
+  reproducing the old zoom's proportional scaling without a transform.
+
+  content/mnf.ts has no `mnfFrame.mobile`, so M_W = 393 (the legacy
+  mobile canvas width) per the task brief / sws precedent.
+
+  Desktop section order: hero band (consolidated SVG) → intro →
+  cascading website screens → row1 logo tiles (SVGs) → gold fluted card
+  band → brand/interior grid → bottom interior with the wordmark
+  (artboard 77). Images/aspectRatio/Reveal/unoptimized are unchanged
+  from the legacy component.
 */
+
+const M_W = 393; // legacy mobile canvas width
+
+function mcqw(px: number) {
+  return `${(px / M_W) * 100}cqw`;
+}
+
 const SECTIONS = [
   { src: "/figma-assets/work/mnf/screens.jpg", w: 1793, h: 1180, alt: "Manufaktura website screens" },
 ];
@@ -24,8 +42,8 @@ export function MobileMnfCaseStudy() {
   return (
     <div
       data-nav-scheme="dark"
-      className="mx-auto"
-      style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
+      className="mx-auto w-full"
+      style={{ containerType: "inline-size", backgroundColor: "#fff7f4", paddingTop: mcqw(100) }}
     >
       {/* Hero band (consolidated SVG) — projects open on an image. */}
       <Reveal eager>
@@ -38,16 +56,19 @@ export function MobileMnfCaseStudy() {
 
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] py-[36px] text-center">
+        <div
+          className="text-center"
+          style={{ paddingLeft: mcqw(43), paddingRight: mcqw(43), paddingTop: mcqw(36), paddingBottom: mcqw(36) }}
+        >
           <p
             className="font-sans uppercase text-ink"
-            style={{ fontSize: "26px", lineHeight: 1.05, letterSpacing: "0.01em" }}
+            style={{ fontSize: mcqw(26), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
             {mnf.eyebrow}
           </p>
           <p
-            className="mt-[20px] text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.45 }}
+            className="text-ink"
+            style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
             {mnf.body}
           </p>
@@ -55,7 +76,7 @@ export function MobileMnfCaseStudy() {
       </Reveal>
 
       {/* Full-bleed visual sections in desktop order. */}
-      <div className="flex flex-col gap-[12px] pb-[24px]">
+      <div className="flex flex-col" style={{ gap: mcqw(12), paddingBottom: mcqw(24) }}>
         {SECTIONS.map((s) => (
           <Reveal key={s.src} eager>
             <Image
