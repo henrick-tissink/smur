@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileArchitraveCaseStudy } from "@/components/mobile/architrave-page";
-import { ArchitraveCaseStudy } from "@/components/work/architrave-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { ArchitraveCaseStudy } from "@/components/sections/architrave-page";
+import { MobileArchitraveCaseStudy } from "@/components/sections/mobile-architrave-page";
 
 export const metadata: Metadata = {
   title: "ARCHITRAVE Studio — SMUR",
@@ -11,22 +11,21 @@ export const metadata: Metadata = {
 
 /*
   /work/architrave — Architrave Studio interior architecture case study.
-  Desktop only in Figma (frame 71:982, 1440 × 4593). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function ArchitraveRoute() {
   return (
     <>
-      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileArchitraveCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <ArchitraveCaseStudy />
