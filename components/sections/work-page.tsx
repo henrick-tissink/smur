@@ -88,24 +88,32 @@ export function WorkPage() {
               />
             </div>
           </Reveal>
-          {/* Scroll-down arrow indicator (Figma "Component 2" at x=684 y=345 —
-              72×94). Centered in its frame box so it sits under the title, and
-              bounces like the contact hero cue. */}
-          <Reveal delay={0.12}>
-            <div
-              className="absolute flex items-center justify-center text-ink"
-              style={{
-                left: pctX(684 - container.x),
-                top: pctY(345 - container.y),
-                width: cqw(72),
-                height: cqw(94),
-              }}
-              aria-hidden
-            >
-              <BouncingArrow direction="down" size={cqw(72)} />
-            </div>
-          </Reveal>
         </div>
+
+        {/* Scroll-down arrow indicator (Figma "Component 2" at x=684 y=345 —
+            72×94). Positioned as a direct child of the stage (NOT nested
+            inside the hero-intro box above) because percentage left/top
+            resolve against the element's own containing block — nesting it
+            inside hero-intro (which has no explicit height) caused the
+            percentages to be computed against that box instead of the full
+            1440×5187 stage, shifting the arrow right and overlapping the
+            title. As a stage sibling, pctX/pctY(684, 345) are the correct
+            Figma-absolute coordinates with no container offset needed. */}
+        <Reveal delay={0.12}>
+          <div
+            data-scroll-cue
+            className="absolute flex items-center justify-center text-ink"
+            style={{
+              left: pctX(684),
+              top: pctY(345),
+              width: cqw(72),
+              height: cqw(94),
+            }}
+            aria-hidden
+          >
+            <BouncingArrow direction="down" size={cqw(72)} />
+          </div>
+        </Reveal>
 
         {/* Project tiles. `eager` (reveal-on-mount) is REQUIRED here: each
             Reveal wraps an absolutely-positioned Link, so its motion wrapper is

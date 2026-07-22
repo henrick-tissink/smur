@@ -17,4 +17,16 @@ describe("WorkPage (desktop)", () => {
       expect(screen.getByRole("link", { name: p.name })).toBeInTheDocument();
     }
   });
+  it("positions the scroll-down arrow against the stage, not the hero-intro container", () => {
+    const { container } = render(<WorkPage />);
+    const cue = container.querySelector(
+      "[data-scroll-cue]",
+    ) as HTMLElement;
+    expect(cue).toBeInTheDocument();
+    // Stage-relative Figma coords (684, 345 of the 1440×5187 stage) — NOT
+    // offset by the hero-intro container's x/y, since the arrow is now a
+    // direct child of [data-work-stage], not nested inside hero-intro.
+    expect(cue.style.left).toBe("47.5%");
+    expect(cue.style.top).toBe("6.651243493348756%");
+  });
 });
