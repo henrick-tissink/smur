@@ -1,22 +1,44 @@
-"use client";
-
 import Image from "next/image";
 import { interstellar } from "@/content/interstellar";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/reveal";
 
 /*
-  Mobile INTERSTELLAR case study — full desktop parity (June 2026).
+  Faithful-fluid mobile INTERSTELLAR case study — full desktop parity
+  (June 2026). Ported from components/mobile/interstellar-page.tsx
+  (MobileInterstellarCaseStudy) to Recipe B (container-query flow): the
+  legacy root was a fixed `width: "393px"` canvas scaled by the route's
+  `zoom` wrapper; here the root is a fluid `w-full` box with
+  `containerType: "inline-size"` and every fixed px value (paddingTop,
+  section padding/margin/gap, font sizes) expressed as `mcqw(N)` on the
+  393-wide legacy basis, so `1cqw` == 1% of the root's rendered width —
+  reproducing the old zoom's proportional scaling without a transform.
+
+  content/interstellar.ts has no `interstellarFrame.mobile`, so
+  M_W = 393 (the legacy mobile canvas width) per the task brief.
+
   Desktop section order: hero (artboard 116) → intro → row1 logo tiles
   (SVGs) → row2 band (bg + 2 overlay labels, composite) → row3 (starburst
   tile w/ masked photo + sage poster) → row4 property page (122) → row5
-  interior photo → row6 dark band (SVG).
+  interior photo → row6 dark band (SVG). Panel/aspectRatio/%-insets/
+  Reveal/images are unchanged from the legacy component.
 */
+
+const M_W = 393; // legacy mobile canvas width
+
+function mcqw(px: number) {
+  return `${(px / M_W) * 100}cqw`;
+}
+
 export function MobileInterstellarCaseStudy() {
   return (
     <div
       data-nav-scheme="dark"
-      className="mx-auto"
-      style={{ width: "393px", backgroundColor: "#fff7f4", paddingTop: "100px" }}
+      className="mx-auto w-full"
+      style={{
+        containerType: "inline-size",
+        backgroundColor: "#fff7f4",
+        paddingTop: mcqw(100), // was 100px
+      }}
     >
       {/* Hero (artboard 116) — projects open on an image. */}
       <Reveal eager>
@@ -33,23 +55,26 @@ export function MobileInterstellarCaseStudy() {
 
       {/* Readable intro. */}
       <Reveal eager>
-        <div className="px-[43px] py-[36px] text-center">
+        <div
+          className="text-center"
+          style={{ paddingLeft: mcqw(43), paddingRight: mcqw(43), paddingTop: mcqw(36), paddingBottom: mcqw(36) }}
+        >
           <p
             className="font-sans uppercase text-ink"
-            style={{ fontSize: "34px", lineHeight: 1.05, letterSpacing: "0.01em" }}
+            style={{ fontSize: mcqw(34), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
             {interstellar.eyebrow}
           </p>
           <p
-            className="mt-[20px] text-ink"
-            style={{ fontSize: "15px", lineHeight: 1.45 }}
+            className="text-ink"
+            style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
             {interstellar.body}
           </p>
         </div>
       </Reveal>
 
-      <div className="flex flex-col gap-[12px] pb-[24px]">
+      <div className="flex flex-col" style={{ gap: mcqw(12), paddingBottom: mcqw(24) }}>
         {/* Row 1 — top of the 2×2 logo-lockup grid (artboard exports
             116_1 charcoal, 117 sage), full-width stacked tiles. */}
         <Reveal eager>
@@ -74,11 +99,9 @@ export function MobileInterstellarCaseStudy() {
         </Reveal>
 
         {/* Row 2 — bottom of the grid: light #D6D2C9 (119) LEFT + gold
-            #B08039 (118) RIGHT, side by side. Original artboard exports
-            replace the former single full-width gold band (which
-            mis-painted the left panel gold). */}
+            #B08039 (118) RIGHT, side by side. */}
         <Reveal eager>
-          <div className="flex w-full gap-[12px]">
+          <div className="flex w-full" style={{ gap: mcqw(12) }}>
             <div className="min-w-0 flex-1">
               <Image
                 src="/figma-assets/work/interstellar/lockup-light.png"

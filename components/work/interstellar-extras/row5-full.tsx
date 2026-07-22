@@ -60,11 +60,40 @@ const imgLayer2 = "/figma-assets/work/interstellar/row5-full/imgLayer2.svg";
   INTERSTELLAR Row 5 (Group 105, 297:57903). Frame (282, 4099.84) 889×564.
   Inlines LEFT photo + RIGHT bg vector + 3 overlay groups + Layer_2
   thumbnail + the inner Layer_1 (47 masked vectors at offset chain).
+
+  Faithful-fluid note: the parent desktop page
+  (components/sections/interstellar-page.tsx) wraps this component in a
+  1440×5075 aspect-ratio stage instead of a fixed 1440×5075 canvas. The
+  legacy fixed-canvas version placed everything below the intro (incl.
+  this component) inside a `transform: translateY(-330px)` correction
+  wrapper — 330px too low vs Figma — which the parent hoists by baking
+  the -330 shift into frame-absolute tops. Since this file's own root
+  wrapper carries its position as raw px (not the parent's pctX/pctY
+  helpers), the ONLY change here vs legacy is this root div's
+  left/top/width/height: converted to % of the 1440×5075 stage, with the
+  hoisted top (4099.84 - 330 = 3769.84) baked in, so it resolves
+  correctly as a direct stage child. Every other px value in this file
+  (all 47 vector children below) is LOCAL to this wrapper's own box and
+  stays byte-identical to legacy.
 */
+
+const STAGE_W = 1440;
+const STAGE_H = 5075;
+function pctX(px: number) {
+  return `${(px / STAGE_W) * 100}%`;
+}
+function pctY(px: number) {
+  return `${(px / STAGE_H) * 100}%`;
+}
+
 export function InterstellarRow5Content() {
   return (
-    // Root + right vector snapped to the page grid [283, 1170.2]
-    <div className="absolute" style={{ left: 283, top: 4099.84, width: 887.2, height: 564 }}>
+    // Root + right vector snapped to the page grid [283, 1170.2].
+    // Hoisted position: top 4099.84 - 330 (see file-header note).
+    <div
+      className="absolute"
+      style={{ left: pctX(283), top: pctY(3769.84), width: pctX(887.2), height: pctY(564) }}
+    >
       <div className="relative size-full">
         <div className="absolute h-[564px] left-0 top-0 w-[435px]">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">

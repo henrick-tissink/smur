@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileInterstellarCaseStudy } from "@/components/mobile/interstellar-page";
-import { InterstellarCaseStudy } from "@/components/work/interstellar-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { InterstellarCaseStudy } from "@/components/sections/interstellar-page";
+import { MobileInterstellarCaseStudy } from "@/components/sections/mobile-interstellar-page";
 
 export const metadata: Metadata = {
   title: "Interstellar — SMUR",
@@ -11,22 +11,21 @@ export const metadata: Metadata = {
 
 /*
   /work/interstellar — Interstellar Real Estate case study.
-  Desktop only in Figma (frame 73:19115, 1440 × 5075). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function InterstellarRoute() {
   return (
     <>
-      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileInterstellarCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <InterstellarCaseStudy />
