@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { MobileNav } from "@/components/mobile/nav";
-import { Nav } from "@/components/nav";
-import { MobileKabinettCaseStudy } from "@/components/mobile/kabinett-page";
-import { KabinettCaseStudy } from "@/components/work/kabinett-page";
+import { Nav } from "@/components/navigation/nav";
+import { MobileNav } from "@/components/navigation/mobile-nav";
+import { KabinettCaseStudy } from "@/components/sections/kabinett-page";
+import { MobileKabinettCaseStudy } from "@/components/sections/mobile-kabinett-page";
 
 export const metadata: Metadata = {
   title: "Kabinett — Wine & Spirits — SMUR",
@@ -11,22 +11,21 @@ export const metadata: Metadata = {
 
 /*
   /work/kabinett — Kabinett Wine & Spirits case study.
-  Desktop only in Figma (frame 73:36625, 1440 × 4985). Mobile users see
-  the desktop layout scaled proportionally via the zoom wrapper.
+  Faithful-fluid: render-both CSS-toggled at md, aspect-ratio stage
+  (desktop, Recipe A) + container-query flow (mobile, Recipe B) — no zoom.
+  data-nav-scheme="dark" on both trees, so both navs use the default
+  scheme="dark".
 */
 export default function KabinettRoute() {
   return (
     <>
-      <div className="relative md:hidden" style={{ zoom: "calc(100vw / 393px)" }}>
+      <div className="md:hidden">
         <MobileNav />
         <main>
           <MobileKabinettCaseStudy />
         </main>
       </div>
-      <div
-        className="relative hidden md:block"
-        style={{ zoom: "calc(100vw / 1440px)" }}
-      >
+      <div className="hidden md:block">
         <Nav />
         <main>
           <KabinettCaseStudy />
