@@ -23,9 +23,17 @@
 
 ---
 
-## Conversion Recipe (apply verbatim per page — this is the shared pattern)
+## Conversion Recipes
 
-**New component location:** `components/sections/<slug>-page.tsx` (desktop) and `components/sections/mobile-<slug>-page.tsx` (mobile). Export names stay identical to legacy (e.g. `SwsCaseStudy`, `MobileSwsCaseStudy`) so only the route's import path changes.
+There are TWO legacy architectures, so two recipes. **Every DESKTOP tree uses Recipe A.** For MOBILE: 9 of 10 mobile trees are flow-based → **Recipe B**; the ONE exception is **mobile lavabo**, a fixed canvas → **Recipe A**. Each task states its mobile recipe explicitly. Decide which recipe a tree needs by reading its legacy root `<div>`:
+- Root is `style={{ width, height, ... }}` (fixed W×H) + absolutely-positioned children → **Recipe A**.
+- Root is `className="mx-auto" style={{ width: "393px", paddingTop: "100px" }}` + children stacked in natural flow (`w-full` images, `aspectRatio` panels) → **Recipe B**.
+
+**New component location (both recipes):** `components/sections/<slug>-page.tsx` (desktop) and `components/sections/mobile-<slug>-page.tsx` (mobile). Export names stay identical to legacy (e.g. `SwsCaseStudy`, `MobileSwsCaseStudy`) so only the route's import path changes.
+
+---
+
+## Recipe A — fixed-canvas → aspect-ratio stage (all desktop; mobile lavabo)
 
 **Stage skeleton** (replace the legacy fixed-canvas root `<div style={{ width, height, ... }}>`):
 
@@ -63,7 +71,42 @@ export function SwsCaseStudy() {
 - Keep `position: absolute`, `overflow-hidden`, every `Reveal`/`delay`/`eager`, every image `src`/`unoptimized`/`priority`/`alt`, and every baked-SVG `<img>` unchanged.
 - Element that was a direct child of the canvas → direct child of the stage `<div>` (see containing-block gotcha).
 
-**Mobile** is the same recipe with `STAGE_W/STAGE_H = <slug>Frame.mobile` and `max-w-[<mobile width>px]`.
+**Mobile lavabo only** uses Recipe A with `STAGE_W/STAGE_H = lavaboFrame.mobile` and `max-w-[393px]`.
+
+---
+
+## Recipe B — flow → container-query flow (9 mobile trees: all except lavabo)
+
+The legacy mobile page is natural flow (`w-full` images, `aspectRatio` panels, `%`-inset children — already fluid) inside a `width: "393px"` root that the route's `zoom` scaled to fill the viewport. Reproduce that proportional scaling WITHOUT zoom by making the root a container-query box and expressing every remaining **fixed px** (paddings, margins, gaps, font-sizes, letter-spacing) as `cqw` on a 393 basis. Images/panels already use `w-full` + `aspectRatio` + `%` insets and need NO change.
+
+```tsx
+const M_W = 393; // legacy mobile canvas width
+const mcqw = (px: number) => `${(px / M_W) * 100}cqw`;
+
+export function MobileSwsCaseStudy() {
+  return (
+    <div
+      data-nav-scheme="dark"                 /* keep legacy value */
+      className="mx-auto w-full"             /* was width:"393px" — now fluid */
+      style={{
+        containerType: "inline-size",
+        backgroundColor: "#fff7f4",          /* keep legacy bg */
+        paddingTop: mcqw(100),               /* was 100px */
+      }}
+    >
+      {/* children unchanged EXCEPT fixed-px → mcqw(...) */}
+    </div>
+  );
+}
+```
+
+**Per-child rules for Recipe B:**
+- Root `width: "393px"` → `className="mx-auto w-full"` + `containerType: "inline-size"` on style. NO `max-w` cap (legacy `zoom` upscaled to fill the whole mobile range; capping would gutter it).
+- Every `fontSize: "Npx"` → `fontSize: mcqw(N)`. Every Tailwind fixed-px spacing that must scale (`px-[43px]`, `py-[36px]`, `mt-[20px]`, `gap-[12px]`, `pb-[24px]`, etc.) → inline `style` `mcqw(N)` (or a `cqw`-based arbitrary value). `lineHeight` (unitless) stays as-is.
+- `Panel`/image sub-components, `aspectRatio` values, `%` insets, `Reveal`/`eager`, image `src`/`unoptimized`/`priority`/`alt` — ALL unchanged.
+- `container-type: inline-size` makes `1cqw` = 1% of the root's rendered width, so everything scales together exactly like the old `zoom` — but fluidly and with no transform.
+
+Recipe B needs NO `aspectRatio` on the root (the page height is the natural sum of its flow children). The standard test's aspect-ratio assertion therefore does NOT apply to Recipe B mobile trees — see the test note below.
 
 **Standard test** — create `components/sections/<slug>-page.test.tsx`:
 
@@ -89,16 +132,19 @@ describe("SwsCaseStudy (faithful-fluid)", () => {
     expect(container.querySelector("[src*='/figma-assets/work/sws/']")).not.toBeNull();
   });
 
-  it("mobile tree also renders as an aspect-ratio stage", () => {
+  // Recipe B mobile (flow + container-query): assert the container-query root, NOT aspect-ratio.
+  it("mobile tree is a fluid container-query flow, no zoom", () => {
     const { container } = render(<MobileSwsCaseStudy />);
-    const stage = container.querySelector<HTMLElement>("[style*='aspect-ratio']");
-    expect(stage).not.toBeNull();
+    const root = container.querySelector<HTMLElement>("[style*='inline-size']");
+    expect(root).not.toBeNull();
+    expect(root!.style.width).not.toBe("393px"); // root width was unfixed
     expect(container.innerHTML).not.toContain("zoom");
   });
+  // For a Recipe A mobile tree (lavabo ONLY), use the aspect-ratio assertion from the desktop test instead.
 });
 ```
 
-Adapt the export names and the asset-src assertion per slug. Where a page has a distinctive absolutely-positioned element that is prone to the containing-block trap (a scroll cue, an overlaid caption, a nested group), ADD a fourth assertion that reads that element's inline `left`/`top` and asserts the frame-relative `%` string — this is the Phase-4-arrow guard.
+Adapt the export names and the asset-src assertion per slug. For **mobile lavabo** (Recipe A), replace the Recipe-B mobile test with the aspect-ratio assertion (query `[style*='aspect-ratio']` + `containerType === "inline-size"`). Where a page has a distinctive absolutely-positioned element that is prone to the containing-block trap (a scroll cue, an overlaid caption, a nested group), ADD a fourth assertion that reads that element's inline `left`/`top` and asserts the frame-relative `%` string — this is the Phase-4-arrow guard.
 
 **Route file** (`app/work/<slug>/page.tsx`) — replace the two `zoom:` wrappers with:
 
@@ -137,7 +183,7 @@ export default function SwsRoute() {
 - Modify: `app/work/sws/page.tsx`
 - Delete: `components/work/sws-page.tsx`, `components/mobile/sws-page.tsx`
 
-**Frame:** `swsFrame.desktop = { width: 1440, height: 4053 }`; read `swsFrame.mobile` from `content/sws.ts` for the mobile stage. bg `#fff7f4`, `data-nav-scheme="dark"`, title ink `#35221a`. Simplest page (3 sections, no `-extras`).
+**Recipes:** desktop = **Recipe A** (`swsFrame.desktop = { width: 1440, height: 4053 }`); mobile = **Recipe B** (flow + container-query; the legacy mobile root is `width:"393px"` + `paddingTop:100px`, `Panel` flow — `content/sws.ts` has NO `swsFrame.mobile`, so use `M_W = 393`). bg `#fff7f4`, `data-nav-scheme="dark"`, title ink `#35221a`. Simplest page (3 panels, no `-extras`). **Pattern-setter — proves BOTH recipes; review hardest.**
 
 - [ ] **Step 1: Write the failing test** — `components/sections/sws-page.test.tsx` per the Conversion Recipe template (export names `SwsCaseStudy`/`MobileSwsCaseStudy`; asset assertion `src*='/figma-assets/work/sws/'`). It imports files that don't exist yet.
 - [ ] **Step 2: Run it, verify it fails** — `pnpm test sws-page` → FAIL (cannot resolve `./sws-page`).
@@ -171,7 +217,7 @@ export default function SwsRoute() {
 ### Task 4: lavabo
 
 **Files:** Create `components/sections/lavabo-page.tsx`, `mobile-lavabo-page.tsx`, `lavabo-page.test.tsx`; Modify `app/work/lavabo/page.tsx`; Delete `components/work/lavabo-page.tsx`, `components/mobile/lavabo-page.tsx`.
-**Frame:** `lavaboFrame.desktop = { width: 1440, height: 5336 }`, `.mobile = { width: 393, height: 2499 }`. Uses `lavabo-tile.tsx` (KEEP). Lavabo is a vector-composed brand-book section — its baked SVG composition stays internally unchanged; only positioning wrappers convert. Exports `LavaboCaseStudy`/`MobileLavaboCaseStudy`. Asset assertion: `src*='/figma-assets/work/lavabo/'`.
+**Recipes:** desktop = **Recipe A** (`lavaboFrame.desktop = { width: 1440, height: 5336 }`); mobile = **Recipe A too** — lavabo is the ONE mobile exception: its legacy mobile root is a FIXED canvas `style={{ width, height }}` from `lavaboFrame.mobile = { width: 393, height: 2499 }` with absolute `%`-inset children (NOT flow). Use the aspect-stage + `max-w-[393px]`, and the Recipe-A aspect-ratio test assertion for the mobile tree. Uses `lavabo-tile.tsx` (KEEP). Lavabo is a vector-composed brand-book section — its baked SVG composition stays internally unchanged; only positioning wrappers convert. Exports `LavaboCaseStudy`/`MobileLavaboCaseStudy`. Asset assertion: `src*='/figma-assets/work/lavabo/'`.
 
 - [ ] **Step 1–8:** Conversion Recipe verbatim. Commit: `feat(work): lavabo case study faithful-fluid`.
 
