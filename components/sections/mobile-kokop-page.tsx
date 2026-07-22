@@ -24,10 +24,10 @@ import { Reveal } from "@/components/reveal";
   folded-menu composition (desktop section 8, kokop-extras/section8.tsx)
   has no flat export — it remains desktop-only, same as legacy.
 
-  kokop.body is a 2-element array; legacy renders it directly as
-  `{kokop.body}` (not mapped, unlike the desktop tree which maps each
-  paragraph separately) — preserved verbatim here, not "fixed", per the
-  never-invent/never-improve rule.
+  kokop.body is a 2-element array, mapped to one <p> per paragraph
+  (matching the desktop tree). The legacy mobile jammed both into a single
+  <p> so they concatenated with no separator — a legibility defect fixed
+  in the Phase 6 whole-branch pass.
 
   Panel/aspectRatio/%-insets/Reveal/images are unchanged from the legacy
   component.
@@ -87,12 +87,16 @@ export function MobileKokopCaseStudy() {
           >
             {kokop.eyebrow}
           </p>
-          <p
+          <div
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {kokop.body}
-          </p>
+            {kokop.body.map((p, i) => (
+              <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
+                {p}
+              </p>
+            ))}
+          </div>
         </div>
       </Reveal>
 

@@ -100,12 +100,16 @@ export function MobileKabinettCaseStudy() {
           >
             {kabinett.eyebrow}
           </p>
-          <p
+          <div
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {kabinett.body}
-          </p>
+            {kabinett.body.map((p, i) => (
+              <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
+                {p}
+              </p>
+            ))}
+          </div>
         </div>
       </Reveal>
 
