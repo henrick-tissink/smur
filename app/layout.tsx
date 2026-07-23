@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display, Open_Sans, Quicksand } from "next/font/google";
+import { SITE_URL, organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -39,9 +40,44 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "SMUR — Naming, Branding & Design",
   description:
-    "Branding is not just aesthetics, it's a reflection of who you are, what you value, and how you want to be experienced.",
+    "SMUR is an independent studio for naming, brand identity and design — creating honest, grounded identities for the people behind the business.",
+  keywords: [
+    "brand identity",
+    "branding studio",
+    "brand designer",
+    "naming",
+    "logo design",
+    "visual identity",
+    "packaging design",
+    "brand strategy",
+  ],
+  authors: [{ name: "Smaranda", url: SITE_URL }],
+  creator: "SMUR",
+  publisher: "SMUR",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "SMUR",
+    url: SITE_URL,
+    title: "SMUR — Naming, Branding & Design",
+    description:
+      "An independent studio for naming, brand identity and design — honest, grounded identities for the people behind the business.",
+    locale: "en",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SMUR — Naming, Branding & Design",
+    description:
+      "An independent studio for naming, brand identity and design.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({
@@ -55,7 +91,16 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${dmSans.variable} ${dmSerifDisplay.variable} ${openSans.variable} ${quicksand.variable} antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        {/* Sitewide Organization structured data (JSON-LD). */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
