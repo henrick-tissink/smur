@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import Home from "@/app/page";
+import Home from "./page";
 
 describe("Home page (faithful-fluid)", () => {
   it("renders both the desktop tree (#home, #about) and the mobile tree (#m-home, #m-about)", () => {

@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { setRequestLocale, getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { DM_Sans, DM_Serif_Display, Open_Sans, Quicksand } from "next/font/google";
 import { SITE_URL, organizationSchema } from "@/lib/structured-data";
 import { Analytics } from "@/components/analytics";
 import { ConsentBanner } from "@/components/consent-banner";
-import "./globals.css";
+import { routing } from "@/i18n/routing";
+import "../globals.css";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -82,14 +86,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+  // Opt this locale's routes into static rendering.
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       data-scroll-behavior="smooth"
       className={`${dmSans.variable} ${dmSerifDisplay.variable} ${openSans.variable} ${quicksand.variable} antialiased`}
     >
@@ -101,7 +117,9 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema),
           }}
         />
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
         <Analytics />
         <ConsentBanner />
       </body>

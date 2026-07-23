@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import WorkRoute from "@/app/work/page";
+import WorkRoute from "./page";
 
 describe("Work page (faithful-fluid)", () => {
   it("renders both the desktop stage (1440/5187) and the mobile stage (393/2309)", () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import ContactRoute from "@/app/contact/page";
+import ContactRoute from "./page";
 
 describe("Contact page (faithful-fluid)", () => {
   it("renders both a desktop hero heading and a mobile hero heading", () => {
