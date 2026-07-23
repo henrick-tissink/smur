@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CaseStudyJsonLd } from "@/components/case-study-jsonld";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { TafCaseStudy } from "@/components/sections/taf-page";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function TafRoute() {
   return (
     <>
+      <CaseStudyJsonLd slug="taf" description={metadata.description as string} />
       <div className="md:hidden">
         <MobileNav />
         <main>

@@ -11,6 +11,28 @@
 
 export const SITE_URL = "https://smur-world.com";
 
+/** Per-case-study CreativeWork schema, linked to the studio as creator. */
+export function caseStudySchema(input: {
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+  locale?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: input.name,
+    description: input.description,
+    url: `${SITE_URL}/work/${input.slug}`,
+    image: input.image.startsWith("http")
+      ? input.image
+      : `${SITE_URL}${input.image}`,
+    creator: { "@id": `${SITE_URL}/#organization` },
+    inLanguage: input.locale ?? "en",
+  };
+}
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],

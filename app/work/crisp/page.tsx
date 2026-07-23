@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CaseStudyJsonLd } from "@/components/case-study-jsonld";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { CrispCaseStudy } from "@/components/sections/crisp-page";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function CrispRoute() {
   return (
     <>
+      <CaseStudyJsonLd slug="crisp" description={metadata.description as string} />
       <div className="md:hidden">
         <MobileNav />
         <main>

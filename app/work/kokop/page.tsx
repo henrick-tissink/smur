@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CaseStudyJsonLd } from "@/components/case-study-jsonld";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { KokopCaseStudy } from "@/components/sections/kokop-page";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function KokopRoute() {
   return (
     <>
+      <CaseStudyJsonLd slug="kokop" description={metadata.description as string} />
       <div className="md:hidden">
         <MobileNav />
         <main>

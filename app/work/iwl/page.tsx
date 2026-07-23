@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CaseStudyJsonLd } from "@/components/case-study-jsonld";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { IwlCaseStudy } from "@/components/sections/iwl-page";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function IwlRoute() {
   return (
     <>
+      <CaseStudyJsonLd slug="iwl" description={metadata.description as string} />
       <div className="md:hidden">
         <MobileNav />
         <main>
