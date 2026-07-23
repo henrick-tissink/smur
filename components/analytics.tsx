@@ -1,19 +1,19 @@
 import Script from "next/script";
 
 /*
-  Google Analytics 4 loader.
-
-  Dormant until a Measurement ID is configured (env NEXT_PUBLIC_GA_ID, or the
-  constant is filled in), so it ships safely with nothing set — renders null.
+  Google Analytics 4 loader for smur-world.com.
 
   GDPR: uses Consent Mode v2 defaulting to "denied", so GA runs in cookieless
   (modeled) mode and drops NO cookies until a consent banner grants it via
   gtag('consent','update',{ analytics_storage:'granted' }). IP anonymised.
-  This keeps it compliant for the EU (DE/RO) audience before the banner lands.
+  This keeps it compliant for the EU (DE/RO) audience before the banner lands —
+  you still get traffic, sources and page views (modeled), just no cookies.
+
+  The Measurement ID is public (it ships in the client HTML), so it lives here
+  in code rather than an env var. NEXT_PUBLIC_GA_ID can override for staging.
 */
 
-// Falls back to the env var; a literal ID can be pasted here instead.
-const GA_MEASUREMENT_ID = "";
+const GA_MEASUREMENT_ID = "G-K92NEEB7EY";
 
 export function resolveGaId(): string {
   return GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GA_ID || "";
