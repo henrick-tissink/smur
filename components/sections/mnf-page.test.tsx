@@ -36,7 +36,7 @@ describe("MnfCaseStudy (faithful-fluid)", () => {
     // The legacy fixed-canvas wrapper corrected a transcription offset with
     // `transform: translateY(-286px)` on an intermediate group — a fixed-px
     // transform that would not scale with the fluid stage. It must be gone
-    // (Reveal's own mount-animation translateY(24px) is unrelated and fine).
+    // (Reveal is opacity-only, so it contributes no transform of its own).
     expect(container.innerHTML).not.toContain("translateY(-286");
     expect(container.innerHTML).not.toContain("inset-0");
 

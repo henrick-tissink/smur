@@ -3,11 +3,18 @@
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
+// Opacity-only reveal (no transform). A `y`/scale transform on this wrapper
+// would make it the CSS containing block for any absolutely-positioned child
+// it wraps — and almost every faithful-fluid section wraps `absolute` %-
+// positioned art in a Reveal. During the entrance the child's top/left %
+// would then resolve against this zero-height wrapper instead of the stage,
+// so images rendered at the top of the section and "popped" into place when
+// the transform cleared. Opacity does not establish a containing block, so
+// the art stays put and simply fades in. (Reduced-motion already did this.)
 const baseVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
     transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };

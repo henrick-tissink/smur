@@ -38,9 +38,9 @@ describe("CrispCaseStudy (faithful-fluid)", () => {
     // The legacy correction wrapper was a fixed-px `transform:
     // translateY(-279.21px)` on a `class="absolute inset-0"` div — a
     // fixed-px transform that would not scale with the fluid stage. It
-    // must be gone (Reveal's own mount-animation translateY(24px) is
-    // unrelated and fine; the hero letterform images legitimately use an
-    // unrelated `inset-0` Tailwind class to fill their own % wrapper).
+    // must be gone (Reveal is opacity-only, so it adds no transform of its
+    // own; the hero letterform images legitimately use an unrelated
+    // `inset-0` Tailwind class to fill their own % wrapper).
     expect(container.innerHTML).not.toContain("translateY(-279.21");
     expect(container.innerHTML).not.toMatch(/class="absolute inset-0"/);
 
