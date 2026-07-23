@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display, Open_Sans, Quicksand } from "next/font/google";
 import { SITE_URL, organizationSchema } from "@/lib/structured-data";
 import { Analytics } from "@/components/analytics";
+import { ConsentBanner } from "@/components/consent-banner";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -102,6 +103,7 @@ export default function RootLayout({
         />
         {children}
         <Analytics />
+        <ConsentBanner />
       </body>
     </html>
   );
