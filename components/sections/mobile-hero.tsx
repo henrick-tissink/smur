@@ -89,7 +89,7 @@ export function MobileHero() {
   // straight apostrophe from the extracted message is swapped for the
   // typographic ’ the design uses (matches the pre-i18n hardcoded JSX).
   const body = t("body").replace(/'/g, "’");
-  const marker = "who you are";
+  const marker = t("bodyEmphasis");
   const markerIndex = body.indexOf(marker);
   const bodyBefore = markerIndex >= 0 ? body.slice(0, markerIndex) : body;
   const bodyAfter =

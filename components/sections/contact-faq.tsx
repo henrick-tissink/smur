@@ -78,7 +78,7 @@ export function ContactFAQ() {
         <div className="mx-auto flex max-w-[284px] flex-col items-center text-center text-cream">
           <Reveal>
             <p className="font-sans italic" style={{ fontSize: 20 }}>
-              {contactFAQ.eyebrow}
+              {t("faqEyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.06}>
@@ -87,7 +87,7 @@ export function ContactFAQ() {
                 src="/figma-assets/titles/questions.svg"
                 width={288.19}
                 height={72.21}
-                alt={contactFAQ.heading}
+                alt={t("faqHeading")}
                 as={2}
               />
             </div>
@@ -114,7 +114,7 @@ export function ContactFAQ() {
           >
             <BouncingUnionArrow />
             <span className="mt-[8px] text-[20px] italic">
-              {contactFAQ.myWorkLink}
+              {t("myWorkLink")}
             </span>
           </Link>
 

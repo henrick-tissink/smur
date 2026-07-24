@@ -81,7 +81,7 @@ export function MobileContactFAQ() {
         <div className="flex w-full flex-col items-center text-center text-cream">
           <Reveal>
             <p className="font-sans italic" style={{ fontSize: 15 }}>
-              {contactFAQ.eyebrow}
+              {t("faqEyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.06}>
@@ -90,7 +90,7 @@ export function MobileContactFAQ() {
                 src="/figma-assets/titles/questions.svg"
                 width={223.6}
                 height={56}
-                alt={contactFAQ.heading}
+                alt={t("faqHeading")}
                 as={2}
               />
             </div>
@@ -118,7 +118,7 @@ export function MobileContactFAQ() {
           >
             <BouncingUnionArrow />
             <span className="mt-[10px] italic" style={{ fontSize: 15.105 }}>
-              {contactFAQ.myWorkLink}
+              {t("myWorkLink")}
             </span>
           </Link>
 

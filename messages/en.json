@@ -7,7 +7,8 @@
   },
   "Hero": {
     "headline": "NAMING, Branding & design BUILD GOOD stories",
-    "body": "Branding is not just aesthetics, it's a reflection of who you are, what you value, and how you want to be experienced. Drawn to genuine human connection and the subtle ways people express themselves, I approach naming, branding, and design as a way of creating identities that feel honest, grounded, and deeply aligned with the humans behind them."
+    "body": "Branding is not just aesthetics, it's a reflection of who you are, what you value, and how you want to be experienced. Drawn to genuine human connection and the subtle ways people express themselves, I approach naming, branding, and design as a way of creating identities that feel honest, grounded, and deeply aligned with the humans behind them.",
+    "bodyEmphasis": "who you are"
   },
   "Services": {
     "brand-identity": {
@@ -144,7 +145,10 @@
         "label": "How did you come across this website?"
       }
     },
-    "socials": "INSTAGRAM   /   PINTEREST"
+    "socials": "INSTAGRAM   /   PINTEREST",
+    "faqEyebrow": "I answered your",
+    "faqHeading": "Questions",
+    "myWorkLink": "my work :)"
   },
   "CaseStudies": {
     "sws": {

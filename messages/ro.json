@@ -7,7 +7,8 @@
   },
   "Hero": {
     "headline": "NAMING, Branding & design CONSTRUIESC povești BUNE",
-    "body": "Branding-ul nu înseamnă doar estetică, ci o reflectare a cine ești, ce prețuiești și cum vrei să fii perceput. Atrasă de conexiunea umană autentică și de felurile subtile în care oamenii se exprimă, abordez naming-ul, branding-ul și designul ca pe un mod de a crea identități care se simt oneste, ancorate în realitate și profund aliniate cu oamenii din spatele lor."
+    "body": "Branding-ul nu înseamnă doar estetică, ci o reflectare a cine ești, ce prețuiești și cum vrei să fii perceput. Atrasă de conexiunea umană autentică și de felurile subtile în care oamenii se exprimă, abordez naming-ul, branding-ul și designul ca pe un mod de a crea identități care se simt oneste, ancorate în realitate și profund aliniate cu oamenii din spatele lor.",
+    "bodyEmphasis": "cine ești"
   },
   "Services": {
     "brand-identity": {
@@ -144,7 +145,10 @@
         "label": "Cum ai ajuns pe acest website?"
       }
     },
-    "socials": "INSTAGRAM   /   PINTEREST"
+    "socials": "INSTAGRAM   /   PINTEREST",
+    "faqEyebrow": "Am răspuns la",
+    "faqHeading": "Întrebări",
+    "myWorkLink": "lucrările mele :)"
   },
   "CaseStudies": {
     "sws": {

@@ -7,7 +7,8 @@
   },
   "Hero": {
     "headline": "NAMING, Branding & design ERZÄHLEN GUTE geschichten",
-    "body": "Branding ist mehr als Ästhetik – es ist ein Spiegel dessen, wer du bist, wofür du stehst und wie du wahrgenommen werden möchtest. Fasziniert von echter menschlicher Verbindung und den feinen Nuancen, in denen sich Menschen ausdrücken, verstehe ich Naming, Branding und Design als eine Möglichkeit, Identitäten zu schaffen, die ehrlich, geerdet und tief verbunden mit den Menschen dahinter wirken."
+    "body": "Branding ist mehr als Ästhetik – es ist ein Spiegel dessen, wer du bist, wofür du stehst und wie du wahrgenommen werden möchtest. Fasziniert von echter menschlicher Verbindung und den feinen Nuancen, in denen sich Menschen ausdrücken, verstehe ich Naming, Branding und Design als eine Möglichkeit, Identitäten zu schaffen, die ehrlich, geerdet und tief verbunden mit den Menschen dahinter wirken.",
+    "bodyEmphasis": "wer du bist"
   },
   "Services": {
     "brand-identity": {
@@ -144,7 +145,10 @@
         "label": "Wie bist du auf diese Website gestoßen?"
       }
     },
-    "socials": "INSTAGRAM   /   PINTEREST"
+    "socials": "INSTAGRAM   /   PINTEREST",
+    "faqEyebrow": "Ich habe deine",
+    "faqHeading": "Fragen",
+    "myWorkLink": "meine Arbeiten :)"
   },
   "CaseStudies": {
     "sws": {
