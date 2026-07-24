@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
-import { hero } from "@/content/home";
 
 /*
   Faithful-fluid MobileHero. Ported from components/mobile/hero.tsx.
@@ -83,6 +83,18 @@ function pctOfH(px: number, h: number) {
 }
 
 export function MobileHero() {
+  const t = useTranslations("Hero");
+  // Body copy underlines "who you are" mid-sentence (Figma emphasis); the
+  // message is one plain string, so split around that marker in code. The
+  // straight apostrophe from the extracted message is swapped for the
+  // typographic ’ the design uses (matches the pre-i18n hardcoded JSX).
+  const body = t("body").replace(/'/g, "’");
+  const marker = t("bodyEmphasis");
+  const markerIndex = body.indexOf(marker);
+  const bodyBefore = markerIndex >= 0 ? body.slice(0, markerIndex) : body;
+  const bodyAfter =
+    markerIndex >= 0 ? body.slice(markerIndex + marker.length) : "";
+
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const id = window.setInterval(
@@ -220,7 +232,7 @@ export function MobileHero() {
               src="/figma-assets/titles/header-centered.svg"
               width="89.31cqw" /* 351/393 */
               height="54.9cqw" /* 215.75/393 */
-              alt={hero.headline}
+              alt={t("headline")}
               as={1}
             />
           </Reveal>
@@ -235,13 +247,9 @@ export function MobileHero() {
               className="text-center text-cream"
               style={{ fontSize: "4.33cqw" /* 17/393 */, lineHeight: 1.33 }}
             >
-              Branding is not just aesthetics, it&rsquo;s a reflection of{" "}
-              <span className="underline decoration-from-font">who you are</span>
-              , what you value, and how you want to be experienced. Drawn to
-              genuine human connection and the subtle ways people express
-              themselves, I approach naming, branding, and design as a way of
-              creating identities that feel honest, grounded, and deeply aligned
-              with the humans behind them.
+              {bodyBefore}
+              <span className="underline decoration-from-font">{marker}</span>
+              {bodyAfter}
             </p>
           </Reveal>
         </div>

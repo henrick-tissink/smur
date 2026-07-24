@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { interstellar } from "@/content/interstellar";
 import { Reveal } from "@/components/reveal";
 
@@ -30,6 +31,7 @@ function mcqw(px: number) {
 }
 
 export function MobileInterstellarCaseStudy() {
+  const t = useTranslations("CaseStudies.interstellar");
   return (
     <div
       data-nav-scheme="dark"
@@ -63,13 +65,13 @@ export function MobileInterstellarCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(34), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
-            {interstellar.eyebrow}
+            {t("eyebrow")}
           </p>
           <p
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {interstellar.body}
+            {t("body")}
           </p>
         </div>
       </Reveal>

@@ -1,4 +1,6 @@
-import { ctaButton, services, servicesList } from "@/content/home";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { services } from "@/content/home";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
 
@@ -33,6 +35,7 @@ function cqw(px: number) {
 */
 export function MobileServicesListSection() {
   const service = services[2];
+  const t = useTranslations(`Services.${service.id}`);
   const titleId = `m-${service.id}-title`;
 
   return (
@@ -56,7 +59,7 @@ export function MobileServicesListSection() {
               className="block font-sans italic text-accent"
               style={{ fontSize: cqw(15), lineHeight: 1 }}
             >
-              {service.eyebrow}
+              {t("eyebrow")}
             </span>
           </Reveal>
           <Reveal delay={0.05}>
@@ -71,7 +74,7 @@ export function MobileServicesListSection() {
                       ? service.titleSvg.leftBearing * MOBILE_TITLE_SCALE
                       : undefined
                   }
-                  alt={service.title}
+                  alt={t("title")}
                   as={2}
                 />
               </div>
@@ -81,7 +84,7 @@ export function MobileServicesListSection() {
                 className="font-heading text-ink"
                 style={{ marginTop: cqw(25), fontSize: cqw(45), lineHeight: 1.21 }}
               >
-                {service.title}
+                {t("title")}
               </h2>
             )}
           </Reveal>
@@ -93,7 +96,7 @@ export function MobileServicesListSection() {
         >
           <Reveal delay={0.1}>
             <p className="text-ink" style={{ fontSize: cqw(15), lineHeight: 1.33 }}>
-              {service.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>
@@ -113,7 +116,7 @@ export function MobileServicesListSection() {
                 gap: cqw(15),
               }}
             >
-              {servicesList.map((item) => (
+              {(t.raw("list") as string[]).map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -122,7 +125,7 @@ export function MobileServicesListSection() {
 
         <div className="absolute" style={{ left: cqw(42), top: cqw(491) }}>
           <Reveal delay={0.2}>
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center rounded-full border-accent no-underline transition-opacity hover:opacity-80"
               style={{
@@ -137,7 +140,7 @@ export function MobileServicesListSection() {
               }}
             >
               <span className="font-sans" style={{ fontSize: cqw(19.51), lineHeight: 1.21 }}>
-                {ctaButton}{" "}
+                {t("cta")}{" "}
               </span>
               <img
                 src="/figma-assets/mobile/button-arrow.svg"
@@ -145,7 +148,7 @@ export function MobileServicesListSection() {
                 aria-hidden
                 style={{ width: cqw(40), height: cqw(14) }}
               />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>

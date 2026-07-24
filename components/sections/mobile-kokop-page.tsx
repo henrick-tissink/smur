@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { kokop } from "@/content/kokop";
 import { Reveal } from "@/components/reveal";
 
@@ -47,6 +48,7 @@ const HERO_GRID = [
 ];
 
 export function MobileKokopCaseStudy() {
+  const t = useTranslations("CaseStudies.kokop");
   return (
     <div
       data-nav-scheme="dark"
@@ -85,13 +87,13 @@ export function MobileKokopCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(40), lineHeight: 1, letterSpacing: "0.01em" }}
           >
-            {kokop.eyebrow}
+            {t("eyebrow")}
           </p>
           <div
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {kokop.body.map((p, i) => (
+            {t("body").split("\n\n").map((p, i) => (
               <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                 {p}
               </p>

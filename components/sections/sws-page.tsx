@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { sws, swsFrame } from "@/content/sws";
 import { Reveal } from "@/components/reveal";
 
@@ -35,6 +36,7 @@ function cqw(px: number) {
 }
 
 export function SwsCaseStudy() {
+  const t = useTranslations("CaseStudies.sws");
   const titleInk = "#35221a";
 
   return (
@@ -106,7 +108,7 @@ export function SwsCaseStudy() {
                 margin: 0,
               }}
             >
-              {sws.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -118,7 +120,7 @@ export function SwsCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {sws.body.map((p, i) => (
+              {t("body").split("\n\n").map((p, i) => (
                 <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                   {p}
                 </p>

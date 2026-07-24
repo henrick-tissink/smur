@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import { SwsCaseStudy } from "./sws-page";
 import { MobileSwsCaseStudy } from "./mobile-sws-page";
 
 describe("SwsCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = render(<SwsCaseStudy />);
+    const { container } = renderWithIntl(<SwsCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -16,7 +16,7 @@ describe("SwsCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = render(<SwsCaseStudy />);
+    const { container } = renderWithIntl(<SwsCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/sws/']"),
     ).not.toBeNull();
@@ -25,7 +25,7 @@ describe("SwsCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = render(<MobileSwsCaseStudy />);
+    const { container } = renderWithIntl(<MobileSwsCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

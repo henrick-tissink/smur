@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import userEvent from "@testing-library/user-event";
 import { ContactForm } from "@/components/sections/contact-form";
 
@@ -16,14 +17,14 @@ describe("ContactForm (desktop)", () => {
   });
 
   it("renders the section with the dark nav scheme", () => {
-    const { container } = render(<ContactForm />);
+    const { container } = renderWithIntl(<ContactForm />);
     const section = container.querySelector("section") as HTMLElement;
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute("data-nav-scheme", "dark");
   });
 
   it("the email input preserves name/type/required (used by /api/contact)", () => {
-    render(<ContactForm />);
+    renderWithIntl(<ContactForm />);
     const email = screen.getByPlaceholderText(/email adress \(required\)/i);
     expect(email).toHaveAttribute("name", "email");
     expect(email).toHaveAttribute("type", "email");
@@ -31,7 +32,7 @@ describe("ContactForm (desktop)", () => {
   });
 
   it("every interest checkbox is named 'interests' so multiple selections POST as an array", () => {
-    render(<ContactForm />);
+    renderWithIntl(<ContactForm />);
     const checkboxes = screen.getAllByRole("checkbox");
     expect(checkboxes.length).toBeGreaterThan(1);
     for (const box of checkboxes) {
@@ -40,7 +41,7 @@ describe("ContactForm (desktop)", () => {
   });
 
   it("the submit button shows SAVE & SEND", () => {
-    render(<ContactForm />);
+    renderWithIntl(<ContactForm />);
     expect(
       screen.getByRole("button", { name: /save & send/i }),
     ).toBeInTheDocument();
@@ -48,7 +49,7 @@ describe("ContactForm (desktop)", () => {
 
   it("submits the form to /api/contact via POST with field values and interests as an array", async () => {
     const user = userEvent.setup();
-    render(<ContactForm />);
+    renderWithIntl(<ContactForm />);
 
     await user.type(screen.getByPlaceholderText(/^first name$/i), "Ada");
     await user.type(screen.getByPlaceholderText(/^last name$/i), "Lovelace");
@@ -87,7 +88,7 @@ describe("ContactForm (desktop)", () => {
       status: 500,
     } as Response);
     const user = userEvent.setup();
-    render(<ContactForm />);
+    renderWithIntl(<ContactForm />);
 
     await user.type(
       screen.getByPlaceholderText(/email adress \(required\)/i),

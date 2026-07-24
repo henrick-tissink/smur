@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/core";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
-import { ctaButton, services, servicesList } from "@/content/home";
+import { services } from "@/content/home";
 
 /*
   Faithful-fluid ServicesListSection — ported from components/services-list.tsx.
@@ -21,6 +22,7 @@ import { ctaButton, services, servicesList } from "@/content/home";
 */
 export function ServicesListSection() {
   const service = services[2];
+  const t = useTranslations(`Services.${service.id}`);
   const titleId = `${service.id}-title`;
 
   return (
@@ -39,7 +41,7 @@ export function ServicesListSection() {
       <div className="flex flex-col gap-[clamp(40px,6vw,120px)] md:flex-row md:items-start md:justify-between">
         <div className="w-full md:min-w-0 md:max-w-[430px] md:flex-1">
           <Reveal>
-            <span className="eyebrow">{service.eyebrow}</span>
+            <span className="eyebrow">{t("eyebrow")}</span>
           </Reveal>
           <Reveal delay={0.05}>
             {service.titleSvg ? (
@@ -49,24 +51,24 @@ export function ServicesListSection() {
                   width={service.titleSvg.width}
                   height={service.titleSvg.height}
                   leftBearing={service.titleSvg.leftBearing}
-                  alt={service.title}
+                  alt={t("title")}
                   as={2}
                 />
               </div>
             ) : (
               <h2 id={titleId} className="mt-[12px] font-heading text-[58px] leading-[1.21] text-ink">
-                {service.title}
+                {t("title")}
               </h2>
             )}
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-[24px] max-w-[425px] text-[17px] leading-[1.33] text-ink">
-              {service.body}
+              {t("body")}
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="mt-[32px] space-y-[15px] text-[17px] italic text-accent">
-              {servicesList.map((item) => (
+              {(t.raw("list") as string[]).map((item) => (
                 <li
                   key={item}
                   className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]"
@@ -78,7 +80,7 @@ export function ServicesListSection() {
           </Reveal>
           <Reveal delay={0.2} className="mt-[32px]">
             <Button href="/contact" trailingArrow>
-              {ctaButton}
+              {t("cta")}
             </Button>
           </Reveal>
         </div>

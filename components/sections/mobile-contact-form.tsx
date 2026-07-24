@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import { contactForm } from "@/content/contact";
 import { Reveal } from "@/components/reveal";
@@ -22,6 +23,7 @@ import { useContactSubmit } from "@/components/contact/use-contact-submit";
   independent. Row 1 hardcodes firstName/lastName (per legacy).
 */
 export function MobileContactForm() {
+  const t = useTranslations("Contact");
   // Posts to /api/contact; the button only flips to SENT on real delivery
   // (June 2026 client request).
   const { state, submit } = useContactSubmit();
@@ -54,8 +56,8 @@ export function MobileContactForm() {
           >
             {/* Row 1: First + Last name side by side */}
             <div className="flex gap-[10px]">
-              <MobileText id="firstName" label="First name" />
-              <MobileText id="lastName" label="Last name" />
+              <MobileText id="firstName" label={t("form.firstName.label")} />
+              <MobileText id="lastName" label={t("form.lastName.label")} />
             </div>
             {/* Subsequent fields */}
             {contactForm.fields.slice(2).map((f) =>
@@ -63,21 +65,21 @@ export function MobileContactForm() {
                 <MobileText
                   key={f.id}
                   id={f.id}
-                  label={f.label}
-                  helper={f.helper}
+                  label={t(`form.${f.id}.label`)}
+                  helper={f.helper ? t(`form.${f.id}.helper`) : undefined}
                 />
               ) : f.kind === "checkboxGroup" ? (
                 <MobileCheckboxGroup
                   key={f.id}
                   id={f.id}
-                  label={f.label}
-                  options={f.options}
+                  label={t(`form.${f.id}.label`)}
+                  options={t.raw(`form.${f.id}.options`) as string[]}
                 />
               ) : (
                 <MobileTextarea
                   key={f.id}
                   id={f.id}
-                  placeholder={f.placeholder}
+                  placeholder={t(`form.${f.id}.placeholder`)}
                 />
               ),
             )}
@@ -99,7 +101,7 @@ export function MobileContactForm() {
                     ? "SENT"
                     : state === "sending"
                       ? "SENDING…"
-                      : contactForm.buttonLabel}
+                      : t("buttonLabel")}
                 </span>
                 {!sent && state !== "sending" && (
                   <span

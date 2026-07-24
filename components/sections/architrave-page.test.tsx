@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import { ArchitraveCaseStudy } from "./architrave-page";
 import { MobileArchitraveCaseStudy } from "./mobile-architrave-page";
 
 describe("ArchitraveCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = render(<ArchitraveCaseStudy />);
+    const { container } = renderWithIntl(<ArchitraveCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -16,7 +16,7 @@ describe("ArchitraveCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = render(<ArchitraveCaseStudy />);
+    const { container } = renderWithIntl(<ArchitraveCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/architrave/']"),
     ).not.toBeNull();
@@ -25,7 +25,7 @@ describe("ArchitraveCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = render(<MobileArchitraveCaseStudy />);
+    const { container } = renderWithIntl(<MobileArchitraveCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );
@@ -40,7 +40,7 @@ describe("ArchitraveCaseStudy (faithful-fluid)", () => {
     // Legacy: direct child of the fixed canvas at left:717.26, top:4261.62
     // of a 1440x4593 stage. Must remain a direct child of the aspect-stage,
     // not nested inside another absolutely-positioned group.
-    const { container } = render(<ArchitraveCaseStudy />);
+    const { container } = renderWithIntl(<ArchitraveCaseStudy />);
     const floating = container.querySelector<HTMLElement>(
       "img[src*='floating.svg']",
     );

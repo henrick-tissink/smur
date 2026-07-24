@@ -1,4 +1,4 @@
-import { hero } from "@/content/home";
+import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
 import { HeroCarousel } from "./hero-carousel";
@@ -11,6 +11,18 @@ import { HeroCarousel } from "./hero-carousel";
   header.svg 586.82×288.99; body 17px maxWidth 430, 49px under headline.
 */
 export function Hero() {
+  const t = useTranslations("Hero");
+  // Body copy underlines "who you are" mid-sentence (Figma emphasis); the
+  // message is one plain string, so split around that marker in code. The
+  // straight apostrophe from the extracted message is swapped for the
+  // typographic ’ the design uses (matches the pre-i18n hardcoded JSX).
+  const body = t("body").replace(/'/g, "’");
+  const marker = t("bodyEmphasis");
+  const markerIndex = body.indexOf(marker);
+  const bodyBefore = markerIndex >= 0 ? body.slice(0, markerIndex) : body;
+  const bodyAfter =
+    markerIndex >= 0 ? body.slice(markerIndex + marker.length) : "";
+
   return (
     <section
       id="home"
@@ -37,7 +49,7 @@ export function Hero() {
                 width="40.75cqw"   /* 586.82/1440 */
                 height="20.07cqw"  /* 288.99/1440 */
                 leftBearing={21}
-                alt={hero.headline}
+                alt={t("headline")}
                 as={1}
               />
             </div>
@@ -53,13 +65,9 @@ export function Hero() {
                 color: "var(--color-cream)",
               }}
             >
-              Branding is not just aesthetics, it&rsquo;s a reflection of{" "}
-              <span className="underline decoration-from-font">who you are</span>
-              , what you value, and how you want to be experienced. Drawn to
-              genuine human connection and the subtle ways people express
-              themselves, I approach naming, branding, and design as a way of
-              creating identities that feel honest, grounded, and deeply aligned
-              with the humans behind them.
+              {bodyBefore}
+              <span className="underline decoration-from-font">{marker}</span>
+              {bodyAfter}
             </p>
           </Reveal>
         </div>

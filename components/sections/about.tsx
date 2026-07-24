@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { about } from "@/content/home";
 import { FigmaImage } from "@/components/figma-image";
 import { Reveal } from "@/components/reveal";
@@ -35,6 +36,16 @@ function pctY(px: number) {
 }
 
 export function About() {
+  const t = useTranslations("About");
+  // The message body is one plain string; the legacy JSX renders it as three
+  // <p> paragraphs (separated by a blank line in the Figma copy). Split on
+  // runs of 2+ whitespace to recover the same three paragraphs, and swap the
+  // straight apostrophes from the extracted message for the typographic ’
+  // the design uses (matches the pre-i18n hardcoded JSX).
+  const bodyParagraphs = t("body")
+    .split(/\s{2,}/)
+    .map((p) => p.replace(/'/g, "’"));
+
   return (
     <section
       id="about"
@@ -59,7 +70,7 @@ export function About() {
               width="19.02cqw" /* 273.84/1440 */
               height="15.31cqw" /* 220.43/1440 */
               leftBearing={6}
-              alt="ABOUT SMA & SMUR."
+              alt={t("heading")}
               as={2}
             />
           </div>
@@ -70,28 +81,15 @@ export function About() {
             className="absolute text-cream"
             style={{ left: pctX(775), top: pctY(133), width: pctX(424) }}
           >
-            <p style={{ fontSize: "1.18cqw" /* 17/1440 */, lineHeight: 1.33 }}>
-              Over the years, my work has grown beyond branding into web
-              design, UI/UX, creative direction, and set &amp; event styling,
-              always focused on building cohesive, emotionally grounded visual
-              worlds across both digital and physical spaces.
-            </p>
-            <p
-              className="mt-[1em]"
-              style={{ fontSize: "1.18cqw" /* 17/1440 */, lineHeight: 1.33 }}
-            >
-              I value collaboration, thoughtful listening, and real human
-              connection, which continue to shape how I work and the kinds of
-              people and projects I&rsquo;m naturally drawn to.
-            </p>
-            <p
-              className="mt-[1em]"
-              style={{ fontSize: "1.18cqw" /* 17/1440 */, lineHeight: 1.33 }}
-            >
-              While branding remains central to what I do, I&rsquo;m most
-              fulfilled when creating work that feels both beautiful and
-              deeply aligned with the people behind it.
-            </p>
+            {bodyParagraphs.map((p, i) => (
+              <p
+                key={i}
+                className={i > 0 ? "mt-[1em]" : undefined}
+                style={{ fontSize: "1.18cqw" /* 17/1440 */, lineHeight: 1.33 }}
+              >
+                {p}
+              </p>
+            ))}
           </div>
         </Reveal>
 

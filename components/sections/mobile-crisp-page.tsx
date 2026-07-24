@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { crisp } from "@/content/crisp";
 import { Reveal } from "@/components/reveal";
 
@@ -45,6 +46,7 @@ const SECTIONS_A = [
 const POSTER = { src: "/figma-assets/work/crisp/now-open-poster.png", w: 1796, h: 2228, alt: "CRISP ‘We are now open!’ folded poster" };
 
 export function MobileCrispCaseStudy() {
+  const t = useTranslations("CaseStudies.crisp");
   return (
     <div
       data-nav-scheme="dark"
@@ -78,13 +80,13 @@ export function MobileCrispCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(40), lineHeight: 1, letterSpacing: "0.01em" }}
           >
-            {crisp.eyebrow}
+            {t("eyebrow")}
           </p>
           <p
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {crisp.body}
+            {t("body")}
           </p>
         </div>
       </Reveal>

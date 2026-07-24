@@ -1,26 +1,27 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import userEvent from "@testing-library/user-event";
 import { ContactFAQ } from "@/components/sections/contact-faq";
 import { contactFAQItems, contactFAQ as contactFAQContent } from "@/content/contact";
 
 describe("ContactFAQ (desktop)", () => {
   it("renders the section with the light nav scheme", () => {
-    const { container } = render(<ContactFAQ />);
+    const { container } = renderWithIntl(<ContactFAQ />);
     const section = container.querySelector("section") as HTMLElement;
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute("data-nav-scheme", "light");
   });
 
   it("renders the level-2 'Questions' heading", () => {
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     expect(
       screen.getByRole("heading", { level: 2, name: /questions/i }),
     ).toBeInTheDocument();
   });
 
   it("renders all 4 FAQ questions", () => {
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     for (const item of contactFAQItems) {
       expect(
         screen.getByRole("button", { name: new RegExp(item.question, "i") }),
@@ -30,7 +31,7 @@ describe("ContactFAQ (desktop)", () => {
 
   it("clicking a question toggles its aria-expanded state", async () => {
     const user = userEvent.setup();
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     const button = screen.getByRole("button", {
       name: new RegExp(contactFAQItems[0].question, "i"),
     });
@@ -43,7 +44,7 @@ describe("ContactFAQ (desktop)", () => {
 
   it("renders the answer text for an expanded question", async () => {
     const user = userEvent.setup();
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     const button = screen.getByRole("button", {
       name: new RegExp(contactFAQItems[0].question, "i"),
     });
@@ -54,7 +55,7 @@ describe("ContactFAQ (desktop)", () => {
   });
 
   it("renders the INSTAGRAM / PINTEREST social links with correct hrefs, opening in a new tab", () => {
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     const instagram = screen.getByRole("link", { name: /instagram/i });
     const pinterest = screen.getByRole("link", { name: /pinterest/i });
     expect(instagram).toHaveAttribute("href", contactFAQContent.instagramUrl);
@@ -64,14 +65,14 @@ describe("ContactFAQ (desktop)", () => {
   });
 
   it("renders the /work collage link with an accessible label", () => {
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     expect(
       screen.getByRole("link", { name: /see all my work/i }),
     ).toHaveAttribute("href", "/work");
   });
 
   it("renders the 'my work :)' link to /work", () => {
-    render(<ContactFAQ />);
+    renderWithIntl(<ContactFAQ />);
     expect(
       screen.getByRole("link", { name: /my work :\)/i }),
     ).toHaveAttribute("href", "/work");
