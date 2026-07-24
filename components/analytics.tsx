@@ -13,7 +13,7 @@ import Script from "next/script";
   in code rather than an env var. NEXT_PUBLIC_GA_ID can override for staging.
 */
 
-const GA_MEASUREMENT_ID = "G-K92NEEB7EY";
+const GA_MEASUREMENT_ID = "G-SZRKZ5L43D";
 
 export function resolveGaId(): string {
   return GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GA_ID || "";
