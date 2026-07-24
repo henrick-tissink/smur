@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { CaseStudyJsonLd } from "@/components/case-study-jsonld";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
@@ -20,7 +21,13 @@ export async function generateMetadata({
   Faithful-fluid: aspect-ratio stage (desktop) + container-query flow
   (mobile), render-both CSS-toggled at md, new nav. No zoom.
 */
-export default function IwlRoute() {
+export default async function IwlRoute({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale); // opt into static rendering for this locale
   return (
     <>
       <CaseStudyJsonLd slug="iwl" />

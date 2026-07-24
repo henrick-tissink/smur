@@ -44,7 +44,15 @@
       "eyebrow": "mehr.mehr.mehr.",
       "title": "Webdesign, Print & mehr",
       "body": "Über die Markenidentität hinaus biete ich eine Reihe weiterer kreativer Leistungen an – entweder als Teil eines größeren Projekts oder als eigenständige Zusammenarbeit:",
-      "dropdowns": []
+      "dropdowns": [],
+      "list": [
+        "Webdesign",
+        "Digitale Design-Ergebnisse",
+        "Print-Design-Ergebnisse",
+        "Social-Media-Visuals",
+        "usw."
+      ],
+      "cta": "ZUSAMMENARBEITEN"
     }
   },
   "About": {
@@ -98,10 +106,20 @@
       }
     ],
     "form": {
-      "firstName": { "label": "Vorname" },
-      "lastName": { "label": "Nachname" },
-      "email": { "label": "E-Mail-Adresse", "helper": "(erforderlich)" },
-      "business": { "label": "Firmenname", "helper": "(falls vorhanden)" },
+      "firstName": {
+        "label": "Vorname"
+      },
+      "lastName": {
+        "label": "Nachname"
+      },
+      "email": {
+        "label": "E-Mail-Adresse",
+        "helper": "(erforderlich)"
+      },
+      "business": {
+        "label": "Firmenname",
+        "helper": "(falls vorhanden)"
+      },
       "interests": {
         "label": "Womit kann ich dir helfen?",
         "options": [
@@ -113,10 +131,18 @@
           "Sonstiges"
         ]
       },
-      "brandAbout": { "label": "Worum geht es bei deiner Marke?" },
-      "deadline": { "label": "Hast du einen idealen Zeitrahmen im Kopf?" },
-      "details": { "placeholder": "Möchtest du noch weitere Details ergänzen?" },
-      "source": { "label": "Wie bist du auf diese Website gestoßen?" }
+      "brandAbout": {
+        "label": "Worum geht es bei deiner Marke?"
+      },
+      "deadline": {
+        "label": "Hast du einen idealen Zeitrahmen im Kopf?"
+      },
+      "details": {
+        "placeholder": "Möchtest du noch weitere Details ergänzen?"
+      },
+      "source": {
+        "label": "Wie bist du auf diese Website gestoßen?"
+      }
     },
     "socials": "INSTAGRAM   /   PINTEREST"
   },

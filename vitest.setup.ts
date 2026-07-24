@@ -11,6 +11,15 @@ afterEach(() => cleanup());
   in jsdom: <Link> becomes a plain <a href> (href assertions still work) and the
   router/pathname hooks are inert stubs.
 */
+// setRequestLocale opts pages into static rendering by writing to next-intl's
+// request store, which doesn't exist under vitest. Stub it to a no-op so async
+// page components (which call it) can be awaited + rendered in tests. The rest
+// of next-intl/server (getTranslations/getLocale) is preserved.
+vi.mock("next-intl/server", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("next-intl/server")>();
+  return { ...actual, setRequestLocale: () => {} };
+});
+
 vi.mock("@/i18n/navigation", async () => {
   const React = await import("react");
   return {

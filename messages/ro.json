@@ -44,7 +44,15 @@
       "eyebrow": "mai mult.mai mult.mai mult.",
       "title": "Webdesign, Print & Altele",
       "body": "Dincolo de designul de identitate de brand, ofer o gamă de servicii creative suplimentare, fie ca parte a unui proiect mai amplu, fie ca și colaborări de sine stătătoare:",
-      "dropdowns": []
+      "dropdowns": [],
+      "list": [
+        "Web design",
+        "Livrabile de design digital",
+        "Livrabile de design print",
+        "Vizualuri pentru social media",
+        "etc."
+      ],
+      "cta": "SĂ LUCRĂM ÎMPREUNĂ"
     }
   },
   "About": {
@@ -98,10 +106,20 @@
       }
     ],
     "form": {
-      "firstName": { "label": "Prenume" },
-      "lastName": { "label": "Nume" },
-      "email": { "label": "Adresă de email", "helper": "(obligatoriu)" },
-      "business": { "label": "Numele afacerii", "helper": "(dacă este cazul)" },
+      "firstName": {
+        "label": "Prenume"
+      },
+      "lastName": {
+        "label": "Nume"
+      },
+      "email": {
+        "label": "Adresă de email",
+        "helper": "(obligatoriu)"
+      },
+      "business": {
+        "label": "Numele afacerii",
+        "helper": "(dacă este cazul)"
+      },
       "interests": {
         "label": "Cu ce te pot ajuta?",
         "options": [
@@ -113,10 +131,18 @@
           "Altele"
         ]
       },
-      "brandAbout": { "label": "Despre ce este brandul tău?" },
-      "deadline": { "label": "Ai un termen limită ideal în minte?" },
-      "details": { "placeholder": "Mai sunt detalii pe care ai vrea să le adaugi?" },
-      "source": { "label": "Cum ai ajuns pe acest website?" }
+      "brandAbout": {
+        "label": "Despre ce este brandul tău?"
+      },
+      "deadline": {
+        "label": "Ai un termen limită ideal în minte?"
+      },
+      "details": {
+        "placeholder": "Mai sunt detalii pe care ai vrea să le adaugi?"
+      },
+      "source": {
+        "label": "Cum ai ajuns pe acest website?"
+      }
     },
     "socials": "INSTAGRAM   /   PINTEREST"
   },

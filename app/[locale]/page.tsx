@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/page-metadata";
 import { services } from "@/content/home";
 import { Nav } from "@/components/navigation/nav";
@@ -43,7 +44,13 @@ export async function generateMetadata({
   return buildPageMetadata(locale, "", "home");
 }
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale); // opt into static rendering for this locale
   return (
     <>
       {/* Mobile tree — m- ids, shown < md */}

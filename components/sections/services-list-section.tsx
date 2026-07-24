@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/core";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
-import { ctaButton, services, servicesList } from "@/content/home";
+import { services } from "@/content/home";
 
 /*
   Faithful-fluid ServicesListSection — ported from components/services-list.tsx.
@@ -68,7 +68,7 @@ export function ServicesListSection() {
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="mt-[32px] space-y-[15px] text-[17px] italic text-accent">
-              {servicesList.map((item) => (
+              {(t.raw("list") as string[]).map((item) => (
                 <li
                   key={item}
                   className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]"
@@ -80,7 +80,7 @@ export function ServicesListSection() {
           </Reveal>
           <Reveal delay={0.2} className="mt-[32px]">
             <Button href="/contact" trailingArrow>
-              {ctaButton}
+              {t("cta")}
             </Button>
           </Reveal>
         </div>

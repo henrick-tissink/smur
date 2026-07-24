@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { ctaButton, services, servicesList } from "@/content/home";
+import { services } from "@/content/home";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
 
@@ -115,7 +115,7 @@ export function MobileServicesListSection() {
                 gap: cqw(15),
               }}
             >
-              {servicesList.map((item) => (
+              {(t.raw("list") as string[]).map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -139,7 +139,7 @@ export function MobileServicesListSection() {
               }}
             >
               <span className="font-sans" style={{ fontSize: cqw(19.51), lineHeight: 1.21 }}>
-                {ctaButton}{" "}
+                {t("cta")}{" "}
               </span>
               <img
                 src="/figma-assets/mobile/button-arrow.svg"

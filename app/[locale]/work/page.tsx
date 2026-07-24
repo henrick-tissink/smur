@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { WorkPage } from "@/components/sections/work-page";
@@ -20,7 +21,13 @@ export async function generateMetadata({
   route, app/page.tsx). Nav/MobileNav default to scheme="dark" (cream bg
   #fff7f4, ink text) which matches the work page's data-nav-scheme="dark".
 */
-export default function WorkRoute() {
+export default async function WorkRoute({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale); // opt into static rendering for this locale
   return (
     <>
       <div className="md:hidden">

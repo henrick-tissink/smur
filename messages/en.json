@@ -44,7 +44,15 @@
       "eyebrow": "more.more.more.",
       "title": "Webdesign, Print & More",
       "body": "Beyond brand identity design, I offer a range of additional creative services, either as part of a larger project or as standalone collaborations:",
-      "dropdowns": []
+      "dropdowns": [],
+      "list": [
+        "Web design",
+        "Digital design deliverables",
+        "Print design deliverables",
+        "Social media visuals",
+        "etc."
+      ],
+      "cta": "LET'S WORK TOGETHER"
     }
   },
   "About": {
@@ -98,10 +106,20 @@
       }
     ],
     "form": {
-      "firstName": { "label": "First name" },
-      "lastName": { "label": "Last name" },
-      "email": { "label": "Email adress", "helper": "(required)" },
-      "business": { "label": "Business name", "helper": "(if any)" },
+      "firstName": {
+        "label": "First name"
+      },
+      "lastName": {
+        "label": "Last name"
+      },
+      "email": {
+        "label": "Email adress",
+        "helper": "(required)"
+      },
+      "business": {
+        "label": "Business name",
+        "helper": "(if any)"
+      },
       "interests": {
         "label": "What can I help you with?",
         "options": [
@@ -113,10 +131,18 @@
           "Other"
         ]
       },
-      "brandAbout": { "label": "What is your brand about?" },
-      "deadline": { "label": "Do you have an ideal deadline in mind?" },
-      "details": { "placeholder": "Any additional details you’d like to include?" },
-      "source": { "label": "How did you come across this website?" }
+      "brandAbout": {
+        "label": "What is your brand about?"
+      },
+      "deadline": {
+        "label": "Do you have an ideal deadline in mind?"
+      },
+      "details": {
+        "placeholder": "Any additional details you’d like to include?"
+      },
+      "source": {
+        "label": "How did you come across this website?"
+      }
     },
     "socials": "INSTAGRAM   /   PINTEREST"
   },

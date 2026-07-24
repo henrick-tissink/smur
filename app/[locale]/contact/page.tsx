@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { ContactHero } from "@/components/sections/contact-hero";
@@ -31,7 +32,13 @@ export async function generateMetadata({
   mobile tree, which needed explicit `clamp()` margin wrappers because its
   mobile sections were fixed-height Figma blocks with no self-padding.
 */
-export default function ContactRoute() {
+export default async function ContactRoute({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale); // opt into static rendering for this locale
   return (
     <>
       {/* Mobile tree — shown < md */}
