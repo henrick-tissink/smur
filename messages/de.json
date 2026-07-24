@@ -1,1 +1,219 @@
-{}
+{
+  "Nav": {
+    "services": "Leistungen",
+    "work": "ARBEITEN",
+    "about": "ÜBER",
+    "contact": "ZUSAMMENARBEITEN"
+  },
+  "Hero": {
+    "headline": "NAMING, Branding & design ERZÄHLEN GUTE geschichten",
+    "body": "Branding ist mehr als Ästhetik – es ist ein Spiegel dessen, wer du bist, wofür du stehst und wie du wahrgenommen werden möchtest. Fasziniert von echter menschlicher Verbindung und den feinen Nuancen, in denen sich Menschen ausdrücken, verstehe ich Naming, Branding und Design als eine Möglichkeit, Identitäten zu schaffen, die ehrlich, geerdet und tief verbunden mit den Menschen dahinter wirken."
+  },
+  "Services": {
+    "brand-identity": {
+      "eyebrow": "rundumservice",
+      "title": "Markenidentität",
+      "body": "Dieser Prozess ist darauf ausgelegt, den Kern deiner Marke durch achtsame Gespräche, Intuition und persönliche Auseinandersetzung freizulegen – das Ergebnis ist eine visuelle Identität, die stimmig, unverwechselbar und darauf ausgelegt ist, mit dir zu wachsen.",
+      "dropdowns": [
+        {
+          "label": "Details",
+          "body": "Jede Marke ist anders, daher können die folgenden Leistungen ergänzt, verfeinert oder an deine individuellen Bedürfnisse angepasst werden\n\nMarkenberatung (1–2 Std.)\nCreative Brief\nPrimäres Logo\nSekundäre(s) Logo(s)\nBildmarke(n)\nMarkenmuster\nFarbpalette\nSchriftkombinationen\nEin Werbemittel\nMarkenrichtlinien"
+        },
+        {
+          "label": "Zeitplan",
+          "body": "In 4–6 Wochen werden wir:\n\nSchritt 1 — Discovery-Beratung & Creative Brief\nFragebogen, Beratung und kreative Ausrichtung.\n\nSchritt 2 — Design & Verfeinerung\nEntwicklung von zwei Markenrichtungen und Ausarbeitung der finalen Identität in zwei Feedbackrunden.\n\nSchritt 3 — Erweiterung\nEin kostenloses Werbemittel ist inklusive, weitere Leistungen sind bei Bedarf verfügbar.\n\nSchritt 4 — Finalisierung\nLieferung aller finalen Dateien und Assets."
+        }
+      ]
+    },
+    "naming-positioning": {
+      "eyebrow": "strategiefokussiert",
+      "title": "Naming & Positionierung",
+      "body": "Gemeinsam entwickeln wir einen Namen und eine Markenrichtung, die bewusst gewählt, einprägsam und tief mit dem Wesen deines Unternehmens sowie den Menschen, die es erreichen soll, verbunden ist.",
+      "dropdowns": [
+        {
+          "label": "Details",
+          "body": "Jede Geschichte beginnt anders, daher können die folgenden Leistungen entsprechend deiner individuellen Vision und Richtung erarbeitet, verfeinert oder angepasst werden.\n\nDiscovery-Session (1–2 Std.)\nMarkenpositionierung\nNaming-Exploration\nNaming-Shortlist\nMarkengeschichte & Tonalität\nTagline-Exploration\nKreative Ausrichtung & Referenzen"
+        },
+        {
+          "label": "Zeitplan",
+          "body": "In 2–3 Wochen werden wir:\n\nSchritt 1 — Discovery Fragebogen, Discovery-Session und Auseinandersetzung mit dem Kern deiner Marke.\n\nSchritt 2 — Positionierung & Name\nFestlegung deiner Markenrichtung, Positionierung, Tonalität und kuratierter Naming-Exploration.\n\nSchritt 3 — Verfeinerung\nGemeinsames Verfeinern und Eingrenzen der stärksten Richtung.\n\nSchritt 4 — Finalisierung\nLieferung des finalen Namens, der Positionierung und der begleitenden Markensprache."
+        }
+      ]
+    },
+    "webdesign-print": {
+      "eyebrow": "mehr.mehr.mehr.",
+      "title": "Webdesign, Print & mehr",
+      "body": "Über die Markenidentität hinaus biete ich eine Reihe weiterer kreativer Leistungen an – entweder als Teil eines größeren Projekts oder als eigenständige Zusammenarbeit:",
+      "dropdowns": []
+    }
+  },
+  "About": {
+    "heading": "ÜBER SMA & SMUR.",
+    "body": "Im Laufe der Jahre ist meine Arbeit über das Branding hinausgewachsen – in Webdesign, UI/UX, Creative Direction sowie Set- & Event-Styling –, stets mit dem Fokus, stimmige, emotional geerdete visuelle Welten zu schaffen, sowohl im Digitalen als auch im physischen Raum.  Zusammenarbeit, aufmerksames Zuhören und echte menschliche Verbindung sind mir wichtig und prägen bis heute, wie ich arbeite und welche Menschen und Projekte mich auf natürliche Weise anziehen.  Auch wenn Branding weiterhin im Zentrum meiner Arbeit steht, erfülle ich mich am meisten, wenn ich Arbeiten schaffe, die sowohl schön als auch tief verbunden mit den Menschen dahinter sind."
+  },
+  "Testimonials": [
+    {
+      "quote": "Seit nunmehr zehn Jahren leistet Smaranda Murarus hervorragende Arbeit für Harvard's Institute for World Literature. Sie hat eine durchgängige Designidentität für uns geschaffen, die sie kreativ für die unterschiedlichsten Zwecke angepasst hat – von unserer Website über die Flyer für unsere jährlichen Sessions bis hin zu allem von den Covern unserer Programme bis zu Beschilderung und T-Shirts. Sie hat stets bemerkenswert schnell auf Anfragen reagiert und war flexibel darin, Designs basierend auf Feedback anzupassen. Wir schätzen uns glücklich, sie in unserem Team zu haben.",
+      "attribution": "David Damrosch, Harvard University"
+    },
+    {
+      "quote": "Wir haben es geliebt, mit Smaranda an zahlreichen Projekten zu arbeiten – von Branding und Websites bis hin zu Softwareproduktdesign. Sie liefert durchgehend durchdachte, hochwertige Arbeit, oft unter engen Zeitrahmen, und begegnet Herausforderungen stets mit Kreativität und Flexibilität.\n\nWas sie auszeichnet, ist ihre Fähigkeit, verschiedene Richtungen zu erkunden, statt nur eine einzige Lösung anzubieten – das macht die Zusammenarbeit sowohl strategisch als auch intuitiv. Außerdem ist sie schnell, zuverlässig und wirklich wunderbar in der Zusammenarbeit.",
+      "attribution": "Jona Boeddinghaus, Gradient Zero Austria"
+    },
+    {
+      "quote": "Es ist fast 10 Jahre her, seit ich begonnen habe, mit Smaranda zusammenzuarbeiten, und wir arbeiten noch heute zusammen. Von Anfang an wusste ich, dass dies mehr als nur eine einfache Zusammenarbeit sein würde.\n\nSmaranda geht jedes Projekt mit Kreativität, Hingabe und echter Sorgfalt an. Sie liefert stets mehr als erwartet, arbeitet eng mit dir während des gesamten Prozesses und versteht die Vision hinter jedem Projekt wirklich.",
+      "attribution": "Alina Voloceai, Manufaktura Studio"
+    },
+    {
+      "quote": "Die Zusammenarbeit mit Smaranda war eine super reibungslose und schöne Erfahrung. Ihre starke Expertise kommt daher, dass sie seit vielen Jahren im Design-Business tätig ist. Sie konnte die Bedürfnisse der Kunden leicht verstehen und mehrere Styling-Richtungen erkunden, bis sie diejenige gefunden hat, die am besten zur Vision passt. Die Kommunikation war klar und professionell, sie konnte verlässliche Zeitschätzungen abgeben und Deadlines einhalten.\n\nIch empfehle sie von ganzem Herzen als Full-Stack Visual- und Grafikdesignerin.",
+      "attribution": "Iulia Branca, Product designer"
+    }
+  ],
+  "Work": {
+    "eyebrow": "durchscrollen & anklicken",
+    "titleLine1": "Das ist",
+    "titleLine2": "Meine Arbeit",
+    "thanks": "Danke :)"
+  },
+  "Contact": {
+    "title": "Erzähl mir von deinem Projekt",
+    "intro": "Branding ist eine durchdachte Investition – sowohl in dein Unternehmen als auch in die Art, wie du wahrgenommen werden möchtest.  Wenn du dich mit meiner Arbeit verbunden fühlst, nimm dir bitte einen Moment Zeit, um die Leistungen und FAQ durchzusehen, bevor du das Anfrageformular unten ausfüllst. Im Anschluss melde ich mich mit ein paar Fragen, damit wir herausfinden können, ob wir zueinander passen. Passt es, erstelle ich ein individuelles Angebot, zugeschnitten auf dein Projekt. Für alles andere kannst du mich gerne unter hello@smur-world.com erreichen",
+    "buttonLabel": "SPEICHERN & SENDEN",
+    "faq": [
+      {
+        "question": "Bietest du auch reine Logo-Projekte an?",
+        "answer": "Früher dachte ich, ich würde ausschließlich an vollständigen Identitätssystemen arbeiten, bei denen alles von Grund auf gemeinsam entsteht.\n\nHeute weiß ich, dass ich mich auch auf kleinere Teile konzentrieren kann, wenn das Projekt es verlangt.\n\nWenn dir meine Arbeit gefällt, du aber nur ein einzelnes Element brauchst, melde dich gerne – gemeinsam finden wir heraus, was passt."
+      },
+      {
+        "question": "Gibt es Zahlungspläne?",
+        "answer": "Ja. In der Regel gestalte ich die Zahlung in 1–4 Raten, abhängig von der Komplexität des Projekts.\n\nBranding- und Designarbeit ist eine Investition, und ich versuche, den Prozess flexibel und zugänglich zu gestalten. Meist werden die Zahlungen über den Projektzeitraum verteilt, bei Bedarf sind auch längere Regelungen möglich.\n\nAußerdem musst du nicht alles auf einmal umsetzen. Viele meiner Kund:innen kommen im Laufe der Zeit für weitere Arbeiten zurück."
+      },
+      {
+        "question": "Mit welcher Investition kann ich rechnen?",
+        "answer": "Da jedes Projekt anders ist und sich individuell an deine Bedürfnisse anpassen lässt, gibt es keine feste Preisliste, die für alles gilt.\n\nSobald ich verstanden habe, was du suchst, erstelle ich ein maßgeschneidertes Angebot, basierend auf Komplexität, Prioritäten, Umfang und Detailgrad des Projekts."
+      },
+      {
+        "question": "Was passiert, wenn ich mehr Zeit für Feedback brauche?",
+        "answer": "In der Regel arbeite ich mit einem Feedback-Zeitraum von bis zu 5 Werktagen pro Runde. Das sorgt für einen reibungslosen Ablauf und hilft uns, den Gesamtzeitplan einzuhalten.\n\nBrauchst du etwas mehr Zeit, ist das völlig in Ordnung – sag mir einfach vorher Bescheid, und wir passen die Dinge an, wo es möglich ist. Mir ist wichtig, einen Rhythmus zu finden, der für beide Seiten funktioniert und das Projekt ohne Druck voranbringt."
+      }
+    ],
+    "form": {
+      "firstName": { "label": "Vorname" },
+      "lastName": { "label": "Nachname" },
+      "email": { "label": "E-Mail-Adresse", "helper": "(erforderlich)" },
+      "business": { "label": "Firmenname", "helper": "(falls vorhanden)" },
+      "interests": {
+        "label": "Womit kann ich dir helfen?",
+        "options": [
+          "Markenidentität (Logo und weiteres)",
+          "Naming",
+          "Webdesign",
+          "Digitale Design-Leistungen",
+          "Print-Design-Leistungen",
+          "Sonstiges"
+        ]
+      },
+      "brandAbout": { "label": "Worum geht es bei deiner Marke?" },
+      "deadline": { "label": "Hast du einen idealen Zeitrahmen im Kopf?" },
+      "details": { "placeholder": "Möchtest du noch weitere Details ergänzen?" },
+      "source": { "label": "Wie bist du auf diese Website gestoßen?" }
+    },
+    "socials": "INSTAGRAM   /   PINTEREST"
+  },
+  "CaseStudies": {
+    "sws": {
+      "eyebrow": "SASSY WOMAN SOCIETY",
+      "body": "Sassy Woman Society ist eine digitale Plattform, die Selbstbewusstsein, Raffinesse und Gemeinschaft unter Frauen feiert. Die Website setzt auf kräftige Serifentypografie und eine durchdachte visuelle Hierarchie, um Stärke mit Eleganz auszubalancieren, während großformatige Bildwelten sofort Präsenz und Stil vermitteln.\n\nDas Erlebnis ist bewusst immersiv und dennoch leicht zu navigieren, sodass Events und Initiativen sowohl zugänglich als auch erhaben wirken. Die gesamte Designsprache verbindet Luxus mit Persönlichkeit und schafft einen Raum, in dem Frauen sich verbinden, austauschen und inspirieren lassen können."
+    },
+    "mnf": {
+      "eyebrow": "MANUFAKTURA STUDIO",
+      "body": "Entworfen für Manufaktura Studio Architecture, wurde diese minimalistische Portfolio-Website geschaffen, damit die Arbeit in ihrer reinsten Form für sich sprechen kann. Geleitet von Zurückhaltung, Klarheit und einem starken visuellen Rhythmus, stellt die Plattform großformatige Bildwelten und dezente Interaktionen in den Mittelpunkt, die der Atmosphäre, Materialität und den architektonischen Details jedes Projekts Raum geben."
+    },
+    "taf": {
+      "eyebrow": "TAF",
+      "body": "TAF ist eine moderne Reinigungsmarke mit Sitz in den Vereinigten Arabischen Emiraten, aufgebaut auf Inklusivität, Klarheit und einer zeitgemäßen visuellen Sprache. Die Identität wurde entwickelt, um traditionelle Vorstellungen der Reinigungsbranche infrage zu stellen – weg von erwarteten Farbcodes und visuellen Klischees, hin zu einer mutigen, unerwarteten Farbpalette und einem selbstbewussten, geschlechtsneutralen Ton.\n\nDas Ergebnis ist eine frische, energiegeladene Marke, die zugänglich und zugleich professionell wirkt und TAF als modernen Dienstleister positioniert, der Gleichberechtigung, Stil und Haltung in eine traditionell übersehene Kategorie bringt."
+    },
+    "lavabo": {
+      "eyebrow": "LAVABO",
+      "body": "LAVABO ist eine Marke für Betonwaschbecken, verwurzelt in roher Materialität, urbanem Minimalismus und zeitlosem Design. Inspiriert von der Schwere und Textur des Betons selbst, steht im Zentrum der Identität eine eigens entwickelte Schrift, die strukturiert, selbstbewusst und architektonisch wirkt. Kombiniert mit einer zurückhaltenden Farbpalette und mutigen Kompositionen, balanciert das Branding industrielle Stärke mit einem zeitgemäßen, designorientierten Gespür."
+    },
+    "crisp": {
+      "eyebrow": "CRISP",
+      "body": "CRISP ist ein Branding-Projekt, das sich um raffinierte Einfachheit und zeitgenössische Patisserie-Handwerkskunst dreht. Der Name wurde wegen seiner Klarheit, Einprägsamkeit und seines internationalen Klangs gewählt und verweist zugleich auf das feine Geräusch und die Textur einer perfekt gebackenen, goldenen Kruste. Die visuelle Identität folgt derselben Sensibilität: warm, minimalistisch, haptisch und dezent raffiniert."
+    },
+    "kabinett": {
+      "eyebrow": "KABINETT WINE & SPIRITS",
+      "body": "Kabinett ist ein Hospitality-Konzept, dessen Identität sich von Möbelkultur und Weinkultur inspirieren lässt – verankert im deutschen Wort „Kabinett“. Das Logo ist als visueller Schrank gestaltet, der Elemente wie ein Weinglas, eine Flasche und ein dezent eingebettetes „K“ in seiner Struktur vereint und so ein kompaktes symbolisches System entstehen lässt.\n\nDas Ergebnis ist ein raffiniertes, zugleich verspieltes Zeichen, das Handwerkskunst, Weintradition und räumliches Denken zu einer stimmigen Identität verbindet."
+    },
+    "interstellar": {
+      "eyebrow": "INTERSTELLAR",
+      "body": "Interstellar Real Estate ist eine Premium-Immobilienmarke, die sich auf den Erwerb, Verkauf und die Kuratierung von Interbellum-Architektur konzentriert, mit besonderem Fokus auf Gebäude aus der Zeit zwischen den beiden Weltkriegen. Die Identität verbindet historische Eleganz mit einer zeitgemäßen, raffinierten Sensibilität und positioniert diese Räume in einem modernen Luxuskontext. Die visuelle Sprache spiegelt diese Dualität wider und balanciert klassische Erhabenheit mit einem eleganten, zurückhaltend-editorialen Ansatz."
+    },
+    "iwl": {
+      "eyebrow": "HARVARD INSTITUTE FOR WORLD LITERATURE",
+      "body": "Harvard Institute for World Literature ist eine akademische Plattform, die sich dem globalen literarischen Austausch und dem kritischen Dialog über Kulturen und Sprachen hinweg widmet. Ursprünglich vor über einem Jahrzehnt entwickelt und kürzlich durch ein dezentes visuelles Facelift verfeinert, ist die Identität vom Möbiusband inspiriert, das Kontinuität und den vernetzten Fluss von Ideen symbolisiert. Das Design verbindet akademische Klarheit mit einem zeitgemäßen Ton und unterstützt lange Textformate sowie internationale Zusammenarbeit."
+    },
+    "kokop": {
+      "eyebrow": "KOKO. P",
+      "body": "KOKO.P ist ein zeitgemäßes Café-Konzept, inspiriert von Specialty-Coffee-Kultur, warmem Minimalismus und einer Verspieltheit, die im Geist von Kokopelli wurzelt. Die Identität verbindet organische Weichheit mit kräftiger Typografie und schafft einen Raum, der leicht, einladend und voller Charakter wirkt.\n\nDas Ergebnis ist ein entspanntes, designgeprägtes Café-Erlebnis, in dem Kaffee, Gemeinschaft und eine feine Freude ganz natürlich zusammenkommen."
+    },
+    "architrave": {
+      "eyebrow": "ARCHITRAVE STUDIO",
+      "body": "Architrave ist ein Innenarchitekturstudio, das Räume gestaltet, die zutiefst persönlich und bewusst wirken. Geleitet von der Idee, „die Reflexion von dir zu gestalten“, untersucht die Arbeit, wie Material, Licht und Proportion Identität in gebaute Form übersetzen können. Das Ergebnis ist ein leiser, raffinierter Ansatz für Innenräume, in dem jeder Raum zu einem durchdachten Ausdruck der Menschen wird, die ihn bewohnen."
+    }
+  },
+  "Metadata": {
+    "home": {
+      "title": "SMUR — Naming, Branding & Design",
+      "description": "SMUR ist ein unabhängiges Studio für Naming, Markenidentität und Design — und schafft ehrliche, geerdete Identitäten für die Menschen hinter dem Unternehmen."
+    },
+    "work": {
+      "title": "Ausgewählte Arbeiten — SMUR",
+      "description": "Ausgewählte Branding- und Designprojekte von SMUR — Case Studies zu Naming, Identität, Verpackung und Editorial-Systemen."
+    },
+    "contact": {
+      "title": "Lass uns zusammenarbeiten — SMUR",
+      "description": "Erzähl mir von deinem Projekt — Naming, Branding, Verpackung oder Editorial Design. SMUR arbeitet mit Gründer:innen und kleinen Teams zusammen, die neue Unternehmungen aufbauen."
+    },
+    "sws": {
+      "title": "Sassy Woman Society — SMUR",
+      "description": "Markenidentität für die Sassy Woman Society — kräftige Typografie und ein Editorial-System für Mitgliedschaft und Events."
+    },
+    "mnf": {
+      "title": "Manufaktura Studio Architecture — SMUR",
+      "description": "Markenidentität für ein Architekturstudio — zurückhaltende Typografie und das Portfolio räumlicher Konzepte des Studios."
+    },
+    "taf": {
+      "title": "TAF — SMUR",
+      "description": "Markenidentität für eine Reinigungsmarke aus den Vereinigten Arabischen Emiraten — frische Farbpalette, freundlicher Schriftzug und Produktverpackung."
+    },
+    "lavabo": {
+      "title": "LAVABO — SMUR",
+      "description": "Markenidentität für einen Hersteller von Betonwaschbecken — ein zurückhaltender Schriftzug, natürliche Materialien und editoriale Fotografie."
+    },
+    "crisp": {
+      "title": "CRISP — SMUR",
+      "description": "Markenidentität für eine Patisserie-Manufaktur — raffinierte Einfachheit, zeitgenössisches Handwerk und ein internationales Gespür."
+    },
+    "kabinett": {
+      "title": "Kabinett — Wine & Spirits — SMUR",
+      "description": "Markenidentität für ein Wein- & Spirituosenkabinett — geometrisches Monogramm, bordeauxroter Hintergrund und Typografie im Stil von Eventplakaten."
+    },
+    "interstellar": {
+      "title": "Interstellar — SMUR",
+      "description": "Markenidentität für ein Immobilienunternehmen — himmlischer Schriftzug, durchdachte Fotografie und editoriale Layouts."
+    },
+    "iwl": {
+      "title": "IWL — Harvard Institute For World Literature — SMUR",
+      "description": "Markenidentität für das Harvard Institute For World Literature — ein Möbius-Zeichen und ein Editorial-System, verwurzelt im literarischen Erbe."
+    },
+    "kokop": {
+      "title": "KOKO.P — SMUR",
+      "description": "Markenidentität für eine Kaffeemarke — das Kokopelli-Zeichen, warme Erdtöne und Speisekarten-Typografie."
+    },
+    "architrave": {
+      "title": "ARCHITRAVE Studio — SMUR",
+      "description": "Eine Markenidentität für ein Innenarchitekturbüro, verwurzelt in Minimalismus, klarer Formensprache und dem leisen Dialog zwischen Licht und Struktur."
+    }
+  }
+}
