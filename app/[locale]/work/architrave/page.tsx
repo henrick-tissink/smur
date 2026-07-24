@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { ArchitraveCaseStudy } from "@/components/sections/architrave-page";
 import { MobileArchitraveCaseStudy } from "@/components/sections/mobile-architrave-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "ARCHITRAVE Studio — SMUR",
-  description: "A brand identity for an interior architecture practice rooted in minimalism, clarity of form, and the quiet dialogue between light and structure.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/architrave", "architrave");
+}
 
 /*
   /work/architrave — Architrave Studio interior architecture case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function ArchitraveRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="architrave" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="architrave" />
       <div className="md:hidden">
         <MobileNav />
         <main>

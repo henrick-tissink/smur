@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { LavaboCaseStudy } from "@/components/sections/lavabo-page";
 import { MobileLavaboCaseStudy } from "@/components/sections/mobile-lavabo-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "LAVABO — SMUR",
-  description: "Brand identity for a concrete washbasin maker — a quiet logotype, natural materials, and editorial photography.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/lavabo", "lavabo");
+}
 
 /*
   /work/lavabo — LAVABO concrete-washbasin case study.
@@ -21,7 +26,7 @@ export const metadata: Metadata = {
 export default function LavaboRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="lavabo" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="lavabo" />
       <div className="md:hidden">
         <MobileNav />
         <main>

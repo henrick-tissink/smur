@@ -45,11 +45,11 @@ const dmSerifDisplay = DM_Serif_Display({
   display: "swap",
 });
 
+// Global defaults for every locale + route; per-page localized title,
+// description, canonical, hreflang, and OG come from buildPageMetadata.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SMUR — Naming, Branding & Design",
-  description:
-    "SMUR is an independent studio for naming, brand identity and design — creating honest, grounded identities for the people behind the business.",
+  title: { default: "SMUR — Naming, Branding & Design", template: "%s" },
   keywords: [
     "brand identity",
     "branding studio",
@@ -63,22 +63,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Smaranda", url: SITE_URL }],
   creator: "SMUR",
   publisher: "SMUR",
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    siteName: "SMUR",
-    url: SITE_URL,
-    title: "SMUR — Naming, Branding & Design",
-    description:
-      "An independent studio for naming, brand identity and design — honest, grounded identities for the people behind the business.",
-    locale: "en",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SMUR — Naming, Branding & Design",
-    description:
-      "An independent studio for naming, brand identity and design.",
-  },
   robots: {
     index: true,
     follow: true,

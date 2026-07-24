@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { SwsCaseStudy } from "@/components/sections/sws-page";
 import { MobileSwsCaseStudy } from "@/components/sections/mobile-sws-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Sassy Woman Society — SMUR",
-  description: "Brand identity for the Sassy Woman Society — bold typography and an editorial system for membership and events.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/sws", "sws");
+}
 
 /*
   /work/sws — Sassy Woman Society case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function SwsRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="sws" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="sws" />
       <div className="md:hidden">
         <MobileNav />
         <main>

@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { IwlCaseStudy } from "@/components/sections/iwl-page";
 import { MobileIwlCaseStudy } from "@/components/sections/mobile-iwl-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "IWL — Harvard Institute For World Literature — SMUR",
-  description: "Brand identity for the Harvard Institute For World Literature — a Möbius mark and editorial system anchored in literary heritage.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/iwl", "iwl");
+}
 
 /*
   /work/iwl — Harvard Institute for World Literature case study.
@@ -18,7 +23,7 @@ export const metadata: Metadata = {
 export default function IwlRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="iwl" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="iwl" />
       <div className="md:hidden">
         <MobileNav />
         <main>

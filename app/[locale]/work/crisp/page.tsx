@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { CrispCaseStudy } from "@/components/sections/crisp-page";
 import { MobileCrispCaseStudy } from "@/components/sections/mobile-crisp-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "CRISP — SMUR",
-  description: "Brand identity for an artisanal patisserie — refined simplicity, contemporary craft, and an international sensibility.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/crisp", "crisp");
+}
 
 /*
   /work/crisp — CRISP artisanal pastry brand identity. Desktop only in
@@ -21,7 +26,7 @@ export const metadata: Metadata = {
 export default function CrispRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="crisp" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="crisp" />
       <div className="md:hidden">
         <MobileNav />
         <main>

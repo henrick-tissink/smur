@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/page-metadata";
 import { services } from "@/content/home";
 import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
@@ -32,6 +34,15 @@ import { MobileAbout } from "@/components/sections/mobile-about";
   ceiling (767px), while easing down proportionally on narrower phones
   instead of collapsing abruptly.
 */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "", "home");
+}
+
 export default function Home() {
   return (
     <>

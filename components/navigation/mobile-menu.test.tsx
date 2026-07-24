@@ -1,25 +1,26 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import userEvent from "@testing-library/user-event";
 import { MobileMenu } from "@/components/navigation/mobile-menu";
 import { nav } from "@/content/home";
 
 describe("MobileMenu", () => {
   it("is a modal dialog", () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     expect(screen.getByRole("dialog")).toHaveAttribute("aria-modal", "true");
   });
 
   it("closes when the close button is clicked", async () => {
     const onClose = vi.fn();
-    render(<MobileMenu onClose={onClose} />);
+    renderWithIntl(<MobileMenu onClose={onClose} />);
     await userEvent.click(screen.getByRole("button", { name: /close/i }));
     expect(onClose).toHaveBeenCalledOnce();
   });
 
   it("renders all nav links and calls onClose when one is followed", async () => {
     const onClose = vi.fn();
-    render(<MobileMenu onClose={onClose} />);
+    renderWithIntl(<MobileMenu onClose={onClose} />);
     for (const link of nav.links) {
       expect(screen.getByRole("link", { name: link.label })).toBeInTheDocument();
     }
@@ -28,7 +29,7 @@ describe("MobileMenu", () => {
   });
 
   it("rewrites same-page hash links to their mobile (m-) section ids", () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     // ABOUT (/#about in shared nav content) must target the mobile section.
     const about = nav.links.find((l) => l.href.startsWith("/#") && l.href.includes("about"));
     expect(about).toBeDefined();
@@ -44,20 +45,20 @@ describe("MobileMenu", () => {
   });
 
   it("renders the social links", () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     expect(screen.getByRole("link", { name: "INSTAGRAM" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "PINTEREST" })).toBeInTheDocument();
   });
 
   it("calls onClose when Escape is pressed", async () => {
     const onClose = vi.fn();
-    render(<MobileMenu onClose={onClose} />);
+    renderWithIntl(<MobileMenu onClose={onClose} />);
     await userEvent.keyboard("{Escape}");
     expect(onClose).toHaveBeenCalledOnce();
   });
 
   it("moves focus into the dialog when opened", () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     const dialog = screen.getByRole("dialog");
     expect(dialog.contains(document.activeElement)).toBe(true);
   });
@@ -68,7 +69,7 @@ describe("MobileMenu", () => {
     trigger.focus();
     expect(document.activeElement).toBe(trigger);
 
-    const { unmount } = render(<MobileMenu onClose={() => {}} />);
+    const { unmount } = renderWithIntl(<MobileMenu onClose={() => {}} />);
     // focus moved into the dialog
     expect(document.activeElement).not.toBe(trigger);
 
@@ -79,7 +80,7 @@ describe("MobileMenu", () => {
   });
 
   it("traps Tab focus within the dialog (wraps last → first)", async () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     const dialog = screen.getByRole("dialog");
     const focusables = [
       ...dialog.querySelectorAll<HTMLElement>("a[href], button"),
@@ -95,7 +96,7 @@ describe("MobileMenu", () => {
   });
 
   it("traps Shift+Tab focus within the dialog (wraps first → last)", async () => {
-    render(<MobileMenu onClose={() => {}} />);
+    renderWithIntl(<MobileMenu onClose={() => {}} />);
     const dialog = screen.getByRole("dialog");
     const focusables = [
       ...dialog.querySelectorAll<HTMLElement>("a[href], button"),
@@ -113,7 +114,7 @@ describe("MobileMenu", () => {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "auto";
 
-    const { unmount } = render(<MobileMenu onClose={() => {}} />);
+    const { unmount } = renderWithIntl(<MobileMenu onClose={() => {}} />);
     expect(document.body.style.overflow).toBe("hidden");
 
     unmount();

@@ -3,12 +3,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { WorkPage } from "@/components/sections/work-page";
 import { MobileWorkPage } from "@/components/sections/mobile-work-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Selected Work — SMUR",
-  description:
-    "Selected branding and design projects by SMUR — case studies in naming, identity, packaging, and editorial systems.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work", "work");
+}
 
 /*
   /work — Selected Work page. Faithful-fluid: render-both, CSS-toggled at the

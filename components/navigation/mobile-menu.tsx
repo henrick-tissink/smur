@@ -1,10 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Wordmark, Icon } from "@/components/core";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { nav } from "@/content/home";
 import { contactFAQ } from "@/content/contact";
+
+// nav.links supplies hrefs + order; labels come from the Nav message namespace.
+const NAV_KEYS = ["services", "work", "about", "contact"] as const;
 
 /*
   Fullscreen menu overlay (Figma 282:40808). Faithful-fluid: plain
@@ -17,6 +22,7 @@ import { contactFAQ } from "@/content/contact";
 */
 export function MobileMenu({ onClose }: { onClose: () => void }) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Nav");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -103,7 +109,7 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
         <Link href="/#m-home" aria-label="SMUR — home" onClick={onClose}>
           <Wordmark width={86} height={19} />
         </Link>
-        {nav.links.map((link) => {
+        {nav.links.map((link, i) => {
           // Shared nav.links target the desktop section ids (#brand-identity,
           // #about), which are display:none on mobile. Point same-page hash
           // links at the mobile (m-) sections so they scroll to the right
@@ -119,10 +125,11 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
               className="block text-center uppercase transition-opacity hover:opacity-70"
               style={{ fontFamily: "var(--font-body)", fontSize: `${nav.fontSize}px` }}
             >
-              {link.label}
+              {t(NAV_KEYS[i])}
             </Link>
           );
         })}
+        <LanguageSwitcher className="mt-[8px] uppercase" />
       </div>
 
       <p

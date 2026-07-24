@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { MnfCaseStudy } from "@/components/sections/mnf-page";
 import { MobileMnfCaseStudy } from "@/components/sections/mobile-mnf-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Manufaktura Studio Architecture — SMUR",
-  description: "Brand identity for an architecture studio — restrained typography and the studio's portfolio of spatial concepts.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/mnf", "mnf");
+}
 
 /*
   /work/mnf — MNF / Manufaktura Studio Architecture case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function MnfRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="mnf" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="mnf" />
       <div className="md:hidden">
         <MobileNav />
         <main>

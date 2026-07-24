@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { InterstellarCaseStudy } from "@/components/sections/interstellar-page";
 import { MobileInterstellarCaseStudy } from "@/components/sections/mobile-interstellar-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Interstellar — SMUR",
-  description: "Brand identity for a real-estate practice — celestial wordmark, considered photography, and editorial layouts.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/interstellar", "interstellar");
+}
 
 /*
   /work/interstellar — Interstellar Real Estate case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function InterstellarRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="interstellar" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="interstellar" />
       <div className="md:hidden">
         <MobileNav />
         <main>

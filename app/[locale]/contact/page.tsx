@@ -7,12 +7,16 @@ import { ContactFAQ } from "@/components/sections/contact-faq";
 import { MobileContactHero } from "@/components/sections/mobile-contact-hero";
 import { MobileContactForm } from "@/components/sections/mobile-contact-form";
 import { MobileContactFAQ } from "@/components/sections/mobile-contact-faq";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Let's Work Together — SMUR",
-  description:
-    "Tell me about your project — naming, branding, packaging, or editorial design. SMUR collaborates with founders and small teams shaping new ventures.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/contact", "contact");
+}
 
 /*
   Renders BOTH mobile and desktop trees; CSS visibility (`md:hidden` /

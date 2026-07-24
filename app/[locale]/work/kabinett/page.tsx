@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { KabinettCaseStudy } from "@/components/sections/kabinett-page";
 import { MobileKabinettCaseStudy } from "@/components/sections/mobile-kabinett-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Kabinett — Wine & Spirits — SMUR",
-  description: "Brand identity for a wine & spirits cabinet — geometric monogram, burgundy ground, and event-poster typography.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/kabinett", "kabinett");
+}
 
 /*
   /work/kabinett — Kabinett Wine & Spirits case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function KabinettRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="kabinett" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="kabinett" />
       <div className="md:hidden">
         <MobileNav />
         <main>

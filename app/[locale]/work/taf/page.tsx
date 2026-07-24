@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { TafCaseStudy } from "@/components/sections/taf-page";
 import { MobileTafCaseStudy } from "@/components/sections/mobile-taf-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "TAF — SMUR",
-  description: "Brand identity for a UAE cleaning brand — fresh palette, friendly wordmark, and product packaging.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/taf", "taf");
+}
 
 /*
   /work/taf — TAF UAE cleaning brand case study.
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export default function TafRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="taf" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="taf" />
       <div className="md:hidden">
         <MobileNav />
         <main>

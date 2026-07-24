@@ -4,11 +4,16 @@ import { Nav } from "@/components/navigation/nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { KokopCaseStudy } from "@/components/sections/kokop-page";
 import { MobileKokopCaseStudy } from "@/components/sections/mobile-kokop-page";
+import { buildPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "KOKO.P — SMUR",
-  description: "Brand identity for a coffee brand — the kokopelli mark, warm earth tones, and menu typography.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildPageMetadata(locale, "/work/kokop", "kokop");
+}
 
 /*
   /work/kokop — KOKO.P coffee/snacks case study. Desktop only in Figma
@@ -21,7 +26,7 @@ export const metadata: Metadata = {
 export default function KokopRoute() {
   return (
     <>
-      <CaseStudyJsonLd slug="kokop" description={metadata.description as string} />
+      <CaseStudyJsonLd slug="kokop" />
       <div className="md:hidden">
         <MobileNav />
         <main>
