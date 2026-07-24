@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { services } from "@/content/home";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
@@ -124,7 +125,7 @@ export function MobileServicesListSection() {
 
         <div className="absolute" style={{ left: cqw(42), top: cqw(491) }}>
           <Reveal delay={0.2}>
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center rounded-full border-accent no-underline transition-opacity hover:opacity-80"
               style={{
@@ -147,7 +148,7 @@ export function MobileServicesListSection() {
                 aria-hidden
                 style={{ width: cqw(40), height: cqw(14) }}
               />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>
