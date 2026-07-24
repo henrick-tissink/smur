@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { iwl, iwlFrame } from "@/content/iwl";
 import { Reveal } from "@/components/reveal";
 
@@ -38,6 +39,7 @@ function cqw(px: number) {
 }
 
 export function IwlCaseStudy() {
+  const t = useTranslations("CaseStudies.iwl");
   const titleInk = "#35221a";
 
   return (
@@ -97,7 +99,7 @@ export function IwlCaseStudy() {
                 margin: 0,
               }}
             >
-              {iwl.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -109,7 +111,7 @@ export function IwlCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {iwl.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>

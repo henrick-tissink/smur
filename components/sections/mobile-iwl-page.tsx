@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { iwl } from "@/content/iwl";
 import { Reveal } from "@/components/reveal";
 
@@ -45,6 +46,7 @@ const SECTIONS = [
 ];
 
 export function MobileIwlCaseStudy() {
+  const t = useTranslations("CaseStudies.iwl");
   return (
     <div
       data-nav-scheme="dark"
@@ -78,13 +80,13 @@ export function MobileIwlCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(22), lineHeight: 1.1, letterSpacing: "0.01em" }}
           >
-            {iwl.eyebrow}
+            {t("eyebrow")}
           </p>
           <p
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {iwl.body}
+            {t("body")}
           </p>
         </div>
       </Reveal>

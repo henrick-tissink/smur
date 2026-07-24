@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { ctaButton, services, servicesList } from "@/content/home";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
@@ -33,6 +34,7 @@ function cqw(px: number) {
 */
 export function MobileServicesListSection() {
   const service = services[2];
+  const t = useTranslations(`Services.${service.id}`);
   const titleId = `m-${service.id}-title`;
 
   return (
@@ -56,7 +58,7 @@ export function MobileServicesListSection() {
               className="block font-sans italic text-accent"
               style={{ fontSize: cqw(15), lineHeight: 1 }}
             >
-              {service.eyebrow}
+              {t("eyebrow")}
             </span>
           </Reveal>
           <Reveal delay={0.05}>
@@ -71,7 +73,7 @@ export function MobileServicesListSection() {
                       ? service.titleSvg.leftBearing * MOBILE_TITLE_SCALE
                       : undefined
                   }
-                  alt={service.title}
+                  alt={t("title")}
                   as={2}
                 />
               </div>
@@ -81,7 +83,7 @@ export function MobileServicesListSection() {
                 className="font-heading text-ink"
                 style={{ marginTop: cqw(25), fontSize: cqw(45), lineHeight: 1.21 }}
               >
-                {service.title}
+                {t("title")}
               </h2>
             )}
           </Reveal>
@@ -93,7 +95,7 @@ export function MobileServicesListSection() {
         >
           <Reveal delay={0.1}>
             <p className="text-ink" style={{ fontSize: cqw(15), lineHeight: 1.33 }}>
-              {service.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>

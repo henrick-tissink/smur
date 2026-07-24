@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import {
   workFooter,
   workHero,
@@ -47,6 +48,7 @@ function cqw(px: number) {
 }
 
 export function WorkPage() {
+  const t = useTranslations("Work");
   const { container, eyebrowSize } = workHero.desktop;
 
   return (
@@ -74,7 +76,7 @@ export function WorkPage() {
               className="font-sans italic text-accent"
               style={{ fontSize: cqw(eyebrowSize), lineHeight: 1 }}
             >
-              {workHero.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.05}>
@@ -83,7 +85,7 @@ export function WorkPage() {
                 src="/figma-assets/titles/this-is-my-work.svg"
                 width={cqw(254.66)}
                 height={cqw(145.21)}
-                alt={`${workHero.title[0]} ${workHero.title[1]}`}
+                alt={`${t("titleLine1")} ${t("titleLine2")}`}
                 as={1}
               />
             </div>
@@ -172,7 +174,7 @@ export function WorkPage() {
                 lineHeight: 1,
               }}
             >
-              {workFooter.text}
+              {t("thanks")}
             </p>
           </Reveal>
         </div>

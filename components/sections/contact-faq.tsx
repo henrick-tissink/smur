@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { contactFAQ, contactFAQItems } from "@/content/contact";
 import { Chevron } from "@/components/chevron";
@@ -57,6 +58,7 @@ import { TitleMask } from "@/components/title-mask";
   Reveal delays (UNCHANGED from legacy): eyebrow 0, title 0.06.
 */
 export function ContactFAQ() {
+  const t = useTranslations("Contact");
   return (
     <section
       data-nav-scheme="light"
@@ -94,8 +96,12 @@ export function ContactFAQ() {
 
         {/* FAQ accordion — centered, legacy width 652 */}
         <div className="mx-auto mt-[clamp(32px,4vw,60px)] w-full max-w-[652px]">
-          {contactFAQItems.map((item) => (
-            <FAQRow key={item.question} question={item.question} answer={item.answer} />
+          {contactFAQItems.map((item, i) => (
+            <FAQRow
+              key={item.question}
+              question={t(`faq.${i}.question`)}
+              answer={t(`faq.${i}.answer`)}
+            />
           ))}
         </div>
 

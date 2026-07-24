@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import { IwlCaseStudy } from "./iwl-page";
 import { MobileIwlCaseStudy } from "./mobile-iwl-page";
 
@@ -8,7 +8,7 @@ const STAGE_H = 5081;
 
 describe("IwlCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = render(<IwlCaseStudy />);
+    const { container } = renderWithIntl(<IwlCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -19,7 +19,7 @@ describe("IwlCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = render(<IwlCaseStudy />);
+    const { container } = renderWithIntl(<IwlCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/iwl/']"),
     ).not.toBeNull();
@@ -32,7 +32,7 @@ describe("IwlCaseStudy (faithful-fluid)", () => {
   // basis (1440x5081) — NOT nested inside another absolutely-positioned,
   // height-less box, and NOT left as fixed px.
   it("positions the Row 2 band wrapper frame-relative to the stage (no fixed px, correct %)", () => {
-    const { container } = render(<IwlCaseStudy />);
+    const { container } = renderWithIntl(<IwlCaseStudy />);
     const band = container.querySelector<HTMLImageElement>(
       "img[src*='row2-band.png'], [class*='overflow-hidden'] img[src*='row2-band']",
     );
@@ -48,7 +48,7 @@ describe("IwlCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = render(<MobileIwlCaseStudy />);
+    const { container } = renderWithIntl(<MobileIwlCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

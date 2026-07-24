@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { mnf, mnfFrame } from "@/content/mnf";
 import { Reveal } from "@/components/reveal";
 
@@ -47,6 +48,7 @@ function cqw(px: number) {
 }
 
 export function MnfCaseStudy() {
+  const t = useTranslations("CaseStudies.mnf");
   const titleInk = "#35221a";
 
   return (
@@ -96,7 +98,7 @@ export function MnfCaseStudy() {
                 margin: 0,
               }}
             >
-              {mnf.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -108,7 +110,7 @@ export function MnfCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {mnf.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import { CrispCaseStudy } from "./crisp-page";
 import { MobileCrispCaseStudy } from "./mobile-crisp-page";
 
@@ -8,7 +8,7 @@ const STAGE_H = 5340;
 
 describe("CrispCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = render(<CrispCaseStudy />);
+    const { container } = renderWithIntl(<CrispCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -19,7 +19,7 @@ describe("CrispCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = render(<CrispCaseStudy />);
+    const { container } = renderWithIntl(<CrispCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/crisp/']"),
     ).not.toBeNull();
@@ -34,7 +34,7 @@ describe("CrispCaseStudy (faithful-fluid)", () => {
   // direct stage children with the -279.21 shift baked into their
   // frame-absolute top values instead.
   it("hoists the shifted group (no fixed-px group transform, correct frame-relative position)", () => {
-    const { container } = render(<CrispCaseStudy />);
+    const { container } = renderWithIntl(<CrispCaseStudy />);
     // The legacy correction wrapper was a fixed-px `transform:
     // translateY(-279.21px)` on a `class="absolute inset-0"` div — a
     // fixed-px transform that would not scale with the fluid stage. It
@@ -60,7 +60,7 @@ describe("CrispCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = render(<MobileCrispCaseStudy />);
+    const { container } = renderWithIntl(<MobileCrispCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

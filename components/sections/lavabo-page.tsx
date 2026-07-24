@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { lavabo, lavaboFrame } from "@/content/lavabo";
 import { Reveal } from "@/components/reveal";
 
@@ -54,6 +55,7 @@ function shy(px: number) {
 }
 
 export function LavaboCaseStudy() {
+  const t = useTranslations("CaseStudies.lavabo");
   return (
     <section
       data-nav-scheme="dark"
@@ -144,12 +146,12 @@ export function LavaboCaseStudy() {
                 margin: 0,
               }}
             >
-              {lavabo.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <p style={{ marginTop: cqw(35), fontSize: cqw(17), lineHeight: 1.33, margin: 0 }}>
-              {lavabo.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>

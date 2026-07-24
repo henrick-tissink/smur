@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { renderWithIntl } from "@/lib/test-intl";
 import { InterstellarCaseStudy } from "./interstellar-page";
 import { MobileInterstellarCaseStudy } from "./mobile-interstellar-page";
 
@@ -18,7 +18,7 @@ const ROW3_LOCAL_H = 556;
 
 describe("InterstellarCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = render(<InterstellarCaseStudy />);
+    const { container } = renderWithIntl(<InterstellarCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -29,7 +29,7 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = render(<InterstellarCaseStudy />);
+    const { container } = renderWithIntl(<InterstellarCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/interstellar/']"),
     ).not.toBeNull();
@@ -44,7 +44,7 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
   // children must be hoisted to direct stage children with the -330
   // shift baked into their frame-absolute top values instead.
   it("hoists the shifted group (no fixed-px group transform, correct frame-relative position)", () => {
-    const { container } = render(<InterstellarCaseStudy />);
+    const { container } = renderWithIntl(<InterstellarCaseStudy />);
     expect(container.innerHTML).not.toContain("translateY(-330");
     expect(container.innerHTML).not.toMatch(/class="absolute inset-0"/);
 
@@ -66,7 +66,7 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
   // (283, 4099.84 - 330 = 3769.84), not nested inside a stale transformed
   // group and not left at raw, unconverted pixel values.
   it("InterstellarRow5Content wrapper is a direct stage child at the hoisted position", () => {
-    const { container } = render(<InterstellarCaseStudy />);
+    const { container } = renderWithIntl(<InterstellarCaseStudy />);
     const rectImg = container.querySelector<HTMLImageElement>(
       "img[src*='row5-full/imgRectangle.jpg']",
     );
@@ -99,7 +99,7 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
   // inside a sized overflow-hidden wrapper and uses LOCAL coordinates
   // relative to THAT 429×556 box, not frame-absolute ones.
   it("Row 3 masked photo resolves % against its local 429×556 wrapper, not the stage", () => {
-    const { container } = render(<InterstellarCaseStudy />);
+    const { container } = renderWithIntl(<InterstellarCaseStudy />);
     const photo = container.querySelector<HTMLImageElement>(
       "img[src*='row3-photo.svg']",
     );
@@ -120,7 +120,7 @@ describe("InterstellarCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = render(<MobileInterstellarCaseStudy />);
+    const { container } = renderWithIntl(<MobileInterstellarCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

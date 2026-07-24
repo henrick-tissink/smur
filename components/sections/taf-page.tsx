@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { taf, tafFrame } from "@/content/taf";
 import { Reveal } from "@/components/reveal";
 
@@ -61,6 +62,7 @@ function hy(px: number) {
 }
 
 export function TafCaseStudy() {
+  const t = useTranslations("CaseStudies.taf");
   const titleInk = "#35221a";
 
   return (
@@ -161,7 +163,7 @@ export function TafCaseStudy() {
                 margin: 0,
               }}
             >
-              {taf.eyebrow}
+              {t("eyebrow")}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -173,7 +175,7 @@ export function TafCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {taf.body.map((p, i) => (
+              {t("body").split("\n\n").map((p, i) => (
                 <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                   {p}
                 </p>

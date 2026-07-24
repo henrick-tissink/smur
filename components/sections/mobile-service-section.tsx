@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import type { Service } from "@/content/home";
 import { FigmaImage } from "@/components/figma-image";
 import { Reveal } from "@/components/reveal";
@@ -91,6 +92,7 @@ function cqw(px: number) {
 }
 
 export function MobileServiceSection({ service }: { service: Service }) {
+  const t = useTranslations(`Services.${service.id}`);
   const layout = layoutByService[service.id];
   if (!layout) return null;
 
@@ -125,7 +127,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
               className="block font-sans italic text-accent"
               style={{ fontSize: cqw(15), lineHeight: 1 }}
             >
-              {service.eyebrow}
+              {t("eyebrow")}
             </span>
           </Reveal>
           <Reveal delay={0.05}>
@@ -140,7 +142,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
                       ? service.titleSvg.leftBearing * MOBILE_TITLE_SCALE
                       : undefined
                   }
-                  alt={service.title}
+                  alt={t("title")}
                   as={2}
                 />
               </div>
@@ -155,7 +157,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
                   whiteSpace: "pre-line",
                 }}
               >
-                {service.title}
+                {t("title")}
               </h2>
             )}
           </Reveal>
@@ -168,7 +170,7 @@ export function MobileServiceSection({ service }: { service: Service }) {
         >
           <Reveal delay={0.1}>
             <p className="text-ink" style={{ fontSize: cqw(15), lineHeight: 1.33 }}>
-              {service.body}
+              {t("body")}
             </p>
           </Reveal>
         </div>
@@ -182,8 +184,12 @@ export function MobileServiceSection({ service }: { service: Service }) {
           {hasDropdowns && (
             <div style={{ marginLeft: cqw(45), width: cqw(307) }}>
               <Reveal delay={0.15}>
-                {service.dropdowns.map((d) => (
-                  <MobileServiceAccordion key={d.label} label={d.label} body={d.body} />
+                {service.dropdowns.map((d, i) => (
+                  <MobileServiceAccordion
+                    key={d.label}
+                    label={t(`dropdowns.${i}.label`)}
+                    body={t(`dropdowns.${i}.body`)}
+                  />
                 ))}
               </Reveal>
             </div>

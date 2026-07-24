@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { contactFAQ, contactFAQItems } from "@/content/contact";
 import { Chevron } from "@/components/chevron";
@@ -60,6 +61,7 @@ import { TitleMask } from "@/components/title-mask";
   Reveal delays (UNCHANGED from legacy): eyebrow 0, title 0.06.
 */
 export function MobileContactFAQ() {
+  const t = useTranslations("Contact");
   return (
     <section
       data-nav-scheme="light"
@@ -97,11 +99,11 @@ export function MobileContactFAQ() {
 
         {/* FAQ accordion — centered, legacy width 307 */}
         <div className="mt-[17px] w-full max-w-[307px]">
-          {contactFAQItems.map((item) => (
+          {contactFAQItems.map((item, i) => (
             <MobileFAQRow
               key={item.question}
-              question={item.question}
-              answer={item.answer}
+              question={t(`faq.${i}.question`)}
+              answer={t(`faq.${i}.answer`)}
             />
           ))}
         </div>
