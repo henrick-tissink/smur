@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { screen } from "@testing-library/react";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render, screen } from "@testing-library/react";
 import { ContactHero } from "@/components/sections/contact-hero";
 
 const STAGE_W = 1440;
@@ -10,20 +9,20 @@ const pctY = (px: number) => `${(px / STAGE_H) * 100}%`;
 
 describe("ContactHero (desktop)", () => {
   it("renders the section with the light nav scheme", () => {
-    const { container } = renderWithIntl(<ContactHero />);
+    const { container } = render(<ContactHero />);
     const section = container.querySelector("section") as HTMLElement;
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute("data-nav-scheme", "light");
   });
 
   it("renders the heading and the body copy", () => {
-    renderWithIntl(<ContactHero />);
+    render(<ContactHero />);
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/thoughtful investment/i)).toBeInTheDocument();
   });
 
   it("uses a fluid aspect-ratio stage (no zoom) with visible overflow for the carousel overlap", () => {
-    const { container } = renderWithIntl(<ContactHero />);
+    const { container } = render(<ContactHero />);
     const stage = container.querySelector(
       "[data-contact-hero-stage]",
     ) as HTMLElement;
@@ -34,7 +33,7 @@ describe("ContactHero (desktop)", () => {
   });
 
   it("positions the LAVABO carousel and scroll arrow against the stage (direct children, containing-block rule)", () => {
-    const { container } = renderWithIntl(<ContactHero />);
+    const { container } = render(<ContactHero />);
     const carousel = container.querySelector(
       "[data-lavabo-carousel]",
     ) as HTMLElement;

@@ -1,26 +1,26 @@
-import { getTranslations, getLocale } from "next-intl/server";
 import { workProjects } from "@/content/work";
 import { caseStudySchema } from "@/lib/structured-data";
 
 /*
-  Per-project CreativeWork JSON-LD on a /work/<slug> page. Name + image come
-  from content/work.ts; the description + language are localized (the route's
-  own Metadata.<slug>.description), so the structured data matches the page's
-  active locale.
+  Renders per-project CreativeWork JSON-LD on a /work/<slug> page. Name + image
+  come from content/work.ts (single source of truth); the description is passed
+  in (the route's own SEO metadata.description, so the two stay in sync).
 */
-export async function CaseStudyJsonLd({ slug }: { slug: string }) {
+export function CaseStudyJsonLd({
+  slug,
+  description,
+}: {
+  slug: string;
+  description: string;
+}) {
   const project = workProjects.find((p) => p.slug === slug);
   if (!project) return null;
-
-  const t = await getTranslations("Metadata");
-  const locale = await getLocale();
 
   const schema = caseStudySchema({
     slug,
     name: project.name,
-    description: t(`${slug}.description`),
+    description,
     image: project.image,
-    locale,
   });
 
   return (

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { testimonials } from "@/content/home";
 import { Arrow } from "@/components/arrow";
 import { Reveal } from "@/components/reveal";
@@ -22,8 +21,8 @@ import { Reveal } from "@/components/reveal";
     wide enough to touch the arrows as the viewport narrows.
 */
 export function Testimonial() {
-  const t = useTranslations("Testimonials");
   const [index, setIndex] = useState(0);
+  const t = testimonials[index];
   const go = (delta: number) =>
     setIndex((i) => (i + delta + testimonials.length) % testimonials.length);
 
@@ -60,12 +59,12 @@ export function Testimonial() {
           <div className="flex w-full max-w-[702px] flex-col items-center gap-[30px] text-center">
             <Reveal key={`q-${index}`}>
               <p className="text-[17px] leading-[1.45] text-ink whitespace-pre-line">
-                {t(`${index}.quote`)}
+                {t.quote}
               </p>
             </Reveal>
             <Reveal key={`a-${index}`} delay={0.06}>
               <p className="font-sans text-[20px] italic leading-normal text-ink">
-                {t(`${index}.attribution`)}
+                {t.attribution}
               </p>
             </Reveal>
           </div>

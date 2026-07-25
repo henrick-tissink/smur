@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Link } from "@/i18n/navigation";
 import { Icon } from "./icon";
 
 type Props = {
@@ -46,19 +45,10 @@ export function Button({
   );
 
   if (href) {
-    // Internal routes go through the locale-aware Link (keeps /ro, /de);
-    // external URLs stay a plain anchor.
-    if (/^https?:/.test(href)) {
-      return (
-        <a href={href} className={classes} style={style}>
-          {content}
-        </a>
-      );
-    }
     return (
-      <Link href={href} className={classes} style={style}>
+      <a href={href} className={classes} style={style}>
         {content}
-      </Link>
+      </a>
     );
   }
   return (

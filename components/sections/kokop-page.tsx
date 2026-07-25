@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { kokop, kokopFrame } from "@/content/kokop";
 import { Reveal } from "@/components/reveal";
 import { KokopSection8Content } from "@/components/work/kokop-extras/section8";
@@ -64,7 +63,6 @@ function cqw(px: number) {
 }
 
 export function KokopCaseStudy() {
-  const t = useTranslations("CaseStudies.kokop");
   return (
     <section
       data-nav-scheme="dark"
@@ -164,12 +162,12 @@ export function KokopCaseStudy() {
                 margin: 0,
               }}
             >
-              {t("eyebrow")}
+              {kokop.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <div className="flex flex-col" style={{ marginTop: cqw(24), gap: cqw(22) }}>
-              {t("body").split("\n\n").map((p, i) => (
+              {kokop.body.map((p, i) => (
                 <p key={i} style={{ fontSize: cqw(17), lineHeight: 1.33, margin: 0 }}>
                   {p}
                 </p>

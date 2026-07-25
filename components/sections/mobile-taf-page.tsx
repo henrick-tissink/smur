@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { taf } from "@/content/taf";
 import { Reveal } from "@/components/reveal";
 
@@ -43,7 +42,6 @@ function mcqw(px: number) {
 }
 
 export function MobileTafCaseStudy() {
-  const t = useTranslations("CaseStudies.taf");
   return (
     <div
       data-nav-scheme="dark"
@@ -104,13 +102,13 @@ export function MobileTafCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(40), lineHeight: 1, letterSpacing: "0.01em" }}
           >
-            {t("eyebrow")}
+            {taf.eyebrow}
           </p>
           <div
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {t("body").split("\n\n").map((p, i) => (
+            {taf.body.map((p, i) => (
               <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                 {p}
               </p>

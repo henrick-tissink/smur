@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { sws } from "@/content/sws";
 import { Reveal } from "@/components/reveal";
 
@@ -52,7 +51,6 @@ const PANELS = [
 ];
 
 export function MobileSwsCaseStudy() {
-  const t = useTranslations("CaseStudies.sws");
   return (
     <div
       data-nav-scheme="dark"
@@ -78,13 +76,13 @@ export function MobileSwsCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(26), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
-            {t("eyebrow")}
+            {sws.eyebrow}
           </p>
           <div
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {t("body").split("\n\n").map((p, i) => (
+            {sws.body.map((p, i) => (
               <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                 {p}
               </p>

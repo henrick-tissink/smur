@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { architrave } from "@/content/architrave";
 import { Reveal } from "@/components/reveal";
 
@@ -47,7 +46,6 @@ const SECTIONS = [
 ];
 
 export function MobileArchitraveCaseStudy() {
-  const t = useTranslations("CaseStudies.architrave");
   return (
     <div
       data-nav-scheme="dark"
@@ -93,13 +91,13 @@ export function MobileArchitraveCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(26), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
-            {t("eyebrow")}
+            {architrave.eyebrow}
           </p>
           <p
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {t("body")}
+            {architrave.body}
           </p>
         </div>
       </Reveal>

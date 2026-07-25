@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 import {
   workFooter,
   workHero,
@@ -48,7 +47,6 @@ function cqw(px: number) {
 }
 
 export function MobileWorkPage() {
-  const t = useTranslations("Work");
   const { container, eyebrowSize } = workHero.mobile;
 
   return (
@@ -76,7 +74,7 @@ export function MobileWorkPage() {
               className="font-sans italic text-accent"
               style={{ fontSize: cqw(eyebrowSize), lineHeight: 1 }}
             >
-              {t("eyebrow")}
+              {workHero.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.05}>
@@ -85,7 +83,7 @@ export function MobileWorkPage() {
                 src="/figma-assets/titles/this-is-my-work.svg"
                 width={cqw(197.6)}
                 height={cqw(112.7)}
-                alt={`${t("titleLine1")} ${t("titleLine2")}`}
+                alt={`${workHero.title[0]} ${workHero.title[1]}`}
                 as={1}
               />
             </div>
@@ -176,7 +174,7 @@ export function MobileWorkPage() {
                 lineHeight: 1,
               }}
             >
-              {t("thanks")}
+              {workFooter.text}
             </p>
           </Reveal>
         </div>

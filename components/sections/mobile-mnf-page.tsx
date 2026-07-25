@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { mnf } from "@/content/mnf";
 import { Reveal } from "@/components/reveal";
 
@@ -40,7 +39,6 @@ const SECTIONS_B = [
 ];
 
 export function MobileMnfCaseStudy() {
-  const t = useTranslations("CaseStudies.mnf");
   return (
     <div
       data-nav-scheme="dark"
@@ -66,13 +64,13 @@ export function MobileMnfCaseStudy() {
             className="font-sans uppercase text-ink"
             style={{ fontSize: mcqw(26), lineHeight: 1.05, letterSpacing: "0.01em" }}
           >
-            {t("eyebrow")}
+            {mnf.eyebrow}
           </p>
           <p
             className="text-ink"
             style={{ marginTop: mcqw(20), fontSize: mcqw(15), lineHeight: 1.45 }}
           >
-            {t("body")}
+            {mnf.body}
           </p>
         </div>
       </Reveal>

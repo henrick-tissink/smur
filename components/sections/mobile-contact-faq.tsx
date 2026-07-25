@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useState } from "react";
 import { contactFAQ, contactFAQItems } from "@/content/contact";
 import { Chevron } from "@/components/chevron";
@@ -61,7 +60,6 @@ import { TitleMask } from "@/components/title-mask";
   Reveal delays (UNCHANGED from legacy): eyebrow 0, title 0.06.
 */
 export function MobileContactFAQ() {
-  const t = useTranslations("Contact");
   return (
     <section
       data-nav-scheme="light"
@@ -81,7 +79,7 @@ export function MobileContactFAQ() {
         <div className="flex w-full flex-col items-center text-center text-cream">
           <Reveal>
             <p className="font-sans italic" style={{ fontSize: 15 }}>
-              {t("faqEyebrow")}
+              {contactFAQ.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.06}>
@@ -90,7 +88,7 @@ export function MobileContactFAQ() {
                 src="/figma-assets/titles/questions.svg"
                 width={223.6}
                 height={56}
-                alt={t("faqHeading")}
+                alt={contactFAQ.heading}
                 as={2}
               />
             </div>
@@ -99,11 +97,11 @@ export function MobileContactFAQ() {
 
         {/* FAQ accordion — centered, legacy width 307 */}
         <div className="mt-[17px] w-full max-w-[307px]">
-          {contactFAQItems.map((item, i) => (
+          {contactFAQItems.map((item) => (
             <MobileFAQRow
               key={item.question}
-              question={t(`faq.${i}.question`)}
-              answer={t(`faq.${i}.answer`)}
+              question={item.question}
+              answer={item.answer}
             />
           ))}
         </div>
@@ -118,7 +116,7 @@ export function MobileContactFAQ() {
           >
             <BouncingUnionArrow />
             <span className="mt-[10px] italic" style={{ fontSize: 15.105 }}>
-              {t("myWorkLink")}
+              {contactFAQ.myWorkLink}
             </span>
           </Link>
 

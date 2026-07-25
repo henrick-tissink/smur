@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render } from "@testing-library/react";
 import { MnfCaseStudy } from "./mnf-page";
 import { MobileMnfCaseStudy } from "./mobile-mnf-page";
 
@@ -8,7 +8,7 @@ const STAGE_H = 4367;
 
 describe("MnfCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = renderWithIntl(<MnfCaseStudy />);
+    const { container } = render(<MnfCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -19,7 +19,7 @@ describe("MnfCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = renderWithIntl(<MnfCaseStudy />);
+    const { container } = render(<MnfCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/mnf/']"),
     ).not.toBeNull();
@@ -32,7 +32,7 @@ describe("MnfCaseStudy (faithful-fluid)", () => {
   // stage) — its children must be hoisted to direct stage children with
   // the -286 shift baked into their frame-absolute top values instead.
   it("hoists the shifted group (no fixed-px group transform, correct frame-relative position)", () => {
-    const { container } = renderWithIntl(<MnfCaseStudy />);
+    const { container } = render(<MnfCaseStudy />);
     // The legacy fixed-canvas wrapper corrected a transcription offset with
     // `transform: translateY(-286px)` on an intermediate group — a fixed-px
     // transform that would not scale with the fluid stage. It must be gone
@@ -53,7 +53,7 @@ describe("MnfCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = renderWithIntl(<MobileMnfCaseStudy />);
+    const { container } = render(<MobileMnfCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

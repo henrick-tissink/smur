@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
-import { screen, act } from "@testing-library/react";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render, screen, act } from "@testing-library/react";
 import { MobileHero } from "@/components/sections/mobile-hero";
 
 describe("MobileHero", () => {
@@ -8,21 +7,21 @@ describe("MobileHero", () => {
   afterEach(() => vi.useRealTimers());
 
   it("renders the #m-home hero with headline and body", () => {
-    const { container } = renderWithIntl(<MobileHero />);
+    const { container } = render(<MobileHero />);
     expect(container.querySelector("section#m-home")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/who you are/i)).toBeInTheDocument();
   });
 
   it("uses a fluid aspect-ratio stage", () => {
-    const { container } = renderWithIntl(<MobileHero />);
+    const { container } = render(<MobileHero />);
     const stage = container.querySelector("[data-hero-stage]") as HTMLElement;
     expect(stage.style.aspectRatio.replace(/\s/g, "")).toBe("393/852");
     expect(stage.style.containerType).toBe("inline-size");
   });
 
   it("does not force-load hero photos (lazy so the desktop-hidden tree skips them)", () => {
-    const { container } = renderWithIntl(<MobileHero />);
+    const { container } = render(<MobileHero />);
     // No hero <img> may be eager: eager images load even inside a display:none
     // subtree, which is what caused the ~8.8 MB desktop double-load.
     const eager = [...container.querySelectorAll("img")].filter(
@@ -32,7 +31,7 @@ describe("MobileHero", () => {
   });
 
   it("preloads the cycling frames only under the mobile media query", () => {
-    renderWithIntl(<MobileHero />);
+    render(<MobileHero />);
     // React 19 hoists <link rel=preload> to <head>.
     const preloads = [
       ...document.querySelectorAll('link[rel="preload"][as="image"]'),
@@ -51,7 +50,7 @@ describe("MobileHero", () => {
     // aria-label across ticks to prove the interval is actually advancing
     // `index` (a smoke "didn't crash" assertion would pass even if the
     // interval were dead).
-    const { container } = renderWithIntl(<MobileHero />);
+    const { container } = render(<MobileHero />);
     const getActiveLabel = () =>
       container.querySelector('a[aria-hidden="false"]')?.getAttribute("aria-label");
 

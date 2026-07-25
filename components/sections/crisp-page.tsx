@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { crisp, crispFrame } from "@/content/crisp";
 import { Reveal } from "@/components/reveal";
 
@@ -71,7 +70,6 @@ function heroLetterFontSize(inset: string, targetPx: number) {
 }
 
 export function CrispCaseStudy() {
-  const t = useTranslations("CaseStudies.crisp");
   const ink = "#26211e";
   const titleInk = "#35221a";
   const heroBg = "#D4C3A2";
@@ -189,7 +187,7 @@ export function CrispCaseStudy() {
                 margin: 0,
               }}
             >
-              {t("eyebrow")}
+              {crisp.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -201,7 +199,7 @@ export function CrispCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {t("body")}
+              {crisp.body}
             </p>
           </Reveal>
         </div>

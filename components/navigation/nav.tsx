@@ -1,21 +1,14 @@
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { Wordmark } from "@/components/core";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { nav } from "@/content/home";
-
-// nav.links (from content) supplies hrefs + order; labels come from messages.
-const NAV_KEYS = ["services", "work", "about", "contact"] as const;
 
 /*
   Desktop nav (Figma 6:1282) — non-sticky; scrolls away, overlapping only the
   first section, so color is fixed per page via `scheme` to match it.
   Faithful-fluid: flex row with token horizontal padding (--nav-pad-x), no
-  absolute-pixel positioning, no zoom. Labels are localized (next-intl); links
-  are locale-aware so they keep the active language.
+  absolute-pixel positioning, no zoom.
 */
 export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
-  const t = useTranslations("Nav");
   const color = scheme === "light" ? "var(--color-cream)" : "var(--color-ink)";
   return (
     <header
@@ -44,19 +37,16 @@ export function Nav({ scheme = "dark" }: { scheme?: "light" | "dark" }) {
               fontSize: `${nav.fontSize}px`,
             }}
           >
-            {nav.links.map((link, i) => (
-              <li key={NAV_KEYS[i]} className="shrink-0">
+            {nav.links.map((link) => (
+              <li key={link.label} className="shrink-0">
                 <Link
                   href={link.href}
                   className="block transition-opacity hover:opacity-70"
                 >
-                  {t(NAV_KEYS[i])}
+                  {link.label}
                 </Link>
               </li>
             ))}
-            <li className="shrink-0">
-              <LanguageSwitcher />
-            </li>
           </ul>
         </nav>
       </div>

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { interstellar, interstellarFrame } from "@/content/interstellar";
 import { Reveal } from "@/components/reveal";
 import { InterstellarRow5Content } from "@/components/work/interstellar-extras/row5-full";
@@ -80,7 +79,6 @@ function row3PhotoY(px: number) {
 }
 
 export function InterstellarCaseStudy() {
-  const t = useTranslations("CaseStudies.interstellar");
   const titleInk = "#35221a";
 
   return (
@@ -164,7 +162,7 @@ export function InterstellarCaseStudy() {
                 margin: 0,
               }}
             >
-              {t("eyebrow")}
+              {interstellar.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -176,7 +174,7 @@ export function InterstellarCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {t("body")}
+              {interstellar.body}
             </p>
           </Reveal>
         </div>

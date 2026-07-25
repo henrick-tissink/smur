@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render } from "@testing-library/react";
 import { TafCaseStudy } from "./taf-page";
 import { MobileTafCaseStudy } from "./mobile-taf-page";
 
@@ -17,7 +17,7 @@ const HERO_LOCAL_H = 649.13;
 
 describe("TafCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = renderWithIntl(<TafCaseStudy />);
+    const { container } = render(<TafCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -28,7 +28,7 @@ describe("TafCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = renderWithIntl(<TafCaseStudy />);
+    const { container } = render(<TafCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/taf/']"),
     ).not.toBeNull();
@@ -39,7 +39,7 @@ describe("TafCaseStudy (faithful-fluid)", () => {
   // (relative to the 900×649.13 wrapper), not frame-absolute ones. Assert
   // the "dark" quadrant resolves against the local box, not the stage.
   it("hero quadrant children resolve % against the local hero box, not the stage", () => {
-    const { container } = renderWithIntl(<TafCaseStudy />);
+    const { container } = render(<TafCaseStudy />);
     const darkImg = container.querySelector<HTMLImageElement>(
       "img[alt='TAF brand mark — dark']",
     );
@@ -61,7 +61,7 @@ describe("TafCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = renderWithIntl(<MobileTafCaseStudy />);
+    const { container } = render(<MobileTafCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

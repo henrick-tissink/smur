@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { about } from "@/content/home";
 import { contactFAQ } from "@/content/contact";
 import { FigmaImage } from "@/components/figma-image";
@@ -47,16 +46,6 @@ function pctY(px: number) {
 }
 
 export function MobileAbout() {
-  const t = useTranslations("About");
-  // The message body is one plain string; the legacy JSX renders it as three
-  // <p> paragraphs (separated by a blank line in the Figma copy). Split on
-  // runs of 2+ whitespace to recover the same three paragraphs, and swap the
-  // straight apostrophes from the extracted message for the typographic ’
-  // the design uses (matches the pre-i18n hardcoded JSX).
-  const bodyParagraphs = t("body")
-    .split(/\s{2,}/)
-    .map((p) => p.replace(/'/g, "’"));
-
   return (
     <section
       id="m-about"
@@ -85,7 +74,7 @@ export function MobileAbout() {
               src="/figma-assets/titles/about-centered.svg"
               width="44.35cqw" /* 174.3/393 */
               height="35.70cqw" /* 140.3/393 */
-              alt={t("heading")}
+              alt="About Sma & Smur."
               as={2}
             />
           </div>
@@ -101,15 +90,28 @@ export function MobileAbout() {
               width: pctX(308),
             }}
           >
-            {bodyParagraphs.map((p, i) => (
-              <p
-                key={i}
-                className={i > 0 ? "mt-[1em]" : undefined}
-                style={{ fontSize: "3.82cqw" /* 15/393 */, lineHeight: 1.33 }}
-              >
-                {p}
-              </p>
-            ))}
+            <p style={{ fontSize: "3.82cqw" /* 15/393 */, lineHeight: 1.33 }}>
+              Over the years, my work has grown beyond branding into web
+              design, UI/UX, creative direction, and set &amp; event styling,
+              always focused on building cohesive, emotionally grounded
+              visual worlds across both digital and physical spaces.
+            </p>
+            <p
+              className="mt-[1em]"
+              style={{ fontSize: "3.82cqw" /* 15/393 */, lineHeight: 1.33 }}
+            >
+              I value collaboration, thoughtful listening, and real human
+              connection, which continue to shape how I work and the kinds
+              of people and projects I&rsquo;m naturally drawn to.
+            </p>
+            <p
+              className="mt-[1em]"
+              style={{ fontSize: "3.82cqw" /* 15/393 */, lineHeight: 1.33 }}
+            >
+              While branding remains central to what I do, I&rsquo;m most
+              fulfilled when creating work that feels both beautiful and
+              deeply aligned with the people behind it.
+            </p>
           </div>
         </Reveal>
 

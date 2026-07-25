@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { kabinett, kabinettFrame } from "@/content/kabinett";
 import { Reveal } from "@/components/reveal";
 
@@ -85,7 +84,6 @@ function hy(px: number) {
 }
 
 export function KabinettCaseStudy() {
-  const t = useTranslations("CaseStudies.kabinett");
   const titleInk = "#35221a";
 
   return (
@@ -189,7 +187,7 @@ export function KabinettCaseStudy() {
                 margin: 0,
               }}
             >
-              {t("eyebrow")}
+              {kabinett.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -201,7 +199,7 @@ export function KabinettCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {t("body").split("\n\n").map((p, i) => (
+              {kabinett.body.map((p, i) => (
                 <p key={i} style={{ margin: 0, marginTop: i === 0 ? 0 : "1em" }}>
                   {p}
                 </p>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render } from "@testing-library/react";
 import { LavaboCaseStudy } from "./lavabo-page";
 import { MobileLavaboCaseStudy } from "./mobile-lavabo-page";
 
@@ -26,7 +26,7 @@ const M_SINK_LOCAL_H = 391.6;
 
 describe("LavaboCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = renderWithIntl(<LavaboCaseStudy />);
+    const { container } = render(<LavaboCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -37,7 +37,7 @@ describe("LavaboCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = renderWithIntl(<LavaboCaseStudy />);
+    const { container } = render(<LavaboCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/lavabo/']"),
     ).not.toBeNull();
@@ -46,7 +46,7 @@ describe("LavaboCaseStudy (faithful-fluid)", () => {
   // Mobile lavabo is ALSO Recipe A (fixed canvas → aspect-stage), unlike
   // every other case study's mobile (Recipe B, container-query flow).
   it("mobile tree ALSO renders an aspect-ratio stage (Recipe A, not Recipe B), no zoom", () => {
-    const { container } = renderWithIntl(<MobileLavaboCaseStudy />);
+    const { container } = render(<MobileLavaboCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -59,7 +59,7 @@ describe("LavaboCaseStudy (faithful-fluid)", () => {
   // Containing-block guard (desktop): the overlay resolves against the
   // sink-hero wrapper's own 896×895.5 box, NOT the 1440×5336 stage.
   it("desktop sink-hero overlay resolves % against its local wrapper, not the stage", () => {
-    const { container } = renderWithIntl(<LavaboCaseStudy />);
+    const { container } = render(<LavaboCaseStudy />);
     const overlay = container.querySelector<HTMLImageElement>(
       "img[src*='sink-overlay.svg']",
     );
@@ -79,7 +79,7 @@ describe("LavaboCaseStudy (faithful-fluid)", () => {
 
   // Containing-block guard (mobile): same trap, local box is 393×391.6.
   it("mobile sink-hero overlay resolves % against its local wrapper, not the stage", () => {
-    const { container } = renderWithIntl(<MobileLavaboCaseStudy />);
+    const { container } = render(<MobileLavaboCaseStudy />);
     const overlay = container.querySelector<HTMLImageElement>(
       "img[src*='mobile/sink-overlay.svg']",
     );

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { testimonials } from "@/content/home";
 import { Arrow } from "@/components/arrow";
 import { Reveal } from "@/components/reveal";
@@ -43,8 +42,8 @@ function cqw(px: number) {
 }
 
 export function MobileTestimonial() {
-  const t = useTranslations("Testimonials");
   const [index, setIndex] = useState(0);
+  const t = testimonials[index];
   const go = (delta: number) =>
     setIndex((i) => (i + delta + testimonials.length) % testimonials.length);
 
@@ -73,7 +72,7 @@ export function MobileTestimonial() {
               className="whitespace-pre-line text-ink"
               style={{ fontSize: cqw(15), lineHeight: 1.33 }}
             >
-              {t(`${index}.quote`)}
+              {t.quote}
             </p>
           </Reveal>
           <Reveal key={`a-${index}`} delay={0.06}>
@@ -81,7 +80,7 @@ export function MobileTestimonial() {
               className="font-sans italic text-ink"
               style={{ marginTop: cqw(30), fontSize: cqw(20), lineHeight: "normal" }}
             >
-              {t(`${index}.attribution`)}
+              {t.attribution}
             </p>
           </Reveal>
         </div>

@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import type { Service } from "@/content/home";
 import { FigmaImage } from "@/components/figma-image";
 import { Reveal } from "@/components/reveal";
@@ -36,13 +35,12 @@ import { ServiceAccordion } from "./service-accordion";
     Figma design size with `justify-between` pushing them to the row edges.
 */
 export function ServiceSection({ service }: { service: Service }) {
-  const t = useTranslations(`Services.${service.id}`);
   const titleId = `${service.id}-title`;
 
   const text = (
     <div className="w-full md:min-w-0 md:max-w-[430px] md:flex-1">
       <Reveal>
-        <span className="eyebrow">{t("eyebrow")}</span>
+        <span className="eyebrow">{service.eyebrow}</span>
       </Reveal>
       {/*
         Figma Frame 27 (1:710) gap-35 between header and body, gap-25 inside
@@ -60,30 +58,26 @@ export function ServiceSection({ service }: { service: Service }) {
               width={service.titleSvg.width}
               height={service.titleSvg.height}
               leftBearing={service.titleSvg.leftBearing}
-              alt={t("title")}
+              alt={service.title}
               as={2}
             />
           </div>
         ) : (
           <h2 id={titleId} className="mt-[12px] font-heading text-[58px] leading-[1.21] text-ink">
-            {t("title")}
+            {service.title}
           </h2>
         )}
       </Reveal>
       <Reveal delay={0.1}>
         <p className="mt-[24px] max-w-[430px] text-[17px] leading-[1.33] text-ink">
-          {t("body")}
+          {service.body}
         </p>
       </Reveal>
       {service.dropdowns.length > 0 && (
         <Reveal delay={0.15} className="mt-[32px]">
           <div>
-            {service.dropdowns.map((d, i) => (
-              <ServiceAccordion
-                key={d.label}
-                label={t(`dropdowns.${i}.label`)}
-                body={t(`dropdowns.${i}.body`)}
-              />
+            {service.dropdowns.map((d) => (
+              <ServiceAccordion key={d.label} label={d.label} body={d.body} />
             ))}
           </div>
         </Reveal>

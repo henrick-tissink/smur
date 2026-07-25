@@ -1,13 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { renderWithIntl } from "@/lib/test-intl";
 import { MobileTestimonial } from "@/components/sections/mobile-testimonial";
 import { testimonials } from "@/content/home";
 
 describe("MobileTestimonial (fluid carousel)", () => {
   it("renders the testimonial region with the first quote and attribution", () => {
-    const { container } = renderWithIntl(<MobileTestimonial />);
+    const { container } = render(<MobileTestimonial />);
     const region = container.querySelector('[aria-label="Testimonial"]');
     expect(region).toBeInTheDocument();
     expect(region).toHaveAttribute("data-nav-scheme", "dark");
@@ -21,7 +20,7 @@ describe("MobileTestimonial (fluid carousel)", () => {
   });
 
   it("shows a different testimonial after clicking Next", async () => {
-    renderWithIntl(<MobileTestimonial />);
+    render(<MobileTestimonial />);
     const first = testimonials[0];
     const second = testimonials[1];
 

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { architrave, architraveFrame } from "@/content/architrave";
 import { Reveal } from "@/components/reveal";
 
@@ -37,7 +36,6 @@ function cqw(px: number) {
 }
 
 export function ArchitraveCaseStudy() {
-  const t = useTranslations("CaseStudies.architrave");
   const titleInk = "#35221a";
 
   return (
@@ -105,7 +103,7 @@ export function ArchitraveCaseStudy() {
                 margin: 0,
               }}
             >
-              {t("eyebrow")}
+              {architrave.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.08}>
@@ -117,7 +115,7 @@ export function ArchitraveCaseStudy() {
                 fontFamily: "var(--font-dm-sans), sans-serif",
               }}
             >
-              {t("body")}
+              {architrave.body}
             </p>
           </Reveal>
         </div>

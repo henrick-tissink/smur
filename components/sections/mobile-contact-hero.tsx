@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { contactHero } from "@/content/contact";
 import { BouncingArrow } from "@/components/bouncing-arrow";
 import { Reveal } from "@/components/reveal";
 import { TitleMask } from "@/components/title-mask";
@@ -45,7 +45,6 @@ function cqw(px: number) {
 }
 
 export function MobileContactHero() {
-  const t = useTranslations("Contact");
   return (
     <section
       data-nav-scheme="light"
@@ -71,7 +70,7 @@ export function MobileContactHero() {
               src="/figma-assets/titles/tell-me-about.svg"
               width={cqw(302)}
               height={cqw(107.1)}
-              alt={t("title")}
+              alt={contactHero.title}
               as={1}
             />
           </Reveal>
@@ -84,7 +83,7 @@ export function MobileContactHero() {
         >
           <Reveal delay={0.08}>
             <p style={{ fontSize: cqw(15), lineHeight: 1.33 }}>
-              {t("intro")}
+              {contactHero.body}
             </p>
           </Reveal>
         </div>

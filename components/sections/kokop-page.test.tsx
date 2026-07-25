@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render } from "@testing-library/react";
 import { KokopCaseStudy } from "./kokop-page";
 import { MobileKokopCaseStudy } from "./mobile-kokop-page";
 
 describe("KokopCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = renderWithIntl(<KokopCaseStudy />);
+    const { container } = render(<KokopCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -16,7 +16,7 @@ describe("KokopCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = renderWithIntl(<KokopCaseStudy />);
+    const { container } = render(<KokopCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/kokop/']"),
     ).not.toBeNull();
@@ -25,7 +25,7 @@ describe("KokopCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = renderWithIntl(<MobileKokopCaseStudy />);
+    const { container } = render(<MobileKokopCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );
@@ -44,7 +44,7 @@ describe("KokopCaseStudy (faithful-fluid)", () => {
   // rule, and non-fluid besides. It must be hoisted into equivalent
   // stage-relative left/width percentages instead.
   it("hoists the section8 wrapper's corrective transform into stage-relative percentages", () => {
-    const { container } = renderWithIntl(<KokopCaseStudy />);
+    const { container } = render(<KokopCaseStudy />);
     const section8Root = container.querySelector(
       '[data-node-id="297:57935"]',
     );

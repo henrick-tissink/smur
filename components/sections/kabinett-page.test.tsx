@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { renderWithIntl } from "@/lib/test-intl";
+import { render } from "@testing-library/react";
 import { KabinettCaseStudy } from "./kabinett-page";
 import { MobileKabinettCaseStudy } from "./mobile-kabinett-page";
 
@@ -17,7 +17,7 @@ const HERO_LOCAL_H = 645.377;
 
 describe("KabinettCaseStudy (faithful-fluid)", () => {
   it("renders an aspect-ratio stage, not a zoom/fixed canvas", () => {
-    const { container } = renderWithIntl(<KabinettCaseStudy />);
+    const { container } = render(<KabinettCaseStudy />);
     const stage = container.querySelector<HTMLElement>(
       "[style*='aspect-ratio']",
     );
@@ -28,7 +28,7 @@ describe("KabinettCaseStudy (faithful-fluid)", () => {
   });
 
   it("keeps the hero art (original asset, not a screenshot)", () => {
-    const { container } = renderWithIntl(<KabinettCaseStudy />);
+    const { container } = render(<KabinettCaseStudy />);
     expect(
       container.querySelector("[src*='/figma-assets/work/kabinett/']"),
     ).not.toBeNull();
@@ -39,7 +39,7 @@ describe("KabinettCaseStudy (faithful-fluid)", () => {
   // (relative to the 894×645.377 wrapper), not frame-absolute ones. Assert
   // the "dark" quadrant resolves against the local box, not the stage.
   it("hero quadrant children resolve % against the local hero box, not the stage", () => {
-    const { container } = renderWithIntl(<KabinettCaseStudy />);
+    const { container } = render(<KabinettCaseStudy />);
     const darkImg = container.querySelector<HTMLImageElement>(
       "img[alt='Kabinett lockup on charcoal']",
     );
@@ -61,7 +61,7 @@ describe("KabinettCaseStudy (faithful-fluid)", () => {
   // Recipe B mobile (flow + container-query): assert the container-query
   // root, NOT aspect-ratio.
   it("mobile tree is a fluid container-query flow, no zoom", () => {
-    const { container } = renderWithIntl(<MobileKabinettCaseStudy />);
+    const { container } = render(<MobileKabinettCaseStudy />);
     const root = container.querySelector<HTMLElement>(
       "[style*='inline-size']",
     );

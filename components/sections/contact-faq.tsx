@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useState } from "react";
 import { contactFAQ, contactFAQItems } from "@/content/contact";
 import { Chevron } from "@/components/chevron";
@@ -58,7 +57,6 @@ import { TitleMask } from "@/components/title-mask";
   Reveal delays (UNCHANGED from legacy): eyebrow 0, title 0.06.
 */
 export function ContactFAQ() {
-  const t = useTranslations("Contact");
   return (
     <section
       data-nav-scheme="light"
@@ -78,7 +76,7 @@ export function ContactFAQ() {
         <div className="mx-auto flex max-w-[284px] flex-col items-center text-center text-cream">
           <Reveal>
             <p className="font-sans italic" style={{ fontSize: 20 }}>
-              {t("faqEyebrow")}
+              {contactFAQ.eyebrow}
             </p>
           </Reveal>
           <Reveal delay={0.06}>
@@ -87,7 +85,7 @@ export function ContactFAQ() {
                 src="/figma-assets/titles/questions.svg"
                 width={288.19}
                 height={72.21}
-                alt={t("faqHeading")}
+                alt={contactFAQ.heading}
                 as={2}
               />
             </div>
@@ -96,12 +94,8 @@ export function ContactFAQ() {
 
         {/* FAQ accordion — centered, legacy width 652 */}
         <div className="mx-auto mt-[clamp(32px,4vw,60px)] w-full max-w-[652px]">
-          {contactFAQItems.map((item, i) => (
-            <FAQRow
-              key={item.question}
-              question={t(`faq.${i}.question`)}
-              answer={t(`faq.${i}.answer`)}
-            />
+          {contactFAQItems.map((item) => (
+            <FAQRow key={item.question} question={item.question} answer={item.answer} />
           ))}
         </div>
 
@@ -114,7 +108,7 @@ export function ContactFAQ() {
           >
             <BouncingUnionArrow />
             <span className="mt-[8px] text-[20px] italic">
-              {t("myWorkLink")}
+              {contactFAQ.myWorkLink}
             </span>
           </Link>
 

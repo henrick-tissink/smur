@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import { contactForm } from "@/content/contact";
 import { Reveal } from "@/components/reveal";
@@ -30,7 +29,6 @@ import { useContactSubmit } from "@/components/contact/use-contact-submit";
   NOT cqw, per the brief: form text must stay legible/zoom-independent.
 */
 export function ContactForm() {
-  const t = useTranslations("Contact");
   // Submission posts to /api/contact; the button only flips to SENT when the
   // message is actually delivered (June 2026 client request).
   const { state, submit } = useContactSubmit();
@@ -66,11 +64,19 @@ export function ContactForm() {
             <div className="flex gap-[10px]">
               <FieldText
                 id={contactForm.fields[0].id}
-                label={t(`form.${contactForm.fields[0].id}.label`)}
+                label={
+                  contactForm.fields[0].kind === "text"
+                    ? contactForm.fields[0].label
+                    : ""
+                }
               />
               <FieldText
                 id={contactForm.fields[1].id}
-                label={t(`form.${contactForm.fields[1].id}.label`)}
+                label={
+                  contactForm.fields[1].kind === "text"
+                    ? contactForm.fields[1].label
+                    : ""
+                }
               />
             </div>
             {/* Subsequent fields */}
@@ -79,21 +85,21 @@ export function ContactForm() {
                 <FieldText
                   key={f.id}
                   id={f.id}
-                  label={t(`form.${f.id}.label`)}
-                  helper={f.helper ? t(`form.${f.id}.helper`) : undefined}
+                  label={f.label}
+                  helper={f.helper}
                 />
               ) : f.kind === "checkboxGroup" ? (
                 <CheckboxGroup
                   key={f.id}
                   id={f.id}
-                  label={t(`form.${f.id}.label`)}
-                  options={t.raw(`form.${f.id}.options`) as string[]}
+                  label={f.label}
+                  options={f.options}
                 />
               ) : (
                 <FieldTextarea
                   key={f.id}
                   id={f.id}
-                  placeholder={t(`form.${f.id}.placeholder`)}
+                  placeholder={f.placeholder}
                 />
               ),
             )}
@@ -116,7 +122,7 @@ export function ContactForm() {
                     ? "SENT"
                     : state === "sending"
                       ? "SENDING…"
-                      : t("buttonLabel")}
+                      : contactForm.buttonLabel}
                 </span>
                 {!sent && state !== "sending" && (
                   <span
