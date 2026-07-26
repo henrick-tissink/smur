@@ -114,16 +114,22 @@ export function MnfCaseStudy() {
         </div>
 
         {/* ============================================================
-            Section 2b — Cascading website screens (MNFArtboard 70).
-            This section (Figma content band ~917–1441) was missing from
-            the build, leaving a void under the intro. Rendered object-
-            contain on the cream field, centered. Sits at its true Figma
-            position (outside the offset group below).
+            Section 2b — Cascading website screens (Figma Rectangle 71:591,
+            900×563, image fill). This section was missing from the build,
+            leaving a void under the intro. Figma renders the image as a FILL
+            (size-full, edge-to-edge) so the grey mockup field spans the full
+            column and sits flush to the 270 grid line like every other band.
+            An earlier port used object-contain, which pillarboxed + shrank the
+            mockup so it floated inset on the cream field — reading as
+            misaligned against the bands below. object-cover reproduces Figma's
+            fill. (The mockup's own ~11% left margin — the perspective
+            composition — is baked into the asset and matches the design.)
+            Sits at its true Figma position (outside the offset group below).
             ============================================================ */}
         <Reveal delay={0.05}>
           <div
-            className="absolute"
-            style={{ left: pctX(270), top: pctY(900), width: pctX(899), height: pctY(545) }}
+            className="absolute overflow-hidden"
+            style={{ left: pctX(270), top: pctY(900), width: pctX(899), height: pctY(563) }}
           >
             <Image
               src="/figma-assets/work/mnf/screens.jpg"
@@ -131,7 +137,7 @@ export function MnfCaseStudy() {
               width={1793}
               height={1180}
               unoptimized
-              className="block h-full w-full object-contain"
+              className="block h-full w-full object-cover"
             />
           </div>
         </Reveal>

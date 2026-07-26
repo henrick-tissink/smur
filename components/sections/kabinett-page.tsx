@@ -231,16 +231,39 @@ export function KabinettCaseStudy() {
         {/* 11 brand-mark vectors on the right half. Insets already
            root-frame (1440×4985) relative (see content/kabinett.ts
            comment) — same basis as this stage, kept verbatim. */}
-        {kabinett.row1Vectors.map((v) => (
-          <div key={v.src} className="absolute" style={{ inset: v.inset }}>
-            <img
-              src={`/figma-assets/work/kabinett/row1/${v.src}`}
-              alt=""
-              className="absolute inset-0 block h-full w-full"
-              style={{ maxWidth: "none" }}
-            />
-          </div>
-        ))}
+        {kabinett.row1Vectors.map((v) =>
+          v.rot ? (
+            // Rotated stroke (a diagonal leg of the "K"): the inset is the
+            // bounding box; centre the native-sized stroke inside it and
+            // rotate, mirroring Figma's flex + hypot + rotate structure.
+            <div
+              key={v.src}
+              className="absolute flex items-center justify-center"
+              style={{ inset: v.inset }}
+            >
+              <div
+                className="relative"
+                style={{ flex: "none", width: v.rot.w, height: v.rot.h, transform: v.rot.transform }}
+              >
+                <img
+                  src={`/figma-assets/work/kabinett/row1/${v.src}`}
+                  alt=""
+                  className="absolute inset-0 block h-full w-full"
+                  style={{ maxWidth: "none" }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div key={v.src} className="absolute" style={{ inset: v.inset }}>
+              <img
+                src={`/figma-assets/work/kabinett/row1/${v.src}`}
+                alt=""
+                className="absolute inset-0 block h-full w-full"
+                style={{ maxWidth: "none" }}
+              />
+            </div>
+          )
+        )}
 
         {/* ============================================================
             Section 4 — Row 2 (Group 117, artboard 143). Flat export of the
